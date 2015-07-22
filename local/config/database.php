@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'pgsql',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -66,10 +66,10 @@ return [
 
 		'pgsql' => [
 			'driver'   => 'pgsql',
-			'host'     => env('DB_HOST', 'localhost'),
-			'database' => env('DB_DATABASE', 'forge'),
-			'username' => env('DB_USERNAME', 'forge'),
-			'password' => env('DB_PASSWORD', ''),
+			'host'     => isset($_SERVER['DB1_HOST']) ? $_SERVER['DB1_HOST'] : '127.0.0.1',
+			'database' => isset($_SERVER['DB1_NAME']) ? $_SERVER['DB1_NAME'] : 'mycontact',
+			'username' => isset($_SERVER['DB1_USER']) ? $_SERVER['DB1_USER'] : 'postgres',
+			'password' => isset($_SERVER['DB1_PASS']) ? $_SERVER['DB1_PASS'] : 'postgres',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
