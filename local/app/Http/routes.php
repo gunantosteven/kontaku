@@ -15,6 +15,11 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
+Route::get('/{url}', [
+	    'as' => 'showcontact.show',
+	    'uses' => 'ShowContactController@show'
+	]);
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
