@@ -51,7 +51,14 @@ class ShowContactController extends Controller {
 	{
 		//
 		$user=DB::table('users')->where('url', $url)->first();
-   		return view('showcontact',compact('user'));
+		if($user == null)
+		{
+			return view('contactnotfound');
+		}
+		else
+		{
+			return view('showcontact',compact('user'));
+		}	
 	}
 
 	/**
