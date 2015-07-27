@@ -33,16 +33,16 @@ Route::get('createdb',function(){
 		$table->string('id')->primary();
 		$table->string('email',32)->unique();
 		$table->string('password',60);
-		$table->string('role',32);
-		$table->string('remember_token',60);
-		$table->string('fullname',30);
-		$table->string('url', 30);
-		$table->string('phone',30);
-		$table->string('pinbb',30);
-		$table->string('facebook',30);
-		$table->string('twitter',30);
-		$table->string('instagram',30);
-		$table->string('status',30);
+		$table->string('role',32)->default('USER');;
+		$table->string('remember_token',60)->default('');
+		$table->string('fullname',30)->default('');;
+		$table->string('url', 30)->unique();
+		$table->string('phone',30)->default('');;
+		$table->string('pinbb',30)->default('');;
+		$table->string('facebook',30)->default('');;
+		$table->string('twitter',30)->default('');;
+		$table->string('instagram',30)->default('');;
+		$table->string('status',30)->default('Welcome to my contact');;
 		$table->timestamps();
 	});
 	Schema::create('friends',function($table){

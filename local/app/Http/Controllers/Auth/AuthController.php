@@ -21,6 +21,8 @@ class AuthController extends Controller {
 
 	use AuthenticatesAndRegistersUsers;
 
+	protected $redirectTo = '/user/home';
+
 	/**
 	 * Create a new authentication controller instance.
 	 *
