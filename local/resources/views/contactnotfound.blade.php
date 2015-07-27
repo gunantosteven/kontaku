@@ -7,8 +7,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">Contact Not Found</div>
         <div class="panel-body">
-        <h3>New Registration<a href={{ url("/auth/register") }}> Click Here</a></h3>
-          
+          <h3>You can register this url <a href={{ url("/auth/register") }}> Click Here to register</a></h3>
         </div>
       </div>
     </div>

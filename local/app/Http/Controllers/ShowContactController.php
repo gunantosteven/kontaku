@@ -4,7 +4,7 @@ use App\Models\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Request;
+use Illuminate\Http\Request;
 use Input;
 use DB;
 
@@ -47,12 +47,17 @@ class ShowContactController extends Controller {
 	 * @param  string  $url
 	 * @return Response
 	 */
-	public function show($url)
+	public function show($url, Request $request)
 	{
 		//
 		$user=DB::table('users')->where('url', $url)->first();
 		if($user == null)
 		{
+			$user = $request->user();
+			if ($user && $user->role == 'USER')
+			{
+				return view('user/contactnotfound');
+			}
 			return view('contactnotfound');
 		}
 		else

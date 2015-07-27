@@ -28,6 +28,11 @@ Route::group(['middleware' => 'user'], function()
     Route::get('/user/home', 'User\HomeController@index');
 });
 
+Route::get('/{url}', [
+	    'as' => 'showcontact.show',
+	    'uses' => 'ShowContactController@show'
+]);
+
 Route::get('createdb',function(){
 	Schema::create('users',function($table){
 		$table->string('id')->primary();
@@ -57,8 +62,3 @@ Route::get('createdb',function(){
 
 	return "tables has been created";
 });
-
-Route::get('/{url}', [
-	    'as' => 'showcontact.show',
-	    'uses' => 'ShowContactController@show'
-]);
