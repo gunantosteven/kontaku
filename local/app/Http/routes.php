@@ -15,21 +15,28 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::get('/{url}', [
-	    'as' => 'showcontact.show',
-	    'uses' => 'ShowContactController@show'
-	]);
-
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+Route::group(['middleware' => 'user'], function()
+{
+    Route::get('/user', function()
+    {
+        // can only access this if type == O
+    });
+
+    Route::get('/user/home', 'User\HomeController@index');
+});
 
 Route::get('createdb',function(){
 	Schema::create('users',function($table){
 		$table->string('id')->primary();
 		$table->string('email',32)->unique();
 		$table->string('password',60);
+		$table->string('role',32);
+		$table->string('remember_token',60);
 		$table->string('fullname',30);
 		$table->string('url', 30);
 		$table->string('phone',30);
@@ -52,3 +59,8 @@ Route::get('createdb',function(){
 
 	return "tables has been created";
 });
+
+Route::get('/{url}', [
+	    'as' => 'showcontact.show',
+	    'uses' => 'ShowContactController@show'
+]);

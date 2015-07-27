@@ -10,8 +10,10 @@ class UsersTableSeederTableSeeder extends Seeder {
 		// buat data users
 		\App\Models\User::create(array(
 		'id' => Uuid::generate(),
-		'email' => 'gunantosteven@gmailcom',
+		'email' => 'gunantosteven@gmail.com',
 		'password' => Hash::make('admin'),
+		'role' => 'USER',
+		'remember_token' => '',
 		'fullname' => 'Steven Gunanto',
 		'url' => 'stevengunanto',
 		'phone' => '083854968000',
@@ -24,8 +26,10 @@ class UsersTableSeederTableSeeder extends Seeder {
 
 		\App\Models\User::create(array(
 		'id' => Uuid::generate(),
-		'email' => 'coba@gmailcom',
+		'email' => 'coba@gmail.com',
 		'password' => Hash::make('coba'),
+		'role' => 'USER',
+		'remember_token' => '',
 		'fullname' => 'Coba',
 		'url' => 'coba',
 		'phone' => '12345678',
