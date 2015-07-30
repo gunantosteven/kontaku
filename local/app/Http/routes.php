@@ -28,11 +28,6 @@ Route::group(['middleware' => 'user'], function()
     Route::get('/user/home', 'User\HomeController@index');
 });
 
-Route::get('/{url}', [
-	    'as' => 'showcontact.show',
-	    'uses' => 'ShowContactController@show'
-]);
-
 Route::get('createdb',function(){
 	Schema::create('users',function($table){
 		$table->string('id')->primary();
@@ -50,6 +45,11 @@ Route::get('createdb',function(){
 		$table->string('status',30)->default('Welcome to my contact');;
 		$table->timestamps();
 	});
+	Schema::create('password_resets',function($table){
+		$table->string('email')->index();
+		$table->string('token')->index();
+		$table->timestamp('created_at');
+	});
 	Schema::create('friends',function($table){
 		$table->string('id')->primary();
 		$table->string('user1');
@@ -62,3 +62,8 @@ Route::get('createdb',function(){
 
 	return "tables has been created";
 });
+
+Route::get('/{url}', [
+	    'as' => 'showcontact.show',
+	    'uses' => 'ShowContactController@show'
+]);
