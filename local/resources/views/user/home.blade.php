@@ -366,8 +366,6 @@
           $('#left-menu a,#footerBtn a').removeClass('ui-btn-active');
           $('#footerBtn a').eq(0).addClass('ui-btn-active');
           $(this).addClass('ui-btn-active');
-          var title = $(this).text();
-          $('h3').text(title);
           var scoreGid = $(this).attr('gid');
           table.gid = scoreGid;
           table.range = '';
@@ -394,7 +392,7 @@
       <div id="left-menu" data-role="panel" data-position="left" data-theme="b" data-position-fixed="false" data-display="overlay">
 	      <span>Menu</span>
 	      <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-active" data-theme="b" data-rel="close" gid="0">Home</a>
-	      <a class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">My Profile</a>
+	      <a href="#myprofile" class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">My Profile</a>
 	      <a class="ui-btn ui-icon-plus ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">Invites</a>
 	      <a class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b" data-rel="close" >Settings</a>
 	      <a class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b" data-rel="close" >Reports a Problem</a>
@@ -459,7 +457,7 @@
     <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="add-form" data-theme="b">
 
 					<form class="userform">
-						<h2>Create new user</h2>
+						<h2>Create new contact offline</h2>
 						<label for="name">Full Name</label>
 						<input type="text" name="fullname" id="fullname" value="" data-clear-btn="true" data-mini="true">
 
@@ -490,6 +488,52 @@
 		<!-- panel content goes here -->
 	</div><!-- /panel -->
   </div>
+
+
+  <div data-role="page" id="myprofile">
+	  <div data-role="header" data-theme="b" id="header1">
+	     <h3>My Profile</h3>
+	     <a href="#" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
+	  </div>
+
+	  <div data-role="main"  class="ui-content">
+	    	<form class="userform">
+						<h2>Update My Profile</h2>
+						<label for="name">Full Name</label>
+						<input type="text" name="fullname" id="fullname" value="" data-clear-btn="true" data-mini="true"> 
+
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" value="" data-clear-btn="true" data-mini="true">
+
+						<label for="name">Phone</label>
+						<input type="text" name="phone" id="phone" value="" data-clear-btn="true" data-mini="true">
+
+						<label for="name">Pin BB</label>
+						<input type="text" name="fullname" id="fullname" value="" data-clear-btn="true" data-mini="true">
+
+						<label for="name">Facebook</label>
+						<input type="text" name="facebook" id="facebook" value="" data-clear-btn="true" data-mini="true">
+
+						<label for="name">Twitter</label>
+						<input type="text" name="twitter" id="twitter" value="" data-clear-btn="true" data-mini="true">
+
+						<label for="name">Instagram</label>
+						<input type="text" name="instagram" id="instagram" value="" data-clear-btn="true" data-mini="true">
+
+						<label for="name">Status</label>
+						<input type="text" name="status" id="status" value="" data-clear-btn="true" data-mini="true">
+
+						<div class="ui-grid-a">
+						    <div class="ui-block-a"><a href="#" data-rel="back" data-role="button" data-theme="c" data-mini="true">Cancel</a></div>
+						    <div class="ui-block-b"><a href="#" data-rel="back" data-role="button" data-theme="b" data-mini="true">Save</a></div>
+						</div>
+			</form>
+	  </div>
+
+	  <div data-role="footer">
+	    <h1>Footer Text</h1>
+	  </div>
+	</div> 
 </body>
 
 </html>
