@@ -393,7 +393,7 @@
 	      <span>Menu</span>
 	      <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-active" data-theme="b" data-rel="close" gid="0">Home</a>
 	      <a href="#myprofile" class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">My Profile</a>
-	      <a class="ui-btn ui-icon-plus ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">Invites</a>
+	      <a href="#invites" class="ui-btn ui-icon-plus ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">Invites</a>
 	      <a class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b" data-rel="close" >Settings</a>
 	      <a class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b" data-rel="close" >Reports a Problem</a>
 	      <a class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="b" data-rel="close" >Help</a>
@@ -534,6 +534,75 @@
 	    <h1>Footer Text</h1>
 	  </div>
 	</div> 
+
+	<!-- Page: home  -->
+  <div id="invites" data-role="page">
+    <div role="main" class="ui-content">
+      <!-- contact list  -->
+      <div id="top-b"></div>
+      <div data-role="header"  data-theme="b" id="header1">
+	      <h3>Invites</h3>
+	      <a href="#" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
+	  </div>
+      <div id="search">
+        <paper-input label="Serch All Contact" multiline style="z-index:9;"></paper-input>
+      </div>
+      <div id="list-content">
+        <paper-item horizontal center layout class="list1">
+          <div>
+            <img src="https://lh6.googleusercontent.com/-KyWnYxFqQhM/U7u7wdxR2AI/AAAAAAAA6AE/_5oTbJ7utwo/s000/OZSun_10s.png">
+          </div><b>OXXO</b>&nbsp;Chang</paper-item>
+        <paper-item horizontal center layout class="list1">
+          <div>
+            <img src="https://lh5.googleusercontent.com/-3BxoPIP1Cvs/U7u7xDnV87I/AAAAAAAA6AY/WiJXv9nS6oo/s800/OZSun_33s.png">
+          </div><b>Robert</b>&nbsp;Downey Jr.</paper-item>
+        <paper-item horizontal center layout class="list1">
+          <div>
+            <img src="https://lh6.googleusercontent.com/-g_kx9qTa4Tk/U7u7xLN2peI/AAAAAAAA6Ac/rXkMa7tT2Ik/s800/OZSun_27s.png">
+          </div><b>Hugh</b>&nbsp;Jackman</paper-item>
+        <paper-item horizontal center layout class="list1">
+          <div>
+            <img src="https://lh6.googleusercontent.com/-KQioaQrjEVE/U7u7wfHFkAI/AAAAAAAA6AQ/PGYD1yXXwco/s800/OZSun_1s.png">
+          </div><b>Chris</b>&nbsp;Evans</paper-item>
+        <!--<paper-item horizontal center layout class="list1">-->
+        <!--  <div>-->
+        <!--    <img src="https://lh5.googleusercontent.com/-wuYZOcgmD-Q/U7u7wdyAJ0I/AAAAAAAA6AM/RWDZgC1VYS0/s000/OZSun_19s.png">-->
+        <!--  </div><b>Scarlett</b>&nbsp;Johansson</paper-item>-->
+      </div>
+	  <div data-role="header">
+	    <h1>Page Header</h1>
+	  </div>
+      <div id="content-bg"></div>
+      <!-- contact list  -->
+      <div id="detail">
+        <div id="detail-header">
+          <div style="float:left;">
+            <core-toolbar>
+              <paper-icon-button icon="arrow-back" role="button" tabindex="0" style="float:left;" id="back-btn"></paper-icon-button>
+            </core-toolbar>
+          </div>
+          <div style="float:right;">
+            <core-toolbar>
+              <paper-icon-button icon="create" role="button" tabindex="0" style="float:right;"></paper-icon-button>
+              <paper-icon-button icon="polymer" role="button" tabindex="0" style="float:right;"></paper-icon-button>
+              <paper-icon-button icon="favorite" role="button" tabindex="0" style="float:right;"></paper-icon-button>
+            </core-toolbar>
+          </div>
+        </div>
+        <div id="banner">
+          <img src="https://lh4.googleusercontent.com/-6DB_Qbs7xO4/U7uVbbLfWGI/AAAAAAAA5_c/d0s4_syNArk/s000/google.jpg">
+        </div>
+        <div id="detail-item">
+          <paper-item icon="settings-cell" horizontal center layout><b>PHONE</b>：0912-345-678</paper-item>
+          <paper-item icon="settings-phone" horizontal center layout><b>TEL</b>：886-07-5350101</paper-item>
+          <paper-item icon="mail" horizontal center layout><b>E-MAIL</b>：XXX@acb.com.tw</paper-item>
+          <paper-item icon="settings" horizontal center layout><b>GOOGLE+</b>：XXX@google.com</paper-item>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </body>
 
 </html>
