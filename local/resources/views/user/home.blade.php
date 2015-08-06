@@ -389,15 +389,16 @@
       <div data-role="header"  data-theme="b" id="header1">
 	      <h3>All Contacts</h3>
 	      <a  class="ui-btn ui-btn-left ui-btn-icon-notext ui-icon-bars ui-mini ui-corner-all" href="#left-menu">Button</a>
+	      <a href="#add-form" data-icon="plus" data-iconpos="notext">Add</a>
 	  </div>
       <div id="left-menu" data-role="panel" data-position="left" data-theme="b" data-position-fixed="false" data-display="overlay">
 	      <span>Menu</span>
-	      <a class="ui-btn ui-btn-active" data-theme="b" data-rel="close" gid="0">Home</a>
-	      <a class="ui-btn" data-theme="b" data-rel="close" gid="0">My Profile</a>
-	      <a class="ui-btn" data-theme="b" data-rel="close" gid="0">Invites</a>
-	      <a class="ui-btn" data-theme="b" data-rel="close" >Settings</a>
-	      <a class="ui-btn" data-theme="b" data-rel="close" >Reports a Problem</a>
-	      <a class="ui-btn" data-theme="b" data-rel="close" >Help</a>
+	      <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-active" data-theme="b" data-rel="close" gid="0">Home</a>
+	      <a class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">My Profile</a>
+	      <a class="ui-btn ui-icon-plus ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">Invites</a>
+	      <a class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b" data-rel="close" >Settings</a>
+	      <a class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b" data-rel="close" >Reports a Problem</a>
+	      <a class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="b" data-rel="close" >Help</a>
   	  </div>
       <div id="search">
         <paper-input label="Serch All Contact" multiline style="z-index:9;"></paper-input>
@@ -424,7 +425,9 @@
         <!--    <img src="https://lh5.googleusercontent.com/-wuYZOcgmD-Q/U7u7wdyAJ0I/AAAAAAAA6AM/RWDZgC1VYS0/s000/OZSun_19s.png">-->
         <!--  </div><b>Scarlett</b>&nbsp;Johansson</paper-item>-->
       </div>
-      <paper-fab class="mini" icon="add" id="add-icon" role="button" tabindex="0"></paper-fab>
+	  <div data-role="header">
+	    <h1>Page Header</h1>
+	  </div>
       <div id="content-bg"></div>
       <!-- contact list  -->
       <div id="detail">
@@ -453,6 +456,39 @@
         </div>
       </div>
     </div>
+    <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="add-form" data-theme="b">
+
+					<form class="userform">
+						<h2>Create new user</h2>
+						<label for="name">Full Name</label>
+						<input type="text" name="fullname" id="fullname" value="" data-clear-btn="true" data-mini="true">
+
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" value="" data-clear-btn="true" data-mini="true">
+
+						<label for="name">Phone</label>
+						<input type="text" name="phone" id="phone" value="" data-clear-btn="true" data-mini="true">
+
+						<label for="name">Pin BB</label>
+						<input type="text" name="fullname" id="fullname" value="" data-clear-btn="true" data-mini="true">
+
+						<label for="name">Facebook</label>
+						<input type="text" name="facebook" id="facebook" value="" data-clear-btn="true" data-mini="true">
+
+						<label for="name">Twitter</label>
+						<input type="text" name="twitter" id="twitter" value="" data-clear-btn="true" data-mini="true">
+
+						<label for="name">Instagram</label>
+						<input type="text" name="instagram" id="instagram" value="" data-clear-btn="true" data-mini="true">
+
+						<div class="ui-grid-a">
+						    <div class="ui-block-a"><a href="#" data-rel="close" data-role="button" data-theme="c" data-mini="true">Cancel</a></div>
+						    <div class="ui-block-b"><a href="#" data-rel="close" data-role="button" data-theme="b" data-mini="true">Save</a></div>
+						</div>
+					</form>
+
+		<!-- panel content goes here -->
+	</div><!-- /panel -->
   </div>
 </body>
 
