@@ -1,6 +1,14 @@
 <?php namespace App\Http\Controllers\User;
 
+use App\Models\User;
+use App\Models\FriendOnline;
+use App\Models\FriendOffline;
 use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Request;
+
+use Auth;
+use DB;
 
 class HomeController extends Controller {
 
@@ -32,7 +40,13 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('/user/home');
+		$user = Auth::user();
+		if($user)
+		{
+			$friendsonline = DB::table('friendsonline')->where('user1', $user->id)->orWhere('user2', $user->id)->get();
+			$friendsoffline = DB::table('friendsoffline')->where('user', $user->id)->get();
+			return view('/user/home', compact('user', 'friendsonline', 'friendsoffline'));
+		}
 	}
 
 }
