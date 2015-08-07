@@ -33,16 +33,16 @@ Route::get('createdb',function(){
 		$table->string('id')->primary();
 		$table->string('email',32)->unique();
 		$table->string('password',60);
-		$table->string('role',32)->default('USER');;
+		$table->string('role',32)->default('USER');
 		$table->string('remember_token',60)->default('');
-		$table->string('fullname',30)->default('');;
+		$table->string('fullname',30)->default('');
 		$table->string('url', 30)->unique();
-		$table->string('phone',30)->default('');;
-		$table->string('pinbb',30)->default('');;
-		$table->string('facebook',30)->default('');;
-		$table->string('twitter',30)->default('');;
-		$table->string('instagram',30)->default('');;
-		$table->string('status',30)->default('Welcome to my contact');;
+		$table->string('phone',30)->default('');
+		$table->string('pinbb',30)->default('');
+		$table->string('facebook',30)->default('');
+		$table->string('twitter',30)->default('');
+		$table->string('instagram',30)->default('');
+		$table->string('status',30)->default('Welcome to my contact');
 		$table->timestamps();
 	});
 	Schema::create('password_resets',function($table){
@@ -50,13 +50,25 @@ Route::get('createdb',function(){
 		$table->string('token')->index();
 		$table->timestamp('created_at');
 	});
-	Schema::create('friends',function($table){
+	Schema::create('friendsonline',function($table){
 		$table->string('id')->primary();
 		$table->string('user1');
 		$table->foreign('user1')->references('id')->on('users');
 		$table->string('user2');
 		$table->foreign('user2')->references('id')->on('users');
-		$table->date('since');
+		$table->timestamps();
+	});
+	Schema::create('friendsoffline',function($table){
+		$table->string('id')->primary();
+		$table->string('user');
+		$table->foreign('user')->references('id')->on('users');
+		$table->string('fullname',30)->default('');
+		$table->string('email',32)->default('');
+		$table->string('phone',30)->default('');
+		$table->string('pinbb',30)->default('');
+		$table->string('facebook',30)->default('');
+		$table->string('twitter',30)->default('');
+		$table->string('instagram',30)->default('');
 		$table->timestamps();
 	});
 
