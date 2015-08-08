@@ -68,10 +68,32 @@
               scrollEnd = contentHeight - screenHeight + header + footer;
           $(".ui-btn-left", activePage).text("Scrolled: " + scrolled);
           $(".ui-btn-right", activePage).text("ScrollEnd: " + scrollEnd);
-          if (activePage[0].id == "home" && scrolled >= scrollEnd && (friendsonlinecount > 0 || friendsofflinecount > 0)) {
+          if (activePage[0].id == "home" && scrolled >= scrollEnd && (friendsonlinecount > 0 || friendsofflinecount > 0) && $('#searchbar').val().length == 0) {
               console.log("adding...");
               addMore(activePage);
           }
+      });
+
+      $(document).on("input", "#searchbar", function (e) { 
+        //your code
+        var searchbar = $(this); 
+        var items = '';
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+              url: '{{ URL::to('/').'/user/search' }}',
+              type: 'POST',
+              data: {_token: CSRF_TOKEN, search: searchbar.val()},
+              dataType: 'JSON',
+              success: function (data) {
+                $("#list").empty();
+                $.each (data, function (index) {
+                  $("#list").append("<li>" + data[index].split(' ')[1] + "</li>").listview("refresh");
+                });
+            }
+        });
+
+        console.log("searching..." + searchbar.val());
       });
     </script>
     <body>              
@@ -84,8 +106,9 @@
                 <a href="#add-form" data-icon="plus" data-iconpos="notext">Add</a>
             </div><!-- /header -->      
             
+            <input type="search" placeholder="Search" id="searchbar" />
             <div data-role="content" class="ui-content">                
-                <ul data-role="listview" id="list"></ul>
+                <ul data-role="listview" id="list" data-autodividers="true"></ul>
             </div><!-- /content -->      
             
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">

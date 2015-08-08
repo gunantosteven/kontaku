@@ -29,10 +29,10 @@ Route::group(['middleware' => 'user'], function()
 
 	Route::post('/user/getcontact/{friendsonlinecount}/{friendsofflinecount}', function($friendsonlinecount, $friendsofflinecount)
 	{
-		$countonline =  DB::table('friendsonline')->count() - $friendsonlinecount;
+		$countonline =  DB::table('friendsonline')->where('user1', Auth::user()->id)->orWhere('user2', Auth::user()->id)->count() - $friendsonlinecount;
 		$countoffline =  DB::table('friendsoffline')->count() - $friendsofflinecount;
 
-		$friendsonline = DB::table('friendsonline')->skip($countonline)->take(5)->get();
+		$friendsonline = DB::table('friendsonline')->where('user1', Auth::user()->id)->orWhere('user2', Auth::user()->id)->skip($countonline)->take(5)->get();
 		$friendsoffline = DB::table('friendsoffline')->skip($countoffline)->take(5)->get();
 
 		$count = 0;
@@ -44,6 +44,40 @@ Route::group(['middleware' => 'user'], function()
 				$array[$count++] = $friend->user2 . " " .  DB::table('users')->where('id', $friend->user2)->first()->fullname;
 			}
             elseif ($friend->user2 == Auth::user()->id)
+            {
+            	$array[$count++] = $friend->user1 . " " .  DB::table('users')->where('id', $friend->user1)->first()->fullname;
+            }
+		}
+		foreach ($friendsoffline as $friend)
+		{
+			$array[$count++] = $friend->id . " " .  $friend->fullname;
+		}
+	    
+	    //this route should returns json response
+	    return $array;
+	});
+
+	Route::post('/user/search', function()
+	{
+		$friendsoffline = DB::table('friendsoffline')->where('fullname','ilike', "%" . Request::input('search') . "%")->limit(20)->get();
+		$friendsonline = DB::table('friendsonline')->where('user1', Auth::user()->id)->orWhere('user2', Auth::user()->id)->get();
+
+
+		$count = 0;
+		$array = array();
+		foreach ($friendsonline as $friend)
+		{
+			if($count == 19)
+			{
+				break;
+			}
+			$fullname1 = DB::table('users')->where('id', $friend->user1)->first()->fullname;
+			$fullname2 = DB::table('users')->where('id', $friend->user2)->first()->fullname;
+			if ($friend->user1 == Auth::user()->id && stripos($fullname2,  Request::input('search')) !== false)
+			{
+				$array[$count++] = $friend->user2 . " " .  DB::table('users')->where('id', $friend->user2)->first()->fullname;
+			}
+            elseif ($friend->user2 == Auth::user()->id && stripos($fullname1,  Request::input('search')) !== false)
             {
             	$array[$count++] = $friend->user1 . " " .  DB::table('users')->where('id', $friend->user1)->first()->fullname;
             }
