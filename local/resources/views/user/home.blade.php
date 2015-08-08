@@ -80,7 +80,26 @@
         var items = '';
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-        $.ajax({
+        if(searchbar.val() == "")
+        {
+          friendsonlinecount = {{ $friendsonlinecount-10 }};
+          friendsofflinecount = {{ $friendsofflinecount-10 }};
+          @foreach ($friendsonline as $friend)
+          @if ($friend->user1 == $user->id)
+            items += "<li>" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</li>";
+          @elseif ($friend->user2 == $user->id)
+            items += "<li>" + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</li>";
+          @endif
+          @endforeach
+          @foreach ($friendsoffline as $friend)
+            items += "<li>" + "{{ $friend->fullname }}" + "</li>";
+          @endforeach
+
+          $("#list").empty().append(items).listview("refresh");  
+        }
+        else
+        {
+          $.ajax({
               url: '{{ URL::to('/').'/user/search' }}',
               type: 'POST',
               data: {_token: CSRF_TOKEN, search: searchbar.val()},
@@ -91,16 +110,37 @@
                   $("#list").append("<li>" + data[index].split(' ')[1] + "</li>").listview("refresh");
                 });
             }
-        });
+          });
+        }
 
         console.log("searching..." + searchbar.val());
       });
+
+      $(document).on('click', '.ui-input-clear', function () {
+            var items = '';
+
+            friendsonlinecount = {{ $friendsonlinecount-10 }};
+            friendsofflinecount = {{ $friendsofflinecount-10 }};
+            @foreach ($friendsonline as $friend)
+            @if ($friend->user1 == $user->id)
+              items += "<li>" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</li>";
+            @elseif ($friend->user2 == $user->id)
+              items += "<li>" + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</li>";
+            @endif
+            @endforeach
+            @foreach ($friendsoffline as $friend)
+              items += "<li>" + "{{ $friend->fullname }}" + "</li>";
+            @endforeach
+
+            $("#list").empty().append(items).listview("refresh");  
+      });
+
     </script>
     <body>              
         <div data-role="page" id="home">      
             <div data-role="header">         
                 <h1>
-                    Page 1
+                    My Contact
                 </h1>     
                 <a  href="#left-menu" data-icon="bars" data-iconpos="notext">Button</a>
                 <a href="#add-form" data-icon="plus" data-iconpos="notext">Add</a>
