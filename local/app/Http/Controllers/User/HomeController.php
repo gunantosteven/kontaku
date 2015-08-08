@@ -43,9 +43,11 @@ class HomeController extends Controller {
 		$user = Auth::user();
 		if($user)
 		{
-			$friendsonline = DB::table('friendsonline')->where('user1', $user->id)->orWhere('user2', $user->id)->get();
-			$friendsoffline = DB::table('friendsoffline')->where('user', $user->id)->get();
-			return view('/user/home', compact('user', 'friendsonline', 'friendsoffline'));
+			$friendsonlinecount =  DB::table('friendsonline')->count();
+			$friendsofflinecount =  DB::table('friendsoffline')->count();
+			$friendsonline = DB::table('friendsonline')->where('user1', $user->id)->orWhere('user2', $user->id)->take(10)->get();
+			$friendsoffline = DB::table('friendsoffline')->where('user', $user->id)->take(10)->get();
+			return view('/user/home', compact('user', 'friendsonline', 'friendsoffline', 'friendsonlinecount', 'friendsofflinecount'));
 		}
 	}
 

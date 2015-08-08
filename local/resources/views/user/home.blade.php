@@ -2,12 +2,15 @@
 <html>      
     <head>      
         <title>Sample Page</title>    
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">       
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">   
+        <meta name="csrf-token" content="{{ csrf_token() }}" />    
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     </head>   
     <script type="text/javascript"> 
+      var friendsonlinecount = {{ $friendsonlinecount-10 }};
+      var friendsofflinecount = {{ $friendsofflinecount-10 }};
       /* for demo only */
       $(document).on("pagebeforecreate", "#home", function (e, ui) {
           var items = '';
@@ -33,11 +36,24 @@
           });
           setTimeout(function () {
               var items = '';
-              for (var i = 1; i < 5; i++) {
-                  items += "<li>" + i + "</li>";
-              }
-              $("#list", page).append(items).listview("refresh");
-              $.mobile.loading("hide");
+              var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+              $.ajax({
+                  url: '{{ URL::to('/').'/user/getcontact/' }}' + friendsonlinecount + '/' + friendsofflinecount,
+                  type: 'POST',
+                  data: {_token: CSRF_TOKEN},
+                  dataType: 'JSON',
+                  success: function (data) {
+                    $.each (data, function (index) {
+                      items += "<li>" + data[index].split(' ')[1] + "</li>";
+                      --friendsonlinecount;
+                      --friendsofflinecount;
+                      console.log (items);
+                    });
+                    $("#list", page).append(items).listview("refresh");
+                    $.mobile.loading("hide");
+                  }
+              });
           }, 500);
       }
 
@@ -52,7 +68,7 @@
               scrollEnd = contentHeight - screenHeight + header + footer;
           $(".ui-btn-left", activePage).text("Scrolled: " + scrolled);
           $(".ui-btn-right", activePage).text("ScrollEnd: " + scrollEnd);
-          if (activePage[0].id == "home" && scrolled >= scrollEnd) {
+          if (activePage[0].id == "home" && scrolled >= scrollEnd && (friendsonlinecount > 0 || friendsofflinecount > 0)) {
               console.log("adding...");
               addMore(activePage);
           }

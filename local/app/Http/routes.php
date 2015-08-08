@@ -26,6 +26,36 @@ Route::group(['middleware' => 'user'], function()
     });
 
     Route::get('/user/home', 'User\HomeController@index');
+
+	Route::post('/user/getcontact/{friendsonlinecount}/{friendsofflinecount}', function($friendsonlinecount, $friendsofflinecount)
+	{
+		$countonline =  DB::table('friendsonline')->count() - $friendsonlinecount;
+		$countoffline =  DB::table('friendsoffline')->count() - $friendsofflinecount;
+
+		$friendsonline = DB::table('friendsonline')->skip($countonline)->take(5)->get();
+		$friendsoffline = DB::table('friendsoffline')->skip($countoffline)->take(5)->get();
+
+		$count = 0;
+		$array = array();
+		foreach ($friendsonline as $friend)
+		{
+			if ($friend->user1 == Auth::user()->id)
+			{
+				$array[$count++] = $friend->user2 . " " .  DB::table('users')->where('id', $friend->user2)->first()->fullname;
+			}
+            elseif ($friend->user2 == Auth::user()->id)
+            {
+            	$array[$count++] = $friend->user1 . " " .  DB::table('users')->where('id', $friend->user1)->first()->fullname;
+            }
+		}
+		foreach ($friendsoffline as $friend)
+		{
+			$array[$count++] = $friend->id . " " .  $friend->fullname;
+		}
+	    
+	    //this route should returns json response
+	    return $array;
+	});
 });
 
 Route::get('createdb',function(){

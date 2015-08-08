@@ -8,28 +8,20 @@ class FriendsOfflineTableSeeder extends Seeder {
 		// kosongkan data tabel Users
 		DB::table('friendsoffline')->delete();
 		// buat data users
-		\App\Models\FriendOffline::create(array(
-		'id' => Uuid::generate(),
-		'user' => DB::table('users')->where('email', 'gunantosteven@gmail.com')->first()->id,
-		'fullname' => 'test',
-		'email' => 'test@gmail.com',
-		'phone' => '00000',
-		'pinbb' => 'asdasd391',
-		'facebook' => 'www.facebook.com/test',
-		'twitter' => '@test',
-		'instagram' => 'test',
-		));
 
-		\App\Models\FriendOffline::create(array(
-		'id' => Uuid::generate(),
-		'user' => DB::table('users')->where('email', 'gunantosteven@gmail.com')->first()->id,
-		'fullname' => 'test1',
-		'email' => 'test1@gmail.com',
-		'phone' => '000001',
-		'pinbb' => 'asdasd3911',
-		'facebook' => 'www.facebook.com/test1',
-		'twitter' => '@test1',
-		'instagram' => 'test1',
-		));
+		for($i = 0; 150 > $i; $i++)
+		{
+			\App\Models\FriendOffline::create(array(
+			'id' => Uuid::generate(),
+			'user' => DB::table('users')->where('email', 'gunantosteven@gmail.com')->first()->id,
+			'fullname' => 'test' . $i,
+			'email' => 'test' . $i . '@gmail.com',
+			'phone' => '00000' . $i,
+			'pinbb' => 'abcdefg' . $i,
+			'facebook' => 'www.facebook.com/test' . $i,
+			'twitter' => '@test' . $i,
+			'instagram' => 'test1' . $i,
+			));
+		}
 	}
 }
