@@ -16,13 +16,13 @@
           var items = '';
           @foreach ($friendsonline as $friend)
           @if ($friend->user1 == $user->id)
-            items += "<li>" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</li>";
+            items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</>"  + "</li>";
           @elseif ($friend->user2 == $user->id)
-            items += "<li>" + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</li>";
+            items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>"  + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</>" + "</li>";
           @endif
           @endforeach
           @foreach ($friendsoffline as $friend)
-            items += "<li>" + "{{ $friend->fullname }}" + "</li>";
+            items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>"  + "{{ $friend->fullname }}" + "</>"  + "</li>";
           @endforeach
 
           $("#list").append(items);
@@ -45,7 +45,7 @@
                   dataType: 'JSON',
                   success: function (data) {
                     $.each (data, function (index) {
-                      items += "<li>" + data[index].split(' ')[1] + "</li>";
+                      items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" +  data[index].split(' ')[1] + "</>"  + "</li>";
                       --friendsonlinecount;
                       --friendsofflinecount;
                       console.log (items);
@@ -86,13 +86,13 @@
           friendsofflinecount = {{ $friendsofflinecount-10 }};
           @foreach ($friendsonline as $friend)
           @if ($friend->user1 == $user->id)
-            items += "<li>" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</li>";
+            items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</>"  + "</li>";
           @elseif ($friend->user2 == $user->id)
-            items += "<li>" + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</li>";
+            items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />"  + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</>" + "</li>";
           @endif
           @endforeach
           @foreach ($friendsoffline as $friend)
-            items += "<li>" + "{{ $friend->fullname }}" + "</li>";
+            items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />"  + "{{ $friend->fullname }}" + "</>"  + "</li>";
           @endforeach
 
           $("#list").empty().append(items).listview("refresh");  
@@ -107,7 +107,7 @@
               success: function (data) {
                 $("#list").empty();
                 $.each (data, function (index) {
-                  $("#list").append("<li>" + data[index].split(' ')[1] + "</li>").listview("refresh");
+                  $("#list").append("<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data[index].split(' ')[1] + "</>" + "</li>").listview("refresh");
                 });
             }
           });
@@ -123,13 +123,13 @@
             friendsofflinecount = {{ $friendsofflinecount-10 }};
             @foreach ($friendsonline as $friend)
             @if ($friend->user1 == $user->id)
-              items += "<li>" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</li>";
+              items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</>"  + "</li>";           
             @elseif ($friend->user2 == $user->id)
-              items += "<li>" + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</li>";
+              items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>"  + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</>" + "</li>";
             @endif
             @endforeach
             @foreach ($friendsoffline as $friend)
-              items += "<li>" + "{{ $friend->fullname }}" + "</li>";
+              items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>"  + "{{ $friend->fullname }}" + "</>"  + "</li>";
             @endforeach
 
             $("#list").empty().append(items).listview("refresh");  
