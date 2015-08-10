@@ -11,23 +11,36 @@
     <script type="text/javascript"> 
       var friendsonlinecount = {{ $friendsonlinecount-10 }};
       var friendsofflinecount = {{ $friendsofflinecount-10 }};
-      /* for demo only */
+      var friend;
+      /* page home before create */
       $(document).on("pagebeforecreate", "#home", function (e, ui) {
           var items = '';
           @foreach ($friendsonline as $friend)
           @if ($friend->user1 == $user->id)
-            items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</>"  + "</li>";
+            items += "<li id='{{ $friend->user2 }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</>"  + "</li>";
           @elseif ($friend->user2 == $user->id)
-            items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>"  + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</>" + "</li>";
+            items += "<li id='{{ $friend->user1 }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>"  + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</>" + "</li>";
           @endif
           @endforeach
           @foreach ($friendsoffline as $friend)
-            items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>"  + "{{ $friend->fullname }}" + "</>"  + "</li>";
+            items += "<li id='{{ $friend->id }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>"  + "{{ $friend->fullname }}" + "</>"  + "</li>";
           @endforeach
 
           $("#list").append(items);
       });
+      
+      /* show friend profile who clicked */
+      $(document).on('pagebeforeshow', '#friendprofile', function(){    
+          $('input[id=friendfullname]').val(friend.fullname);
+          $('input[id=friendemail]').val(friend.email);
+          $('input[id=friendphone]').val(friend.phone);
+          $('input[id=friendpinbb]').val(friend.pinbb);
+          $('input[id=friendfacebook]').val(friend.facebook);
+          $('input[id=friendtwitter]').val(friend.twitter);
+          $('input[id=friendinstagram]').val(friend.instagram);
+      });
 
+      /* add more contact */
       function addMore(page) {
           $.mobile.loading("show", {
               text: "loading more..",
@@ -45,7 +58,7 @@
                   dataType: 'JSON',
                   success: function (data) {
                     $.each (data, function (index) {
-                      items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" +  data[index].split(' ')[1] + "</>"  + "</li>";
+                      items += "<li id='" + data[index].split(' ')[0] + "'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" +  data[index].split(' ')[1] + "</>"  + "</li>";
                       --friendsonlinecount;
                       --friendsofflinecount;
                       console.log (items);
@@ -74,6 +87,7 @@
           }
       });
 
+      /*When search through input view*/
       $(document).on("input", "#searchbar", function (e) { 
         //your code
         var searchbar = $(this); 
@@ -86,13 +100,13 @@
           friendsofflinecount = {{ $friendsofflinecount-10 }};
           @foreach ($friendsonline as $friend)
           @if ($friend->user1 == $user->id)
-            items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</>"  + "</li>";
+            items += "<li id='{{ $friend->user2 }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</>"  + "</li>";
           @elseif ($friend->user2 == $user->id)
-            items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />"  + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</>" + "</li>";
+            items += "<li id='{{ $friend->user1 }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />"  + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</>" + "</li>";
           @endif
           @endforeach
           @foreach ($friendsoffline as $friend)
-            items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />"  + "{{ $friend->fullname }}" + "</>"  + "</li>";
+            items += "<li id='{{ $friend->id }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />"  + "{{ $friend->fullname }}" + "</>"  + "</li>";
           @endforeach
 
           $("#list").empty().append(items).listview("refresh");  
@@ -107,7 +121,7 @@
               success: function (data) {
                 $("#list").empty();
                 $.each (data, function (index) {
-                  $("#list").append("<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data[index].split(' ')[1] + "</>" + "</li>").listview("refresh");
+                  $("#list").append("<li id='"  + data[index].split(' ')[0] + "'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data[index].split(' ')[1] + "</>" + "</li>").listview("refresh");
                 });
             }
           });
@@ -116,6 +130,7 @@
         console.log("searching..." + searchbar.val());
       });
 
+      /*When click clear search input*/
       $(document).on('click', '.ui-input-clear', function () {
             var items = '';
 
@@ -123,17 +138,33 @@
             friendsofflinecount = {{ $friendsofflinecount-10 }};
             @foreach ($friendsonline as $friend)
             @if ($friend->user1 == $user->id)
-              items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</>"  + "</li>";           
+              items += "<li id='{{ $friend->user2 }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</>"  + "</li>";           
             @elseif ($friend->user2 == $user->id)
-              items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>"  + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</>" + "</li>";
+              items += "<li id='{{ $friend->user1 }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>"  + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</>" + "</li>";
             @endif
             @endforeach
             @foreach ($friendsoffline as $friend)
-              items += "<li><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>"  + "{{ $friend->fullname }}" + "</>"  + "</li>";
+              items += "<li id='{{ $friend->id }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>"  + "{{ $friend->fullname }}" + "</>"  + "</li>";
             @endforeach
 
             $("#list").empty().append(items).listview("refresh");  
       });
+
+      /*When click contact listview*/
+      $(document).on("click", "#list li" ,function (event) {
+          var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+          $.ajax({
+                  url: '{{ URL::to('/').'/user/profile/' }}' + $(this).attr('id'),
+                  type: 'POST',
+                  data: {_token: CSRF_TOKEN},
+                  dataType: 'JSON',
+                  success: function (data) {
+                    friend = data;
+                    console.log (friend);
+                    $.mobile.changePage("#friendprofile");
+                  }
+              });
+      }); 
 
     </script>
     <body>              
@@ -251,6 +282,44 @@
                       <div class="ui-block-a"><a href="#" data-rel="back" data-role="button" data-theme="c" data-mini="true">Cancel</a></div>
                       <div class="ui-block-b"><a href="#" data-rel="back" data-role="button" data-theme="b" data-mini="true">Save</a></div>
                   </div>
+            </form>
+          </div> <!-- /content --> 
+
+          <div data-role="footer">
+            <h1>Footer Text</h1>
+          </div>
+        </div>  <!-- /footer --> 
+
+        <!-- friend profile -->
+        <div data-role="page" id="friendprofile">
+          <div data-role="header" data-theme="a" id="header1">
+             <h3>My Friend Profile</h3>
+             <a href="#" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
+          </div><!-- /header --> 
+
+          <div data-role="main">
+              <form class="userform">
+                  <h2>Friend Profile</h2>
+                  <label for="name">Full Name</label>
+                  <input type="text" name="fullname" id="friendfullname" value="" data-clear-btn="true" data-mini="true" readonly> 
+
+                  <label for="email">Email</label>
+                  <input type="email" name="email" id="friendemail" value="" data-clear-btn="true" data-mini="true" readonly>
+
+                  <label for="name">Phone</label>
+                  <input type="text" name="phone" id="friendphone" value="" data-clear-btn="true" data-mini="true" readonly>
+
+                  <label for="name">Pin BB</label>
+                  <input type="text" name="pinbb" id="friendpinbb" value="" data-clear-btn="true" data-mini="true" readonly>
+
+                  <label for="name">Facebook</label>
+                  <input type="text" name="facebook" id="friendfacebook" value="" data-clear-btn="true" data-mini="true" readonly>
+
+                  <label for="name">Twitter</label>
+                  <input type="text" name="twitter" id="friendtwitter" value="" data-clear-btn="true" data-mini="true" readonly>
+
+                  <label for="name">Instagram</label>
+                  <input type="text" name="instagram" id="friendinstagram" value="" data-clear-btn="true" data-mini="true" readonly>
             </form>
           </div> <!-- /content --> 
 

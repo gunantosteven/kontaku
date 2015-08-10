@@ -90,6 +90,19 @@ Route::group(['middleware' => 'user'], function()
 	    //this route should returns json response
 	    return $array;
 	});
+
+	Route::post('/user/profile/{id}', function($id)
+	{
+		$user = DB::table('users')->where('id', $id)->first();
+
+		if($user == null)
+		{
+			$user = DB::table('friendsoffline')->where('id', $id)->first();
+		}
+
+	    //this route should returns json response
+	    return Response::json($user);
+	});
 });
 
 Route::get('createdb',function(){
