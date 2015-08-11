@@ -26,7 +26,7 @@ Route::group(['middleware' => 'user'], function()
     });
 
     Route::get('/user/home', 'User\HomeController@index');
-
+    
 	Route::post('/user/getcontact/{friendsonlinecount}/{friendsofflinecount}', function($friendsonlinecount, $friendsofflinecount)
 	{
 		$countonline =  DB::table('friendsonline')->where('user1', Auth::user()->id)->orWhere('user2', Auth::user()->id)->count() - $friendsonlinecount;
@@ -102,6 +102,24 @@ Route::group(['middleware' => 'user'], function()
 
 	    //this route should returns json response
 	    return Response::json($user);
+	});
+
+	Route::post('/user/friendoffline', function()
+	{
+		parse_str(Request::input('formData'), $output);
+		$id = Uuid::generate();
+		\App\Models\FriendOffline::create(array(
+			'id' => $id,
+		    'user' => Auth::user()->id,
+		    'fullname' => $output['fullname'],
+		    'email' => $output['email'],
+		    'phone' => $output['phone'],
+		    'pinbb' => $output['pinbb'],
+		    'facebook' => $output['facebook'],
+		    'twitter' => $output['twitter'],
+		    'instagram' => $output['instagram'],
+			));
+   		return response()->json(['status' => true, 'id' => $id, 'fullname' => $output['fullname']]);
 	});
 });
 

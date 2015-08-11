@@ -28,6 +28,47 @@
 
           $("#list").append(items);
       });
+
+      /* page home before create */
+      $(document).on('pageinit', '#home', function(){  
+        /* create friend offline */
+        $(document).on('click', '#submit', function() { // catch the form's submit event
+            if($('#createfullname').val().length > 0 && $('#createemail').val().length > 0){
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                // Send data to server through the Ajax call
+                // action is functionality we want to call and outputJSON is our data
+                $.ajax({url: '{{ URL::to('/').'/user/friendoffline' }}',
+                    data: {_token: CSRF_TOKEN, action : 'create', formData : $('#createcontactoffline').serialize()},
+                    type: 'post',                   
+                    async: 'true',
+                    dataType: 'json',
+                    beforeSend: function() {
+                        // This callback function will trigger before data is sent
+                        $.mobile.loading('show'); // This will show ajax spinner
+                    },
+                    complete: function() {
+                        // This callback function will trigger on data sent/received complete
+                        $.mobile.loading('hide'); // This will hide ajax spinner
+                    },
+                    success: function (result) {
+                        if(result.status) {
+                             location.href='{{ URL::to('/').'/user/home' }}';                     
+                        } else {
+                            alert('Something error happened!'); 
+                        }
+                    },
+                    error: function (request,error) {
+                        // This callback function will trigger on unsuccessful action                
+                        alert('Network error has occurred please try again!');
+                    }
+                });                   
+            } else {
+                alert('Please fill all necessary fields');
+            }           
+            return false; // cancel original event to prevent form submitting
+        });    
+    });
       
       /* show friend profile who clicked */
       $(document).on('pagebeforeshow', '#friendprofile', function(){    
@@ -198,32 +239,32 @@
              </div>
 
               <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="add-form" data-theme="b">
-                  <form class="userform">
+                  <form id="createcontactoffline" class="ui-body ui-body-a ui-corner-all" data-ajax="false" >
                     <h2>Create new contact offline</h2>
                     <label for="name">Full Name</label>
-                    <input type="text" name="fullname" id="fullname" value="" data-clear-btn="true" data-mini="true">
+                    <input type="text" name="fullname" id="createfullname" value="" data-clear-btn="true" data-mini="true">
 
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" value="" data-clear-btn="true" data-mini="true">
+                    <input type="email" name="email" id="createemail" value="" data-clear-btn="true" data-mini="true">
 
                     <label for="name">Phone</label>
-                    <input type="text" name="phone" id="phone" value="" data-clear-btn="true" data-mini="true">
+                    <input type="text" name="phone" id="createphone" value="" data-clear-btn="true" data-mini="true">
 
                     <label for="name">Pin BB</label>
-                    <input type="text" name="fullname" id="fullname" value="" data-clear-btn="true" data-mini="true">
+                    <input type="text" name="pinbb" id="createpinbb" value="" data-clear-btn="true" data-mini="true">
 
                     <label for="name">Facebook</label>
-                    <input type="text" name="facebook" id="facebook" value="" data-clear-btn="true" data-mini="true">
+                    <input type="text" name="facebook" id="createfacebook" value="" data-clear-btn="true" data-mini="true">
 
                     <label for="name">Twitter</label>
-                    <input type="text" name="twitter" id="twitter" value="" data-clear-btn="true" data-mini="true">
+                    <input type="text" name="twitter" id="createtwitter" value="" data-clear-btn="true" data-mini="true">
 
                     <label for="name">Instagram</label>
-                    <input type="text" name="instagram" id="instagram" value="" data-clear-btn="true" data-mini="true">
+                    <input type="text" name="instagram" id="createinstagram" value="" data-clear-btn="true" data-mini="true">
 
                     <div class="ui-grid-a">
                         <div class="ui-block-a"><a href="#" data-rel="close" data-role="button" data-theme="c" data-mini="true">Cancel</a></div>
-                        <div class="ui-block-b"><a href="#" data-rel="close" data-role="button" data-theme="b" data-mini="true">Save</a></div>
+                        <div class="ui-block-b"><input type="button" data-theme="b" name="submit"  id="submit" value="Submit" data-theme="b" data-mini="true"></div>
                     </div>
                 </form>
               <!-- panel content goes here -->
