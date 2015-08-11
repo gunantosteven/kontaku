@@ -9,24 +9,14 @@
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     </head>   
     <script type="text/javascript"> 
-      var friendsonlinecount = {{ $friendsonlinecount-10 }};
-      var friendsofflinecount = {{ $friendsofflinecount-10 }};
+      var friendsonlinecount;
+      var friendsofflinecount;
       var friend;
+      var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
       /* page home before create */
       $(document).on("pagebeforecreate", "#home", function (e, ui) {
-          var items = '';
-          @foreach ($friendsonline as $friend)
-          @if ($friend->user1 == $user->id)
-            items += "<li id='{{ $friend->user2 }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</>"  + "</li>";
-          @elseif ($friend->user2 == $user->id)
-            items += "<li id='{{ $friend->user1 }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>"  + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</>" + "</li>";
-          @endif
-          @endforeach
-          @foreach ($friendsoffline as $friend)
-            items += "<li id='{{ $friend->id }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>"  + "{{ $friend->fullname }}" + "</>"  + "</li>";
-          @endforeach
-
-          $("#list").append(items);
+           reloadContact();
       });
 
       /* page home before create */
@@ -34,8 +24,6 @@
         /* create friend offline */
         $(document).on('click', '#submit', function() { // catch the form's submit event
             if($('#createfullname').val().length > 0 && $('#createemail').val().length > 0){
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
                 // Send data to server through the Ajax call
                 // action is functionality we want to call and outputJSON is our data
                 $.ajax({url: '{{ URL::to('/').'/user/friendoffline' }}',
@@ -53,7 +41,15 @@
                     },
                     success: function (result) {
                         if(result.status) {
-                             location.href='{{ URL::to('/').'/user/home' }}';                     
+                              $('input[id=createfullname]').val('');
+                              $('input[id=createemail]').val('');
+                              $('input[id=createphone]').val('');
+                              $('input[id=createpinbb]').val('');
+                              $('input[id=createfacebook]').val('');
+                              $('input[id=createtwitter]').val('');
+                              $('input[id=createinstagram]').val('');
+                             $.mobile.pageContainer.pagecontainer("change", "home", {transition: "slide"});
+                             reloadContact();
                         } else {
                             alert('Something error happened!'); 
                         }
@@ -90,8 +86,7 @@
           });
           setTimeout(function () {
               var items = '';
-              var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
+              var count = 0;
               $.ajax({
                   url: '{{ URL::to('/').'/user/getcontact/' }}' + friendsonlinecount + '/' + friendsofflinecount,
                   type: 'POST',
@@ -100,9 +95,8 @@
                   success: function (data) {
                     $.each (data, function (index) {
                       items += "<li id='" + data[index].split(' ')[0] + "'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" +  data[index].split(' ')[1] + "</>"  + "</li>";
-                      --friendsonlinecount;
-                      --friendsofflinecount;
-                      console.log (items);
+                      friendsonlinecount--;
+                      friendsofflinecount--;
                     });
                     $("#list", page).append(items).listview("refresh");
                     $.mobile.loading("hide");
@@ -132,25 +126,10 @@
       $(document).on("input", "#searchbar", function (e) { 
         //your code
         var searchbar = $(this); 
-        var items = '';
-        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
         if(searchbar.val() == "")
         {
-          friendsonlinecount = {{ $friendsonlinecount-10 }};
-          friendsofflinecount = {{ $friendsofflinecount-10 }};
-          @foreach ($friendsonline as $friend)
-          @if ($friend->user1 == $user->id)
-            items += "<li id='{{ $friend->user2 }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</>"  + "</li>";
-          @elseif ($friend->user2 == $user->id)
-            items += "<li id='{{ $friend->user1 }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />"  + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</>" + "</li>";
-          @endif
-          @endforeach
-          @foreach ($friendsoffline as $friend)
-            items += "<li id='{{ $friend->id }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />"  + "{{ $friend->fullname }}" + "</>"  + "</li>";
-          @endforeach
-
-          $("#list").empty().append(items).listview("refresh");  
+           reloadContact();
         }
         else
         {
@@ -173,22 +152,7 @@
 
       /*When click clear search input*/
       $(document).on('click', '.ui-input-clear', function () {
-            var items = '';
-
-            friendsonlinecount = {{ $friendsonlinecount-10 }};
-            friendsofflinecount = {{ $friendsofflinecount-10 }};
-            @foreach ($friendsonline as $friend)
-            @if ($friend->user1 == $user->id)
-              items += "<li id='{{ $friend->user2 }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>" + "{{ DB::table('users')->where('id', $friend->user2)->first()->fullname }}" + "</>"  + "</li>";           
-            @elseif ($friend->user2 == $user->id)
-              items += "<li id='{{ $friend->user1 }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>"  + "{{ DB::table('users')->where('id', $friend->user1)->first()->fullname }}" + "</>" + "</li>";
-            @endif
-            @endforeach
-            @foreach ($friendsoffline as $friend)
-              items += "<li id='{{ $friend->id }}'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png'/>"  + "{{ $friend->fullname }}" + "</>"  + "</li>";
-            @endforeach
-
-            $("#list").empty().append(items).listview("refresh");  
+            reloadContact();
       });
 
       /*When click contact listview*/
@@ -201,11 +165,26 @@
                   dataType: 'JSON',
                   success: function (data) {
                     friend = data;
-                    console.log (friend);
                     $.mobile.changePage("#friendprofile");
                   }
               });
       }); 
+
+      function reloadContact() {
+          $.ajax({
+              url: '{{ URL::to('/').'/user/getcontact' }}',
+              type: 'POST',
+              data: {_token: CSRF_TOKEN},
+              dataType: 'JSON',
+              success: function (data) {
+                $("#list").empty();
+                friendsonlinecount = data['friendsonlinecount'];
+                friendsofflinecount = data['friendsofflinecount'];
+                $.each (data['friends'], function (index) {
+                  $("#list").append("<li id='"  + data['friends'][index].split(' ')[0] + "'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data['friends'][index].split(' ')[1] + "</>" + "</li>").listview("refresh");
+                });
+            }})             // The function returns the product of p1 and p2
+      }
 
     </script>
     <body>              

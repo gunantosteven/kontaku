@@ -26,14 +26,44 @@ Route::group(['middleware' => 'user'], function()
     });
 
     Route::get('/user/home', 'User\HomeController@index');
+
+    Route::post('/user/getcontact', function()
+	{
+		$friendsonlinecount =  DB::table('friendsonline')->where('user1', Auth::user()->id)->orWhere('user2', Auth::user()->id)->count();
+		$friendsofflinecount =  DB::table('friendsoffline')->where('user', Auth::user()->id)->count();
+
+		$friendsonline = DB::table('friendsonline')->where('user1', Auth::user()->id)->orWhere('user2', Auth::user()->id)->take(10)->get();
+		$friendsoffline = DB::table('friendsoffline')->take(10)->orderBy('fullname', 'asc')->get();
+
+		$count = 0;
+		$array = array();
+		foreach ($friendsonline as $friend)
+		{
+			if ($friend->user1 == Auth::user()->id)
+			{
+				$array[$count++] = $friend->user2 . " " .  DB::table('users')->where('id', $friend->user2)->first()->fullname;
+			}
+            elseif ($friend->user2 == Auth::user()->id)
+            {
+            	$array[$count++] = $friend->user1 . " " .  DB::table('users')->where('id', $friend->user1)->first()->fullname;
+            }
+		}
+		foreach ($friendsoffline as $friend)
+		{
+			$array[$count++] = $friend->id . " " .  $friend->fullname;
+		}
+	    
+	    //this route should returns json response
+	    return response()->json(['friendsofflinecount' => $friendsofflinecount - 10, 'friendsonlinecount' => $friendsonlinecount - 10, 'friends' => $array]);
+	});
     
 	Route::post('/user/getcontact/{friendsonlinecount}/{friendsofflinecount}', function($friendsonlinecount, $friendsofflinecount)
 	{
 		$countonline =  DB::table('friendsonline')->where('user1', Auth::user()->id)->orWhere('user2', Auth::user()->id)->count() - $friendsonlinecount;
-		$countoffline =  DB::table('friendsoffline')->count() - $friendsofflinecount;
+		$countoffline =  DB::table('friendsoffline')->where('user', Auth::user()->id)->count() - $friendsofflinecount;
 
 		$friendsonline = DB::table('friendsonline')->where('user1', Auth::user()->id)->orWhere('user2', Auth::user()->id)->skip($countonline)->take(5)->get();
-		$friendsoffline = DB::table('friendsoffline')->skip($countoffline)->take(5)->get();
+		$friendsoffline = DB::table('friendsoffline')->skip($countoffline)->take(5)->orderBy('fullname', 'asc')->get();
 
 		$count = 0;
 		$array = array();
