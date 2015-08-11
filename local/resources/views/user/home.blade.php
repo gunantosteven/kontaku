@@ -301,25 +301,25 @@
               <form class="userform">
                   <h2>Friend Profile</h2>
                   <label for="name">Full Name</label>
-                  <input type="text" name="fullname" id="friendfullname" value="" data-clear-btn="true" data-mini="true" readonly> 
+                  <input type="text" name="fullname" id="friendfullname" value="" data-mini="true" data-clear-btn="false" readonly> 
 
                   <label for="email">Email</label>
-                  <input type="email" name="email" id="friendemail" value="" data-clear-btn="true" data-mini="true" readonly>
+                  <input type="email" name="email" id="friendemail" value="" data-mini="true" data-clear-btn="false" readonly>
 
                   <label for="name">Phone</label>
-                  <input type="text" name="phone" id="friendphone" value="" data-clear-btn="true" data-mini="true" readonly>
+                  <input type="text" name="phone" id="friendphone" value="" data-mini="true" data-clear-btn="false" readonly>
 
                   <label for="name">Pin BB</label>
-                  <input type="text" name="pinbb" id="friendpinbb" value="" data-clear-btn="true" data-mini="true" readonly>
+                  <input type="text" name="pinbb" id="friendpinbb" value="" data-mini="true" data-clear-btn="false" readonly>
 
                   <label for="name">Facebook</label>
-                  <input type="text" name="facebook" id="friendfacebook" value="" data-clear-btn="true" data-mini="true" readonly>
+                  <input type="text" name="facebook" id="friendfacebook" value="" data-mini="true" data-clear-btn="false" readonly>
 
                   <label for="name">Twitter</label>
-                  <input type="text" name="twitter" id="friendtwitter" value="" data-clear-btn="true" data-mini="true" readonly>
+                  <input type="text" name="twitter" id="friendtwitter" value="" data-mini="true" data-clear-btn="false" readonly>
 
                   <label for="name">Instagram</label>
-                  <input type="text" name="instagram" id="friendinstagram" value="" data-clear-btn="true" data-mini="true" readonly>
+                  <input type="text" name="instagram" id="friendinstagram" value="" data-mini="true" data-clear-btn="false" readonly>
             </form>
           </div> <!-- /content --> 
 
