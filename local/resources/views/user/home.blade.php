@@ -139,7 +139,6 @@
               success: function (data) {
                 $("#list").empty();
                 $.each (data['friends'], function (index) {
-                  
                   $("#list").append("<li id='"  + data['friends'][index]['id'] + "'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data['friends'][index]['fullname'] + "</>" + "</li>").listview("refresh");
                 });
             }
@@ -155,17 +154,20 @@
 
       /*When click contact listview*/
       $(document).on("click", "#list li" ,function (event) {
-          var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        if($(this).attr('id') !== undefined)
+        {
           $.ajax({
                   url: '{{ URL::to('/').'/user/profile/' }}' + $(this).attr('id'),
                   type: 'POST',
                   data: {_token: CSRF_TOKEN},
                   dataType: 'JSON',
                   success: function (data) {
-                    friend = data;
-                    $.mobile.changePage("#friendprofile");
+                      friend = data;
+                      $.mobile.changePage("#friendprofile");
                   }
               });
+        }
+
       }); 
 
       function reloadContact() {
