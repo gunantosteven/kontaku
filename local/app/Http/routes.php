@@ -29,96 +29,82 @@ Route::group(['middleware' => 'user'], function()
 
     Route::post('/user/getcontact', function()
 	{
-		$friendsonlinecount =  DB::table('friendsonline')->where('user1', Auth::user()->id)->orWhere('user2', Auth::user()->id)->count();
-		$friendsofflinecount =  DB::table('friendsoffline')->where('user', Auth::user()->id)->count();
+		$friendscount =  0;
 
-		$friendsonline = DB::table('friendsonline')->where('user1', Auth::user()->id)->orWhere('user2', Auth::user()->id)->take(10)->get();
-		$friendsoffline = DB::table('friendsoffline')->take(10)->orderBy('fullname', 'asc')->get();
+		$friendsonline1 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user2', Auth::user()->id);
+        $friendsonline2 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user1', Auth::user()->id);
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('user', Auth::user()->id);
+        $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->take(20)->orderBy('fullname')->get();
 
 		$count = 0;
 		$array = array();
-		foreach ($friendsonline as $friend)
+
+		foreach ($combined as $friend)
 		{
-			if ($friend->user1 == Auth::user()->id)
-			{
-				$array[$count++] = $friend->user2 . " " .  DB::table('users')->where('id', $friend->user2)->first()->fullname;
-			}
-            elseif ($friend->user2 == Auth::user()->id)
-            {
-            	$array[$count++] = $friend->user1 . " " .  DB::table('users')->where('id', $friend->user1)->first()->fullname;
-            }
+			$array[$count++] = array( "id" => $friend->id, "fullname" => $friend->fullname);
+			$friendscount++;
 		}
-		foreach ($friendsoffline as $friend)
-		{
-			$array[$count++] = $friend->id . " " .  $friend->fullname;
-		}
-	    
+
 	    //this route should returns json response
-	    return response()->json(['friendsofflinecount' => $friendsofflinecount - 10, 'friendsonlinecount' => $friendsonlinecount - 10, 'friends' => $array]);
+	    return response()->json(['friendscount' => $friendscount, 'friends' => $array]);
 	});
     
-	Route::post('/user/getcontact/{friendsonlinecount}/{friendsofflinecount}', function($friendsonlinecount, $friendsofflinecount)
+	Route::post('/user/getcontact/{friendscount}', function($friendscount)
 	{
-		$countonline =  DB::table('friendsonline')->where('user1', Auth::user()->id)->orWhere('user2', Auth::user()->id)->count() - $friendsonlinecount;
-		$countoffline =  DB::table('friendsoffline')->where('user', Auth::user()->id)->count() - $friendsofflinecount;
-
-		$friendsonline = DB::table('friendsonline')->where('user1', Auth::user()->id)->orWhere('user2', Auth::user()->id)->skip($countonline)->take(5)->get();
-		$friendsoffline = DB::table('friendsoffline')->skip($countoffline)->take(5)->orderBy('fullname', 'asc')->get();
+		$friendsonline1 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user2', Auth::user()->id);
+        $friendsonline2 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user1', Auth::user()->id);
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('user', Auth::user()->id);
+        $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->skip($friendscount)->take(5)->orderBy('fullname')->get();
 
 		$count = 0;
 		$array = array();
-		foreach ($friendsonline as $friend)
+
+		foreach ($combined as $friend)
 		{
-			if ($friend->user1 == Auth::user()->id)
-			{
-				$array[$count++] = $friend->user2 . " " .  DB::table('users')->where('id', $friend->user2)->first()->fullname;
-			}
-            elseif ($friend->user2 == Auth::user()->id)
-            {
-            	$array[$count++] = $friend->user1 . " " .  DB::table('users')->where('id', $friend->user1)->first()->fullname;
-            }
-		}
-		foreach ($friendsoffline as $friend)
-		{
-			$array[$count++] = $friend->id . " " .  $friend->fullname;
+			$array[$count++] = array( "id" => $friend->id, "fullname" => $friend->fullname);
+			$friendscount++;
 		}
 	    
-	    //this route should returns json response
-	    return $array;
+	    ///this route should returns json response
+	    return response()->json(['friendscount' => $friendscount, 'friends' => $array]);
 	});
 
 	Route::post('/user/search', function()
 	{
-		$friendsoffline = DB::table('friendsoffline')->where('fullname','ilike', "%" . Request::input('search') . "%")->limit(20)->get();
-		$friendsonline = DB::table('friendsonline')->where('user1', Auth::user()->id)->orWhere('user2', Auth::user()->id)->get();
-
+		$friendsonline1 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user2', Auth::user()->id)
+            ->where('users.fullname', 'ilike', "%" . Request::input('search') . "%");
+        $friendsonline2 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user1', Auth::user()->id)
+            ->where('users.fullname', 'ilike', "%" . Request::input('search') . "%");
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('user', Auth::user()->id)->where('fullname', 'ilike', "%" . Request::input('search') . "%");
+        $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->take(20)->orderBy('fullname')->get();
 
 		$count = 0;
 		$array = array();
-		foreach ($friendsonline as $friend)
+		foreach ($combined as $friend)
 		{
-			if($count == 19)
-			{
-				break;
-			}
-			$fullname1 = DB::table('users')->where('id', $friend->user1)->first()->fullname;
-			$fullname2 = DB::table('users')->where('id', $friend->user2)->first()->fullname;
-			if ($friend->user1 == Auth::user()->id && stripos($fullname2,  Request::input('search')) !== false)
-			{
-				$array[$count++] = $friend->user2 . " " .  DB::table('users')->where('id', $friend->user2)->first()->fullname;
-			}
-            elseif ($friend->user2 == Auth::user()->id && stripos($fullname1,  Request::input('search')) !== false)
-            {
-            	$array[$count++] = $friend->user1 . " " .  DB::table('users')->where('id', $friend->user1)->first()->fullname;
-            }
-		}
-		foreach ($friendsoffline as $friend)
-		{
-			$array[$count++] = $friend->id . " " .  $friend->fullname;
+			$array[$count++] = array( "id" => $friend->id, "fullname" => $friend->fullname);
 		}
 	    
 	    //this route should returns json response
-	    return $array;
+	    return response()->json(['count' => $count, 'friends' => $array]);
 	});
 
 	Route::post('/user/profile/{id}', function($id)
@@ -134,6 +120,7 @@ Route::group(['middleware' => 'user'], function()
 	    return Response::json($user);
 	});
 
+	// create friendoffline
 	Route::post('/user/friendoffline', function()
 	{
 		parse_str(Request::input('formData'), $output);

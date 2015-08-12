@@ -9,8 +9,7 @@
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     </head>   
     <script type="text/javascript"> 
-      var friendsonlinecount;
-      var friendsofflinecount;
+      var friendscount;
       var friend;
       var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
@@ -88,16 +87,15 @@
               var items = '';
               var count = 0;
               $.ajax({
-                  url: '{{ URL::to('/').'/user/getcontact/' }}' + friendsonlinecount + '/' + friendsofflinecount,
+                  url: '{{ URL::to('/').'/user/getcontact/' }}' + friendscount,
                   type: 'POST',
                   data: {_token: CSRF_TOKEN},
                   dataType: 'JSON',
                   success: function (data) {
-                    $.each (data, function (index) {
-                      items += "<li id='" + data[index].split(' ')[0] + "'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" +  data[index].split(' ')[1] + "</>"  + "</li>";
-                      friendsonlinecount--;
-                      friendsofflinecount--;
+                    $.each (data['friends'], function (index) {
+                      items += "<li id='" + data['friends'][index]['id'] + "'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" +  data['friends'][index]['fullname'] + "</>"  + "</li>";
                     });
+                    friendscount = data['friendscount'];
                     $("#list", page).append(items).listview("refresh");
                     $.mobile.loading("hide");
                   }
@@ -116,7 +114,7 @@
               scrollEnd = contentHeight - screenHeight + header + footer;
           $(".ui-btn-left", activePage).text("Scrolled: " + scrolled);
           $(".ui-btn-right", activePage).text("ScrollEnd: " + scrollEnd);
-          if (activePage[0].id == "home" && scrolled >= scrollEnd && (friendsonlinecount > 0 || friendsofflinecount > 0) && $('#searchbar').val().length == 0) {
+          if (activePage[0].id == "home" && scrolled >= scrollEnd && (friendscount > 0) && $('#searchbar').val().length == 0) {
               console.log("adding...");
               addMore(activePage);
           }
@@ -140,14 +138,14 @@
               dataType: 'JSON',
               success: function (data) {
                 $("#list").empty();
-                $.each (data, function (index) {
-                  $("#list").append("<li id='"  + data[index].split(' ')[0] + "'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data[index].split(' ')[1] + "</>" + "</li>").listview("refresh");
+                $.each (data['friends'], function (index) {
+                  
+                  $("#list").append("<li id='"  + data['friends'][index]['id'] + "'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data['friends'][index]['fullname'] + "</>" + "</li>").listview("refresh");
                 });
             }
           });
         }
 
-        console.log("searching..." + searchbar.val());
       });
 
       /*When click clear search input*/
@@ -178,12 +176,11 @@
               dataType: 'JSON',
               success: function (data) {
                 $("#list").empty();
-                friendsonlinecount = data['friendsonlinecount'];
-                friendsofflinecount = data['friendsofflinecount'];
                 $.each (data['friends'], function (index) {
-                  $("#list").append("<li id='"  + data['friends'][index].split(' ')[0] + "'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data['friends'][index].split(' ')[1] + "</>" + "</li>").listview("refresh");
+                  $("#list").append("<li id='"  + data['friends'][index]['id'] + "'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data['friends'][index]['fullname'] + "</>" + "</li>").listview("refresh");
                 });
-            }})             // The function returns the product of p1 and p2
+                friendscount = data['friendscount'];
+            }})             
       }
 
     </script>
