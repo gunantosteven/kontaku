@@ -4,14 +4,20 @@
         <title>Sample Page</title>    
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">   
         <meta name="csrf-token" content="{{ csrf_token() }}" />    
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <!-- JavaScript -->
+        <script type='text/javascript' src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script type='text/javascript' src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <script type='text/javascript' src={{ asset('js/user/home.js') }}></script>
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" href={{ asset('css/user/home.css') }} />
     </head>   
     <script type="text/javascript">
       var index = "{{ URL::to('/') }}";
     </script>
+    <style type="text/css">
+      
+    </style>
     <body>              
         <div data-role="page" id="home">      
             <div data-role="header">         
@@ -143,29 +149,13 @@
           </div><!-- /header --> 
 
           <div data-role="main">
-              <form class="userform">
-                  <h2>Friend Profile</h2>
-                  <label for="name">Full Name</label>
-                  <input type="text" name="fullname" id="friendfullname" value="" data-mini="true" data-clear-btn="false" readonly> 
-
-                  <label for="email">Email</label>
-                  <input type="email" name="email" id="friendemail" value="" data-mini="true" data-clear-btn="false" readonly>
-
-                  <label for="name">Phone</label>
-                  <input type="text" name="phone" id="friendphone" value="" data-mini="true" data-clear-btn="false" readonly>
-
-                  <label for="name">Pin BB</label>
-                  <input type="text" name="pinbb" id="friendpinbb" value="" data-mini="true" data-clear-btn="false" readonly>
-
-                  <label for="name">Facebook</label>
-                  <input type="text" name="facebook" id="friendfacebook" value="" data-mini="true" data-clear-btn="false" readonly>
-
-                  <label for="name">Twitter</label>
-                  <input type="text" name="twitter" id="friendtwitter" value="" data-mini="true" data-clear-btn="false" readonly>
-
-                  <label for="name">Instagram</label>
-                  <input type="text" name="instagram" id="friendinstagram" value="" data-mini="true" data-clear-btn="false" readonly>
-            </form>
+              <img id="friendPic"/>
+              <div id="friendDetails">
+                   <h3 id="fullName"></h3>
+              </div>
+             
+              <ul id="actionFriendProfileList" data-role="listview" data-inset="true"></ul>
+              
           </div> <!-- /content --> 
 
           <div data-role="footer">

@@ -56,13 +56,40 @@ $(document).on('pageinit', '#home', function(){
 
 /* show friend profile who clicked */
 $(document).on('pagebeforeshow', '#friendprofile', function(){    
-    $('input[id=friendfullname]').val(friend.fullname);
-    $('input[id=friendemail]').val(friend.email);
-    $('input[id=friendphone]').val(friend.phone);
-    $('input[id=friendpinbb]').val(friend.pinbb);
-    $('input[id=friendfacebook]').val(friend.facebook);
-    $('input[id=friendtwitter]').val(friend.twitter);
-    $('input[id=friendinstagram]').val(friend.instagram);
+    // make list empty first
+    $("#actionFriendProfileList").empty();
+
+    $('#friendPic').attr('src', 'http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png');
+    $('#friendPic').attr('height', '65');
+    $('#friendPic').attr('width', '65');
+    $('#fullName').text(friend.fullname);
+    if (friend.email) {
+      $('#actionFriendProfileList').append('<li><a href="mailto:' + friend.email + '"><h3>Email</h3>' +
+          '<p>' + friend.email + '</p></a></li>');
+    }
+    if (friend.phone) {
+      $('#actionFriendProfileList').append('<li><a href="tel:' + friend.phone + '"><h3>Call This Number</h3>' +
+          '<p>' + friend.phone + '</p></a></li>');
+      $('#actionFriendProfileList').append('<li><a href="sms:' + friend.phone + '"><h3>SMS</h3>' +
+          '<p>' + friend.phone + '</p></a></li>');
+    }
+    if (friend.pinbb) {
+      $('#actionFriendProfileList').append('<li><a href=""><h3>PIN BB</h3>' +
+          '<p>' + friend.pinbb + '</p></a></li>');
+    }
+    if (friend.facebook) {
+      $('#actionFriendProfileList').append('<li><a href=""><h3>Facebook</h3>' +
+          '<p>' + friend.facebook+ '</p></a></li>');
+    }
+    if (friend.twitter) {
+      $('#actionFriendProfileList').append('<li><a href=""><h3>Twitter</h3>' +
+          '<p>' + friend.twitter + '</p></a></li>');
+    }
+    if (friend.instagram) {
+      $('#actionFriendProfileList').append('<li><a href=""><h3>Instagram</h3>' +
+          '<p>' + friend.instagram + '</p></a></li>');
+    }
+    $('#actionFriendProfileList').listview('refresh');
 });
 
 /* add more contact */

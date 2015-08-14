@@ -1,0 +1,14 @@
+#friendPic {
+  float: left;
+  padding-right: 10px;
+  padding-bottom: 16px;
+}
+
+#friendDetails p {
+  margin-top: 0px;
+  margin-bottom: 8px;
+}
+
+#actionFriendProfileList {
+  clear: both;
+}
