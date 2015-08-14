@@ -155,7 +155,11 @@
               </div>
              
               <ul id="actionFriendProfileList" data-role="listview" data-inset="true"></ul>
-              
+
+              <div class="ui-grid-a">
+                  <div class="ui-block-a"><a href="#"  data-role="button" data-theme="b" data-mini="true" data-icon="delete" data-iconpos="top">Update</a></div>
+                  <div class="ui-block-b"><a href="#"  data-role="button" data-theme="b" data-mini="true" data-icon="edit" data-iconpos="top">Delete</a></div>
+              </div>
           </div> <!-- /content --> 
 
           <div data-role="footer">
