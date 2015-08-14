@@ -114,7 +114,13 @@ Route::group(['middleware' => 'user'], function()
 		if($user == null)
 		{
 			$user = DB::table('friendsoffline')->where('id', $id)->first();
+			$user->onlineoffline = 'offline';
+
+			//this route should returns json response
+	    	return Response::json($user);
 		}
+
+		$user->onlineoffline = 'online';
 
 	    //this route should returns json response
 	    return Response::json($user);

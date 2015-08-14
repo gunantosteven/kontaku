@@ -55,7 +55,7 @@ $(document).on('pageinit', '#home', function(){
   });    
 });
 
-/* show friend profile who clicked */
+/* show page home */
 $(document).on('pagebeforeshow', '#home', function(){   
       if(isEditFriendProfile)
       {
@@ -100,6 +100,16 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
       $('#actionFriendProfileList').append('<li><a href=""><h3>Instagram</h3>' +
           '<p>' + friend.instagram + '</p></a></li>');
     }
+
+    if(friend.onlineoffline == 'online')
+    {
+      $('#editfriendprofilebuttonpage').hide();
+    }
+    else
+    {
+      $('#editfriendprofilebuttonpage').show();
+    }
+
     $('#actionFriendProfileList').listview('refresh');
 });
 
@@ -152,8 +162,6 @@ $(document).on('pageinit', '#editfriendprofile', function(){
 
 /* edit friend profile */
 $(document).on('pagebeforeshow', '#editfriendprofile', function(){    
-  console.log(friend.fullname);
-
   // initialization form edit
   $('#editfriendfullname').val(friend.fullname);
   $('#editfriendemail').val(friend.email);

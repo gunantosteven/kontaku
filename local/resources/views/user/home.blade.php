@@ -142,8 +142,8 @@
               <ul id="actionFriendProfileList" data-role="listview" data-inset="true"></ul>
 
               <div class="ui-grid-a">
-                  <div class="ui-block-a"><a href="#"  data-role="button" data-theme="b" data-mini="true" data-icon="delete" data-iconpos="top">Delete</a></div>
-                  <div class="ui-block-b"><a href="#editfriendprofile"  data-role="button" data-theme="b" data-mini="true" data-icon="edit" data-iconpos="top">Edit</a></div>
+                  <div class="ui-block-a"><a href="#editfriendprofile" id="editfriendprofilebuttonpage"  data-role="button" data-theme="b" data-mini="true" data-icon="edit" data-iconpos="top">Edit</a></div>
+                  <div class="ui-block-b"><a href="#"  data-role="button" data-theme="b" data-mini="true" data-icon="delete" data-iconpos="top">Delete</a></div>
               </div>
           </div> <!-- /content --> 
 
@@ -154,7 +154,7 @@
 
         <!-- edit friend profile -->
         <div data-role="page" id="editfriendprofile">
-          <form id="formEditFriendOffline" class="ui-body ui-body-a ui-corner-all" data-ajax="false">
+          <form id="formEditFriendOffline"  data-ajax="false">
                   <div data-role="header" data-theme="a" id="header1">
                      <h3>Edit Friend Contact</h3>
                      <a href="#" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
