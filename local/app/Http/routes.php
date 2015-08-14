@@ -138,6 +138,24 @@ Route::group(['middleware' => 'user'], function()
 			));
    		return response()->json(['status' => true, 'id' => $id, 'fullname' => $output['fullname']]);
 	});
+
+	// edit friendoffline
+	Route::put('user/friendoffline', function()
+	{
+		parse_str(Request::input('formData'), $output);
+		$id = Request::input('id');
+		DB::table('friendsoffline')
+            ->where('id', $id)
+            ->update(['fullname' => $output['fullname'], 
+            		'email' => $output['email'], 
+            		'phone' => $output['phone'], 
+            		'pinbb' => $output['pinbb'], 
+            		'facebook' => $output['facebook'],
+            		'twitter' => $output['twitter'],
+            		'instagram' => $output['instagram']]);
+
+   		return response()->json(['status' => true]);
+	});
 });
 
 Route::get('createdb',function(){

@@ -1,6 +1,7 @@
 var friendscount;
 var friend;
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+var isEditFriendProfile = false; // check if user edit friend profile. 
 
 /* page home before create */
 $(document).on("pagebeforecreate", "#home", function (e, ui) {
@@ -55,6 +56,16 @@ $(document).on('pageinit', '#home', function(){
 });
 
 /* show friend profile who clicked */
+$(document).on('pagebeforeshow', '#home', function(){   
+      if(isEditFriendProfile)
+      {
+        $.mobile.pageContainer.pagecontainer("change", "home", {transition: "slide"});
+        reloadContact();
+        isEditFriendProfile = false;
+      }
+});
+
+/* show friend profile who clicked */
 $(document).on('pagebeforeshow', '#friendprofile', function(){    
     // make list empty first
     $("#actionFriendProfileList").empty();
@@ -92,6 +103,67 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
     $('#actionFriendProfileList').listview('refresh');
 });
 
+/* page edit friend initialization */
+$(document).on('pageinit', '#editfriendprofile', function(){  
+  /* create friend offline */
+  $(document).on('click', '#editfriendsubmit', function() { // catch the form's submit event
+    if($('#editfriendfullname').val().length > 0 && $('#editfriendemail').val().length > 0){
+        // Send data to server through the Ajax call
+        // action is functionality we want to call and outputJSON is our data
+        $.ajax({url: index + "/user/friendoffline",
+            data: {_token: CSRF_TOKEN, action : 'edit', id : friend.id, formData : $('#formEditFriendOffline').serialize()},
+            type: 'put',                   
+            async: 'true',
+            dataType: 'json',
+            beforeSend: function() {
+                // This callback function will trigger before data is sent
+                $.mobile.loading('show'); // This will show ajax spinner
+            },
+            complete: function() {
+                // This callback function will trigger on data sent/received complete
+                $.mobile.loading('hide'); // This will hide ajax spinner
+            },
+            success: function (result) {
+                if(result.status) {
+                      friend.fullname = $('#editfriendfullname').val();
+                      friend.email = $('#editfriendemail').val();
+                      friend.phone = $('#editfriendphone').val();
+                      friend.pinbb = $('#editfriendpinbb').val();
+                      friend.facebook = $('#editfriendfacebook').val();
+                      friend.twitter = $('#editfriendtwitter').val();
+                      friend.instagram = $('#editfriendinstagram').val();
+                      isEditFriendProfile = true;
+                      $.mobile.back();
+                } else {
+                    alert('Something error happened!'); 
+                }
+            },
+            error: function (request,error) {
+                // This callback function will trigger on unsuccessful action                
+                alert('Network error has occurred please try again!');
+            }
+        });                   
+    } else {
+        alert('Please fill all necessary fields');
+    }           
+      return false; // cancel original event to prevent form submitting
+  });    
+});
+
+/* edit friend profile */
+$(document).on('pagebeforeshow', '#editfriendprofile', function(){    
+  console.log(friend.fullname);
+
+  // initialization form edit
+  $('#editfriendfullname').val(friend.fullname);
+  $('#editfriendemail').val(friend.email);
+  $('#editfriendphone').val(friend.phone);
+  $('#editfriendpinbb').val(friend.pinbb);
+  $('#editfriendfacebook').val(friend.facebook);
+  $('#editfriendtwitter').val(friend.twitter);
+  $('#editfriendinstagram').val(friend.instagram);
+}); 
+
 /* add more contact */
 function addMore(page) {
     $.mobile.loading("show", {
@@ -128,8 +200,6 @@ $(document).on("scrollstop", function (e) {
         header = $(".ui-header", activePage).hasClass("ui-header-fixed") ? $(".ui-header", activePage).outerHeight() - 1 : $(".ui-header", activePage).outerHeight(),
         footer = $(".ui-footer", activePage).hasClass("ui-footer-fixed") ? $(".ui-footer", activePage).outerHeight() - 1 : $(".ui-footer", activePage).outerHeight(),
         scrollEnd = contentHeight - screenHeight + header + footer;
-    $(".ui-btn-left", activePage).text("Scrolled: " + scrolled);
-    $(".ui-btn-right", activePage).text("ScrollEnd: " + scrollEnd);
     if (activePage[0].id == "home" && scrolled >= scrollEnd && (friendscount > 0) && $('#searchbar').val().length == 0) {
         console.log("adding...");
         addMore(activePage);

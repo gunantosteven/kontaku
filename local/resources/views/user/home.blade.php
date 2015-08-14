@@ -74,27 +74,12 @@
 
                     <div class="ui-grid-a">
                         <div class="ui-block-a"><a href="#" data-rel="close" data-role="button" data-theme="c" data-mini="true">Cancel</a></div>
-                        <div class="ui-block-b"><input type="button" data-theme="b" name="submit"  id="submit" value="Submit" data-theme="b" data-mini="true"></div>
+                        <div class="ui-block-b"><input type="button" data-theme="b" name="submit"   id="submit" value="Submit" data-theme="b" data-mini="true"></div>
                     </div>
                 </form>
               <!-- panel content goes here -->
             </div><!-- /panel -->
         </div><!-- /page -->      
-        
-        <div data-role="page" id="page2">         
-            <div data-role="header">    
-               <h1>
-                  Page 2
-                </h1>     
-            </div>        
-            
-            <div data-role="content">         
-            </div>        
-            
-            <div data-role="footer">         
-            </div><!-- /fotoer -->     
-            
-        </div><!-- /page --> 
 
         <div data-role="page" id="myprofile">
           <div data-role="header" data-theme="a" id="header1">
@@ -157,10 +142,49 @@
               <ul id="actionFriendProfileList" data-role="listview" data-inset="true"></ul>
 
               <div class="ui-grid-a">
-                  <div class="ui-block-a"><a href="#"  data-role="button" data-theme="b" data-mini="true" data-icon="delete" data-iconpos="top">Update</a></div>
-                  <div class="ui-block-b"><a href="#"  data-role="button" data-theme="b" data-mini="true" data-icon="edit" data-iconpos="top">Delete</a></div>
+                  <div class="ui-block-a"><a href="#"  data-role="button" data-theme="b" data-mini="true" data-icon="delete" data-iconpos="top">Delete</a></div>
+                  <div class="ui-block-b"><a href="#editfriendprofile"  data-role="button" data-theme="b" data-mini="true" data-icon="edit" data-iconpos="top">Edit</a></div>
               </div>
           </div> <!-- /content --> 
+
+          <div data-role="footer">
+            <h1>Footer Text</h1>
+          </div>
+        </div>  <!-- /footer --> 
+
+        <!-- edit friend profile -->
+        <div data-role="page" id="editfriendprofile">
+          <form id="formEditFriendOffline" class="ui-body ui-body-a ui-corner-all" data-ajax="false">
+                  <div data-role="header" data-theme="a" id="header1">
+                     <h3>Edit Friend Contact</h3>
+                     <a href="#" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
+                     <a href="#" data-role="button" id="editfriendsubmit" data-theme="b" data-mini="true">OK</a>
+                  </div><!-- /header --> 
+
+                  <div data-role="main">
+                    <h2>Edit Friend Contact</h2>
+                    <label for="name">Full Name</label>
+                    <input type="text" name="fullname" id="editfriendfullname" value="" data-clear-btn="true" data-mini="true"> 
+
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="editfriendemail" value="" data-clear-btn="true" data-mini="true">
+
+                    <label for="name">Phone</label>
+                    <input type="text" name="phone" id="editfriendphone" value="" data-clear-btn="true" data-mini="true">
+
+                    <label for="name">Pin BB</label>
+                    <input type="text" name="pinbb" id="editfriendpinbb" value="" data-clear-btn="true" data-mini="true">
+
+                    <label for="name">Facebook</label>
+                    <input type="text" name="facebook" id="editfriendfacebook" value="" data-clear-btn="true" data-mini="true">
+
+                    <label for="name">Twitter</label>
+                    <input type="text" name="twitter" id="editfriendtwitter" value="" data-clear-btn="true" data-mini="true">
+
+                    <label for="name">Instagram</label>
+                    <input type="text" name="instagram" id="editfriendinstagram" value="" data-clear-btn="true" data-mini="true">
+                  </div> <!-- /content --> 
+          </form>
 
           <div data-role="footer">
             <h1>Footer Text</h1>
