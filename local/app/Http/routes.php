@@ -66,7 +66,7 @@ Route::group(['middleware' => 'user'], function()
             ->select('friendsonline.user2 as id', 'users.fullname as fullname')
             ->where('friendsonline.user1', Auth::user()->id);
         $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('user', Auth::user()->id);
-        $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->skip($friendscount)->take(5)->orderBy('fullname')->get();
+        $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->skip($friendscount)->take(10)->orderBy('fullname')->get();
 
 		$count = 0;
 		$array = array();
@@ -159,6 +159,30 @@ Route::group(['middleware' => 'user'], function()
             		'facebook' => $output['facebook'],
             		'twitter' => $output['twitter'],
             		'instagram' => $output['instagram']]);
+
+   		return response()->json(['status' => true]);
+	});
+
+	// delete friend
+	Route::delete('user/friend', function()
+	{
+		$id = Request::input('id');
+		$onlineoffline = Request::input('onlineoffline');
+		if($onlineoffline == "online")
+		{
+			// if user1 is authentic user
+			DB::table('friendsonline')->where('user1', Auth::user()->id)->where('user2', $id)->delete();
+			// if user2 is authentic user
+			DB::table('friendsonline')->where('user1', $id)->where('user2', Auth::user()->id)->delete();
+		}
+		else if($onlineoffline == "offline")
+		{
+			DB::table('friendsoffline')->where('id', $id)->delete();
+		}
+		else
+		{
+			return response()->json(['status' => false]);
+		}
 
    		return response()->json(['status' => true]);
 	});

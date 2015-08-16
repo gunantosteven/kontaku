@@ -143,8 +143,19 @@
 
               <div class="ui-grid-a">
                   <div class="ui-block-a"><a href="#editfriendprofile" id="editfriendprofilebuttonpage"  data-role="button" data-theme="b" data-mini="true" data-icon="edit" data-iconpos="top">Edit</a></div>
-                  <div class="ui-block-b"><a href="#"  data-role="button" data-theme="b" data-mini="true" data-icon="delete" data-iconpos="top">Delete</a></div>
+                  <div class="ui-block-b"><a href="#popupDialog" data-rel="popup" data-position-to="window"  data-role="button"  data-transition="pop"  data-icon="delete" data-theme="b" data-mini="true" data-iconpos="top">Delete</a></div>
               </div>
+              <!-- popupDialog creating form -->
+              <div data-role="popup" id="popupDialog" data-overlay-theme="a" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+                  <div data-role="header" data-theme="a" class="ui-corner-top">
+                      <h1>Delete Contact?</h1>
+                  </div>
+                  <div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+                      <h3 class="ui-title">Are you sure you want to delete this contact?</h3>
+                      <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">Cancel</a>
+                      <a href="#" id="deletefriend" data-role="button" data-inline="true"  data-transition="flow" data-theme="b">Delete</a>
+                  </div>
+              </div> <!-- end popup -->
           </div> <!-- /content --> 
 
           <div data-role="footer">

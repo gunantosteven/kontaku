@@ -65,6 +65,40 @@ $(document).on('pagebeforeshow', '#home', function(){
       }
 });
 
+/* page friendprofile initialization */
+$(document).on('pageinit', '#friendprofile', function(){  
+  $(document).on('click', '#deletefriend', function() { 
+
+    $.ajax({url: index + "/user/friend",
+              data: {_token: CSRF_TOKEN, action : 'delete', id : friend.id, onlineoffline : friend.onlineoffline },
+              type: 'delete',                   
+              async: 'true',
+              dataType: 'json',
+              beforeSend: function() {
+                  // This callback function will trigger before data is sent
+                  $.mobile.loading('show'); // This will show ajax spinner
+              },
+              complete: function() {
+                  // This callback function will trigger on data sent/received complete
+                  $.mobile.loading('hide'); // This will hide ajax spinner
+              },
+              success: function (result) {
+                  if(result.status) {
+                       $.mobile.pageContainer.pagecontainer("change", "home", {transition: "slide"});
+                       reloadContact();
+                  } else {
+                      alert('Something error happened!'); 
+                  }
+              },
+              error: function (request,error) {
+                  // This callback function will trigger on unsuccessful action                
+                  alert('Network error has occurred please try again!');
+              }
+          });            
+  }); 
+});
+
+
 /* show friend profile who clicked */
 $(document).on('pagebeforeshow', '#friendprofile', function(){    
     // make list empty first
@@ -278,3 +312,4 @@ function reloadContact() {
           friendscount = data['friendscount'];
       }})             
 }
+
