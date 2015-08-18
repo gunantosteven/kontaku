@@ -91,7 +91,7 @@
           </div><!-- /header --> 
 
           <div data-role="main">
-                  <h2>Update My Profile</h2>
+                  <h2>Edit My Profile</h2>
                   <label for="name">Full Name</label>
                   <input type="text" name="fullname" id="editmyprofilefullname" value="" data-clear-btn="true" data-mini="true"> 
 
