@@ -206,6 +206,65 @@ $(document).on('pagebeforeshow', '#editfriendprofile', function(){
   $('#editfriendinstagram').val(friend.instagram);
 }); 
 
+/* page my profile initialization */
+$(document).on('pageinit', '#myprofile', function(){  
+  /* create friend offline */
+  $(document).on('click', '#editmyprofilesubmit', function() { // catch the form's submit event
+    if($('#editmyprofilefullname').val().length > 0){
+        // Send data to server through the Ajax call
+        // action is functionality we want to call and outputJSON is our data
+        $.ajax({url: index + "/user/editprofile",
+            data: {_token: CSRF_TOKEN, action : 'edit', id : userid, formData : $('#formEditMyProfile').serialize()},
+            type: 'put',                   
+            async: 'true',
+            dataType: 'json',
+            beforeSend: function() {
+                // This callback function will trigger before data is sent
+                $.mobile.loading('show'); // This will show ajax spinner
+            },
+            complete: function() {
+                // This callback function will trigger on data sent/received complete
+                $.mobile.loading('hide'); // This will hide ajax spinner
+            },
+            success: function (result) {
+                if(result.status) {
+                       $.mobile.back();
+                } else {
+                    alert('Something error happened!'); 
+                }
+            },
+            error: function (request,error) {
+                // This callback function will trigger on unsuccessful action                
+                alert('Network error has occurred please try again!');
+            }
+        });                   
+    } else {
+        alert('Please fill all necessary fields');
+    }           
+      return false; // cancel original event to prevent form submitting
+  });    
+});
+
+/* edit my profile before show */
+$(document).on('pagebeforeshow', '#myprofile', function(){    
+  // initialization form edit
+  $.ajax({
+            url: index + "/user/profile/" + userid,
+            type: 'POST',
+            data: {_token: CSRF_TOKEN},
+            dataType: 'JSON',
+            success: function (data) {
+                // initialization my profile form
+              $('#editmyprofilefullname').val(data.fullname);
+              $('#editmyprofilephone').val(data.phone);
+              $('#editmyprofilepinbb').val(data.pinbb);
+              $('#editmyprofilefacebook').val(data.facebook);
+              $('#editmyprofiletwitter').val(data.twitter);
+              $('#editmyprofileinstagram').val(data.instagram);
+            }
+        });
+}); 
+
 /* add more contact */
 function addMore(page) {
     $.mobile.loading("show", {

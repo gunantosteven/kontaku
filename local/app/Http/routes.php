@@ -186,6 +186,23 @@ Route::group(['middleware' => 'user'], function()
 
    		return response()->json(['status' => true]);
 	});
+
+	// edit my profile
+	Route::put('user/editprofile', function()
+	{
+		parse_str(Request::input('formData'), $output);
+		$id = Request::input('id');
+		DB::table('users')
+            ->where('id', $id)
+            ->update(['fullname' => $output['fullname'], 
+            		'phone' => $output['phone'], 
+            		'pinbb' => $output['pinbb'], 
+            		'facebook' => $output['facebook'],
+            		'twitter' => $output['twitter'],
+            		'instagram' => $output['instagram']]);
+
+   		return response()->json(['status' => true]);
+	});
 });
 
 Route::get('createdb',function(){

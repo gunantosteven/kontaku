@@ -14,6 +14,7 @@
     </head>   
     <script type="text/javascript">
       var index = "{{ URL::to('/') }}";
+      var userid = "{{ Auth::user()->id }}";
     </script>
     <style type="text/css">
       
@@ -82,42 +83,32 @@
         </div><!-- /page -->      
 
         <div data-role="page" id="myprofile">
+          <form id="formEditMyProfile"  data-ajax="false">
           <div data-role="header" data-theme="a" id="header1">
              <h3>My Profile</h3>
-             <a href="#" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
+             <a href="#" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
+             <a href="#" data-role="button" id="editmyprofilesubmit" data-theme="b" data-mini="true">OK</a>
           </div><!-- /header --> 
 
           <div data-role="main">
-              <form class="userform">
                   <h2>Update My Profile</h2>
                   <label for="name">Full Name</label>
-                  <input type="text" name="fullname" id="fullname" value="" data-clear-btn="true" data-mini="true"> 
-
-                  <label for="email">Email</label>
-                  <input type="email" name="email" id="email" value="" data-clear-btn="true" data-mini="true">
+                  <input type="text" name="fullname" id="editmyprofilefullname" value="" data-clear-btn="true" data-mini="true"> 
 
                   <label for="name">Phone</label>
-                  <input type="text" name="phone" id="phone" value="" data-clear-btn="true" data-mini="true">
+                  <input type="text" name="phone" id="editmyprofilephone" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Pin BB</label>
-                  <input type="text" name="fullname" id="fullname" value="" data-clear-btn="true" data-mini="true">
+                  <input type="text" name="pinbb" id="editmyprofilepinbb" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Facebook</label>
-                  <input type="text" name="facebook" id="facebook" value="" data-clear-btn="true" data-mini="true">
+                  <input type="text" name="facebook" id="editmyprofilefacebook" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Twitter</label>
-                  <input type="text" name="twitter" id="twitter" value="" data-clear-btn="true" data-mini="true">
+                  <input type="text" name="twitter" id="editmyprofiletwitter" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Instagram</label>
-                  <input type="text" name="instagram" id="instagram" value="" data-clear-btn="true" data-mini="true">
-
-                  <label for="name">Status</label>
-                  <input type="text" name="status" id="status" value="" data-clear-btn="true" data-mini="true">
-
-                  <div class="ui-grid-a">
-                      <div class="ui-block-a"><a href="#" data-rel="back" data-role="button" data-theme="c" data-mini="true">Cancel</a></div>
-                      <div class="ui-block-b"><a href="#" data-rel="back" data-role="button" data-theme="b" data-mini="true">Save</a></div>
-                  </div>
+                  <input type="text" name="instagram" id="editmyprofileinstagram" value="" data-clear-btn="true" data-mini="true">
             </form>
           </div> <!-- /content --> 
 
