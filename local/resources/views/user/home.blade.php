@@ -128,6 +128,7 @@
               <img id="friendPic"/>
               <div id="friendDetails">
                    <h3 id="fullName"></h3>
+                   <p id="friendprofileonlineoffline"></p>
               </div>
              
               <ul id="actionFriendProfileList" data-role="listview" data-inset="true"></ul>
