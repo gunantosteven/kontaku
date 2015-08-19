@@ -190,8 +190,89 @@
 
           <div data-role="footer">
             <h1>Footer Text</h1>
-          </div>
-        </div>  <!-- /footer --> 
+          </div> <!-- /footer --> 
+        </div>  
+
+        <div data-role="page" id="invites"><!-- Page Invites -->     
+            <div data-role="header">         
+                <h1>
+                    Invites
+                </h1>     
+                <a href="#home" data-icon="back" data-iconpos="notext">Back</a>
+                <a href="#addfriendsonline" data-icon="plus" data-iconpos="notext">Add By Url</a>
+            </div><!-- /header -->      
+            
+            <div data-role="content" class="ui-content">                
+                <ul data-role="listview" id="listinvites" data-filter="true" data-inset="true" data-divider-theme="a"></ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page invites -->     
+
+        <div data-role="page" id="addfriendsonline"><!-- Add Friends Online -->     
+            <div data-role="header">         
+                <h1>
+                    Add Friends Online
+                </h1>     
+                <a href="#" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
+            </div><!-- /header -->      
+            
+            <div data-role="content" class="ui-content">
+              <form id="formSearchAddFriendOnline"  data-ajax="false">  
+                <input type="text" placeholder="Search" name="search" id="searchbaraddfriendsonline" data-clear-btn="true"/>
+                <input type="submit" name="search" value="Search" id="submitsearchaddfriendsonline"/>  
+              </form>       
+              <div class="center-wrapper">     
+                  <img class='ui-li-icon' id="imguseraddfriendsonline" src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='80' width='80' />
+                  <label for="name" id="fullnameuseraddfriendsonline">FullName</label>
+                  <form id="formAddFriendOnline"  data-ajax="false">
+                    <input type="hidden" name="id" id="iduseraddfriendsonline"/>
+                    <a href="#" data-role="button" id="buttonaddfriendsonline" data-theme="b">ADD</a>
+                  </form>
+              </div>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page invites -->    
+
+        <div data-role="page" id="gotinvitation"><!-- Page Got Invitation -->     
+            <div data-role="header">         
+                <h1>
+                    <label for="name" id="fullnameusergotinvitation">FullName</label>
+                    <label for="status" id="statususergotinvitation">Status</label>
+                </h1>     
+                <a href="#invites" data-icon="back" data-iconpos="notext">Back</a>
+                <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal">
+                  <a href="#" id="addfriendsonlinedecline" data-icon="delete" data-role="button" data-iconpos="notext">Decline</a>
+                  <a href="#" id="addfriendsonlineaccept" data-icon="check" data-role="button" data-iconpos="notext">Accept</a>
+                </div>
+            </div><!-- /header -->        
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page invites -->  
+
+        <div data-role="page" id="sentinvitation"><!-- Page Got Invitation -->     
+            <div data-role="header">         
+                <h1>
+                    <label for="name" id="fullnameusersentinvitation">FullName</label>
+                    <label for="status" id="statususersentinvitation">Status</label>
+                </h1>     
+                <a href="#invites" data-icon="back" data-iconpos="notext">Back</a>
+                <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal">
+                  <a href="#" id="addfriendsonlinedelete" data-icon="delete" data-role="button" data-iconpos="notext">Delete</a>
+                </div>
+            </div><!-- /header -->        
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page invites -->  
 
     </body>
 </html>

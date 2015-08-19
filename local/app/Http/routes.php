@@ -34,11 +34,13 @@ Route::group(['middleware' => 'user'], function()
 		$friendsonline1 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
             ->select('friendsonline.user1 as id', 'users.fullname as fullname')
-            ->where('friendsonline.user2', Auth::user()->id);
+            ->where('friendsonline.user2', Auth::user()->id)
+            ->where('friendsonline.status', 'ACCEPTED');
         $friendsonline2 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
             ->select('friendsonline.user2 as id', 'users.fullname as fullname')
-            ->where('friendsonline.user1', Auth::user()->id);
+            ->where('friendsonline.user1', Auth::user()->id)
+            ->where('friendsonline.status', 'ACCEPTED');
         $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('user', Auth::user()->id);
         $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->take(20)->orderBy('fullname')->get();
 
@@ -60,11 +62,13 @@ Route::group(['middleware' => 'user'], function()
 		$friendsonline1 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
             ->select('friendsonline.user1 as id', 'users.fullname as fullname')
-            ->where('friendsonline.user2', Auth::user()->id);
+            ->where('friendsonline.user2', Auth::user()->id)
+            ->where('friendsonline.status', 'ACCEPTED');
         $friendsonline2 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
             ->select('friendsonline.user2 as id', 'users.fullname as fullname')
-            ->where('friendsonline.user1', Auth::user()->id);
+            ->where('friendsonline.user1', Auth::user()->id)
+            ->where('friendsonline.status', 'ACCEPTED');
         $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('user', Auth::user()->id);
         $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->skip($friendscount)->take(10)->orderBy('fullname')->get();
 
@@ -87,12 +91,14 @@ Route::group(['middleware' => 'user'], function()
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
             ->select('friendsonline.user1 as id', 'users.fullname as fullname')
             ->where('friendsonline.user2', Auth::user()->id)
-            ->where('users.fullname', 'ilike', "%" . Request::input('search') . "%");
+            ->where('users.fullname', 'ilike', "%" . Request::input('search') . "%")
+            ->where('friendsonline.status', 'ACCEPTED');
         $friendsonline2 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
             ->select('friendsonline.user2 as id', 'users.fullname as fullname')
             ->where('friendsonline.user1', Auth::user()->id)
-            ->where('users.fullname', 'ilike', "%" . Request::input('search') . "%");
+            ->where('users.fullname', 'ilike', "%" . Request::input('search') . "%")
+            ->where('friendsonline.status', 'ACCEPTED');
         $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('user', Auth::user()->id)->where('fullname', 'ilike', "%" . Request::input('search') . "%");
         $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->take(20)->orderBy('fullname')->get();
 
@@ -171,9 +177,9 @@ Route::group(['middleware' => 'user'], function()
 		if($onlineoffline == "online")
 		{
 			// if user1 is authentic user
-			DB::table('friendsonline')->where('user1', Auth::user()->id)->where('user2', $id)->delete();
+			DB::table('friendsonline')->where('user1', Auth::user()->id)->where('user2', $id)->where('status', 'ACCEPTED')->delete();
 			// if user2 is authentic user
-			DB::table('friendsonline')->where('user1', $id)->where('user2', Auth::user()->id)->delete();
+			DB::table('friendsonline')->where('user1', $id)->where('user2', Auth::user()->id)->where('status', 'ACCEPTED')->delete();
 		}
 		else if($onlineoffline == "offline")
 		{
@@ -200,6 +206,175 @@ Route::group(['middleware' => 'user'], function()
             		'facebook' => $output['facebook'],
             		'twitter' => $output['twitter'],
             		'instagram' => $output['instagram']]);
+
+   		return response()->json(['status' => true]);
+	});
+
+	// sent invitation
+	Route::post('/user/sentinvitation', function()
+	{
+        $friendsonline = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname', 'friendsonline.status as status', 'friendsonline.created_at as created_at')
+            ->where('friendsonline.user1', Auth::user()->id)
+            ->where(function($query)
+            {
+                $query->where('friendsonline.status', 'DECLINED')
+                      ->orWhere('friendsonline.status', 'PENDING');
+            })->orderBy('created_at')->get();
+
+		$count = 0;
+		$array = array();
+
+		foreach ($friendsonline as $friend)
+		{
+			$array[$count++] = array( "id" => $friend->id, "fullname" => $friend->fullname, 'status' => $friend->status);
+		}
+
+	    //this route should returns json response
+	    return response()->json(['users' => $array]);
+	});
+
+	// got invitation
+	Route::post('/user/gotinvitation', function()
+	{
+        $friendsonline = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname', 'friendsonline.status as status', 'friendsonline.created_at as created_at')
+            ->where('friendsonline.user2', Auth::user()->id)
+            ->where('friendsonline.status', 'PENDING')->orderBy('created_at')->get();
+
+		$count = 0;
+		$array = array();
+
+		foreach ($friendsonline as $friend)
+		{
+			$array[$count++] = array( "id" => $friend->id, "fullname" => $friend->fullname, 'status' => $friend->status);
+		}
+
+	    //this route should returns json response
+	    return response()->json(['users' => $array]);
+	});
+
+	// search friend online
+	Route::post('/user/searchaddfriendsonline', function()
+	{
+		parse_str(Request::input('formData'), $output);
+		$usersearch = DB::table('users')->where('url', $output['search'])->first();
+		if($usersearch == null)
+		{
+			return response()->json(['status' => false]);
+		}
+
+		$friendsonline1 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname', 'friendsonline.status as status')
+            ->where('friendsonline.user2', $usersearch->id)
+            ->where('friendsonline.user1', Auth::user()->id)
+            ->where(function($query)
+            {
+                $query->where('friendsonline.status', 'DECLINED')
+                      ->orWhere('friendsonline.status', 'PENDING')
+                      ->orWhere('friendsonline.status', 'ACCEPTED');
+            });
+        $friendsonline2 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname', 'friendsonline.status as status')
+            ->where('friendsonline.user1', $usersearch->id)
+            ->where('friendsonline.user2', Auth::user()->id)
+            ->where(function($query)
+            {
+                $query->where('friendsonline.status', 'DECLINED')
+                      ->orWhere('friendsonline.status', 'PENDING')
+                      ->orWhere('friendsonline.status', 'ACCEPTED');
+            });
+        $combinedcount = $friendsonline1->unionAll($friendsonline2)->get();
+
+        foreach ($combinedcount as $friend)
+		{
+			return response()->json(['status' => false]);
+		}
+
+        $array = array();
+    	$array[0] = array( "id" => $usersearch->id, "fullname" => $usersearch->fullname);
+    	//this route should returns json response
+    	return response()->json(['status' => true, 'users' => $array]);
+	});
+
+	// create friendonline
+	Route::post('/user/friendonline', function()
+	{
+		parse_str(Request::input('formData'), $output);
+		$id = Uuid::generate();
+		\App\Models\FriendOnline::create(array(
+			'id' => $id,
+		    'user1' => Auth::user()->id,
+			'user2' => $output['id'],
+			'status' => 'PENDING',
+			));
+   		return response()->json(['status' => true]);
+	});
+
+	// get friend online and status too
+	Route::post('/user/friendonline/{id}', function($id)
+	{
+		$friendonline = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname', 'friendsonline.status as status')
+            ->where('friendsonline.user1', $id)
+            ->where('friendsonline.user2', Auth::user()->id)
+            ->where(function($query)
+            {
+                $query->where('friendsonline.status', 'DECLINED')
+                      ->orWhere('friendsonline.status', 'PENDING')
+                      ->orWhere('friendsonline.status', 'ACCEPTED');
+            })->first();
+
+		if($friendonline != null)
+		{
+			$array = array();
+    		$array[0] = array( "id" => $friendonline->id, "fullname" => $friendonline->fullname, "status" => $friendonline->status);
+
+			//this route should returns json response
+	    	return Response::json(['status' => true, 'users' => $array]);
+		}
+
+	    //this route should returns json response
+	    return Response::json(['status' => false]);
+	});
+
+	// accept invitation (make status to be ACCEPTED)
+	Route::post('user/acceptinvitation', function()
+	{
+		$id = Request::input('id');
+		DB::table('friendsonline')
+            ->where('user1', $id)
+            ->where('user2', Auth::user()->id)
+            ->update(['status' => "ACCEPTED"]);
+
+   		return response()->json(['status' => true]);
+	});
+
+	// decline invitation (make status to be DECLINED)
+	Route::post('user/declineinvitation', function()
+	{
+		$id = Request::input('id');
+		DB::table('friendsonline')
+            ->where('user1', $id)
+            ->where('user2', Auth::user()->id)
+            ->update(['status' => "DECLINED"]);
+
+   		return response()->json(['status' => true]);
+	});
+
+	// delete invitation
+	Route::delete('user/deleteinvitation', function()
+	{
+		$id = Request::input('id');
+		DB::table('friendsonline')
+            ->where('user1', Auth::user()->id)
+            ->where('user2', $id)
+            ->delete();
 
    		return response()->json(['status' => true]);
 	});
@@ -233,6 +408,7 @@ Route::get('createdb',function(){
 		$table->foreign('user1')->references('id')->on('users');
 		$table->string('user2');
 		$table->foreign('user2')->references('id')->on('users');
+		$table->string('status');
 		$table->timestamps();
 	});
 	Schema::create('friendsoffline',function($table){

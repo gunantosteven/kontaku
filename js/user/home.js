@@ -1,13 +1,13 @@
 var friendscount;
 var friend;
+var friendonlineinvatitation;
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 var isEditFriendProfile = false; // check if user edit friend profile. 
 
-/* page home before create */
+/* ===================================js page friendprofile=================================== */
 $(document).on("pagebeforecreate", "#home", function (e, ui) {
      reloadContact();
 });
-
 /* page home initialization */
 $(document).on('pageinit', '#home', function(){  
   /* create friend offline */
@@ -53,8 +53,98 @@ $(document).on('pageinit', '#home', function(){
       }           
       return false; // cancel original event to prevent form submitting
   });    
-});
 
+  /*When search through input view*/
+  $(document).on("input", "#searchbar", function (e) { 
+    //your code
+    var searchbar = $(this); 
+
+    if(searchbar.val() == "")
+    {
+       reloadContact();
+    }
+    else
+    {
+      $.ajax({
+          url: index + "/user/search",
+          type: 'POST',
+          data: {_token: CSRF_TOKEN, search: searchbar.val()},
+          dataType: 'JSON',
+          success: function (data) {
+            $("#list").empty();
+            $.each (data['friends'], function (index) {
+              $("#list").append("<li id='"  + data['friends'][index]['id'] + "'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data['friends'][index]['fullname'] + "</>" + "</li>").listview("refresh");
+            });
+        }
+      });
+    }
+  });
+
+  /* add more contact */
+  function addMore(page) {
+      $.mobile.loading("show", {
+          text: "loading more..",
+          textVisible: true,
+          theme: "b"
+      });
+      setTimeout(function () {
+          var items = '';
+          var count = 0;
+          $.ajax({
+              url: index + "/user/getcontact/" + friendscount,
+              type: 'POST',
+              data: {_token: CSRF_TOKEN},
+              dataType: 'JSON',
+              success: function (data) {
+                $.each (data['friends'], function (index) {
+                  items += "<li id='" + data['friends'][index]['id'] + "'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" +  data['friends'][index]['fullname'] + "</>"  + "</li>";
+                });
+                friendscount = data['friendscount'];
+                $("#list", page).append(items).listview("refresh");
+                $.mobile.loading("hide");
+              }
+          });
+      }, 500);
+  }
+
+  /* scroll event */
+  $(document).on("scrollstop", function (e) {
+      var activePage = $.mobile.pageContainer.pagecontainer("getActivePage"),
+          screenHeight = $.mobile.getScreenHeight(),
+          contentHeight = $(".ui-content", activePage).outerHeight(),
+          scrolled = $(window).scrollTop(),
+          header = $(".ui-header", activePage).hasClass("ui-header-fixed") ? $(".ui-header", activePage).outerHeight() - 1 : $(".ui-header", activePage).outerHeight(),
+          footer = $(".ui-footer", activePage).hasClass("ui-footer-fixed") ? $(".ui-footer", activePage).outerHeight() - 1 : $(".ui-footer", activePage).outerHeight(),
+          scrollEnd = contentHeight - screenHeight + header + footer;
+      if (activePage[0].id == "home" && scrolled >= scrollEnd && (friendscount > 0) && $('#searchbar').val().length == 0) {
+          console.log("adding...");
+          addMore(activePage);
+      }
+  });
+
+  /*When click clear search input*/
+  $(document).on('click', '.ui-input-clear', function () {
+        reloadContact();
+  });
+
+  /*When click contact listview*/
+  $(document).on("click", "#list li" ,function (event) {
+    if($(this).attr('id') !== undefined)
+    {
+      $.ajax({
+              url: index + "/user/profile/" + $(this).attr('id'),
+              type: 'POST',
+              data: {_token: CSRF_TOKEN},
+              dataType: 'JSON',
+              success: function (data) {
+                  friend = data;
+                  $.mobile.changePage("#friendprofile");
+              }
+          });
+    }
+  }); 
+
+});
 /* show page home */
 $(document).on('pagebeforeshow', '#home', function(){   
       if(isEditFriendProfile)
@@ -64,8 +154,9 @@ $(document).on('pagebeforeshow', '#home', function(){
         isEditFriendProfile = false;
       }
 });
+/* ===================================end js page home=================================== */
 
-/* page friendprofile initialization */
+/* ===================================js page friendprofile=================================== */
 $(document).on('pageinit', '#friendprofile', function(){  
   $(document).on('click', '#deletefriend', function() { 
 
@@ -97,8 +188,6 @@ $(document).on('pageinit', '#friendprofile', function(){
           });            
   }); 
 });
-
-
 /* show friend profile who clicked */
 $(document).on('pagebeforeshow', '#friendprofile', function(){    
     // make list empty first
@@ -146,8 +235,9 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
 
     $('#actionFriendProfileList').listview('refresh');
 });
+/* ===================================end js page friendprofile=================================== */
 
-/* page edit friend initialization */
+/* ===================================js page editfriendprofile=================================== */
 $(document).on('pageinit', '#editfriendprofile', function(){  
   /* create friend offline */
   $(document).on('click', '#editfriendsubmit', function() { // catch the form's submit event
@@ -193,7 +283,6 @@ $(document).on('pageinit', '#editfriendprofile', function(){
       return false; // cancel original event to prevent form submitting
   });    
 });
-
 /* edit friend profile */
 $(document).on('pagebeforeshow', '#editfriendprofile', function(){    
   // initialization form edit
@@ -205,8 +294,9 @@ $(document).on('pagebeforeshow', '#editfriendprofile', function(){
   $('#editfriendtwitter').val(friend.twitter);
   $('#editfriendinstagram').val(friend.instagram);
 }); 
+/* ===================================end js page editfriendprofile=================================== */
 
-/* page my profile initialization */
+/* ===================================js page myprofile=================================== */
 $(document).on('pageinit', '#myprofile', function(){  
   /* create friend offline */
   $(document).on('click', '#editmyprofilesubmit', function() { // catch the form's submit event
@@ -244,7 +334,6 @@ $(document).on('pageinit', '#myprofile', function(){
       return false; // cancel original event to prevent form submitting
   });    
 });
-
 /* edit my profile before show */
 $(document).on('pagebeforeshow', '#myprofile', function(){    
   // initialization form edit
@@ -264,99 +353,258 @@ $(document).on('pagebeforeshow', '#myprofile', function(){
             }
         });
 }); 
+/* ===================================end js page myprofile=================================== */
 
-/* add more contact */
-function addMore(page) {
-    $.mobile.loading("show", {
-        text: "loading more..",
-        textVisible: true,
-        theme: "b"
-    });
-    setTimeout(function () {
-        var items = '';
-        var count = 0;
-        $.ajax({
-            url: index + "/user/getcontact/" + friendscount,
-            type: 'POST',
-            data: {_token: CSRF_TOKEN},
-            dataType: 'JSON',
-            success: function (data) {
-              $.each (data['friends'], function (index) {
-                items += "<li id='" + data['friends'][index]['id'] + "'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" +  data['friends'][index]['fullname'] + "</>"  + "</li>";
-              });
-              friendscount = data['friendscount'];
-              $("#list", page).append(items).listview("refresh");
-              $.mobile.loading("hide");
-            }
-        });
-    }, 500);
-}
-
-/* scroll event */
-$(document).on("scrollstop", function (e) {
-    var activePage = $.mobile.pageContainer.pagecontainer("getActivePage"),
-        screenHeight = $.mobile.getScreenHeight(),
-        contentHeight = $(".ui-content", activePage).outerHeight(),
-        scrolled = $(window).scrollTop(),
-        header = $(".ui-header", activePage).hasClass("ui-header-fixed") ? $(".ui-header", activePage).outerHeight() - 1 : $(".ui-header", activePage).outerHeight(),
-        footer = $(".ui-footer", activePage).hasClass("ui-footer-fixed") ? $(".ui-footer", activePage).outerHeight() - 1 : $(".ui-footer", activePage).outerHeight(),
-        scrollEnd = contentHeight - screenHeight + header + footer;
-    if (activePage[0].id == "home" && scrolled >= scrollEnd && (friendscount > 0) && $('#searchbar').val().length == 0) {
-        console.log("adding...");
-        addMore(activePage);
-    }
-});
-
-/*When search through input view*/
-$(document).on("input", "#searchbar", function (e) { 
-  //your code
-  var searchbar = $(this); 
-
-  if(searchbar.val() == "")
-  {
-     reloadContact();
-  }
-  else
-  {
-    $.ajax({
-        url: index + "/user/search",
-        type: 'POST',
-        data: {_token: CSRF_TOKEN, search: searchbar.val()},
-        dataType: 'JSON',
-        success: function (data) {
-          $("#list").empty();
-          $.each (data['friends'], function (index) {
-            $("#list").append("<li id='"  + data['friends'][index]['id'] + "'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data['friends'][index]['fullname'] + "</>" + "</li>").listview("refresh");
-          });
+/* ===================================js page invites=================================== */
+$(document).on('pageinit', '#invites', function(){  
+  $('#listinvites').on('click', 'li', function() {
+      friendonlineinvatitation = {id:$(this).attr('id').split(";")[0], fullname:$(this).attr('id').split(";")[1], status:$(this).attr('id').split(";")[2]};
+      if($(this).attr('id').split(";")[3] == "got")
+      {
+        if(friendonlineinvatitation.status == "PENDING")
+        {
+          $.mobile.changePage("#gotinvitation");
+        }
       }
-    });
-  }
-
-});
-
-/*When click clear search input*/
-$(document).on('click', '.ui-input-clear', function () {
-      reloadContact();
-});
-
-/*When click contact listview*/
-$(document).on("click", "#list li" ,function (event) {
-  if($(this).attr('id') !== undefined)
-  {
-    $.ajax({
-            url: index + "/user/profile/" + $(this).attr('id'),
-            type: 'POST',
-            data: {_token: CSRF_TOKEN},
-            dataType: 'JSON',
-            success: function (data) {
-                friend = data;
-                $.mobile.changePage("#friendprofile");
-            }
-        });
-  }
+      else if($(this).attr('id').split(";")[3] == "sent")
+      {
+        if(friendonlineinvatitation.status == "PENDING" || friendonlineinvatitation.status == "DECLINED")
+        {
+          $.mobile.changePage("#sentinvitation");
+        }
+      }
+  }); 
 
 }); 
+/* invites before show */
+$(document).on('pagebeforeshow', '#invites', function(){    
+  $("#listinvites").empty();
 
+  $.ajax({
+        url: index + "/user/gotinvitation",
+        type: 'POST',
+        data: {_token: CSRF_TOKEN},
+        dataType: 'JSON',
+        success: function (data) {
+          if(data['users'][0] != null)
+          {
+            $("#listinvites").append("<li data-role='list-divider'>Got Invites</li>");
+            $.each (data['users'], function (index) {
+              $("#listinvites").append("<li id='"  + data['users'][index]['id'] + ";" + data['users'][index]['fullname'] + ";" + data['users'][index]['status'] +  ";got'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data['users'][index]['fullname'] + "<p>" + data['users'][index]['status'] + "</p>" + "</a>" + "</li>").listview("refresh");
+            });
+          }
+      }})  
+  $.ajax({
+      url: index + "/user/sentinvitation",
+      type: 'POST',
+      data: {_token: CSRF_TOKEN},
+      dataType: 'JSON',
+      success: function (data) {
+        if(data['users'][0] != null)
+        {
+          $("#listinvites").append("<li data-role='list-divider'>Sent Invites</li>");
+          $.each (data['users'], function (index) {
+            $("#listinvites").append("<li id='"  + data['users'][index]['id'] + ";" + data['users'][index]['fullname'] + ";" + data['users'][index]['status'] + ";sent'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data['users'][index]['fullname'] + "<p>" + data['users'][index]['status'] + "</p>" + "</a>" + "</li>").listview("refresh");
+          });
+        }
+    }})  
+
+}); 
+/* ===================================end js page invites=================================== */
+
+/* ===================================js page addfriendsonline=================================== */
+$(document).on('pageinit', '#addfriendsonline', function(){  
+  $(document).on('click', '#buttonaddfriendsonline', function() { 
+
+    $.ajax({url: index + "/user/friendonline",
+              data: {_token: CSRF_TOKEN, action : 'add', formData : $('#formAddFriendOnline').serialize()},
+              type: 'post',                   
+              async: 'true',
+              dataType: 'json',
+              beforeSend: function() {
+                  // This callback function will trigger before data is sent
+                  $.mobile.loading('show'); // This will show ajax spinner
+              },
+              complete: function() {
+                  // This callback function will trigger on data sent/received complete
+                  $.mobile.loading('hide'); // This will hide ajax spinner
+              },
+              success: function (result) {
+                  if(result.status) {
+                       $('#searchbaraddfriendsonline').val('');
+                       $.mobile.pageContainer.pagecontainer("change", "home#invites", {transition: "slide"});
+                  } else {
+                      alert('Something error happened!'); 
+                  }
+              },
+              error: function (request,error) {
+                  // This callback function will trigger on unsuccessful action                
+                  alert('Network error has occurred please try again!');
+              }
+          });            
+  }); 
+  $(document).on('click', '#submitsearchaddfriendsonline', function() { 
+      if($('#searchbaraddfriendsonline').val().length > 0){
+        // Send data to server through the Ajax call
+        // action is functionality we want to call and outputJSON is our data
+        $.ajax({url: index + "/user/searchaddfriendsonline",
+            data: {_token: CSRF_TOKEN, action : 'search', formData : $('#formSearchAddFriendOnline').serialize()},
+            type: 'post',                   
+            async: 'true',
+            dataType: 'json',
+            beforeSend: function() {
+                // This callback function will trigger before data is sent
+                $.mobile.loading('show'); // This will show ajax spinner
+            },
+            complete: function() {
+                // This callback function will trigger on data sent/received complete
+                $.mobile.loading('hide'); // This will hide ajax spinner
+            },
+            success: function (result) {
+                if(result.status) 
+                {
+                  $('#fullnameuseraddfriendsonline').text(result['users'][0].fullname);
+                  $('#iduseraddfriendsonline').val(result['users'][0].id);
+
+                  $('#imguseraddfriendsonline').show();
+                  $('#fullnameuseraddfriendsonline').show();
+                  $('#buttonaddfriendsonline').show();
+                } 
+                else 
+                {
+                    $('#fullnameuseraddfriendsonline').val('');
+                    $('#iduseraddfriendsonline').val('');
+
+                    $('#imguseraddfriendsonline').hide();
+                    $('#fullnameuseraddfriendsonline').hide();
+                    $('#buttonaddfriendsonline').hide();
+                    alert('User Not Found'); 
+                }
+            },
+            error: function (request,error) {
+                // This callback function will trigger on unsuccessful action                
+                alert('Network error has occurred please try again!');
+            }
+        });                   
+      } else {
+          alert('Please fill all necessary fields');
+      }           
+        return false; // cancel original event to prevent form submitting
+  });
+
+});
+$(document).on('pagebeforeshow', '#addfriendsonline', function(){ 
+    $('#imguseraddfriendsonline').hide();
+    $('#fullnameuseraddfriendsonline').hide();
+    $('#buttonaddfriendsonline').hide();
+}); 
+/* ===================================end js page addfriendsonline=================================== */
+
+/* ===================================js page gotinvitation=================================== */
+$(document).on('pageinit', '#gotinvitation', function(){  
+  $(document).on('click', '#addfriendsonlineaccept', function() { 
+      $.ajax({url: index + "/user/acceptinvitation",
+              data: {_token: CSRF_TOKEN, action : 'accept', id : friendonlineinvatitation.id},
+              type: 'post',                   
+              async: 'true',
+              dataType: 'json',
+              beforeSend: function() {
+                  // This callback function will trigger before data is sent
+                  $.mobile.loading('show'); // This will show ajax spinner
+              },
+              complete: function() {
+                  // This callback function will trigger on data sent/received complete
+                  $.mobile.loading('hide'); // This will hide ajax spinner
+              },
+              success: function (result) {
+                  if(result.status) {
+                       $.mobile.pageContainer.pagecontainer("change", "home#invites", {transition: "slide"});
+                  } else {
+                      alert('Something error happened!'); 
+                  }
+              },
+              error: function (request,error) {
+                  // This callback function will trigger on unsuccessful action                
+                  alert('Network error has occurred please try again!');
+              }
+          });           
+  });
+  $(document).on('click', '#addfriendsonlinedecline', function() { 
+        $.ajax({url: index + "/user/declineinvitation",
+                data: {_token: CSRF_TOKEN, action : 'decline', id : friendonlineinvatitation.id},
+                type: 'post',                   
+                async: 'true',
+                dataType: 'json',
+                beforeSend: function() {
+                    // This callback function will trigger before data is sent
+                    $.mobile.loading('show'); // This will show ajax spinner
+                },
+                complete: function() {
+                    // This callback function will trigger on data sent/received complete
+                    $.mobile.loading('hide'); // This will hide ajax spinner
+                },
+                success: function (result) {
+                    if(result.status) {
+                         $.mobile.pageContainer.pagecontainer("change", "home#invites", {transition: "slide"});
+                    } else {
+                        alert('Something error happened!'); 
+                    }
+                },
+                error: function (request,error) {
+                    // This callback function will trigger on unsuccessful action                
+                    alert('Network error has occurred please try again!');
+                }
+            });           
+  });
+
+});
+/* edit friend profile */
+$(document).on('pagebeforeshow', '#gotinvitation', function(){    
+  // initialization form edit
+  $('#fullnameusergotinvitation').text(friendonlineinvatitation.fullname);
+  $('#statususergotinvitation').text(friendonlineinvatitation.status);
+}); 
+/* ===================================end js page gotinvitation=================================== */
+
+/* ===================================js page sentinvitation=================================== */
+$(document).on('pageinit', '#sentinvitation', function(){  
+  $(document).on('click', '#addfriendsonlinedelete', function() { 
+        $.ajax({url: index + "/user/deleteinvitation",
+                data: {_token: CSRF_TOKEN, action : 'delete', id : friendonlineinvatitation.id},
+                type: 'delete',                   
+                async: 'true',
+                dataType: 'json',
+                beforeSend: function() {
+                    // This callback function will trigger before data is sent
+                    $.mobile.loading('show'); // This will show ajax spinner
+                },
+                complete: function() {
+                    // This callback function will trigger on data sent/received complete
+                    $.mobile.loading('hide'); // This will hide ajax spinner
+                },
+                success: function (result) {
+                    if(result.status) {
+                         $.mobile.pageContainer.pagecontainer("change", "home#invites", {transition: "slide"});
+                    } else {
+                        alert('Something error happened!'); 
+                    }
+                },
+                error: function (request,error) {
+                    // This callback function will trigger on unsuccessful action                
+                    alert('Network error has occurred please try again!');
+                }
+            });           
+  });
+
+});
+$(document).on('pagebeforeshow', '#sentinvitation', function(){    
+  // initialization form edit
+  $('#fullnameusersentinvitation').text(friendonlineinvatitation.fullname);
+  $('#statususersentinvitation').text(friendonlineinvatitation.status);
+}); 
+/* ===================================end js page sentinvitation=================================== */
+
+// function reloadContact
 function reloadContact() {
     $.ajax({
         url: index + "/user/getcontact",
@@ -371,4 +619,3 @@ function reloadContact() {
           friendscount = data['friendscount'];
       }})             
 }
-

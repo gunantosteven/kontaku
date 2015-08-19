@@ -11,4 +11,12 @@
 
 #actionFriendProfileList {
   clear: both;
+  margin-bottom: 8px;
+}
+
+.center-wrapper{
+  text-align: center;
+}
+.center-wrapper * {
+  margin: 0 auto;
 }
