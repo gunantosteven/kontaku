@@ -2,7 +2,6 @@ var friendscount;
 var friend;
 var friendonlineinvatitation;
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-var isEditFriendProfile = false; // check if user edit friend profile. 
 
 /* ===================================js page friendprofile=================================== */
 $(document).on("pagebeforecreate", "#home", function (e, ui) {
@@ -145,15 +144,6 @@ $(document).on('pageinit', '#home', function(){
   }); 
 
 });
-/* show page home */
-$(document).on('pagebeforeshow', '#home', function(){   
-      if(isEditFriendProfile)
-      {
-        $.mobile.pageContainer.pagecontainer("change", "home", {transition: "slide"});
-        reloadContact();
-        isEditFriendProfile = false;
-      }
-});
 /* ===================================end js page home=================================== */
 
 /* ===================================js page friendprofile=================================== */
@@ -267,8 +257,8 @@ $(document).on('pageinit', '#editfriendprofile', function(){
                       friend.facebook = $('#editfriendfacebook').val();
                       friend.twitter = $('#editfriendtwitter').val();
                       friend.instagram = $('#editfriendinstagram').val();
-                      isEditFriendProfile = true;
-                      $.mobile.back();
+                      $.mobile.pageContainer.pagecontainer("change", "home#friendprofile", {transition: "slide"});
+                      reloadContact();
                 } else {
                     alert('Something error happened!'); 
                 }
@@ -520,6 +510,7 @@ $(document).on('pageinit', '#gotinvitation', function(){
               success: function (result) {
                   if(result.status) {
                        $.mobile.pageContainer.pagecontainer("change", "home#invites", {transition: "slide"});
+                       reloadContact();
                   } else {
                       alert('Something error happened!'); 
                   }
