@@ -47,6 +47,7 @@
                 <a class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b" data-rel="close" >Settings</a>
                 <a class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b" data-rel="close" >Reports a Problem</a>
                 <a class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="b" data-rel="close" >Help</a>
+                <a href="{{ url("/auth/logout") }}" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="b" data-rel="close" data-ajax="false" >Sign Out</a>
              </div>
 
               <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="add-form" data-theme="b">
@@ -121,7 +122,7 @@
         <div data-role="page" id="friendprofile">
           <div data-role="header" data-theme="a" id="header1">
              <h3>My Friend Profile</h3>
-             <a href="#" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
+             <a href="#home" data-icon="back" data-iconpos="notext">Back</a>
           </div><!-- /header --> 
 
           <div data-role="main">
