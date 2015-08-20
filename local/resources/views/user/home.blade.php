@@ -44,7 +44,7 @@
                 <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-active" data-theme="b" data-rel="close" gid="0">Home</a>
                 <a href="#myprofile" class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">My Profile</a>
                 <a href="#invites" class="ui-btn ui-icon-plus ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">Invites</a>
-                <a class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b" data-rel="close" >Settings</a>
+                <a href="#settings" class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b" data-rel="close" >Settings</a>
                 <a class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b" data-rel="close" >Reports a Problem</a>
                 <a class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="b" data-rel="close" >Help</a>
                 <a href="{{ url("/auth/logout") }}" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="b" data-rel="close" data-ajax="false" >Sign Out</a>
@@ -275,6 +275,67 @@
                  <h1>Footer</h1>
             </div>
         </div><!-- /end page invites -->  
+
+        <div data-role="page" id="settings"><!-- Page Settings -->     
+            <div data-role="header">         
+                <h1>
+                    Settings
+                </h1>     
+                <a href="#home" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div data-role="content" class="ui-content">                
+                <ul data-role="listview" id="listsettings" data-inset="true">
+                  <li id="#"><a href='#settingsaccount'>Accounts</a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page Settings -->    
+
+        <div data-role="page" id="settingsaccount"><!-- Page Settings Account -->     
+            <div data-role="header">         
+                <h1>
+                    Accounts
+                </h1>     
+                <a href="#settings" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div data-role="content" class="ui-content">                
+                <ul data-role="listview" id="listsettings" data-inset="true">
+                  <li id=''><a href='#changepassword'>Change Password</a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page Settings -->    
+
+        <div data-role="page" id="changepassword"><!-- Page Change Password -->     
+            <form id="formChangePassword"  data-ajax="false">
+                  <div data-role="header" data-theme="a" id="header1">
+                     <h3>Change Password</h3>
+                     <a href="#" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
+                     <a href="#" data-role="button" id="changepasswordsubmit" data-theme="b" data-mini="true">Change</a>
+                  </div><!-- /header --> 
+
+                  <div data-role="main">
+                    <h2>Change Password</h2>
+                    <label for="name">New Password</label>
+                    <input type="password" name="new_password" id="changepasswordnewpassword" value="" data-clear-btn="true" data-mini="true"> 
+
+                    <label for="email">Retype Password</label>
+                    <input type="password" name="new_password2" id="changepasswordretypepassword" value="" data-clear-btn="true" data-mini="true">
+                  </div> <!-- /content --> 
+          </form>   
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page Settings -->  
 
     </body>
 </html>

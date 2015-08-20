@@ -378,6 +378,23 @@ Route::group(['middleware' => 'user'], function()
 
    		return response()->json(['status' => true]);
 	});
+
+	Route::post('user/changepassword', function() 
+	{
+		parse_str(Request::input('formData'), $output);
+		// authenticated user
+		if($output['new_password'] == $output['new_password2'])
+		{
+			$new_password = $output['new_password'];
+			$user = Auth::user();
+			$user->password = Hash::make($new_password);
+			// finally we save the authenticated user
+			$user->save();
+	   		return response()->json(['status' => true]);
+		}
+
+		return response()->json(['status' => false]);
+	});
 });
 
 Route::get('createdb',function(){

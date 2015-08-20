@@ -116,7 +116,6 @@ $(document).on('pageinit', '#home', function(){
           footer = $(".ui-footer", activePage).hasClass("ui-footer-fixed") ? $(".ui-footer", activePage).outerHeight() - 1 : $(".ui-footer", activePage).outerHeight(),
           scrollEnd = contentHeight - screenHeight + header + footer;
       if (activePage[0].id == "home" && scrolled >= scrollEnd && (friendscount > 0) && $('#searchbar').val().length == 0) {
-          console.log("adding...");
           addMore(activePage);
       }
   });
@@ -595,6 +594,44 @@ $(document).on('pagebeforeshow', '#sentinvitation', function(){
   $('#statususersentinvitation').text(friendonlineinvatitation.status);
 }); 
 /* ===================================end js page sentinvitation=================================== */
+
+/* ===================================js page changepassword=================================== */
+$(document).on('pageinit', '#changepassword', function(){  
+  $(document).on('click', '#changepasswordsubmit', function() { 
+
+    $.ajax({url: index + "/user/changepassword",
+              data: {_token: CSRF_TOKEN, action : 'change', formData : $('#formChangePassword').serialize()},
+              type: 'post',                   
+              async: 'true',
+              dataType: 'json',
+              beforeSend: function() {
+                  // This callback function will trigger before data is sent
+                  $.mobile.loading('show'); // This will show ajax spinner
+              },
+              complete: function() {
+                  // This callback function will trigger on data sent/received complete
+                  $.mobile.loading('hide'); // This will hide ajax spinner
+              },
+              success: function (result) {
+                  if(result.status) {
+                    $('#changepasswordnewpassword').val("");
+                    $('#changepasswordretypepassword').val("");
+                    $.mobile.pageContainer.pagecontainer("change", "home#settingsaccount", {transition: "slide"});
+                  } else {
+                      alert('Something error happened!'); 
+                  }
+              },
+              error: function (request,error) {
+                  // This callback function will trigger on unsuccessful action                
+                  alert('Network error has occurred please try again!');
+              }
+          });            
+  }); 
+
+});
+$(document).on('pagebeforeshow', '#changepassword', function(){ 
+}); 
+/* ===================================end js page changepassword=================================== */
 
 // function reloadContact
 function reloadContact() {
