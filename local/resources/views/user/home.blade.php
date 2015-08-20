@@ -87,7 +87,7 @@
           <form id="formEditMyProfile"  data-ajax="false">
           <div data-role="header" data-theme="a" id="header1">
              <h3>My Profile</h3>
-             <a href="#" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
+             <a href="#home" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
              <a href="#" data-role="button" id="editmyprofilesubmit" data-theme="b" data-mini="true">OK</a>
           </div><!-- /header --> 
 
@@ -161,7 +161,7 @@
           <form id="formEditFriendOffline"  data-ajax="false">
                   <div data-role="header" data-theme="a" id="header1">
                      <h3>Edit Friend Contact</h3>
-                     <a href="#" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
+                     <a href="#friendprofile" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
                      <a href="#" data-role="button" id="editfriendsubmit" data-theme="b" data-mini="true">OK</a>
                   </div><!-- /header --> 
 
@@ -218,7 +218,7 @@
                 <h1>
                     Add Friends Online
                 </h1>     
-                <a href="#" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
+                <a href="#invites" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
             </div><!-- /header -->      
             
             <div data-role="content" class="ui-content">
@@ -318,7 +318,7 @@
             <form id="formChangePassword"  data-ajax="false">
                   <div data-role="header" data-theme="a" id="header1">
                      <h3>Change Password</h3>
-                     <a href="#" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
+                     <a href="#settingsaccount" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
                      <a href="#" data-role="button" id="changepasswordsubmit" data-theme="b" data-mini="true">Change</a>
                   </div><!-- /header --> 
 
