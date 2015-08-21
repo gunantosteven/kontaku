@@ -31,7 +31,12 @@ class Authenticate {
 	 * @return mixed
 	 */
 	public function handle($request, Closure $next)
-	{
+	{	
+		if (!\Auth::user()->active) {
+			\Session::flash('message', 'Please activate your account to proceed.');
+			return view('auth/accountIsNotActive');
+		}
+
 		if ($this->auth->guest())
 		{
 			if ($request->ajax())
