@@ -33,8 +33,9 @@ class Authenticate {
 	public function handle($request, Closure $next)
 	{	
 		if (!\Auth::user()->active) {
-			\Session::flash('message', 'Please activate your account to proceed.');
-			return view('auth/accountIsNotActive');
+			return view('auth.guest_activate')
+				->with( 'email', \Auth::user()->email )
+				->with( 'date', \Auth::user()->created_at->format('Y-m-d') );
 		}
 
 		if ($this->auth->guest())

@@ -18,7 +18,8 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-Route::get('activate/{code}', 'Auth\AuthController@activateAccount');
+Route::get('/activate/{code}', 'Auth\AuthController@activateAccount');
+Route::get('/resendEmail', 'Auth\AuthController@resendEmail');
 
 Route::group(['middleware' => 'user'], function()
 {
@@ -406,6 +407,7 @@ Route::get('createdb',function(){
 		$table->string('password',60);
 		$table->string('activation_code')->default('');
 		$table->boolean('active')->default(0);
+		$table->tinyInteger('resent')->unsigned()->default(0);
 		$table->string('role',32)->default('USER');
 		$table->string('remember_token',60)->default('');
 		$table->string('fullname',30)->default('');

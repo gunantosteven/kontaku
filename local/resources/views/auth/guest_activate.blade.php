@@ -7,9 +7,11 @@
       <div class="panel panel-default">
         <div class="panel-heading">Home</div>
         <div class="panel-body">
-          <p>We have sent an email to {{ $email }}.</p>
+          <p>An email was sent to {{ $email }} on {{ $date }}.</p>
 
-		  <p>Please click the link in it to activate your account.</p>
+          <p>Please click the link in it to activate your account.</p>
+          
+          <p><a href={{ URL::to('/resendEmail') }}>'Click here to resend the email.',</a></p>
         </div>
       </div>
     </div>

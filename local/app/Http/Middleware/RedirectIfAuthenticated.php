@@ -33,9 +33,10 @@ class RedirectIfAuthenticated {
 	 */
 	public function handle($request, Closure $next)
 	{
-		if ($this->auth->check())
+		// if resendEmail action clicked ignore redirect
+		if ($this->auth->check() && $request->route()->getActionName() != "App\Http\Controllers\Auth\AuthController@resendEmail")
 		{
-			return new RedirectResponse(url('/home'));
+			return new RedirectResponse(url('/user/home'));
 		}
 
 		return $next($request);

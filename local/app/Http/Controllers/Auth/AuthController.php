@@ -39,7 +39,7 @@ class AuthController extends Controller {
 		$this->auth = $auth;
 		$this->registrar = $registrar;
 
-		$this->middleware('guest', ['except' => 'getLogout']);
+		$this->middleware('guest', ['except' => 'getLogout', 'resendEmail', 'activateAccount']);
 	}
 
 	/**
@@ -67,16 +67,7 @@ class AuthController extends Controller {
 		$user->activation_code = $activation_code;
 		if ($user->save()) {
 			
-			$data = array(
-				'name' => $user->url,
-				'code' => $activation_code,
-			);
-			
-			\Mail::queue('emails.activateAccount', $data, function($message) use ($user) {
-				$message->from('mycontactofficial@gmail.com');
-				$message->subject('Please activate your account.');
-				$message->to($user->email);
-			});
+			$this->sendEmail($user);
 			
 			return view('auth.activateAccount')
 				->with('email', $request->input('email'));
@@ -88,6 +79,36 @@ class AuthController extends Controller {
 			
 		}
 		
+	}
+
+	public function sendEmail(User $user)
+ 	{
+ 		$data = array(
+				'name' => $user->url,
+				'code' => $user->activation_code,
+			);
+			
+		\Mail::queue('emails.activateAccount', $data, function($message) use ($user) {
+			$message->from('mycontactofficial@gmail.com');
+			$message->subject('Please activate your account.');
+			$message->to($user->email);
+		});
+ 	}
+
+ 	public function resendEmail()
+	{
+		$user = \Auth::user();
+		if( $user->resent >= 3 )
+		{
+			return view('auth.tooManyEmails')
+				->with('email', $user->email);
+		} else {
+			$user->resent = $user->resent + 1;
+			$user->save();
+			$this->sendEmail($user);
+			return view('auth.activateAccount')
+				->with('email', $user->email);
+		}
 	}
 	
 	public function activateAccount($code, User $user)
