@@ -30,7 +30,7 @@
             </div><!-- /header -->      
             
             <input type="search" placeholder="Search" id="searchbar" />
-            <div data-role="content" class="ui-content">                
+            <div class="ui-content" role="main">                
                 <ul data-role="listview" id="list" data-autodividers="true"></ul>
             </div><!-- /content -->      
             
@@ -91,7 +91,7 @@
              <a href="#" data-role="button" id="editmyprofilesubmit" data-theme="b" data-mini="true">OK</a>
           </div><!-- /header --> 
 
-          <div data-role="main">
+          <div class="ui-content" role="main">
                   <h2>Edit My Profile</h2>
                   <label for="name">Full Name</label>
                   <input type="text" name="fullname" id="editmyprofilefullname" value="" data-clear-btn="true" data-mini="true"> 
@@ -125,7 +125,7 @@
              <a href="#home" data-icon="back" data-iconpos="notext">Back</a>
           </div><!-- /header --> 
 
-          <div data-role="main">
+          <div class="ui-content" role="main">
               <img id="friendPic"/>
               <div id="friendDetails">
                    <h3 id="fullName"></h3>
@@ -165,7 +165,7 @@
                      <a href="#" data-role="button" id="editfriendsubmit" data-theme="b" data-mini="true">OK</a>
                   </div><!-- /header --> 
 
-                  <div data-role="main">
+                  <div class="ui-content" role="main">
                     <h2>Edit Friend Contact</h2>
                     <label for="name">Full Name</label>
                     <input type="text" name="fullname" id="editfriendfullname" value="" data-clear-btn="true" data-mini="true"> 
@@ -204,7 +204,7 @@
                 <a href="#addfriendsonline" data-icon="plus" data-iconpos="notext">Add By Url</a>
             </div><!-- /header -->      
             
-            <div data-role="content" class="ui-content">                
+            <div class="ui-content" role="main">                
                 <ul data-role="listview" id="listinvites" data-filter="true" data-inset="true" data-divider-theme="a"></ul>
             </div><!-- /content -->      
             
@@ -221,7 +221,7 @@
                 <a href="#invites" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
             </div><!-- /header -->      
             
-            <div data-role="content" class="ui-content">
+            <div class="ui-content" role="main">
               <form id="formSearchAddFriendOnline"  data-ajax="false">  
                 <input type="text" placeholder="Search" name="search" id="searchbaraddfriendsonline" data-clear-btn="true"/>
                 <input type="submit" name="search" value="Search" id="submitsearchaddfriendsonline"/>  
@@ -284,7 +284,7 @@
                 <a href="#home" data-icon="back" data-iconpos="notext">Back</a>
             </div><!-- /header -->      
             
-            <div data-role="content" class="ui-content">                
+            <div class="ui-content" role="main">                
                 <ul data-role="listview" id="listsettings" data-inset="true">
                   <li id="#"><a href='#settingsaccount'>Accounts</a></li>
                 </ul>
@@ -303,7 +303,7 @@
                 <a href="#settings" data-icon="back" data-iconpos="notext">Back</a>
             </div><!-- /header -->      
             
-            <div data-role="content" class="ui-content">                
+            <div class="ui-content" role="main">                
                 <ul data-role="listview" id="listsettings" data-inset="true">
                   <li id=''><a href='#changepassword'>Change Password</a></li>
                 </ul>
@@ -322,7 +322,7 @@
                      <a href="#" data-role="button" id="changepasswordsubmit" data-theme="b" data-mini="true">Change</a>
                   </div><!-- /header --> 
 
-                  <div data-role="main">
+                  <div class="ui-content" role="main">
                     <h2>Change Password</h2>
                     <label for="name">New Password</label>
                     <input type="password" name="new_password" id="changepasswordnewpassword" value="" data-clear-btn="true" data-mini="true"> 
@@ -343,7 +343,7 @@
                      <a href="#home" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
                   </div><!-- /header --> 
 
-                  <div data-role="main" class="ui-content">
+                  <div class="ui-content" role="main">
                     <h2>Reports a problem</h2>
                     <p>You can directly email the problems to developer gunantosteven@gmail.com</p>
                   </div> <!-- /content --> 
