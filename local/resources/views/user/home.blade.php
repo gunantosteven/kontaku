@@ -378,7 +378,7 @@
                   </div> <!-- /content --> 
             
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
+                 <h1>Copyright @ 2015 KONTAKKU. All rights reserved.</h1>
             </div>
         </div><!-- /end page Reports -->  
 
