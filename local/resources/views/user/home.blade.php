@@ -45,7 +45,7 @@
                 <a href="#myprofile" class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">My Profile</a>
                 <a href="#invites" class="ui-btn ui-icon-plus ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">Invites</a>
                 <a href="#settings" class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b" data-rel="close" >Settings</a>
-                <a class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b" data-rel="close" >Reports a Problem</a>
+                <a href="#reports" class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b" data-rel="close" >Reports a Problem</a>
                 <a class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="b" data-rel="close" >Help</a>
                 <a href="{{ url("/auth/logout") }}" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="b" data-rel="close" data-ajax="false" >Sign Out</a>
              </div>
@@ -336,6 +336,22 @@
                  <h1>Footer</h1>
             </div>
         </div><!-- /end page Settings -->  
+
+        <div data-role="page" id="reports"><!-- Page Reports -->     
+                  <div data-role="header" data-theme="a" id="header1">
+                     <h3>Reports</h3>
+                     <a href="#home" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
+                  </div><!-- /header --> 
+
+                  <div data-role="main" class="ui-content">
+                    <h2>Reports a problem</h2>
+                    <p>You can directly email the problems to developer gunantosteven@gmail.com</p>
+                  </div> <!-- /content --> 
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page Reports -->  
 
     </body>
 </html>
