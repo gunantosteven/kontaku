@@ -46,7 +46,7 @@
                 <a href="#invites" class="ui-btn ui-icon-plus ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">Invites</a>
                 <a href="#settings" class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b" data-rel="close" >Settings</a>
                 <a href="#reports" class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b" data-rel="close" >Reports a Problem</a>
-                <a class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="b" data-rel="close" >Help</a>
+                <a href="#help" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="b" data-rel="close" >Help</a>
                 <a href="{{ url("/auth/logout") }}" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="b" data-rel="close" data-ajax="false" >Sign Out</a>
              </div>
 
@@ -346,6 +346,35 @@
                   <div class="ui-content" role="main">
                     <h2>Reports a problem</h2>
                     <p>You can directly email the problems to developer gunantosteven@gmail.com</p>
+                  </div> <!-- /content --> 
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page Reports -->  
+
+        <div data-role="page" id="help"><!-- Page Reports -->     
+                  <div data-role="header" data-theme="a" id="header1">
+                     <h3>Help</h3>
+                     <a href="#home" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
+                  </div><!-- /header --> 
+
+                  <div class="ui-content" role="main">
+                  	<h2>The difference between Friend Offline and Online</h2>
+                    <p>Friend Offline is like your contact phone. If your friend change his/her number you need to change his/her number to kontakku.</p>
+                    <p>Friend Online is like social media. You can see updated contact your friend without you have to change it manually.</p>
+                    <h2>Create Friend Offline</h2>
+                    <p>1. Login to your account.</p>
+                    <p>2. Click/Tap plus button on right top. It will show you form to input your friend offline.</p>
+                    <p>3. Fill the blank form.</p>
+                    <p>4. Click/Tap button submit. You can see now your friend contact in contacts list.</p>
+                    <h2>Invite Friend Online</h2>
+                    <p>1. Login to your account.</p>
+                    <p>2. Click/Tap menu button on left top. It will show you some submenu, click/tap Invites.</p>
+                    <p>3. Click/Tap plus button on right top. It will show you textbox and search button.</p>
+                    <p>4. Type your friend url like stevengunanto if your friend url is kontakku.com/stevengunanto.</p>
+                    <p>5. Click/Tap search button.</p>
+                    <p>6. Click/Tap ADD button, you need to wait your friend accept your invitation.</p>
                   </div> <!-- /content --> 
             
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">
