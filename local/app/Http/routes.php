@@ -259,6 +259,31 @@ Route::group(['middleware' => 'user'], function()
 	    return response()->json(['users' => $array]);
 	});
 
+	// count invitation
+	Route::post('/user/countinvitation', function()
+	{
+		// sent invitation
+        $friendsonlinesent = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id')
+            ->where('friendsonline.user1', Auth::user()->id)
+            ->where(function($query)
+            {
+                $query->where('friendsonline.status', 'DECLINED')
+                      ->orWhere('friendsonline.status', 'PENDING');
+            })->count();
+        // got invitation
+        $friendsonlinegot = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id')
+            ->where('friendsonline.user2', Auth::user()->id)
+            ->where('friendsonline.status', 'PENDING')->count();
+        $combinedcount = $friendsonlinesent + $friendsonlinegot;
+
+	    //this route should returns json response
+	    return response()->json(['count' => $combinedcount, 'newinvitesnotification' => Auth::user()->newinvitesnotification]);
+	});
+
 	// search friend online
 	Route::post('/user/searchaddfriendsonline', function()
 	{
@@ -315,6 +340,13 @@ Route::group(['middleware' => 'user'], function()
 			'user2' => $output['id'],
 			'status' => 'PENDING',
 			));
+
+		// make new invites notification to users who got invitation
+		DB::table('users')
+            ->where('id', $output['id'])
+            ->update(['newinvitesnotification' => 1]);
+
+
    		return response()->json(['status' => true]);
 	});
 
@@ -418,6 +450,16 @@ Route::group(['middleware' => 'user'], function()
 
    		return response()->json(['status' => true]);
 	});
+
+	// edit newinvitesnotificationoff user
+	Route::put('user/newinvitesnotificationoff', function()
+	{
+		DB::table('users')
+            ->where('id', Auth::user()->id)
+            ->update(['newinvitesnotification' => 0]);
+
+   		return response()->json(['status' => true]);
+	});
 });
 
 Route::get('createdb',function(){
@@ -439,6 +481,7 @@ Route::get('createdb',function(){
 		$table->string('instagram',30)->default('');
 		$table->string('status',30)->default('Welcome to my contact');
 		$table->boolean('privateaccount')->default(0);
+		$table->boolean('newinvitesnotification')->default(0);
 		$table->timestamps();
 	});
 	Schema::create('password_resets',function($table){

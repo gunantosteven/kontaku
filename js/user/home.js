@@ -142,7 +142,64 @@ $(document).on('pageinit', '#home', function(){
     }
   }); 
 
+  // waiting new invites
+  setInterval(function() { 
+       $.ajax({
+          url: index + "/user/countinvitation",
+          type: 'POST',
+          data: {_token: CSRF_TOKEN, action : "getcountinvitation"},
+          dataType: 'JSON',
+          success: function (data) {
+            if(data['count'] != null && data['count'] != null)
+            {
+              if(data['count'] != null && data['newinvitesnotification'] == true)
+              {
+                $('#subMenuInvites').text("Invites ( " + data['count'] + " ) *NEW");
+              }
+              else
+              {
+                $('#subMenuInvites').text("Invites ( " + data['count'] + " )");
+              }
+            }
+            else
+            {
+              $('#subMenuInvites').text("Invites ( 0 )");
+            }
+        }}) 
+    }, 1000); 
+
+  // make new invites notification off
+  $(document).on('click', '#subMenuInvites', function(e){
+      $.ajax({url: index + "/user/newinvitesnotificationoff",
+              data: {_token: CSRF_TOKEN, action : 'newinvitesnotificationoff' },
+              type: 'put',                   
+              async: 'true',
+              dataType: 'json',
+              beforeSend: function() {
+                  // This callback function will trigger before data is sent
+                  $.mobile.loading('show'); // This will show ajax spinner
+              },
+              complete: function() {
+                  // This callback function will trigger on data sent/received complete
+                  $.mobile.loading('hide'); // This will hide ajax spinner
+              },
+              success: function (result) {
+                  if(result.status) {
+                  } else {
+                      alert('Something error happened!'); 
+                  }
+              },
+              error: function (request,error) {
+                  // This callback function will trigger on unsuccessful action                
+                  alert('Network error has occurred please try again!');
+              }
+          });       
+  });
+
 });
+$(document).on('pagebeforeshow', '#home', function(){  
+
+});  
 /* ===================================end js page home=================================== */
 
 /* ===================================js page friendprofile=================================== */
