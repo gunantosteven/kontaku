@@ -286,8 +286,8 @@ $(document).on('pagebeforeshow', '#editfriendprofile', function(){
 }); 
 /* ===================================end js page editfriendprofile=================================== */
 
-/* ===================================js page myprofile=================================== */
-$(document).on('pageinit', '#myprofile', function(){  
+/* ===================================js page editmyprofile=================================== */
+$(document).on('pageinit', '#editmyprofile', function(){  
   /* create friend offline */
   $(document).on('click', '#editmyprofilesubmit', function() { // catch the form's submit event
     if($('#editmyprofilefullname').val().length > 0){
@@ -325,7 +325,7 @@ $(document).on('pageinit', '#myprofile', function(){
   });    
 });
 /* edit my profile before show */
-$(document).on('pagebeforeshow', '#myprofile', function(){    
+$(document).on('pagebeforeshow', '#editmyprofile', function(){    
   // initialization form edit
   $.ajax({
             url: index + "/user/profile/" + userid,

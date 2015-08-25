@@ -42,7 +42,6 @@
              <div id="left-menu" data-role="panel" data-position="left" data-theme="b" data-position-fixed="false" data-display="overlay">
                 <span>Menu</span>
                 <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-active" data-theme="b" data-rel="close" gid="0">Home</a>
-                <a href="#myprofile" class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">My Profile</a>
                 <a href="#invites" class="ui-btn ui-icon-plus ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">Invites</a>
                 <a href="#settings" class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b" data-rel="close" >Settings</a>
                 <a href="#reports" class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b" data-rel="close" >Reports a Problem</a>
@@ -83,11 +82,11 @@
             </div><!-- /panel -->
         </div><!-- /page -->      
 
-        <div data-role="page" id="myprofile">
+        <div data-role="page" id="editmyprofile">
           <form id="formEditMyProfile"  data-ajax="false">
           <div data-role="header" data-theme="a" id="header1">
              <h3>My Profile</h3>
-             <a href="#home" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
+             <a href="#settingsaccount" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
              <a href="#" data-role="button" id="editmyprofilesubmit" data-theme="b" data-mini="true">OK</a>
           </div><!-- /header --> 
 
@@ -305,6 +304,7 @@
             
             <div class="ui-content" role="main">                
                 <ul data-role="listview" id="listsettings" data-inset="true">
+                  <li id=''><a href='#editmyprofile'>Edit Profile</a></li>
                   <li id=''><a href='#changepassword'>Change Password</a></li>
                   <li id=''>
               		<div data-role="fieldcontain">
