@@ -53,15 +53,14 @@ class ShowContactController extends Controller {
 		$user=DB::table('users')->where('url', $url)->first();
 		if($user == null)
 		{
-			$user = $request->user();
-			if ($user && $user->role == 'USER')
-			{
-				return view('user/contactnotfound');
-			}
 			return view('contactnotfound');
 		}
 		else
 		{
+			if($user->privateaccount == true)
+			{
+				return view('contactisprivate');
+			}
 			return view('showcontact',compact('user'));
 		}	
 	}

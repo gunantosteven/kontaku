@@ -398,6 +398,26 @@ Route::group(['middleware' => 'user'], function()
 
 		return response()->json(['status' => false]);
 	});
+
+	// edit my private account status
+	Route::put('user/changeprivateaccount', function()
+	{
+		$id = Request::input('id');
+		$privateaccount = 0;
+		if( Request::input('privateaccount') == "yes")
+		{
+			$privateaccount = 1;
+		}
+		else
+		{
+			$privateaccount = 0;
+		}
+		DB::table('users')
+            ->where('id', $id)
+            ->update(['privateaccount' => $privateaccount]);
+
+   		return response()->json(['status' => true]);
+	});
 });
 
 Route::get('createdb',function(){
@@ -418,6 +438,7 @@ Route::get('createdb',function(){
 		$table->string('twitter',30)->default('');
 		$table->string('instagram',30)->default('');
 		$table->string('status',30)->default('Welcome to my contact');
+		$table->boolean('privateaccount')->default(0);
 		$table->timestamps();
 	});
 	Schema::create('password_resets',function($table){

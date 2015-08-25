@@ -23,6 +23,7 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'twitter' => '@StevenGunanto',
 		'instagram' => 'stevengunanto',
 		'status' => 'Haiii I\'m the first',
+		'privateaccount' => 1,
 		));
 
 		\App\Models\User::create(array(

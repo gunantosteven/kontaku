@@ -306,13 +306,23 @@
             <div class="ui-content" role="main">                
                 <ul data-role="listview" id="listsettings" data-inset="true">
                   <li id=''><a href='#changepassword'>Change Password</a></li>
+                  <li id=''>
+              		<div data-role="fieldcontain">
+					    <label for="checkbox-based-flipswitch"><b>Private Account :</b></label>
+					    <select id="privateaccountflipswitch" data-role="flipswitch">
+						    <option value="no">No</option>
+						    <option value="yes">Yes</option>
+						</select>
+					</div>
+				  </li>
                 </ul>
+                
             </div><!-- /content -->      
             
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">
                  <h1>Footer</h1>
             </div>
-        </div><!-- /end page Settings -->    
+        </div><!-- /end page Settings Account -->    
 
         <div data-role="page" id="changepassword"><!-- Page Change Password -->     
             <form id="formChangePassword"  data-ajax="false">

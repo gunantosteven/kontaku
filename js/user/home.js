@@ -633,6 +633,65 @@ $(document).on('pagebeforeshow', '#changepassword', function(){
 }); 
 /* ===================================end js page changepassword=================================== */
 
+/* ===================================js page settingsaccount=================================== */
+$(document).on('pageinit', '#settingsaccount', function(){ 
+
+  $(document).on('change', '#privateaccountflipswitch', function() { 
+    $.ajax({url: index + "/user/changeprivateaccount",
+              data: {_token: CSRF_TOKEN, action : 'change', id : userid, privateaccount : $("#privateaccountflipswitch").val()},
+              type: 'put',                   
+              async: 'true',
+              dataType: 'json',
+              beforeSend: function() {
+                  // This callback function will trigger before data is sent
+                  $.mobile.loading('show'); // This will show ajax spinner
+              },
+              complete: function() {
+                  // This callback function will trigger on data sent/received complete
+                  $.mobile.loading('hide'); // This will hide ajax spinner
+              },
+              success: function (result) {
+                  if(result.status) {
+                  } else {
+                      alert('Something error happened!'); 
+                  }
+              },
+              error: function (request,error) {
+                  // This callback function will trigger on unsuccessful action                
+                  alert('Network error has occurred please try again!');
+              }
+          });            
+  }); 
+
+});
+$(document).on('pagebeforecreate', '#settingsaccount', function(){ 
+  $.ajax({
+            url: index + "/user/profile/" + userid,
+            type: 'POST',
+            data: {_token: CSRF_TOKEN},
+            dataType: 'JSON',
+            success: function (data) {
+              $("#privateaccountflipswitch")
+                .flipswitch("option", "offText", "Off")
+                .flipswitch("option", "onText", "On")
+                
+              if(data.privateaccount == true)
+              {
+                $("#privateaccountflipswitch")
+                  .val("yes")
+              }
+              else
+              {
+                $("#privateaccountflipswitch")
+                  .val("no")
+              }
+
+              $("#privateaccountflipswitch").flipswitch("refresh");
+            }
+        });
+}); 
+/* ===================================end js page settingsaccount=================================== */
+
 // function reloadContact
 function reloadContact() {
     $.ajax({
