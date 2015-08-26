@@ -11,13 +11,7 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
-
+////////////////////////////////////Cordova API///////////////////////////////////////////////
 // cordova/phonegap login
 Route::post('/login', function()
 {
@@ -29,7 +23,7 @@ Route::post('/login', function()
 
 	if (Auth::attempt( $credentials, Request::has('remember') ))
 	{
-		return Response::json('Logged in');
+		return response()->json(['status' => true]);
 	 	//return Redirect::to_action('user@index'); you'd use this if it's not AJAX request
 	}else{
 		return Response::json('Error logging in', 400);
@@ -38,6 +32,30 @@ Route::post('/login', function()
 		-> with('login_errors', true);*/
     }
 });
+Route::post('/checkauthlogin', function()
+{
+	if (Auth::user() != null)
+	{
+		return response()->json(['status' => true]);
+	 	//return Redirect::to_action('user@index'); you'd use this if it's not AJAX request
+	}else{
+		return response()->json(['status' => false]);
+		/*return Redirect::to_action('home@login')
+		-> with_input('only', array('new_username')) 
+		-> with('login_errors', true);*/
+    }
+});
+////////////////////cordova//////////////////////////////////////////////////////////////////////
+
+
+Route::get('/', 'WelcomeController@index');
+
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
+]);
+
+
 
 Route::get('/activate/{code}', 'Auth\AuthController@activateAccount');
 Route::get('/resendEmail', 'Auth\AuthController@resendEmail');
