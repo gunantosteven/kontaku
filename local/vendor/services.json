@@ -27,7 +27,8 @@
         "App\\Providers\\BusServiceProvider",
         "App\\Providers\\ConfigServiceProvider",
         "App\\Providers\\EventServiceProvider",
-        "App\\Providers\\RouteServiceProvider"
+        "App\\Providers\\RouteServiceProvider",
+        "hisorange\\BrowserDetect\\Provider\\BrowserDetectService"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -125,7 +126,9 @@
         "translator": "Illuminate\\Translation\\TranslationServiceProvider",
         "translation.loader": "Illuminate\\Translation\\TranslationServiceProvider",
         "html": "Illuminate\\Html\\HtmlServiceProvider",
-        "form": "Illuminate\\Html\\HtmlServiceProvider"
+        "form": "Illuminate\\Html\\HtmlServiceProvider",
+        "browser-detect.parser": "hisorange\\BrowserDetect\\Provider\\BrowserDetectService",
+        "browser-detect.result": "hisorange\\BrowserDetect\\Provider\\BrowserDetectService"
     },
     "when": {
         "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider": [],
@@ -139,6 +142,7 @@
         "Illuminate\\Redis\\RedisServiceProvider": [],
         "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider": [],
         "Illuminate\\Translation\\TranslationServiceProvider": [],
-        "Illuminate\\Html\\HtmlServiceProvider": []
+        "Illuminate\\Html\\HtmlServiceProvider": [],
+        "hisorange\\BrowserDetect\\Provider\\BrowserDetectService": []
     }
 }

@@ -10,24 +10,6 @@ class UsersTableSeederTableSeeder extends Seeder {
 		// buat data users
 		\App\Models\User::create(array(
 		'id' => Uuid::generate(),
-		'email' => 'gunantosteven@gmail.com',
-		'password' => Hash::make('admin'),
-		'active' => 1,
-		'role' => 'USER',
-		'remember_token' => '',
-		'fullname' => 'Steven Gunanto',
-		'url' => 'stevengunanto',
-		'phone' => '083854968000',
-		'pinbb' => '51EF1391',
-		'facebook' => 'www.facebook.com/Tasikutus',
-		'twitter' => '@StevenGunanto',
-		'instagram' => 'stevengunanto',
-		'status' => 'Haiii I\'m the first',
-		'privateaccount' => 1,
-		));
-
-		\App\Models\User::create(array(
-		'id' => Uuid::generate(),
 		'email' => 'coba@gmail.com',
 		'password' => Hash::make('coba'),
 		'active' => 1,
@@ -42,6 +24,27 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'instagram' => 'coba',
 		'status' => 'Haiii I\'m the second',
 		));
+		
+		\App\Models\User::create(array(
+		'id' => Uuid::generate(),
+		'email' => 'gunantosteven@gmail.com',
+		'password' => Hash::make('admin'),
+		'active' => 1,
+		'role' => 'USER',
+		'remember_token' => '',
+		'fullname' => 'Steven Gunanto',
+		'url' => 'stevengunanto',
+		'phone' => '083854968000',
+		'pinbb' => '51EF1391',
+		'facebook' => 'www.facebook.com/Tasikutus',
+		'twitter' => '@StevenGunanto',
+		'instagram' => 'stevengunanto',
+		'status' => 'Haiii I\'m the first',
+		'privateaccount' => 1,
+		'newinvitesnotification' => 1,
+		));
+
+		
 
 		\App\Models\User::create(array(
 		'id' => Uuid::generate(),

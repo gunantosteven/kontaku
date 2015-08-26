@@ -3,6 +3,8 @@
 use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
+use BrowserDetect;
+
 class VerifyCsrfToken extends BaseVerifier {
 
 	/**
@@ -14,6 +16,17 @@ class VerifyCsrfToken extends BaseVerifier {
 	 */
 	public function handle($request, Closure $next)
 	{
+		// security one
+		if(BrowserDetect::isMobile() || BrowserDetect::isTablet())
+		{
+			// security two
+			if(BrowserDetect::osFamily() == "AndroidOS")
+			{
+				return $next($request);
+			}
+		}
+
+
 		return parent::handle($request, $next);
 	}
 

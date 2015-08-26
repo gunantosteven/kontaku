@@ -18,6 +18,27 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+// cordova/phonegap login
+Route::post('/login', function()
+{
+	$remember = Input::get('remember');
+	$credentials = array(
+		'email' => Input::get('email'), 
+		'password' => Input::get('password')
+	);
+
+	if (Auth::attempt( $credentials, Request::has('remember') ))
+	{
+		return Response::json('Logged in');
+	 	//return Redirect::to_action('user@index'); you'd use this if it's not AJAX request
+	}else{
+		return Response::json('Error logging in', 400);
+		/*return Redirect::to_action('home@login')
+		-> with_input('only', array('new_username')) 
+		-> with('login_errors', true);*/
+    }
+});
+
 Route::get('/activate/{code}', 'Auth\AuthController@activateAccount');
 Route::get('/resendEmail', 'Auth\AuthController@resendEmail');
 

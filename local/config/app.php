@@ -147,6 +147,7 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
+		'hisorange\BrowserDetect\Provider\BrowserDetectService',
 	],
 
 	/*
@@ -198,6 +199,8 @@ return [
 
 		'Form'     	=> 'Illuminate\Html\FormFacade',
 		'Html'     	=> 'Illuminate\Html\HtmlFacade',
+
+		'BrowserDetect' => 'hisorange\BrowserDetect\Facade\Parser',
 	],
 
 ];
