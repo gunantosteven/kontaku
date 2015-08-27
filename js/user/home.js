@@ -130,13 +130,16 @@ $(document).on('pageinit', '#home', function(){
     if($(this).attr('id') !== undefined)
     {
       $.ajax({
-              url: index + "/user/profile/" + $(this).attr('id'),
+              url: index + "/user/friendprofile",
               type: 'POST',
-              data: {_token: CSRF_TOKEN},
+              data: {_token: CSRF_TOKEN, id : $(this).attr('id')},
               dataType: 'JSON',
               success: function (data) {
+                if(data != null)
+                {
                   friend = data;
                   $.mobile.changePage("#friendprofile");
+                }
               }
           });
     }
@@ -351,7 +354,7 @@ $(document).on('pageinit', '#editmyprofile', function(){
         // Send data to server through the Ajax call
         // action is functionality we want to call and outputJSON is our data
         $.ajax({url: index + "/user/editprofile",
-            data: {_token: CSRF_TOKEN, action : 'edit', id : userid, formData : $('#formEditMyProfile').serialize()},
+            data: {_token: CSRF_TOKEN, action : 'edit', formData : $('#formEditMyProfile').serialize()},
             type: 'put',                   
             async: 'true',
             dataType: 'json',
@@ -385,7 +388,7 @@ $(document).on('pageinit', '#editmyprofile', function(){
 $(document).on('pagebeforeshow', '#editmyprofile', function(){    
   // initialization form edit
   $.ajax({
-            url: index + "/user/profile/" + userid,
+            url: index + "/user/profile",
             type: 'POST',
             data: {_token: CSRF_TOKEN},
             dataType: 'JSON',
@@ -695,7 +698,7 @@ $(document).on('pageinit', '#settingsaccount', function(){
 
   $(document).on('change', '#privateaccountflipswitch', function() { 
     $.ajax({url: index + "/user/changeprivateaccount",
-              data: {_token: CSRF_TOKEN, action : 'change', id : userid, privateaccount : $("#privateaccountflipswitch").val()},
+              data: {_token: CSRF_TOKEN, action : 'change', privateaccount : $("#privateaccountflipswitch").val()},
               type: 'put',                   
               async: 'true',
               dataType: 'json',
@@ -723,7 +726,7 @@ $(document).on('pageinit', '#settingsaccount', function(){
 });
 $(document).on('pagebeforecreate', '#settingsaccount', function(){ 
   $.ajax({
-            url: index + "/user/profile/" + userid,
+            url: index + "/user/profile",
             type: 'POST',
             data: {_token: CSRF_TOKEN},
             dataType: 'JSON',

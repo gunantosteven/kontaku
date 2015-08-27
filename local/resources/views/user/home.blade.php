@@ -14,7 +14,6 @@
     </head>   
     <script type="text/javascript">
       var index = "{{ URL::to('/') }}";
-      var userid = "{{ Auth::user()->id }}";
     </script>
     <style type="text/css">
       

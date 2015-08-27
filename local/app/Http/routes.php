@@ -155,24 +155,57 @@ Route::group(['middleware' => 'user'], function()
 	    return response()->json(['count' => $count, 'friends' => $array]);
 	});
 
-	Route::post('/user/profile/{id}', function($id)
+	Route::post('/user/profile', function()
 	{
-		$user = DB::table('users')->where('id', $id)->first();
-
-		if($user == null)
-		{
-			$user = DB::table('friendsoffline')->where('id', $id)->first();
-			$user->onlineoffline = 'offline';
-
-			//this route should returns json response
-	    	return Response::json($user);
-		}
-
-		$user->onlineoffline = 'online';
-
-	    //this route should returns json response
+		$user = Auth::user();
+		//this route should returns json response
 	    return Response::json($user);
 	});
+
+	Route::post('/user/friendprofile', function()
+	{
+		$id = Request::input('id');
+		// security check if this profile is her/his friend.
+		$friendsonline1 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user2', Auth::user()->id)
+            ->where('friendsonline.user1', $id)
+            ->where('friendsonline.status', 'ACCEPTED')->count();
+        $friendsonline2 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user1', Auth::user()->id)
+            ->where('friendsonline.user2', $id)
+            ->where('friendsonline.status', 'ACCEPTED')->count();
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('id', $id)->where('user', Auth::user()->id)->count();
+        $combinedCount = $friendsoffline + $friendsonline1 + $friendsonline2;
+
+        if($combinedCount > 0)
+        {	
+        	// if friend is friend online
+        	$user = DB::table('users')->where('id', $id)->first();
+
+        	// if friend is friend offline
+			if($user == null)
+			{
+				$user = DB::table('friendsoffline')->where('id', $id)->first();
+				$user->onlineoffline = 'offline';
+
+				//this route should returns json response
+		    	return Response::json($user);
+			}
+
+			$user->onlineoffline = 'online';
+
+		    //this route should returns json response
+		    return Response::json($user);
+        }
+
+		return Response::json(null);
+		
+	});
+
 
 	// create friendoffline
 	Route::post('/user/friendoffline', function()
@@ -239,7 +272,7 @@ Route::group(['middleware' => 'user'], function()
 	Route::put('user/editprofile', function()
 	{
 		parse_str(Request::input('formData'), $output);
-		$id = Request::input('id');
+		$id = Auth::user()->id;
 		DB::table('users')
             ->where('id', $id)
             ->update(['fullname' => $output['fullname'], 
@@ -473,7 +506,7 @@ Route::group(['middleware' => 'user'], function()
 	// edit my private account status
 	Route::put('user/changeprivateaccount', function()
 	{
-		$id = Request::input('id');
+		$id = Auth::user()->id;
 		$privateaccount = 0;
 		if( Request::input('privateaccount') == "yes")
 		{
