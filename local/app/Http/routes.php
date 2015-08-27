@@ -422,34 +422,6 @@ Route::group(['middleware' => 'user'], function()
    		return response()->json(['status' => true]);
 	});
 
-	// get friend online and status too
-	Route::post('/user/friendonline/{id}', function($id)
-	{
-		$friendonline = DB::table('users')
-            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
-            ->select('friendsonline.user1 as id', 'users.fullname as fullname', 'friendsonline.status as status')
-            ->where('friendsonline.user1', $id)
-            ->where('friendsonline.user2', Auth::user()->id)
-            ->where(function($query)
-            {
-                $query->where('friendsonline.status', 'DECLINED')
-                      ->orWhere('friendsonline.status', 'PENDING')
-                      ->orWhere('friendsonline.status', 'ACCEPTED');
-            })->first();
-
-		if($friendonline != null)
-		{
-			$array = array();
-    		$array[0] = array( "id" => $friendonline->id, "fullname" => $friendonline->fullname, "status" => $friendonline->status);
-
-			//this route should returns json response
-	    	return Response::json(['status' => true, 'users' => $array]);
-		}
-
-	    //this route should returns json response
-	    return Response::json(['status' => false]);
-	});
-
 	// accept invitation (make status to be ACCEPTED)
 	Route::post('user/acceptinvitation', function()
 	{
