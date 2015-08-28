@@ -15,16 +15,6 @@ class UserMiddleware {
 	 */
 	public function handle($request, Closure $next)
 	{
-		// security one
-		if(BrowserDetect::isMobile() || BrowserDetect::isTablet())
-		{
-			// security two
-			if(BrowserDetect::osFamily() == "AndroidOS")
-			{
-				return $next($request);
-			}
-		}
-		
 		$user = $request->user();
 		if ($user && $user->role == 'USER')
 		{
