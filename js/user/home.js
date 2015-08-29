@@ -246,7 +246,15 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
     $('#friendPic').attr('height', '65');
     $('#friendPic').attr('width', '65');
     $('#fullName').text(friend.fullname);
-    $('#friendprofileonlineoffline').text("This is your friend " + friend.onlineoffline);
+    if(friend.onlineoffline == "online")
+    {
+      $('#friendprofileonlineoffline').text('Status : ' + friend.status);
+    }
+    else
+    {
+      $('#friendprofileonlineoffline').text('OFFLINE');
+    }
+    
     if (friend.email) {
       $('#actionFriendProfileList').append('<li><a href="mailto:' + friend.email + '"><h3>Email</h3>' +
           '<p>' + friend.email + '</p></a></li>');
