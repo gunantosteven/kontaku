@@ -5,19 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">   
         <meta name="csrf-token" content="{{ csrf_token() }}" />    
         <!-- JavaScript -->
-        <script type='text/javascript' src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script type='text/javascript' src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script type='text/javascript' src={{ asset('js/jquery-1.11.1.min.js') }}></script>
+        <script type='text/javascript' src={{ asset('js/jquery.mobile-1.4.5.min.js') }}></script>
         <script type='text/javascript' src={{ asset('js/user/home.js') }}></script>
         <!-- CSS -->
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" href={{ asset('css/jquery.mobile-1.4.5.min.css') }} />
         <link rel="stylesheet" href={{ asset('css/user/home.css') }} />
     </head>   
     <script type="text/javascript">
       var index = "{{ URL::to('/') }}";
     </script>
-    <style type="text/css">
-      
-    </style>
     <body>              
         <div data-role="page" id="home">      
             <div data-role="header">         

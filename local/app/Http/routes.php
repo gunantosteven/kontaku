@@ -75,15 +75,15 @@ Route::group(['middleware' => 'user'], function()
 
 		$friendsonline1 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
-            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
             ->where('friendsonline.user2', Auth::user()->id)
             ->where('friendsonline.status', 'ACCEPTED');
         $friendsonline2 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
-            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
             ->where('friendsonline.user1', Auth::user()->id)
             ->where('friendsonline.status', 'ACCEPTED');
-        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('user', Auth::user()->id);
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname', DB::raw("'OFFLINE' as onlineoffline"))->where('user', Auth::user()->id);
         $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->take(20)->orderBy('fullname')->get();
 
 		$count = 0;
@@ -91,7 +91,7 @@ Route::group(['middleware' => 'user'], function()
 
 		foreach ($combined as $friend)
 		{
-			$array[$count++] = array( "id" => $friend->id, "fullname" => $friend->fullname);
+			$array[$count++] = array( "id" => $friend->id, "fullname" => $friend->fullname, "onlineoffline" => $friend->onlineoffline);
 			$friendscount++;
 		}
 
@@ -103,15 +103,15 @@ Route::group(['middleware' => 'user'], function()
 	{
 		$friendsonline1 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
-            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
             ->where('friendsonline.user2', Auth::user()->id)
             ->where('friendsonline.status', 'ACCEPTED');
         $friendsonline2 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
-            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
             ->where('friendsonline.user1', Auth::user()->id)
             ->where('friendsonline.status', 'ACCEPTED');
-        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('user', Auth::user()->id);
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname', DB::raw("'OFFLINE' as onlineoffline"))->where('user', Auth::user()->id);
         $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->skip($friendscount)->take(10)->orderBy('fullname')->get();
 
 		$count = 0;
@@ -119,7 +119,7 @@ Route::group(['middleware' => 'user'], function()
 
 		foreach ($combined as $friend)
 		{
-			$array[$count++] = array( "id" => $friend->id, "fullname" => $friend->fullname);
+			$array[$count++] = array( "id" => $friend->id, "fullname" => $friend->fullname, "onlineoffline" => $friend->onlineoffline);
 			$friendscount++;
 		}
 	    
@@ -131,24 +131,24 @@ Route::group(['middleware' => 'user'], function()
 	{
 		$friendsonline1 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
-            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
             ->where('friendsonline.user2', Auth::user()->id)
             ->where('users.fullname', 'ilike', "%" . Request::input('search') . "%")
             ->where('friendsonline.status', 'ACCEPTED');
         $friendsonline2 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
-            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
             ->where('friendsonline.user1', Auth::user()->id)
             ->where('users.fullname', 'ilike', "%" . Request::input('search') . "%")
             ->where('friendsonline.status', 'ACCEPTED');
-        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('user', Auth::user()->id)->where('fullname', 'ilike', "%" . Request::input('search') . "%");
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname', DB::raw("'OFFLINE' as onlineoffline"))->where('user', Auth::user()->id)->where('fullname', 'ilike', "%" . Request::input('search') . "%");
         $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->take(20)->orderBy('fullname')->get();
 
 		$count = 0;
 		$array = array();
 		foreach ($combined as $friend)
 		{
-			$array[$count++] = array( "id" => $friend->id, "fullname" => $friend->fullname);
+			$array[$count++] = array( "id" => $friend->id, "fullname" => $friend->fullname, "onlineoffline" => $friend->onlineoffline);
 		}
 	    
 	    //this route should returns json response
