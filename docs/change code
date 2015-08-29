@@ -1,0 +1,3 @@
+1. I have changed code in jquery.mobile-1.4.5.min.css
+from .ui-li-static.ui-li-has-thumb{min-height:3.625em;padding-left:6.25em}
+to .ui-li-static.ui-li-has-thumb{max-height:2.225em;padding-left:6.25em} 
