@@ -51,7 +51,61 @@ $(document).on('pageinit', '#home', function(){
           alert('Please fill all necessary fields');
       }           
       return false; // cancel original event to prevent form submitting
-  });    
+  });      
+
+  $(document).on('click', '#menubutton', function() { // catch the form's menubutton event
+    $.ajax({
+          url: index + "/user/countinvitation",
+          type: 'POST',
+          data: {_token: CSRF_TOKEN, action : "getcountinvitation"},
+          dataType: 'JSON',
+          success: function (data) {
+            if(data['count'] != null && data['count'] != null)
+            {
+              if(data['count'] != null && data['newinvitesnotification'] == true)
+              {
+                $('#subMenuInvites').text("Invites ( " + data['count'] + " ) *NEW");
+              }
+              else
+              {
+                $('#subMenuInvites').text("Invites ( " + data['count'] + " )");
+              }
+            }
+            else
+            {
+              $('#subMenuInvites').text("Invites ( 0 )");
+            }
+        }}) 
+  });
+
+  $( "#menubutton" ).focus(function() {
+    setTimeout(
+      function() 
+      {
+        $.ajax({
+          url: index + "/user/countinvitation",
+          type: 'POST',
+          data: {_token: CSRF_TOKEN, action : "getcountinvitation"},
+          dataType: 'JSON',
+          success: function (data) {
+            if(data['count'] != null && data['count'] != null)
+            {
+              if(data['count'] != null && data['newinvitesnotification'] == true)
+              {
+                $('#subMenuInvites').text("Invites ( " + data['count'] + " ) *NEW");
+              }
+              else
+              {
+                $('#subMenuInvites').text("Invites ( " + data['count'] + " )");
+              }
+            }
+            else
+            {
+              $('#subMenuInvites').text("Invites ( 0 )");
+            }
+        }}) 
+      }, 1000);
+  });
 
   /*When search through input view*/
   $(document).on("input", "#searchbar", function (e) { 
@@ -144,32 +198,6 @@ $(document).on('pageinit', '#home', function(){
           });
     }
   }); 
-
-  // waiting new invites
-  setInterval(function() { 
-       $.ajax({
-          url: index + "/user/countinvitation",
-          type: 'POST',
-          data: {_token: CSRF_TOKEN, action : "getcountinvitation"},
-          dataType: 'JSON',
-          success: function (data) {
-            if(data['count'] != null && data['count'] != null)
-            {
-              if(data['count'] != null && data['newinvitesnotification'] == true)
-              {
-                $('#subMenuInvites').text("Invites ( " + data['count'] + " ) *NEW");
-              }
-              else
-              {
-                $('#subMenuInvites').text("Invites ( " + data['count'] + " )");
-              }
-            }
-            else
-            {
-              $('#subMenuInvites').text("Invites ( 0 )");
-            }
-        }}) 
-    }, 1000); 
 
   // make new invites notification off
   $(document).on('click', '#subMenuInvites', function(e){
