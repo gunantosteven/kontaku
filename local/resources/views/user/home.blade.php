@@ -19,7 +19,7 @@
         <div data-role="page" id="home">      
             <div data-role="header">         
                 <h1>
-                    My Contact
+                    KontaKKu
                 </h1>     
                 <a  href="#left-menu" id="menubutton" data-icon="bars" data-iconpos="notext">Menu</a>
                 <a href="#add-form" data-icon="plus" data-iconpos="notext">Add</a>
