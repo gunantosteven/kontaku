@@ -21,7 +21,7 @@
                 <h1>
                     My Contact
                 </h1>     
-                <a  href="#left-menu" data-icon="bars" data-iconpos="notext">Button</a>
+                <a  href="#left-menu" id="menubutton" data-icon="bars" data-iconpos="notext">Menu</a>
                 <a href="#add-form" data-icon="plus" data-iconpos="notext">Add</a>
             </div><!-- /header -->      
             
@@ -34,11 +34,12 @@
                  <h1>Footer</h1>
             </div>
 
-
+            
              <div id="left-menu" data-role="panel" data-position="left" data-theme="b" data-position-fixed="false" data-display="overlay">
                 <span>Menu</span>
                 <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-active" data-theme="b" data-rel="close" gid="0">Home</a>
                 <a id="subMenuInvites" href="#invites" class="ui-btn ui-icon-plus ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">Invites</a>
+                <a href="#importantphonecountry" class="ui-btn ui-icon-phone ui-btn-icon-left" data-theme="b" data-rel="close" >Important Phone</a>
                 <a href="#settings" class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b" data-rel="close" >Settings</a>
                 <a href="#reports" class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b" data-rel="close" >Reports a Problem</a>
                 <a href="#help" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="b" data-rel="close" >Help</a>
@@ -387,6 +388,84 @@
                  <h1>Copyright @ 2015 KONTAKKU. All rights reserved.</h1>
             </div>
         </div><!-- /end page Reports -->  
+
+        <div data-role="page" id="importantphonecountry"><!-- Page Important Phone Country -->     
+            <div data-role="header">         
+                <h1>
+                    Select Country
+                </h1>     
+                <a href="#home" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonecountry" data-inset="true" data-filter="true">
+                  <li id=''><a href='#importantphonecityindonesia'>Indonesian</a></li>
+                  <li id=''><a href='#'>USA</a></li>
+				  </li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page Important Phone Country -->   
+
+        <div data-role="page" id="importantphonecityindonesia"><!-- Page Important Phone City -->     
+            <div data-role="header">         
+                <h1>
+                    Select City
+                </h1>     
+                <a href="#home" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonecityindonesia" data-inset="true" data-filter="true">
+                  <li id=''><a href='#importantphonesurabaya'>Surabaya</a></li>
+                  <li id=''><a href='#'>Jakarta</a></li>
+				  </li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page Important Phone City -->   
+
+        <div data-role="page" id="importantphonesurabaya"><!-- Page Important Phone Surabaya -->     
+            <div data-role="header">         
+                <h1>
+                    Call Number Surabaya Important Number
+                </h1>     
+                <a href="#home" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonesurabaya" data-inset="true" data-filter="true">
+                	<li data-role="list-divider">Police Office</li>
+                  	<li><a href='tel:(031) 8280748'>Polda Jatim<p>Jl. Ahmad Yani, Surabaya</p></a></li>
+                  	<li data-role="list-divider">PLN Office</li>
+                  	<li><a href='tel:(031) 3523927'>PLN 101, Surabaya<p>Jl. Sikatan 1, Surabaya</p></a></li>
+                  	<li data-role="list-divider">FireFighters Office</li>
+                  	<li><a href='tel:(031) 3533843-44'>Surabaya Pusat<p>Jl. Pasar Turi 21, Surabaya</p></a></li>
+                  	<li data-role="list-divider">Railway Station</li>
+                  	<li><a href='tel:(031) 3521465'>Stasiun Surabaya Kota<p>Jl Stasiun 9,Bongkaran,Pabean Cantikan</p><p>Surabaya 60161</p></a></li>
+                	<li data-role="list-divider">Travel Agent office</li>
+                	<li><a href='tel:(031) 3533843-44'>Adi Giant Wisata<p>Jl. Kapasan No.194 C Surabaya</p></a></li>
+                	<li data-role="list-divider">Domestic Air Lines</li>
+                	<li><a href='tel:(031) 5468501'>Garuda Indonesia Airways (GIA)<p>Graha Bumi Modern Lt.IV. Jl. Basuki Rachmat 124 - 128 Surabaya</p><p>Jl. Tunjungan No. 29 Surabaya</p></a></li>
+                	<li data-role="list-divider">International Air Lines</li>
+                	<li><a href='tel:(031) 5468501'>Garuda Indonesian Airways (GIA)<p>Graha Bumi Modern Lantai IV</p><p>Jalan Basuki Rachmat 124-128 Surabaya</p></a></li>
+                	<li data-role="list-divider">Taxi</li>
+                	<li><a href='tel:(031) 3721234'>Blue Bird Taksi<p>Jl Platuk Donomulyo XV 2,Sidotopo Wetan,Kenjeran</p><p>SURABAYA 6012</p></a></li>
+                	<li data-role="list-divider">Airpots</li>
+                	<li><a href='tel:(031) 8667513'>Bandara Udara Juanda<p>Jl Raya Bandara Juanda,Sedati - Sidoarjo</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Source www.surabaya.go.id accessed 31 August 2015</h1>
+            </div>
+        </div><!-- /end page Surabaya -->   
 
     </body>
 </html>
