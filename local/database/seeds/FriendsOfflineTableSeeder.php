@@ -18,7 +18,7 @@ class FriendsOfflineTableSeeder extends Seeder {
 			'email' => 'test' . $i . '@gmail.com',
 			'phone' => '00000' . $i,
 			'pinbb' => 'abcdefg' . $i,
-			'facebook' => 'www.facebook.com/test' . $i,
+			'facebook' => 'test' . $i,
 			'twitter' => '@test' . $i,
 			'instagram' => 'test' . $i,
 			'line' => 'test' . $i,
