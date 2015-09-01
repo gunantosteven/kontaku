@@ -299,15 +299,15 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
           '<p>' + friend.pinbb + '</p></a></li>');
     }
     if (friend.facebook) {
-      $('#actionFriendProfileList').append('<li><a href=""><h3>Facebook</h3>' +
+      $('#actionFriendProfileList').append('<li><a href="https://www.facebook.com/' + friend.facebook + '"><h3>Facebook</h3>' +
           '<p>' + friend.facebook+ '</p></a></li>');
     }
     if (friend.twitter) {
-      $('#actionFriendProfileList').append('<li><a href=""><h3>Twitter</h3>' +
+      $('#actionFriendProfileList').append('<li><a href="https://twitter.com/' + friend.twitter + '"><h3>Twitter</h3>' +
           '<p>' + friend.twitter + '</p></a></li>');
     }
     if (friend.instagram) {
-      $('#actionFriendProfileList').append('<li><a href=""><h3>Instagram</h3>' +
+      $('#actionFriendProfileList').append('<li><a href="https://instagram.com/' + friend.instagram + '"><h3>Instagram</h3>' +
           '<p>' + friend.instagram + '</p></a></li>');
     }
     if(friend.line) {
