@@ -36,6 +36,7 @@ $(document).on('pageinit', '#home', function(){
                         $('input[id=createfacebook]').val('');
                         $('input[id=createtwitter]').val('');
                         $('input[id=createinstagram]').val('');
+                        $('input[id=createline]').val('');
                        $.mobile.pageContainer.pagecontainer("change", "home", {transition: "slide"});
                        reloadContact();
                   } else {
@@ -309,6 +310,10 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
       $('#actionFriendProfileList').append('<li><a href=""><h3>Instagram</h3>' +
           '<p>' + friend.instagram + '</p></a></li>');
     }
+    if(friend.line) {
+      $('#actionFriendProfileList').append('<li><a href="http://line.me/R/ti/p/~' + friend.line + '" target="_blank"><h3>Line</h3>' +
+          '<p>' + friend.line + '</p></a></li>');
+    }
 
     if(friend.onlineoffline == 'online')
     {
@@ -352,6 +357,7 @@ $(document).on('pageinit', '#editfriendprofile', function(){
                       friend.facebook = $('#editfriendfacebook').val();
                       friend.twitter = $('#editfriendtwitter').val();
                       friend.instagram = $('#editfriendinstagram').val();
+                      friend.line = $('#editfriendline').val();
                       $.mobile.pageContainer.pagecontainer("change", "home#friendprofile", {transition: "slide"});
                       reloadContact();
                 } else {
@@ -379,6 +385,7 @@ $(document).on('pagebeforeshow', '#editfriendprofile', function(){
   $('#editfriendfacebook').val(friend.facebook);
   $('#editfriendtwitter').val(friend.twitter);
   $('#editfriendinstagram').val(friend.instagram);
+  $('#editfriendline').val(friend.line);
 }); 
 /* ===================================end js page editfriendprofile=================================== */
 
@@ -436,6 +443,7 @@ $(document).on('pagebeforeshow', '#editmyprofile', function(){
               $('#editmyprofilefacebook').val(data.facebook);
               $('#editmyprofiletwitter').val(data.twitter);
               $('#editmyprofileinstagram').val(data.instagram);
+              $('#editmyprofileline').val(data.line);
             }
         });
 }); 

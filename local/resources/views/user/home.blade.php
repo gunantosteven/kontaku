@@ -70,6 +70,9 @@
                     <label for="name">Instagram</label>
                     <input type="text" name="instagram" id="createinstagram" value="" data-clear-btn="true" data-mini="true">
 
+                    <label for="name">Line</label>
+                    <input type="text" name="line" id="createline" value="" data-clear-btn="true" data-mini="true">
+
                     <div class="ui-grid-a">
                         <div class="ui-block-a"><a href="#" data-rel="close" data-role="button" data-theme="c" data-mini="true">Cancel</a></div>
                         <div class="ui-block-b"><input type="button" data-theme="b" name="submit"   id="submit" value="Submit" data-theme="b" data-mini="true"></div>
@@ -106,6 +109,9 @@
 
                   <label for="name">Instagram</label>
                   <input type="text" name="instagram" id="editmyprofileinstagram" value="" data-clear-btn="true" data-mini="true">
+
+                  <label for="name">Line</label>
+                  <input type="text" name="line" id="editmyprofileline" value="" data-clear-btn="true" data-mini="true">
             </form>
           </div> <!-- /content --> 
 
@@ -183,6 +189,9 @@
 
                     <label for="name">Instagram</label>
                     <input type="text" name="instagram" id="editfriendinstagram" value="" data-clear-btn="true" data-mini="true">
+
+                    <label for="name">Line</label>
+                    <input type="text" name="line" id="editfriendline" value="" data-clear-btn="true" data-mini="true">
                   </div> <!-- /content --> 
           </form>
 

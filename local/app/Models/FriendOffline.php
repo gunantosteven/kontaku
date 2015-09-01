@@ -20,7 +20,7 @@ class FriendOffline extends Model implements AuthenticatableContract, CanResetPa
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['id', 'user', 'fullname', 'email', 'phone', 'pinbb', 'facebook', 'twitter', 'instagram'];
+	protected $fillable = ['id', 'user', 'fullname', 'email', 'phone', 'pinbb', 'facebook', 'twitter', 'instagram', 'line'];
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *

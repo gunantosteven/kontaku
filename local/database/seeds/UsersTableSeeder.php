@@ -22,6 +22,7 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'facebook' => 'www.facebook.com/coba',
 		'twitter' => '@coba',
 		'instagram' => 'coba',
+		'line' => 'coba',
 		'status' => 'Haiii I\'m the second',
 		));
 		
@@ -39,6 +40,7 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'facebook' => 'www.facebook.com/Tasikutus',
 		'twitter' => '@StevenGunanto',
 		'instagram' => 'stevengunanto',
+		'line' => 'stevengunanto',
 		'status' => 'Haiii I\'m the first',
 		'privateaccount' => 1,
 		'newinvitesnotification' => 1,
@@ -60,6 +62,7 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'facebook' => 'www.facebook.com/baru',
 		'twitter' => '@baru',
 		'instagram' => 'baru',
+		'line' => 'baru',
 		'status' => 'Haiii I\'m the third',
 		));
 
@@ -77,6 +80,7 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'facebook' => 'www.facebook.com/baru1',
 		'twitter' => '@baru1',
 		'instagram' => 'baru1',
+		'line' => 'baru1',
 		'status' => 'Haiii I\'m the forth',
 		));
 
@@ -93,7 +97,8 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'pinbb' => 'abcdefgh',
 		'facebook' => 'www.facebook.com/baru12',
 		'twitter' => '@baru2',
-		'instagram' => 'baru1',
+		'instagram' => 'baru2',
+		'line' => 'baru2',
 		'status' => 'Haiii I\'m the fifth',
 		));
 	}

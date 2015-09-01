@@ -222,6 +222,7 @@ Route::group(['middleware' => 'user'], function()
 		    'facebook' => $output['facebook'],
 		    'twitter' => $output['twitter'],
 		    'instagram' => $output['instagram'],
+		    'line' => $output['line'],
 			));
    		return response()->json(['status' => true, 'id' => $id, 'fullname' => $output['fullname']]);
 	});
@@ -239,7 +240,8 @@ Route::group(['middleware' => 'user'], function()
             		'pinbb' => $output['pinbb'], 
             		'facebook' => $output['facebook'],
             		'twitter' => $output['twitter'],
-            		'instagram' => $output['instagram']]);
+            		'instagram' => $output['instagram'],
+            		'line' => $output['line']]);
 
    		return response()->json(['status' => true]);
 	});
@@ -280,7 +282,8 @@ Route::group(['middleware' => 'user'], function()
             		'pinbb' => $output['pinbb'], 
             		'facebook' => $output['facebook'],
             		'twitter' => $output['twitter'],
-            		'instagram' => $output['instagram']]);
+            		'instagram' => $output['instagram'],
+            		'line' => $output['line']]);
 
    		return response()->json(['status' => true]);
 	});
@@ -523,6 +526,7 @@ Route::get('createdb',function(){
 		$table->string('facebook',30)->default('');
 		$table->string('twitter',30)->default('');
 		$table->string('instagram',30)->default('');
+		$table->string('line',30)->default('');
 		$table->string('status',30)->default('Welcome to my contact');
 		$table->boolean('privateaccount')->default(0);
 		$table->boolean('newinvitesnotification')->default(0);
@@ -553,6 +557,7 @@ Route::get('createdb',function(){
 		$table->string('facebook',30)->default('');
 		$table->string('twitter',30)->default('');
 		$table->string('instagram',30)->default('');
+		$table->string('line',30)->default('');
 		$table->timestamps();
 	});
 

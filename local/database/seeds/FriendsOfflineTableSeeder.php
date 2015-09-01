@@ -20,7 +20,8 @@ class FriendsOfflineTableSeeder extends Seeder {
 			'pinbb' => 'abcdefg' . $i,
 			'facebook' => 'www.facebook.com/test' . $i,
 			'twitter' => '@test' . $i,
-			'instagram' => 'test1' . $i,
+			'instagram' => 'test' . $i,
+			'line' => 'test' . $i,
 			));
 		}
 	}
