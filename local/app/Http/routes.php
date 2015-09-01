@@ -69,6 +69,13 @@ Route::group(['middleware' => 'user'], function()
 
     Route::get('/user/home', 'User\HomeController@index');
 
+    // in showcontact page
+    Route::post('/user/invite', [
+		    'as' => 'showcontact.invite',
+		    'uses' => 'ShowContactController@invite'
+	]);
+
+
     Route::post('/user/getcontact', function()
 	{
 		$friendscount =  0;

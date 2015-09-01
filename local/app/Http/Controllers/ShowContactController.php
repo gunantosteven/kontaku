@@ -4,9 +4,11 @@ use App\Models\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
+use Request;
 use Input;
 use DB;
+use Auth;
+use Uuid;
 
 
 class ShowContactController extends Controller {
@@ -36,9 +38,44 @@ class ShowContactController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function invite()
 	{
 		//
+		$friendsonline1 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user2', Auth::user()->id)
+            ->where('friendsonline.user1', Request::input('id'))
+            ->count();
+        $friendsonline2 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user1', Auth::user()->id)
+            ->where('friendsonline.user2', Request::input('id'))
+            ->count();
+        $combinedCount = $friendsonline1 + $friendsonline2;
+
+		if($combinedCount == 0)
+        {
+        	$uuid = Uuid::generate();
+			\App\Models\FriendOnline::create(array(
+				'id' => $uuid,
+			    'user1' => Auth::user()->id,
+				'user2' => Request::input('id'),
+				'status' => 'PENDING',
+				));
+
+			// make new invites notification to users who got invitation
+			DB::table('users')
+	            ->where('id', Request::input('id'))
+	            ->update(['newinvitesnotification' => 1]);
+
+	        return redirect('/user/home');
+	    }
+		
+		$url = DB::table('users')
+	            ->where('id', Request::input('id'))->first()->url;
+		return redirect('/' . $url . '?error=true');
 	}
 
 	/**
@@ -51,6 +88,13 @@ class ShowContactController extends Controller {
 	{
 		//
 		$user=DB::table('users')->where('url', $url)->first();
+
+		if(Request::input('error') != "" && $user != null)
+		{
+			$error = true;
+	   		return view('showcontact', compact('user', 'error'));
+		}
+
 		if($user == null)
 		{
 			return view('contactnotfound');

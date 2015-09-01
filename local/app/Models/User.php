@@ -41,4 +41,27 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		}
 		return true;
 	}
+
+	public function isFriendOnline($id) {
+		$friendsonline1 = \DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user2', \Auth::user()->id)
+            ->where('friendsonline.user1', $id)
+            ->count();
+        $friendsonline2 = \DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user1', \Auth::user()->id)
+            ->where('friendsonline.user2', $id)
+            ->count();
+        $combinedCount = $friendsonline1 + $friendsonline2;
+
+		if($combinedCount > 0)
+        {
+        	return true;
+        }
+
+        return false;
+	}
 }
