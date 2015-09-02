@@ -8,7 +8,6 @@
         <script type='text/javascript' src={{ asset('js/jquery-1.11.1.min.js') }}></script>
         <script type='text/javascript' src={{ asset('js/jquery.mobile-1.4.5.min.js') }}></script>
         <script type='text/javascript' src={{ asset('js/user/home.js') }}></script>
-        <script type="text/javascript" src={{ asset('js/jquery.form.js') }}></script>
         <!-- CSS -->
         <link rel="stylesheet" href={{ asset('css/jquery.mobile-1.4.5.min.css') }} />
         <link rel="stylesheet" href={{ asset('css/user/home.css') }} />
