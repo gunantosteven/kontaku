@@ -514,6 +514,27 @@ Route::group(['middleware' => 'user'], function()
 
    		return response()->json(['status' => true]);
 	});
+
+	Route::post('/user/totalcontacts', function()
+	{
+		$totalcontacts =  0;
+
+		$friendsonline1 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user2', Auth::user()->id)
+            ->where('friendsonline.status', 'ACCEPTED')->count();
+        $friendsonline2 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user1', Auth::user()->id)
+            ->where('friendsonline.status', 'ACCEPTED')->count();
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('user', Auth::user()->id)->count();
+        $totalcontacts = $friendsoffline + $friendsonline1 + $friendsonline2;
+
+	    //this route should returns json response
+	    return response()->json(['totalcontacts' => $totalcontacts]);
+	});
 });
 
 Route::get('createdb',function(){

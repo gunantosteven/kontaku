@@ -127,8 +127,9 @@ $(document).on('pageinit', '#home', function(){
           success: function (data) {
             $("#list").empty();
             $.each (data['friends'], function (index) {
-              $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+              $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");   
             });
+            $("#totalcontacts").text('Total Found ' + data['count']);
         }
       });
     }
@@ -813,5 +814,18 @@ function reloadContact() {
             $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
           });
           friendscount = data['friendscount'];
+          totalContacts();
+      }})             
+}
+
+// function totalContacts
+function totalContacts() {
+    $.ajax({
+        url: index + "/user/totalcontacts",
+        type: 'POST',
+        data: {_token: CSRF_TOKEN},
+        dataType: 'JSON',
+        success: function (data) {
+          $("#totalcontacts").text('Total Contacts ' + data['totalcontacts']);
       }})             
 }
