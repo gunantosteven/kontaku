@@ -127,7 +127,7 @@ $(document).on('pageinit', '#home', function(){
           success: function (data) {
             $("#list").empty();
             $.each (data['friends'], function (index) {
-              $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");   
+              $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");   
             });
             $("#totalcontacts").text('Total Found ' + data['count']);
         }
@@ -152,7 +152,7 @@ $(document).on('pageinit', '#home', function(){
               dataType: 'JSON',
               success: function (data) {
                 $.each (data['friends'], function (index) {
-                  items += "<li id='" + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" +  data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>"  + "</li>";
+                  items += "<li id='" + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" +  data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>"  + "</li>";
                 });
                 friendscount = data['friendscount'];
                 $("#list", page).append(items).listview("refresh");
@@ -276,9 +276,7 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
     // make list empty first
     $("#actionFriendProfileList").empty();
 
-    $('#friendPic').attr('src', 'http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png');
-    $('#friendPic').attr('height', '65');
-    $('#friendPic').attr('width', '65');
+    $('#friendPic').attr('src', window.index + '/user/images/photos/friendsprofile/' + friend.id + '?' + Math.random());
     $('#fullName').text(friend.fullname);
     if(friend.onlineoffline == "online")
     {
@@ -338,13 +336,18 @@ $(document).on('pageinit', '#editfriendprofile', function(){
   /* create friend offline */
   $(document).on('click', '#editfriendsubmit', function() { // catch the form's submit event
     if($('#editfriendfullname').val().length > 0 && $('#editfriendemail').val().length > 0){
+        var formData = new FormData($('#formEditFriendOffline')[0]);
+        formData.append("_token", CSRF_TOKEN);
+        formData.append("id", friend.id);
         // Send data to server through the Ajax call
         // action is functionality we want to call and outputJSON is our data
         $.ajax({url: index + "/user/friendoffline",
-            data: {_token: CSRF_TOKEN, action : 'edit', id : friend.id, formData : $('#formEditFriendOffline').serialize()},
-            type: 'put',                   
+            data: formData,
+            type: 'post',                   
             async: 'true',
             dataType: 'json',
+            contentType: false,
+            processData: false,
             beforeSend: function() {
                 // This callback function will trigger before data is sent
                 $.mobile.loading('show'); // This will show ajax spinner
@@ -399,13 +402,17 @@ $(document).on('pageinit', '#editmyprofile', function(){
   /* create friend offline */
   $(document).on('click', '#editmyprofilesubmit', function() { // catch the form's submit event
     if($('#editmyprofilefullname').val().length > 0){
+        var formData = new FormData($('#formEditMyProfile')[0]);
+        formData.append("_token", CSRF_TOKEN);
         // Send data to server through the Ajax call
         // action is functionality we want to call and outputJSON is our data
         $.ajax({url: index + "/user/editprofile",
-            data: {_token: CSRF_TOKEN, action : 'edit', formData : $('#formEditMyProfile').serialize()},
-            type: 'put',                   
+            data: formData,
+            type: 'post',                   
             async: 'true',
             dataType: 'json',
+            contentType: false,
+            processData: false,
             beforeSend: function() {
                 // This callback function will trigger before data is sent
                 $.mobile.loading('show'); // This will show ajax spinner
@@ -425,7 +432,10 @@ $(document).on('pageinit', '#editmyprofile', function(){
                 // This callback function will trigger on unsuccessful action                
                 alert('Network error has occurred please try again!');
             }
-        });                   
+        });      
+
+        
+
     } else {
         alert('Please fill all necessary fields');
     }           
@@ -489,7 +499,7 @@ $(document).on('pagebeforeshow', '#invites', function(){
           {
             $("#listinvites").append("<li data-role='list-divider'>Got Invites</li>");
             $.each (data['users'], function (index) {
-              $("#listinvites").append("<li id='"  + data['users'][index]['id'] + ";" + data['users'][index]['fullname'] + ";" + data['users'][index]['status'] +  ";got'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data['users'][index]['fullname'] + "<p>" + data['users'][index]['status'] + "</p>" + "</a>" + "</li>").listview("refresh");
+              $("#listinvites").append("<li id='"  + data['users'][index]['id'] + ";" + data['users'][index]['fullname'] + ";" + data['users'][index]['status'] +  ";got'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['users'][index]['id'] + "?" + Math.random() + "'/>" + data['users'][index]['fullname'] + "<p>" + data['users'][index]['status'] + "</p>" + "</a>" + "</li>").listview("refresh");
             });
           }
       }})  
@@ -503,7 +513,7 @@ $(document).on('pagebeforeshow', '#invites', function(){
         {
           $("#listinvites").append("<li data-role='list-divider'>Sent Invites</li>");
           $.each (data['users'], function (index) {
-            $("#listinvites").append("<li id='"  + data['users'][index]['id'] + ";" + data['users'][index]['fullname'] + ";" + data['users'][index]['status'] + ";sent'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data['users'][index]['fullname'] + "<p>" + data['users'][index]['status'] + "</p>" + "</a>" + "</li>").listview("refresh");
+            $("#listinvites").append("<li id='"  + data['users'][index]['id'] + ";" + data['users'][index]['fullname'] + ";" + data['users'][index]['status'] + ";sent'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['users'][index]['id'] + "?" + Math.random() + "'/>" + data['users'][index]['fullname'] + "<p>" + data['users'][index]['status'] + "</p>" + "</a>" + "</li>").listview("refresh");
           });
         }
     }})  
@@ -811,7 +821,7 @@ function reloadContact() {
         success: function (data) {
           $("#list").empty();
           $.each (data['friends'], function (index) {
-            $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='45' width='45' />" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+            $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
           });
           friendscount = data['friendscount'];
           totalContacts();

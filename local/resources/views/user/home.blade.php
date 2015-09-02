@@ -8,6 +8,7 @@
         <script type='text/javascript' src={{ asset('js/jquery-1.11.1.min.js') }}></script>
         <script type='text/javascript' src={{ asset('js/jquery.mobile-1.4.5.min.js') }}></script>
         <script type='text/javascript' src={{ asset('js/user/home.js') }}></script>
+        <script type="text/javascript" src={{ asset('js/jquery.form.js') }}></script>
         <!-- CSS -->
         <link rel="stylesheet" href={{ asset('css/jquery.mobile-1.4.5.min.css') }} />
         <link rel="stylesheet" href={{ asset('css/user/home.css') }} />
@@ -113,6 +114,10 @@
 
                   <label for="name">Line</label>
                   <input type="text" name="line" id="editmyprofileline" value="" data-clear-btn="true" data-mini="true">
+
+                  <label for="name">Choose Photo</label>
+                  <input type="file" name="photo"  id="editmyprofilephoto" value="" data-clear-btn="true" data-mini="true"/>
+
             </form>
           </div> <!-- /content --> 
 
@@ -193,6 +198,9 @@
 
                     <label for="name">Line</label>
                     <input type="text" name="line" id="editfriendline" value="" data-clear-btn="true" data-mini="true">
+
+                    <label for="name">Choose Photo</label>
+                    <input type="file" name="photo"  id="editfriendphoto" value="" data-clear-btn="true" data-mini="true"/>
                   </div> <!-- /content --> 
           </form>
 

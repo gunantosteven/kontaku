@@ -148,6 +148,8 @@ return [
 		'App\Providers\RouteServiceProvider',
 
 		'hisorange\BrowserDetect\Provider\BrowserDetectService',
+
+		'Intervention\Image\ImageServiceProvider',
 	],
 
 	/*
@@ -201,6 +203,8 @@ return [
 		'Html'     	=> 'Illuminate\Html\HtmlFacade',
 
 		'BrowserDetect' => 'hisorange\BrowserDetect\Facade\Parser',
+
+		'Image' => 'Intervention\Image\Facades\Image',
 	],
 
 ];

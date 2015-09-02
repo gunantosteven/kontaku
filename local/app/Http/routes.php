@@ -235,12 +235,11 @@ Route::group(['middleware' => 'user'], function()
 	});
 
 	// edit friendoffline
-	Route::put('user/friendoffline', function()
+	Route::post('user/friendoffline', function()
 	{
-		parse_str(Request::input('formData'), $output);
-		$id = Request::input('id');
+		$output = Input::all();
 		DB::table('friendsoffline')
-            ->where('id', $id)
+            ->where('id', $output['id'])
             ->update(['fullname' => $output['fullname'], 
             		'email' => $output['email'], 
             		'phone' => $output['phone'], 
@@ -249,6 +248,10 @@ Route::group(['middleware' => 'user'], function()
             		'twitter' => $output['twitter'],
             		'instagram' => $output['instagram'],
             		'line' => $output['line']]);
+
+        $createImage = Image::make($output['photo']);
+		$createImage->resize(65, 65);
+		$createImage->save(base_path() . '/resources/assets/images/photos/' . $output['id'] . '.png' );
 
    		return response()->json(['status' => true]);
 	});
@@ -278,9 +281,9 @@ Route::group(['middleware' => 'user'], function()
 	});
 
 	// edit my profile
-	Route::put('user/editprofile', function()
+	Route::post('user/editprofile', function()
 	{
-		parse_str(Request::input('formData'), $output);
+		$output = Input::all();
 		$id = Auth::user()->id;
 		DB::table('users')
             ->where('id', $id)
@@ -291,6 +294,10 @@ Route::group(['middleware' => 'user'], function()
             		'twitter' => $output['twitter'],
             		'instagram' => $output['instagram'],
             		'line' => $output['line']]);
+
+        $createImage = Image::make($output['photo']);
+		$createImage->resize(65, 65);
+		$createImage->save(base_path() . '/resources/assets/images/photos/' . $id . '.png' );
 
    		return response()->json(['status' => true]);
 	});
@@ -534,6 +541,80 @@ Route::group(['middleware' => 'user'], function()
 
 	    //this route should returns json response
 	    return response()->json(['totalcontacts' => $totalcontacts]);
+	});
+
+	// get image
+	Route::get('/user/images/photos/{id}', function($id)
+	{
+		// security check if this profile is her/his friend.
+		$friendsonline1 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user2', Auth::user()->id)
+            ->where('friendsonline.user1', $id)->count();
+        $friendsonline2 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user1', Auth::user()->id)
+            ->where('friendsonline.user2', $id)->count();
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('id', $id)->where('user', Auth::user()->id)->count();
+        $combinedCount = $friendsoffline + $friendsonline1 + $friendsonline2;
+
+        if($combinedCount > 0)
+        {
+        	if(File::exists(base_path() . '/resources/assets/images/photos/' . $id . '.png'))
+			{
+				// open an image file
+				$img = Image::make(base_path() . '/resources/assets/images/photos/' . $id . '.png' );
+			}
+			else
+			{
+				// open an image file
+				$img = Image::make(base_path() . '/resources/assets/images/photos/user.png' );
+			}
+        }
+
+		// now you are able to resize the instance
+		$img->resize(45, 45);
+
+		return $img->response('png');
+	});
+
+	// get image from friendprofile
+	Route::get('/user/images/photos/friendsprofile/{id}', function($id)
+	{
+		// security check if this profile is her/his friend.
+		$friendsonline1 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user2', Auth::user()->id)
+            ->where('friendsonline.user1', $id)->count();
+        $friendsonline2 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user1', Auth::user()->id)
+            ->where('friendsonline.user2', $id)->count();
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('id', $id)->where('user', Auth::user()->id)->count();
+        $combinedCount = $friendsoffline + $friendsonline1 + $friendsonline2;
+
+        if($combinedCount > 0)
+        {
+        	if(File::exists(base_path() . '/resources/assets/images/photos/' . $id . '.png'))
+			{
+				// open an image file
+				$img = Image::make(base_path() . '/resources/assets/images/photos/' . $id . '.png' );
+			}
+			else
+			{
+				// open an image file
+				$img = Image::make(base_path() . '/resources/assets/images/photos/user.png' );
+			}
+        }
+
+		// now you are able to resize the instance
+		$img->resize(65, 65);
+
+		return $img->response('png');
 	});
 });
 
