@@ -394,6 +394,8 @@ $(document).on('pagebeforeshow', '#editfriendprofile', function(){
   $('#editfriendtwitter').val(friend.twitter);
   $('#editfriendinstagram').val(friend.instagram);
   $('#editfriendline').val(friend.line);
+  // clear select photo
+  $('#editfriendphoto').val('');
 }); 
 /* ===================================end js page editfriendprofile=================================== */
 
@@ -459,6 +461,8 @@ $(document).on('pagebeforeshow', '#editmyprofile', function(){
               $('#editmyprofiletwitter').val(data.twitter);
               $('#editmyprofileinstagram').val(data.instagram);
               $('#editmyprofileline').val(data.line);
+              // clear select photo
+              $('#editmyprofilephoto').val('');
             }
         });
 }); 
