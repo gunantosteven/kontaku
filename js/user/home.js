@@ -37,7 +37,7 @@ $(document).on('pageinit', '#home', function(){
                         $('input[id=createtwitter]').val('');
                         $('input[id=createinstagram]').val('');
                         $('input[id=createline]').val('');
-                       $.mobile.pageContainer.pagecontainer("change", "home", {transition: "slide"});
+                       $.mobile.pageContainer.pagecontainer("change", "#", {transition: "slide"});
                        reloadContact();
                   } else {
                       alert('Something error happened!'); 
@@ -254,7 +254,7 @@ $(document).on('pageinit', '#friendprofile', function(){
               },
               success: function (result) {
                   if(result.status) {
-                       $.mobile.pageContainer.pagecontainer("change", "home", {transition: "slide"});
+                       $.mobile.pageContainer.pagecontainer("change", "#", {transition: "slide"});
                        reloadContact();
                   } else {
                       alert('Something error happened!'); 
@@ -366,7 +366,7 @@ $(document).on('pageinit', '#editfriendprofile', function(){
                       friend.twitter = $('#editfriendtwitter').val();
                       friend.instagram = $('#editfriendinstagram').val();
                       friend.line = $('#editfriendline').val();
-                      $.mobile.pageContainer.pagecontainer("change", "home#friendprofile", {transition: "slide"});
+                      $.mobile.pageContainer.pagecontainer("change", "#friendprofile", {transition: "slide"});
                       reloadContact();
                 } else {
                     alert('Something error happened!'); 
@@ -541,7 +541,7 @@ $(document).on('pageinit', '#addfriendsonline', function(){
               success: function (result) {
                   if(result.status) {
                        $('#searchbaraddfriendsonline').val('');
-                       $.mobile.pageContainer.pagecontainer("change", "home#invites", {transition: "slide"});
+                       $.mobile.pageContainer.pagecontainer("change", "#invites", {transition: "slide"});
                   } else {
                       alert('Something error happened!'); 
                   }
@@ -627,7 +627,7 @@ $(document).on('pageinit', '#gotinvitation', function(){
               },
               success: function (result) {
                   if(result.status) {
-                       $.mobile.pageContainer.pagecontainer("change", "home#invites", {transition: "slide"});
+                       $.mobile.pageContainer.pagecontainer("change", "#invites", {transition: "slide"});
                        reloadContact();
                   } else {
                       alert('Something error happened!'); 
@@ -655,7 +655,7 @@ $(document).on('pageinit', '#gotinvitation', function(){
                 },
                 success: function (result) {
                     if(result.status) {
-                         $.mobile.pageContainer.pagecontainer("change", "home#invites", {transition: "slide"});
+                         $.mobile.pageContainer.pagecontainer("change", "#invites", {transition: "slide"});
                     } else {
                         alert('Something error happened!'); 
                     }
@@ -694,7 +694,7 @@ $(document).on('pageinit', '#sentinvitation', function(){
                 },
                 success: function (result) {
                     if(result.status) {
-                         $.mobile.pageContainer.pagecontainer("change", "home#invites", {transition: "slide"});
+                         $.mobile.pageContainer.pagecontainer("change", "#invites", {transition: "slide"});
                     } else {
                         alert('Something error happened!'); 
                     }
@@ -735,7 +735,7 @@ $(document).on('pageinit', '#changepassword', function(){
                   if(result.status) {
                     $('#changepasswordnewpassword').val("");
                     $('#changepasswordretypepassword').val("");
-                    $.mobile.pageContainer.pagecontainer("change", "home#settingsaccount", {transition: "slide"});
+                    $.mobile.pageContainer.pagecontainer("change", "#settingsaccount", {transition: "slide"});
                   } else {
                       alert('Something error happened!'); 
                   }
