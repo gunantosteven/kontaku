@@ -249,10 +249,13 @@ Route::group(['middleware' => 'user'], function()
             		'instagram' => $output['instagram'],
             		'line' => $output['line']]);
 
-        $createImage = Image::make($output['photo']);
-		$createImage->resize(65, 65);
-		$createImage->save(base_path() . '/resources/assets/images/photos/' . $output['id'] . '.png' );
-
+        if(isset($output['photo']) && $output['photo'] != "")
+        {
+        	$createImage = Image::make($output['photo']);
+			$createImage->resize(65, 65);
+			$createImage->save(base_path() . '/resources/assets/images/photos/' . $output['id'] . '.png' );
+        }
+        
    		return response()->json(['status' => true]);
 	});
 
@@ -295,9 +298,13 @@ Route::group(['middleware' => 'user'], function()
             		'instagram' => $output['instagram'],
             		'line' => $output['line']]);
 
-        $createImage = Image::make($output['photo']);
-		$createImage->resize(65, 65);
-		$createImage->save(base_path() . '/resources/assets/images/photos/' . $id . '.png' );
+        if(isset($output['photo']) && $output['photo'] != "")
+        {
+        	$createImage = Image::make($output['photo']);
+			$createImage->resize(65, 65);
+			$createImage->save(base_path() . '/resources/assets/images/photos/' . $id . '.png' );
+        }
+        
 
    		return response()->json(['status' => true]);
 	});
