@@ -14,7 +14,7 @@ $(document).on('pageinit', '#home', function(){
       if($('#createfullname').val().length > 0 && $('#createemail').val().length > 0){
           // Send data to server through the Ajax call
           // action is functionality we want to call and outputJSON is our data
-          $.ajax({url: index + "/user/friendoffline",
+          $.ajax({url: index + "/user/create/friendoffline",
               data: {_token: CSRF_TOKEN, action : 'create', formData : $('#createcontactoffline').serialize()},
               type: 'post',                   
               async: 'true',
@@ -239,7 +239,7 @@ $(document).on('pagebeforeshow', '#home', function(){
 $(document).on('pageinit', '#friendprofile', function(){  
   $(document).on('click', '#deletefriend', function() { 
 
-    $.ajax({url: index + "/user/friend",
+    $.ajax({url: index + "/user/delete/friend",
               data: {_token: CSRF_TOKEN, action : 'delete', id : friend.id, onlineoffline : friend.onlineoffline },
               type: 'delete',                   
               async: 'true',
@@ -341,7 +341,7 @@ $(document).on('pageinit', '#editfriendprofile', function(){
         formData.append("id", friend.id);
         // Send data to server through the Ajax call
         // action is functionality we want to call and outputJSON is our data
-        $.ajax({url: index + "/user/friendoffline",
+        $.ajax({url: index + "/user/edit/friendoffline",
             data: formData,
             type: 'post',                   
             async: 'true',
@@ -525,7 +525,7 @@ $(document).on('pagebeforeshow', '#invites', function(){
 $(document).on('pageinit', '#addfriendsonline', function(){  
   $(document).on('click', '#buttonaddfriendsonline', function() { 
 
-    $.ajax({url: index + "/user/friendonline",
+    $.ajax({url: index + "/user/create/friendonline",
               data: {_token: CSRF_TOKEN, action : 'add', formData : $('#formAddFriendOnline').serialize()},
               type: 'post',                   
               async: 'true',

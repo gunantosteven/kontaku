@@ -215,7 +215,7 @@ Route::group(['middleware' => 'user'], function()
 
 
 	// create friendoffline
-	Route::post('/user/friendoffline', function()
+	Route::post('/user/create/friendoffline', function()
 	{
 		parse_str(Request::input('formData'), $output);
 		$id = Uuid::generate();
@@ -235,7 +235,7 @@ Route::group(['middleware' => 'user'], function()
 	});
 
 	// edit friendoffline
-	Route::post('user/friendoffline', function()
+	Route::post('user/edit/friendoffline', function()
 	{
 		$output = Input::all();
 		DB::table('friendsoffline')
@@ -257,7 +257,7 @@ Route::group(['middleware' => 'user'], function()
 	});
 
 	// delete friend
-	Route::delete('user/friend', function()
+	Route::delete('user/delete/friend', function()
 	{
 		$id = Request::input('id');
 		$onlineoffline = Request::input('onlineoffline');
@@ -419,7 +419,7 @@ Route::group(['middleware' => 'user'], function()
 	});
 
 	// create friendonline
-	Route::post('/user/friendonline', function()
+	Route::post('/user/create/friendonline', function()
 	{
 		parse_str(Request::input('formData'), $output);
 		$id = Uuid::generate();
