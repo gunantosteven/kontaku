@@ -26,7 +26,7 @@
             </div><!-- /header -->      
             
             <input type="search" placeholder="Search" id="searchbar" />
-            <center><font size="2" color="black" id="totalcontacts">Total Contacts 100</font></center>
+            <center><font size="2" color="black" id="totalcontacts">Total Contacts 0</font></center>
             <div class="ui-content" role="main">                
                 <ul data-role="listview" id="list" data-autodividers="true"></ul>
             </div><!-- /content -->      
