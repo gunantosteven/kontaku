@@ -1,4 +1,5 @@
 var friendscount;
+var searchfriendscount;
 var friend;
 var friendonlineinvatitation;
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -110,10 +111,7 @@ $(document).on('pageinit', '#home', function(){
 
   /*When search through input view*/
   $(document).on("input", "#searchbar", function (e) { 
-    //your code
-    var searchbar = $(this); 
-
-    if(searchbar.val() == "")
+    if($("#searchbar").val() == "")
     {
        reloadContact();
     }
@@ -122,14 +120,15 @@ $(document).on('pageinit', '#home', function(){
       $.ajax({
           url: index + "/user/search",
           type: 'POST',
-          data: {_token: CSRF_TOKEN, search: searchbar.val()},
+          data: {_token: CSRF_TOKEN, search: $("#searchbar").val()},
           dataType: 'JSON',
           success: function (data) {
             $("#list").empty();
             $.each (data['friends'], function (index) {
               $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");   
             });
-            $("#totalcontacts").text('Total Found ' + data['count']);
+            searchfriendscount = data['searchfriendscount'];
+            $("#totalcontacts").text('Total Found ' + data['searchfriendscount']);
         }
       });
     }
@@ -140,7 +139,7 @@ $(document).on('pageinit', '#home', function(){
       $.mobile.loading("show", {
           text: "loading more..",
           textVisible: true,
-          theme: "b"
+          theme: "a"
       });
       setTimeout(function () {
           var items = '';
@@ -162,6 +161,34 @@ $(document).on('pageinit', '#home', function(){
       }, 500);
   }
 
+  /* add more search contact */
+  function addMoreSearchContact(page) {
+      $.mobile.loading("show", {
+          text: "loading more..",
+          textVisible: true,
+          theme: "a"
+      });
+      setTimeout(function () {
+          var items = '';
+          var count = 0;
+          $.ajax({
+              url: index + "/user/search/" + searchfriendscount,
+              type: 'POST',
+              data: {_token: CSRF_TOKEN, search: $("#searchbar").val()},
+              dataType: 'JSON',
+              success: function (data) {
+                $.each (data['friends'], function (index) {
+                  items += "<li id='" + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" +  data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>"  + "</li>";
+                });
+                searchfriendscount = data['searchfriendscount'];
+                $("#list", page).append(items).listview("refresh");
+                $.mobile.loading("hide");
+                $("#totalcontacts").text('Total Found ' + data['searchfriendscount']);
+              }
+          });
+      }, 500);
+  }
+
   /* scroll event */
   $(document).on("scrollstop", function (e) {
       var activePage = $.mobile.pageContainer.pagecontainer("getActivePage"),
@@ -173,6 +200,9 @@ $(document).on('pageinit', '#home', function(){
           scrollEnd = contentHeight - screenHeight + header + footer;
       if (activePage[0].id == "home" && scrolled >= scrollEnd && (friendscount > 0) && $('#searchbar').val().length == 0) {
           addMore(activePage);
+      }
+      else if (activePage[0].id == "home" && scrolled >= scrollEnd && (searchfriendscount > 0) && $('#searchbar').val().length != 0) {
+          addMoreSearchContact(activePage);
       }
   });
 
