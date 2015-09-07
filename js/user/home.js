@@ -1,4 +1,6 @@
+var totalcontacts;
 var friendscount;
+var favoritescount;
 var searchfriendscount;
 var friend;
 var friendonlineinvatitation;
@@ -123,13 +125,17 @@ $(document).on('pageinit', '#home', function(){
           data: {_token: CSRF_TOKEN, search: $("#searchbar").val()},
           dataType: 'JSON',
           success: function (data) {
+          	$("#collapsibleFavorites").hide();
+
+          	$("#collapsibleOtherContacts h2 #myHeaderOtherContacts").text("All Contacts");
+          	$("#collapsibleOtherContacts").collapsible( "option", "collapsed", false );
             $("#list").empty();
-            $("#listFavorites").empty();
             $.each (data['friends'], function (index) {
               $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");   
             });
             searchfriendscount = data['searchfriendscount'];
             $("#totalcontacts").text('Total Found ' + data['searchfriendscount']);
+            $("#bubbleCountOtherContacts").hide();
         }
       });
     }
@@ -338,7 +344,10 @@ $(document).on('pageinit', '#friendprofile', function(){
 	          },
 	          success: function (result) {
 	              if(result.status) {
-	              	reloadContact();
+	              	if($("#searchbar").val() == "")
+				    {
+				       reloadContact();
+				    }
 	              } else {
 	                  alert('Something error happened!'); 
 	              }
@@ -911,6 +920,8 @@ $(document).on('pagebeforecreate', '#settingsaccount', function(){
 
 // function reloadContact
 function reloadContact() {
+	totalContacts();    
+
 	// get favorites contact
 	$.ajax({
         url: index + "/user/getfavorites",
@@ -918,12 +929,21 @@ function reloadContact() {
         data: {_token: CSRF_TOKEN},
         dataType: 'JSON',
         success: function (data) {
-          $("#listFavorites").empty();
-          $("#listFavorites").append("<li data-role='list-divider'>Favorites <span class='ui-li-count'>" + data['favoritescount'] + "</span></li>").listview("refresh");
-          $.each (data['friends'], function (index) {
-            $("#listFavorites").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
-          });
-          $("#listFavorites").append("<li data-role='list-divider'></li>").listview("refresh");
+          if(data['friends'].length == 0)
+          {
+          	$("#collapsibleFavorites").hide();
+          }
+          else
+          {
+          	$("#collapsibleFavorites").show();
+          	$("#collapsibleFavorites").collapsible( "option", "collapsed", false );
+            $("#listFavorites").empty();
+            $.each (data['friends'], function (index) {
+            	$("#listFavorites").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+          	});
+          	favoritescount = data['favoritescount'];
+          	$("#bubbleCountFavorites").text(data['favoritescount']);
+          }
       }})  
 	// get contacts
     $.ajax({
@@ -932,15 +952,18 @@ function reloadContact() {
         data: {_token: CSRF_TOKEN},
         dataType: 'JSON',
         success: function (data) {
+          $("#collapsibleOtherContacts h2 #myHeaderOtherContacts").text("Other Contacts");
+          $("#collapsibleOtherContacts").collapsible( "option", "collapsed", false );
           $("#list").empty();
           $.each (data['friends'], function (index) {
             $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
           });
           friendscount = data['friendscount'];
-          
+          var otherContactsCount = totalcontacts - favoritescount;
+          $("#bubbleCountOtherContacts").text(otherContactsCount);
+          $("#bubbleCountOtherContacts").show();
       }})        
 
-      totalContacts();     
 }
 
 // function totalContacts
@@ -951,6 +974,7 @@ function totalContacts() {
         data: {_token: CSRF_TOKEN},
         dataType: 'JSON',
         success: function (data) {
+          totalcontacts = data['totalcontacts'];
           $("#totalcontacts").text('Total Contacts ' + data['totalcontacts']);
       }})             
 }

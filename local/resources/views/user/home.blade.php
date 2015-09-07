@@ -28,8 +28,14 @@
             <input type="search" placeholder="Search" id="searchbar" />
             <center><font size="2" color="black" id="totalcontacts">Total Contacts 0</font></center>
             <div class="ui-content" role="main">       
+              <div id="collapsibleFavorites" data-role="collapsible" data-inset="false" data-collapsed="false">
+                <h2><span id="myHeaderFavorites">Favorites</span><span id="bubbleCountFavorites" class="ui-li-count">0</span></h2>
                 <ul data-role="listview" id="listFavorites"></ul>
+              </div>
+              <div id="collapsibleOtherContacts" data-role="collapsible" data-inset="false" data-collapsed="false">
+                <h2><span id="myHeaderOtherContacts">Other Contacts</span><span id="bubbleCountOtherContacts" class="ui-li-count">0</span></h2>
                 <ul data-role="listview" id="list" data-autodividers="true"></ul>
+              </div>
             </div><!-- /content -->      
             
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">
