@@ -1,6 +1,4 @@
-var totalcontacts;
 var friendscount;
-var favoritescount;
 var searchfriendscount;
 var friend;
 var friendonlineinvatitation;
@@ -921,7 +919,12 @@ $(document).on('pagebeforecreate', '#settingsaccount', function(){
 // function reloadContact
 function reloadContact() {
 	totalContacts();    
+	getFavoritesContact();
+	getContacts();
+}
 
+function getFavoritesContact()
+{
 	// get favorites contact
 	$.ajax({
         url: index + "/user/getfavorites",
@@ -941,10 +944,14 @@ function reloadContact() {
             $.each (data['friends'], function (index) {
             	$("#listFavorites").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
           	});
-          	favoritescount = data['favoritescount'];
+          	
           	$("#bubbleCountFavorites").text(data['favoritescount']);
           }
       }})  
+}
+
+function getContacts()
+{
 	// get contacts
     $.ajax({
         url: index + "/user/getcontact",
@@ -959,11 +966,7 @@ function reloadContact() {
             $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
           });
           friendscount = data['friendscount'];
-          var otherContactsCount = totalcontacts - favoritescount;
-          $("#bubbleCountOtherContacts").text(otherContactsCount);
-          $("#bubbleCountOtherContacts").show();
-      }})        
-
+      }})   
 }
 
 // function totalContacts
@@ -974,7 +977,6 @@ function totalContacts() {
         data: {_token: CSRF_TOKEN},
         dataType: 'JSON',
         success: function (data) {
-          totalcontacts = data['totalcontacts'];
           $("#totalcontacts").text('Total Contacts ' + data['totalcontacts']);
       }})             
 }
