@@ -13,13 +13,15 @@ class FriendsOnlineTableSeeder extends Seeder {
 		'user1' => DB::table('users')->where('email', 'gunantosteven@gmail.com')->first()->id,
 		'user2' => DB::table('users')->where('email', 'coba@gmail.com')->first()->id,
 		'status' => 'ACCEPTED',
+		'isfavorite' => 1,
 		));
 
 		\App\Models\FriendOnline::create(array(
 		'id' => Uuid::generate(),
 		'user1' => DB::table('users')->where('email', 'gunantosteven@gmail.com')->first()->id,
 		'user2' => DB::table('users')->where('email', 'baru@gmail.com')->first()->id,
-		'status' => 'PENDING',
+		'status' => 'ACCEPTED',
+		'isfavorite' => 1,
 		));
 
 		\App\Models\FriendOnline::create(array(

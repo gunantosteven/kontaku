@@ -20,7 +20,7 @@ class FriendOnline extends Model implements AuthenticatableContract, CanResetPas
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['id', 'user1', 'user2', 'status'];
+	protected $fillable = ['id', 'user1', 'user2', 'status', 'isfavorite'];
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *

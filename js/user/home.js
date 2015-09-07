@@ -4,7 +4,7 @@ var friend;
 var friendonlineinvatitation;
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-/* ===================================js page friendprofile=================================== */
+/* ===================================js page home=================================== */
 $(document).on("pagebeforecreate", "#home", function (e, ui) {
      reloadContact();
 });
@@ -124,6 +124,7 @@ $(document).on('pageinit', '#home', function(){
           dataType: 'JSON',
           success: function (data) {
             $("#list").empty();
+            $("#listFavorites").empty();
             $.each (data['friends'], function (index) {
               $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");   
             });
@@ -231,6 +232,26 @@ $(document).on('pageinit', '#home', function(){
     }
   }); 
 
+  /*When click contact listview favorites*/
+  $(document).on("click", "#listFavorites li" ,function (event) {
+    if($(this).attr('id') !== undefined)
+    {
+      $.ajax({
+              url: index + "/user/friendprofile",
+              type: 'POST',
+              data: {_token: CSRF_TOKEN, id : $(this).attr('id')},
+              dataType: 'JSON',
+              success: function (data) {
+                if(data != null)
+                {
+                  friend = data;
+                  $.mobile.changePage("#friendprofile");
+                }
+              }
+          });
+    }
+  }); 
+
   // make new invites notification off
   $(document).on('click', '#subMenuInvites', function(e){
       $.ajax({url: index + "/user/newinvitesnotificationoff",
@@ -300,6 +321,34 @@ $(document).on('pageinit', '#friendprofile', function(){
   $(document).on('click', '#pinbbfriendprofile', function() { 
     window.prompt("Copy to clipboard: ", friend.pinbb);
   });
+
+  $(document).on('change', '#isfavoriteflipswitch', function() { 
+	$.ajax({url: index + "/user/changefavorite",
+	          data: {_token: CSRF_TOKEN, action : 'change', id : friend.id, onlineoffline : friend.onlineoffline, isfavorite : $("#isfavoriteflipswitch").val()},
+	          type: 'put',                   
+	          async: 'true',
+	          dataType: 'json',
+	          beforeSend: function() {
+	              // This callback function will trigger before data is sent
+	              $.mobile.loading('show'); // This will show ajax spinner
+	          },
+	          complete: function() {
+	              // This callback function will trigger on data sent/received complete
+	              $.mobile.loading('hide'); // This will hide ajax spinner
+	          },
+	          success: function (result) {
+	              if(result.status) {
+	              	reloadContact();
+	              } else {
+	                  alert('Something error happened!'); 
+	              }
+	          },
+	          error: function (request,error) {
+	              // This callback function will trigger on unsuccessful action                
+	              alert('Network error has occurred please try again!');
+	          }
+	      });            
+	}); 
 });
 /* show friend profile who clicked */
 $(document).on('pagebeforeshow', '#friendprofile', function(){    
@@ -350,12 +399,27 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
 
     if(friend.onlineoffline == 'online')
     {
-      $('#editfriendprofilebuttonpage').hide();
+      $('#editfriendprofilebuttonpage').addClass('ui-disabled');
     }
     else
     {
-      $('#editfriendprofilebuttonpage').show();
+      $('#editfriendprofilebuttonpage').removeClass('ui-disabled');
     }
+    
+    $("#isfavoriteflipswitch")
+                .flipswitch("option", "offText", "Off")
+                .flipswitch("option", "onText", "On");
+    if(friend.isfavorite == true)
+    {
+    	$('#isfavoriteflipswitch')
+                  .val("yes");
+    }
+    else
+    {
+      	$('#isfavoriteflipswitch')
+                  .val("no");
+    }
+    $("#isfavoriteflipswitch").flipswitch("refresh");
 
     $('#actionFriendProfileList').listview('refresh');
 });
@@ -847,6 +911,21 @@ $(document).on('pagebeforecreate', '#settingsaccount', function(){
 
 // function reloadContact
 function reloadContact() {
+	// get favorites contact
+	$.ajax({
+        url: index + "/user/getfavorites",
+        type: 'POST',
+        data: {_token: CSRF_TOKEN},
+        dataType: 'JSON',
+        success: function (data) {
+          $("#listFavorites").empty();
+          $("#listFavorites").append("<li data-role='list-divider'>Favorites <span class='ui-li-count'>" + data['favoritescount'] + "</span></li>").listview("refresh");
+          $.each (data['friends'], function (index) {
+            $("#listFavorites").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+          });
+          $("#listFavorites").append("<li data-role='list-divider'></li>").listview("refresh");
+      }})  
+	// get contacts
     $.ajax({
         url: index + "/user/getcontact",
         type: 'POST',
@@ -858,8 +937,10 @@ function reloadContact() {
             $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
           });
           friendscount = data['friendscount'];
-          totalContacts();
-      }})             
+          
+      }})        
+
+      totalContacts();     
 }
 
 // function totalContacts

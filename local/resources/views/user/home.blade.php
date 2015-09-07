@@ -27,7 +27,8 @@
             
             <input type="search" placeholder="Search" id="searchbar" />
             <center><font size="2" color="black" id="totalcontacts">Total Contacts 0</font></center>
-            <div class="ui-content" role="main">                
+            <div class="ui-content" role="main">       
+                <ul data-role="listview" id="listFavorites"></ul>
                 <ul data-role="listview" id="list" data-autodividers="true"></ul>
             </div><!-- /content -->      
             
@@ -141,9 +142,18 @@
              
               <ul id="actionFriendProfileList" data-role="listview" data-inset="true"></ul>
 
-              <div class="ui-grid-a">
-                  <div class="ui-block-a"><a href="#editfriendprofile" id="editfriendprofilebuttonpage"  data-role="button" data-theme="b" data-mini="true" data-icon="edit" data-iconpos="top">Edit</a></div>
-                  <div class="ui-block-b"><a href="#popupDialog" data-rel="popup" data-position-to="window"  data-role="button"  data-transition="pop"  data-icon="delete" data-theme="b" data-mini="true" data-iconpos="top">Delete</a></div>
+              <div class="ui-grid-b">
+                  <div class="ui-block-a">
+                    <center>
+                      <select id="isfavoriteflipswitch" data-role="flipswitch">
+                        <option value="no">No</option>
+                        <option value="yes">Yes</option>
+                      </select>
+                      <label for="checkbox-based-flipswitch"><b>Favorite Contact ?</b></label>
+                    </center>
+                  </div>
+                  <div class="ui-block-b"><a href="#editfriendprofile" id="editfriendprofilebuttonpage"  data-role="button" data-theme="b" data-mini="true" data-icon="edit" data-iconpos="top">Edit</a></div>
+                  <div class="ui-block-c"><a href="#popupDialog" data-rel="popup" data-position-to="window"  data-role="button"  data-transition="pop"  data-icon="delete" data-theme="b" data-mini="true" data-iconpos="top">Delete</a></div>
               </div>
               <!-- popupDialog creating form -->
               <div data-role="popup" id="popupDialog" data-overlay-theme="a" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
@@ -326,7 +336,7 @@
 					    <select id="privateaccountflipswitch" data-role="flipswitch">
 						    <option value="no">No</option>
 						    <option value="yes">Yes</option>
-						</select>
+						  </select>
 					</div>
 				  </li>
                 </ul>

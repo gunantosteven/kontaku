@@ -82,13 +82,15 @@ Route::group(['middleware' => 'user'], function()
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
             ->select('friendsonline.user1 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
             ->where('friendsonline.user2', Auth::user()->id)
-            ->where('friendsonline.status', 'ACCEPTED');
+            ->where('friendsonline.status', 'ACCEPTED')
+            ->where('friendsonline.isfavorite', 0);
         $friendsonline2 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
             ->select('friendsonline.user2 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
             ->where('friendsonline.user1', Auth::user()->id)
-            ->where('friendsonline.status', 'ACCEPTED');
-        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname', DB::raw("'OFFLINE' as onlineoffline"))->where('user', Auth::user()->id);
+            ->where('friendsonline.status', 'ACCEPTED')
+            ->where('friendsonline.isfavorite', 0);
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname', DB::raw("'OFFLINE' as onlineoffline"))->where('user', Auth::user()->id)->where('isfavorite', 0);
         $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->take(20)->orderBy('fullname')->get();
 
 		$count = 0;
@@ -109,13 +111,15 @@ Route::group(['middleware' => 'user'], function()
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
             ->select('friendsonline.user1 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
             ->where('friendsonline.user2', Auth::user()->id)
-            ->where('friendsonline.status', 'ACCEPTED');
+            ->where('friendsonline.status', 'ACCEPTED')
+            ->where('friendsonline.isfavorite', 0);
         $friendsonline2 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
             ->select('friendsonline.user2 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
             ->where('friendsonline.user1', Auth::user()->id)
-            ->where('friendsonline.status', 'ACCEPTED');
-        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname', DB::raw("'OFFLINE' as onlineoffline"))->where('user', Auth::user()->id);
+            ->where('friendsonline.status', 'ACCEPTED')
+            ->where('friendsonline.isfavorite', 0);
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname', DB::raw("'OFFLINE' as onlineoffline"))->where('user', Auth::user()->id)->where('isfavorite', 0);
         $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->skip($friendscount)->take(10)->orderBy('fullname')->get();
 
 		$count = 0;
@@ -129,6 +133,35 @@ Route::group(['middleware' => 'user'], function()
 	    
 	    ///this route should returns json response
 	    return response()->json(['friendscount' => $friendscount, 'friends' => $array]);
+	});
+
+	Route::post('/user/getfavorites', function()
+	{
+		$friendsonline1 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
+            ->where('friendsonline.user2', Auth::user()->id)
+            ->where('friendsonline.status', 'ACCEPTED')
+            ->where('friendsonline.isfavorite', 1);
+        $friendsonline2 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
+            ->where('friendsonline.user1', Auth::user()->id)
+            ->where('friendsonline.status', 'ACCEPTED')
+            ->where('friendsonline.isfavorite', 1);
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname', DB::raw("'OFFLINE' as onlineoffline"))->where('user', Auth::user()->id)->where('isfavorite', 1);
+        $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->orderBy('fullname')->get();
+
+		$count = 0;
+		$array = array();
+
+		foreach ($combined as $friend)
+		{
+			$array[$count++] = array( "id" => $friend->id, "fullname" => $friend->fullname, "onlineoffline" => $friend->onlineoffline);
+		}
+
+	    //this route should returns json response
+	    return response()->json(['favoritescount' => $count, 'friends' => $array]);
 	});
 
 	Route::post('/user/search', function()
@@ -201,20 +234,22 @@ Route::group(['middleware' => 'user'], function()
 		// security check if this profile is her/his friend.
 		$friendsonline1 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
-            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+            ->select('friendsonline.isfavorite as isfavorite')
             ->where('friendsonline.user2', Auth::user()->id)
             ->where('friendsonline.user1', $id)
-            ->where('friendsonline.status', 'ACCEPTED')->count();
+            ->where('friendsonline.status', 'ACCEPTED');
         $friendsonline2 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
-            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+            ->select('friendsonline.isfavorite as isfavorite')
             ->where('friendsonline.user1', Auth::user()->id)
             ->where('friendsonline.user2', $id)
-            ->where('friendsonline.status', 'ACCEPTED')->count();
-        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('id', $id)->where('user', Auth::user()->id)->count();
-        $combinedCount = $friendsoffline + $friendsonline1 + $friendsonline2;
+            ->where('friendsonline.status', 'ACCEPTED');
+        $friendsoffline = DB::table('friendsoffline')->select('isfavorite')->where('id', $id)->where('user', Auth::user()->id);
+        $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->first();
 
-        if($combinedCount > 0)
+        $isfavorite = $combined->isfavorite;
+
+        if($isfavorite == 0 || $isfavorite == 1)
         {	
         	// if friend is friend online
         	$user = DB::table('users')->where('id', $id)->first();
@@ -230,6 +265,8 @@ Route::group(['middleware' => 'user'], function()
 			}
 
 			$user->onlineoffline = 'online';
+
+			$user->isfavorite = $isfavorite;
 
 		    //this route should returns json response
 		    return Response::json($user);
@@ -649,6 +686,47 @@ Route::group(['middleware' => 'user'], function()
 
 		return $img->response('png');
 	});
+
+	// edit my private account status
+	Route::put('user/changefavorite', function()
+	{
+		$id = Request::input('id');
+		$isfavorite = 0;
+
+		if( Request::input('isfavorite') == "yes")
+		{
+			$isfavorite = 1;
+		}
+		else
+		{
+			$isfavorite = 0;
+		}
+
+		if(Request::input('onlineoffline') == "online")
+		{
+			DB::table('friendsonline')
+            ->where('friendsonline.user2', Auth::user()->id)
+            ->where('friendsonline.user1', $id)
+            ->where('friendsonline.status', 'ACCEPTED')
+            ->update(['isfavorite' => $isfavorite]);
+
+            DB::table('friendsonline')
+            ->where('friendsonline.user2', $id)
+            ->where('friendsonline.user1', Auth::user()->id)
+            ->where('friendsonline.status', 'ACCEPTED')
+            ->update(['isfavorite' => $isfavorite]);
+		}
+		else
+		{
+			DB::table('friendsoffline')
+            ->where('id', $id)
+            ->update(['isfavorite' => $isfavorite]);
+		}
+		
+		
+
+   		return response()->json(['status' => true]);
+	});
 });
 
 Route::get('createdb',function(){
@@ -686,6 +764,7 @@ Route::get('createdb',function(){
 		$table->string('user2');
 		$table->foreign('user2')->references('id')->on('users');
 		$table->string('status');
+		$table->boolean('isfavorite')->default(0);
 		$table->timestamps();
 	});
 	Schema::create('friendsoffline',function($table){
@@ -700,6 +779,7 @@ Route::get('createdb',function(){
 		$table->string('twitter',30)->default('');
 		$table->string('instagram',30)->default('');
 		$table->string('line',30)->default('');
+		$table->boolean('isfavorite')->default(0);
 		$table->timestamps();
 	});
 
