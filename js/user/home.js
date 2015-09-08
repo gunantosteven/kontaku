@@ -390,7 +390,7 @@ $(document).on('pagebeforeshow', '#deletemygroups', function(){
     	  $("#mainDeleteMyGroups").append('<fieldset id="cbFieldSetDeleteMyGroups" data-role="controlgroup">');
     	  $("#cbFieldSetDeleteMyGroups").append("<ul data-role='listview' id='listdeletedetailmygroups' data-filter='true' data-inset='true' data-divider-theme='a'>");
           $.each (data['categories'], function (index) {
-          	$("#cbFieldSetDeleteMyGroups").append('<input type="checkbox" name="cb-'+index+'" id="cb-'+index+'" value="'+data['categories'][index]['id'] +'"/><label for="cb-'+index+'">'+data['categories'][index]['title']+'</label>');	
+          	$("#listdeletedetailmygroups").append('<input type="checkbox" name="cb-'+index+'" id="cb-'+index+'" value="'+data['categories'][index]['id'] +'"/><label for="cb-'+index+'">'+data['categories'][index]['title']+'</label>');	
           });
           $("#mainDeleteMyGroups").trigger("create");
       }})  
@@ -477,7 +477,7 @@ $(document).on('pagebeforeshow', '#adddetailmygroups', function(){
     	  $("#mainAddDetailMyGroups").append('<fieldset id="cbFieldSet" data-role="controlgroup">');
     	  $("#cbFieldSet").append("<ul data-role='listview' id='listadddetailmygroups' data-filter='true' data-inset='true' data-divider-theme='a'>");
           $.each (data['friends'], function (index) {
-          	$("#cbFieldSet").append('<input type="checkbox" name="cb-'+index+'" id="cb-'+index+'" value="'+data['friends'][index]['id'] + ';' + data['friends'][index]['onlineoffline'] +'"/><label for="cb-'+index+'">'+data['friends'][index]['fullname']+'</label>');	
+          	$("#listadddetailmygroups").append('<input type="checkbox" name="cb-'+index+'" id="cb-'+index+'" value="'+data['friends'][index]['id'] + ';' + data['friends'][index]['onlineoffline'] +'"/><label for="cb-'+index+'">' + '<img src="' + window.index + '/user/images/photos/' + data['friends'][index]['id'] + '?' + Math.random() + '"/>' + data['friends'][index]['fullname'] + '</label>');	
           });
           $("#mainAddDetailMyGroups").trigger("create");
       }})  
@@ -534,7 +534,7 @@ $(document).on('pagebeforeshow', '#deletedetailmygroups', function(){
     	  $("#mainDeleteDetailMyGroups").append('<fieldset id="cbFieldSetDeleteDetailMyGroups" data-role="controlgroup">');
     	  $("#cbFieldSetDeleteDetailMyGroups").append("<ul data-role='listview' id='listdeletedetailmygroups' data-filter='true' data-inset='true' data-divider-theme='a'>");
           $.each (data['detailcategories'], function (index) {
-          	$("#cbFieldSetDeleteDetailMyGroups").append('<input type="checkbox" name="cb-'+index+'" id="cb-'+index+'" value="'+data['detailcategories'][index]['id'] +'"/><label for="cb-'+index+'">'+data['detailcategories'][index]['fullname']+'</label>');	
+          	$("#listdeletedetailmygroups").append('<input type="checkbox" name="cb-'+index+'" id="cb-'+index+'" value="'+data['detailcategories'][index]['id'] +'"/><label for="cb-'+index+'">' + '<img src="' + window.index + '/user/images/photos/' + data['detailcategories'][index]['friendid'] + '?' + Math.random() + '"/>' + data['detailcategories'][index]['fullname']+'</label>');	
           });
           $("#mainDeleteDetailMyGroups").trigger("create");
       }})  
