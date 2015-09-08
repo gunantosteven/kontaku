@@ -293,7 +293,6 @@ Route::group(['middleware' => 'user'], function()
 	Route::post('/user/delete/groups', function()
 	{
 		$categoriesid = Request::input('categoriesid');
-		Log::warning($categoriesid);
 		for($i=0;$i<count($categoriesid);$i++){
 			DB::table('detailcategories')->where('category', $categoriesid[$i])->delete();
 			DB::table('categories')->where('id', $categoriesid[$i])->delete();
