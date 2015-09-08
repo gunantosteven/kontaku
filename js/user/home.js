@@ -977,6 +977,7 @@ function setBubbleCount() {
         success: function (data) {
           $("#totalcontacts").text('Total Contacts ' + data['totalcontacts']);
           $("#bubbleCountFavorites").text(data['favoritescount']);
+          $("#bubbleCountOtherContacts").show();
           $("#bubbleCountOtherContacts").text(data['totalcontacts'] - data['favoritescount']);
       }})             
 }
