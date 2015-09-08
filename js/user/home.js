@@ -2,6 +2,7 @@ var friendscount;
 var searchfriendscount;
 var friend;
 var friendonlineinvatitation;
+var category;
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
 /* ===================================js page home=================================== */
@@ -289,6 +290,256 @@ $(document).on('pagebeforeshow', '#home', function(){
 
 });  
 /* ===================================end js page home=================================== */
+
+/* ===================================js page mygroups=================================== */
+$(document).on('pageinit', '#mygroups', function(){  
+	$(document).on('click', '#submitCategory', function() { // catch the form's submit event
+      if($('#categorytitle').val().length > 0){
+          // Send data to server through the Ajax call
+          // action is functionality we want to call and outputJSON is our data
+          $.ajax({url: index + "/user/create/groups",
+              data: {_token: CSRF_TOKEN, action : 'create', formData : $('#createcategory').serialize()},
+              type: 'post',                   
+              async: 'true',
+              dataType: 'json',
+              beforeSend: function() {
+                  // This callback function will trigger before data is sent
+                  $.mobile.loading('show'); // This will show ajax spinner
+              },
+              complete: function() {
+                  // This callback function will trigger on data sent/received complete
+                  $.mobile.loading('hide'); // This will hide ajax spinner
+              },
+              success: function (result) {
+                  if(result.status) {
+                       $('input[id=categorytitle]').val('');
+                       reloadCategories();
+                  } else {
+                      alert('Something error happened!'); 
+                  }
+              },
+              error: function (request,error) {
+                  // This callback function will trigger on unsuccessful action                
+                  alert('Network error has occurred please try again!');
+              }
+          });                   
+      } else {
+          alert('Please fill all necessary fields');
+      }           
+      return false; // cancel original event to prevent form submitting
+  });      
+  $('#listmygroups').on('click', 'li', function() {
+      category = {id:$(this).attr('id').split(";")[0], title:$(this).attr('id').split(";")[1]};
+      $.mobile.changePage("#detailmygroups");
+  }); 
+
+}); 
+/* getmygroups before show */
+$(document).on('pagebeforeshow', '#mygroups', function(){    
+  reloadCategories();
+}); 
+/* ===================================end js page mygroups=================================== */
+
+/* ===================================js page deletemygroups=================================== */
+$(document).on('pageinit', '#deletemygroups', function(){  
+  $(document).on("click", "#submitdeletemygroups" ,function (event) {
+      var count = $("#cbFieldSetDeleteMyGroups input:checked").length;
+      var categoriesid = new Array();
+      for(i=0;i<count;i++){
+      	categoriesid[i] = $("#cbFieldSetDeleteMyGroups input:checked")[i].value;
+      }
+      $.ajax({url: index + "/user/delete/groups",
+              data: {_token: CSRF_TOKEN, action : 'delete', categoriesid : categoriesid},
+              type: 'post',                   
+              async: 'true',
+              dataType: 'json',
+              beforeSend: function() {
+                  // This callback function will trigger before data is sent
+                  $.mobile.loading('show'); // This will show ajax spinner
+              },
+              complete: function() {
+                  // This callback function will trigger on data sent/received complete
+                  $.mobile.loading('hide'); // This will hide ajax spinner
+              },
+              success: function (result) {
+                  if(result.status) {
+                  	   $.mobile.pageContainer.pagecontainer("change", "#mygroups", {transition: "slide"});
+                  } else {
+                      alert('Something error happened!'); 
+                  }
+              },
+              error: function (request,error) {
+                  // This callback function will trigger on unsuccessful action                
+                  alert('Network error has occurred please try again!');
+              }
+      });    
+
+  }); 
+}); 
+/* deletemygroups before show */
+$(document).on('pagebeforeshow', '#deletemygroups', function(){    
+    $.ajax({
+        url: index + "/user/getmygroups",
+        type: 'POST',
+        data: {_token: CSRF_TOKEN},
+        dataType: 'JSON',
+        success: function (data) {
+          $("#mainDeleteMyGroups").html("");
+          $("#mainAddDetailMyGroups").html("");
+          $("#mainDeleteDetailMyGroups").html("");
+    	  $("#mainDeleteMyGroups").append('<fieldset id="cbFieldSetDeleteMyGroups" data-role="controlgroup">');
+    	  $("#cbFieldSetDeleteMyGroups").append("<ul data-role='listview' id='listdeletedetailmygroups' data-filter='true' data-inset='true' data-divider-theme='a'>");
+          $.each (data['categories'], function (index) {
+          	$("#cbFieldSetDeleteMyGroups").append('<input type="checkbox" name="cb-'+index+'" id="cb-'+index+'" value="'+data['categories'][index]['id'] +'"/><label for="cb-'+index+'">'+data['categories'][index]['title']+'</label>');	
+          });
+          $("#mainDeleteMyGroups").trigger("create");
+      }})  
+}); 
+/* ===================================end js page deletemygroups=================================== */
+
+/* ===================================js page detailmygroups=================================== */
+$(document).on('pageinit', '#detailmygroups', function(){  
+	/*When click contact listdetailmygroups*/
+  $(document).on("click", "#listdetailmygroups li" ,function (event) {
+    if($(this).attr('id') !== undefined)
+    {
+      $.ajax({
+              url: index + "/user/friendprofile",
+              type: 'POST',
+              data: {_token: CSRF_TOKEN, id : $(this).attr('id')},
+              dataType: 'JSON',
+              success: function (data) {
+                if(data != null)
+                {
+                  friend = data;
+                  $.mobile.changePage("#friendprofile");
+                }
+              }
+          });
+    }
+  }); 
+}); 
+/* getmygroups before show */
+$(document).on('pagebeforeshow', '#detailmygroups', function(){    
+  reloadDetailCategories();
+}); 
+/* ===================================end js page detailmygroups=================================== */
+
+/* ===================================js page adddetailmygroups=================================== */
+$(document).on('pageinit', '#adddetailmygroups', function(){  
+	/*When click contact listdetailmygroups*/
+  $(document).on("click", "#submitadddetailmygroups" ,function (event) {
+      var count = $("#cbFieldSet input:checked").length;
+      var friends = new Array();
+      for(i=0;i<count;i++){
+      	friends[i] = $("#cbFieldSet input:checked")[i].value;
+      }
+
+      $.ajax({url: index + "/user/create/detailgroups",
+              data: {_token: CSRF_TOKEN, action : 'create', categoryid : category.id, friends : friends},
+              type: 'post',                   
+              async: 'true',
+              dataType: 'json',
+              beforeSend: function() {
+                  // This callback function will trigger before data is sent
+                  $.mobile.loading('show'); // This will show ajax spinner
+              },
+              complete: function() {
+                  // This callback function will trigger on data sent/received complete
+                  $.mobile.loading('hide'); // This will hide ajax spinner
+              },
+              success: function (result) {
+                  if(result.status) {
+                  	   $.mobile.pageContainer.pagecontainer("change", "#detailmygroups", {transition: "slide"});
+                  } else {
+                      alert('Something error happened!'); 
+                  }
+              },
+              error: function (request,error) {
+                  // This callback function will trigger on unsuccessful action                
+                  alert('Network error has occurred please try again!');
+              }
+      });    
+
+  }); 
+}); 
+/* getmygroups before show */
+$(document).on('pagebeforeshow', '#adddetailmygroups', function(){    
+    $.ajax({
+        url: index + "/user/getallcontactforgroup",
+        type: 'POST',
+        data: {_token: CSRF_TOKEN, categoryid : category.id},
+        dataType: 'JSON',
+        success: function (data) {
+          $("#mainDeleteMyGroups").html("");
+          $("#mainDeleteDetailMyGroups").html("");
+          $("#mainAddDetailMyGroups").html("");
+    	  $("#mainAddDetailMyGroups").append('<fieldset id="cbFieldSet" data-role="controlgroup">');
+    	  $("#cbFieldSet").append("<ul data-role='listview' id='listadddetailmygroups' data-filter='true' data-inset='true' data-divider-theme='a'>");
+          $.each (data['friends'], function (index) {
+          	$("#cbFieldSet").append('<input type="checkbox" name="cb-'+index+'" id="cb-'+index+'" value="'+data['friends'][index]['id'] + ';' + data['friends'][index]['onlineoffline'] +'"/><label for="cb-'+index+'">'+data['friends'][index]['fullname']+'</label>');	
+          });
+          $("#mainAddDetailMyGroups").trigger("create");
+      }})  
+}); 
+/* ===================================end js page adddetailmygroups=================================== */
+
+/* ===================================js page deletedetailmygroups=================================== */
+$(document).on('pageinit', '#deletedetailmygroups', function(){  
+  $(document).on("click", "#submitdeletedetailmygroups" ,function (event) {
+      var count = $("#cbFieldSetDeleteDetailMyGroups input:checked").length;
+      var detailcategoriesid = new Array();
+      for(i=0;i<count;i++){
+      	detailcategoriesid[i] = $("#cbFieldSetDeleteDetailMyGroups input:checked")[i].value;
+      }
+      $.ajax({url: index + "/user/delete/detailgroups",
+              data: {_token: CSRF_TOKEN, action : 'delete', detailcategoriesid : detailcategoriesid},
+              type: 'post',                   
+              async: 'true',
+              dataType: 'json',
+              beforeSend: function() {
+                  // This callback function will trigger before data is sent
+                  $.mobile.loading('show'); // This will show ajax spinner
+              },
+              complete: function() {
+                  // This callback function will trigger on data sent/received complete
+                  $.mobile.loading('hide'); // This will hide ajax spinner
+              },
+              success: function (result) {
+                  if(result.status) {
+                  	   $.mobile.pageContainer.pagecontainer("change", "#detailmygroups", {transition: "slide"});
+                  } else {
+                      alert('Something error happened!'); 
+                  }
+              },
+              error: function (request,error) {
+                  // This callback function will trigger on unsuccessful action                
+                  alert('Network error has occurred please try again!');
+              }
+      });    
+
+  }); 
+}); 
+/* deletedetailmygroups before show */
+$(document).on('pagebeforeshow', '#deletedetailmygroups', function(){    
+    $.ajax({
+        url: index + "/user/getdetailgroups",
+        type: 'POST',
+        data: {_token: CSRF_TOKEN, categoryid : category.id},
+        dataType: 'JSON',
+        success: function (data) {
+          $("#mainDeleteMyGroups").html("");
+          $("#mainAddDetailMyGroups").html("");
+          $("#mainDeleteDetailMyGroups").html("");
+    	  $("#mainDeleteDetailMyGroups").append('<fieldset id="cbFieldSetDeleteDetailMyGroups" data-role="controlgroup">');
+    	  $("#cbFieldSetDeleteDetailMyGroups").append("<ul data-role='listview' id='listdeletedetailmygroups' data-filter='true' data-inset='true' data-divider-theme='a'>");
+          $.each (data['detailcategories'], function (index) {
+          	$("#cbFieldSetDeleteDetailMyGroups").append('<input type="checkbox" name="cb-'+index+'" id="cb-'+index+'" value="'+data['detailcategories'][index]['id'] +'"/><label for="cb-'+index+'">'+data['detailcategories'][index]['fullname']+'</label>');	
+          });
+          $("#mainDeleteDetailMyGroups").trigger("create");
+      }})  
+}); 
+/* ===================================end js page deletedetailmygroups=================================== */
 
 /* ===================================js page friendprofile=================================== */
 $(document).on('pageinit', '#friendprofile', function(){  
@@ -921,6 +1172,38 @@ function reloadContact() {
 	setBubbleCount();    
 	getFavoritesContact();
 	getContacts();
+}
+
+// function reloadCategories
+function reloadCategories() {
+	$("#listmygroups").empty();
+
+	$.ajax({
+	    url: index + "/user/getmygroups",
+	    type: 'POST',
+	    data: {_token: CSRF_TOKEN},
+	    dataType: 'JSON',
+	    success: function (data) {
+	      $.each (data['categories'], function (index) {
+	      	$("#listmygroups").append("<li id='"  + data['categories'][index]['id'] + ";" + data['categories'][index]['title'] + "'><a href='#'>" + data['categories'][index]['title']  + "</a>" + "</li>").listview("refresh");
+	      });
+	  }})  
+}
+
+// function reloadDetailCategories
+function reloadDetailCategories() {
+	$("#listdetailmygroups").empty();
+	$("#myHeaderDetailGroups").text(category.title);
+	$.ajax({
+	    url: index + "/user/getdetailgroups",
+	    type: 'POST',
+	    data: {_token: CSRF_TOKEN, categoryid : category.id},
+	    dataType: 'JSON',
+	    success: function (data) {
+	      $.each (data['detailcategories'], function (index) {
+	      	$("#listdetailmygroups").append("<li id='"  + data['detailcategories'][index]['friendid'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['detailcategories'][index]['friendid'] + "?" + Math.random() + "'/>" + data['detailcategories'][index]['fullname'] + "<p>" + data['detailcategories'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+	      });
+	  }})  
 }
 
 function getFavoritesContact()

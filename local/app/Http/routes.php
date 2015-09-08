@@ -75,7 +75,6 @@ Route::group(['middleware' => 'user'], function()
 		    'uses' => 'ShowContactController@invite'
 	]);
 
-
     Route::post('/user/getcontact', function()
 	{
 		$friendsonline1 = DB::table('users')
@@ -219,6 +218,143 @@ Route::group(['middleware' => 'user'], function()
 	    
 	    //this route should returns json response
 	    return response()->json(['searchfriendscount' => $searchfriendscount, 'friends' => $array]);
+	});
+
+	Route::post('/user/getallcontactforgroup', function()
+	{
+		$detailcategories = DB::table('detailcategories')
+			->select('friendid')
+			->where('category', Request::input('categoryid'))->get();
+		$count = 0;
+		$array = array();
+		foreach ($detailcategories as $detailcategory)
+		{
+			$array[$count++] = $detailcategory->friendid;
+		}
+
+		$friendsonline1 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
+            ->where('friendsonline.user2', Auth::user()->id)
+            ->where('friendsonline.user1', 'ACCEPTED')
+            ->whereNotIn('friendsonline.user1', $array);
+        $friendsonline2 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
+            ->where('friendsonline.user1', Auth::user()->id)
+            ->where('friendsonline.status', 'ACCEPTED')
+            ->whereNotIn('friendsonline.user2', $array);
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname', DB::raw("'OFFLINE' as onlineoffline"))->where('user', Auth::user()->id)->where('isfavorite', 0)->whereNotIn('id', $array);
+        $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->orderBy('fullname')->get();
+
+		$count = 0;
+		$array = array();
+
+		foreach ($combined as $friend)
+		{
+			$array[$count++] = array( "id" => $friend->id, "fullname" => $friend->fullname, "onlineoffline" => $friend->onlineoffline);
+		}
+
+	    //this route should returns json response
+	    return response()->json(['friends' => $array]);
+	});
+
+	Route::post('/user/getmygroups', function()
+	{
+        $categories = DB::table('categories')
+        				->select('id', 'title')
+        				->where('user', Auth::user()->id)
+        				->orderBy('title')->get();
+
+		$count = 0;
+		$array = array();
+
+		foreach ($categories as $category)
+		{
+			$array[$count++] = array( "id" => $category->id, "title" => $category->title);
+		}
+
+	    //this route should returns json response
+	    return response()->json(['categories' => $array]);
+	});
+
+	Route::post('/user/create/groups', function()
+	{
+		parse_str(Request::input('formData'), $output);
+		$id = Uuid::generate();
+		\App\Models\Category::create(array(
+			'id' => $id,
+		    'user' => Auth::user()->id,
+		    'title' => $output['title'],
+		));
+   		return response()->json(['status' => true]);
+	});
+
+	Route::post('/user/delete/groups', function()
+	{
+		$categoriesid = Request::input('categoriesid');
+		Log::warning($categoriesid);
+		for($i=0;$i<count($categoriesid);$i++){
+			DB::table('detailcategories')->where('category', $categoriesid[$i])->delete();
+			DB::table('categories')->where('id', $categoriesid[$i])->delete();
+        }
+   		return response()->json(['status' => true]);
+	});
+
+	Route::post('/user/getdetailgroups', function()
+	{
+        $detailcategories = DB::table('detailcategories')
+        				->select('id', 'friendid', 'onlineoffline')
+        				->where('category', Request::input('categoryid'))->get();
+
+		$count = 0;
+		$array = array();
+
+		foreach ($detailcategories as $detailcategory)
+		{
+			if($detailcategory->onlineoffline == "ONLINE")
+			{
+				$array[$count++] = array( "id" => $detailcategory->id, 
+				"friendid" => $detailcategory->friendid,
+				"fullname" => DB::table('users')->select('fullname')->where('id', $detailcategory->friendid)->first()->fullname, 
+				"onlineoffline" => $detailcategory->onlineoffline);
+			}
+			else
+			{
+				$array[$count++] = array( "id" => $detailcategory->id, 
+				"friendid" => $detailcategory->friendid,
+				"fullname" => DB::table('friendsoffline')->select('fullname')->where('id', $detailcategory->friendid)->first()->fullname, 
+				"onlineoffline" => $detailcategory->onlineoffline);
+			}
+		}
+
+	    //this route should returns json response
+	    return response()->json(['detailcategories' => $array]);
+	});
+
+	Route::post('/user/create/detailgroups', function()
+	{
+		$friends = Request::input('friends');
+		for($i=0;$i<count($friends);$i++){
+			$split = explode(";", $friends[$i]);
+			$id = Uuid::generate();
+			\App\Models\DetailCategory::create(array(
+				'id' => $id,
+			    'category' => Request::input('categoryid'),
+			    'friendid' => $split[0],
+			    'onlineoffline' => $split[1],
+			));
+        }
+   		return response()->json(['status' => true]);
+	});
+
+	Route::post('user/delete/detailgroups', function()
+	{
+		$detailcategoriesid = Request::input('detailcategoriesid');
+		for($i=0;$i<count($detailcategoriesid);$i++){
+			DB::table('detailcategories')->where('id', $detailcategoriesid[$i])->delete();
+        }
+   		return response()->json(['status' => true]);
 	});
 
 	Route::post('/user/profile', function()
@@ -796,6 +932,23 @@ Route::get('createdb',function(){
 		$table->string('instagram',30)->default('');
 		$table->string('line',30)->default('');
 		$table->boolean('isfavorite')->default(0);
+		$table->timestamps();
+	});
+
+	Schema::create('categories',function($table){
+		$table->string('id')->primary();
+		$table->string('user');
+		$table->foreign('user')->references('id')->on('users');
+		$table->string('title')->unique();
+		$table->timestamps();
+	});
+
+	Schema::create('detailcategories',function($table){
+		$table->string('id')->primary();
+		$table->string('category');
+		$table->foreign('category')->references('id')->on('categories');
+		$table->string('friendid');
+		$table->string('onlineoffline')->default('');
 		$table->timestamps();
 	});
 

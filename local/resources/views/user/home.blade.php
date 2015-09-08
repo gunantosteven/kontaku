@@ -27,7 +27,11 @@
             
             <input type="search" placeholder="Search" id="searchbar" />
             <center><font size="2" color="black" id="totalcontacts">Total Contacts 0</font></center>
-            <div class="ui-content" role="main">       
+            <div class="ui-content" role="main">      
+              <ul data-role="listview">
+                <li><a href="#mygroups">My Groups</a></li>
+                <li data-role="list-divider"></li>
+              </ul> 
               <div id="collapsibleFavorites" data-role="collapsible" data-inset="false" data-collapsed="false">
                 <h2><span id="myHeaderFavorites">Favorites</span><span id="bubbleCountFavorites" class="ui-li-count">0</span></h2>
                 <ul data-role="listview" id="listFavorites"></ul>
@@ -90,6 +94,110 @@
             </div><!-- /panel -->
         </div><!-- /page -->      
 
+        <div data-role="page" id="mygroups"><!-- Page MyGroups -->     
+            <div data-role="header">         
+                <h1>
+                    My Groups
+                </h1>     
+                <a href="#home" data-icon="back" data-iconpos="notext">Back</a>
+                <a href="#add-category" data-icon="plus" data-iconpos="notext">Add Category</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listmygroups" data-filter="true" data-inset="true" data-divider-theme="a"></ul>
+                <div class="ui-grid-a">
+                  <div class="ui-block-a"></div>
+                  <div class="ui-block-b"><a href="#deletemygroups" id="deletemygroups"  data-role="button" data-theme="b" data-mini="true" data-icon="delete" data-iconpos="top">Delete</a></div>
+                </div>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+
+            <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="add-category" data-theme="b">
+              <h2>Create Category</h2>
+              <form id="createcategory" class="ui-body ui-body-a ui-corner-all" data-ajax="false" >
+                <label for="name">Category Title</label>
+                <input type="text" name="title" id="categorytitle" value="" data-clear-btn="true" data-mini="true">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a"><a href="#" data-rel="close" data-role="button" data-theme="c" data-mini="true">Cancel</a></div>
+                    <div class="ui-block-b"><input type="button" data-theme="b" name="submitCategory"   id="submitCategory" value="Submit" data-theme="b" data-mini="true"></div>
+                </div>
+              </form>
+            </div>
+        </div><!-- /end page MyGroups -->  
+
+        <div data-role="page" id="deletemygroups"><!-- Page deletemygroups -->     
+            <div data-role="header">         
+                <h1>
+                    Select items
+                </h1>     
+                <a href="#mygroups" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main" id="mainDeleteMyGroups">    
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <center><a href="#" id="submitdeletemygroups"  data-role="button" data-theme="b" data-mini="true" data-icon="delete" data-iconpos="top">Delete</a></center>
+            </div>
+        </div><!-- /end page deletemygroups --> 
+
+        <div data-role="page" id="detailmygroups"><!-- Page DetailMyGroups -->     
+            <div data-role="header" id="header1">         
+                <h1 id="myHeaderDetailGroups">
+                    My Detail Groups
+                </h1>     
+                <a href="#mygroups" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listdetailmygroups" data-filter="true" data-inset="true" data-divider-theme="a"></ul>
+                <div class="ui-grid-a">
+                  <div class="ui-block-a"><a href="#adddetailmygroups" id="adddetailmygroups"  data-role="button" data-theme="b" data-mini="true" data-icon="plus" data-iconpos="top">Add</a></div>
+                  <div class="ui-block-b"><a href="#deletedetailmygroups" id="deletedetailmygroups"  data-role="button" data-theme="b" data-mini="true" data-icon="delete" data-iconpos="top">Delete</a></div>
+              </div>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page DetailMyGroups -->  
+
+        <div data-role="page" id="adddetailmygroups"><!-- Page adddetailmygroups -->     
+            <div data-role="header">         
+                <h1>
+                    Select items
+                </h1>     
+                <a href="#detailmygroups" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main" id="mainAddDetailMyGroups">    
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <center><a href="#" id="submitadddetailmygroups"  data-role="button" data-theme="b" data-mini="true" data-icon="plus" data-iconpos="top">Add</a></center>
+            </div>
+        </div><!-- /end page adddetailmygroups -->  
+
+        <div data-role="page" id="deletedetailmygroups"><!-- Page deletedetailmygroups -->     
+            <div data-role="header">         
+                <h1>
+                    Select items
+                </h1>     
+                <a href="#detailmygroups" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main" id="mainDeleteDetailMyGroups">    
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <center><a href="#" id="submitdeletedetailmygroups"  data-role="button" data-theme="b" data-mini="true" data-icon="delete" data-iconpos="top">Delete</a></center>
+            </div>
+        </div><!-- /end page deletedetailmygroups --> 
+
+
         <div data-role="page" id="editmyprofile">
           <form id="formEditMyProfile"  data-ajax="false">
           <div data-role="header" data-theme="a" id="header1">
@@ -136,7 +244,7 @@
         <div data-role="page" id="friendprofile">
           <div data-role="header" data-theme="a" id="header1">
              <h3>My Friend Profile</h3>
-             <a href="#home" data-icon="back" data-iconpos="notext">Back</a>
+             <a href="#" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
           </div><!-- /header --> 
 
           <div class="ui-content" role="main">
