@@ -33,7 +33,7 @@
                 <ul data-role="listview" id="listFavorites"></ul>
               </div>
               <div id="collapsibleOtherContacts" data-role="collapsible" data-inset="false" data-collapsed="false">
-                <h2><span id="myHeaderOtherContacts">Other Contacts</span></h2>
+                <h2><span id="myHeaderOtherContacts">Other Contacts</span><span id="bubbleCountOtherContacts" class="ui-li-count">0</span></h2>
                 <ul data-role="listview" id="list" data-autodividers="true"></ul>
               </div>
             </div><!-- /content -->      

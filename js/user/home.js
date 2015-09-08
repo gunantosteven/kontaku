@@ -918,7 +918,7 @@ $(document).on('pagebeforecreate', '#settingsaccount', function(){
 
 // function reloadContact
 function reloadContact() {
-	totalContacts();    
+	setBubbleCount();    
 	getFavoritesContact();
 	getContacts();
 }
@@ -944,8 +944,6 @@ function getFavoritesContact()
             $.each (data['friends'], function (index) {
             	$("#listFavorites").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
           	});
-          	
-          	$("#bubbleCountFavorites").text(data['favoritescount']);
           }
       }})  
 }
@@ -970,13 +968,15 @@ function getContacts()
 }
 
 // function totalContacts
-function totalContacts() {
+function setBubbleCount() {
     $.ajax({
-        url: index + "/user/totalcontacts",
+        url: index + "/user/getbubblecount",
         type: 'POST',
         data: {_token: CSRF_TOKEN},
         dataType: 'JSON',
         success: function (data) {
           $("#totalcontacts").text('Total Contacts ' + data['totalcontacts']);
+          $("#bubbleCountFavorites").text(data['favoritescount']);
+          $("#bubbleCountOtherContacts").text(data['totalcontacts'] - data['favoritescount']);
       }})             
 }

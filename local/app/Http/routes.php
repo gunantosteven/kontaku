@@ -161,7 +161,7 @@ Route::group(['middleware' => 'user'], function()
 		}
 
 	    //this route should returns json response
-	    return response()->json(['favoritescount' => $count, 'friends' => $array]);
+	    return response()->json(['friends' => $array]);
 	});
 
 	Route::post('/user/search', function()
@@ -592,9 +592,10 @@ Route::group(['middleware' => 'user'], function()
    		return response()->json(['status' => true]);
 	});
 
-	Route::post('/user/totalcontacts', function()
+	Route::post('/user/getbubblecount', function()
 	{
 		$totalcontacts =  0;
+		$favoritescount = 0;
 
 		$friendsonline1 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
@@ -609,8 +610,23 @@ Route::group(['middleware' => 'user'], function()
         $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('user', Auth::user()->id)->count();
         $totalcontacts = $friendsoffline + $friendsonline1 + $friendsonline2;
 
+        $friendsonline1 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
+            ->where('friendsonline.user2', Auth::user()->id)
+            ->where('friendsonline.status', 'ACCEPTED')
+            ->where('friendsonline.isfavorite', 1)->count();
+        $friendsonline2 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
+            ->where('friendsonline.user1', Auth::user()->id)
+            ->where('friendsonline.status', 'ACCEPTED')
+            ->where('friendsonline.isfavorite', 1)->count();
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname', DB::raw("'OFFLINE' as onlineoffline"))->where('user', Auth::user()->id)->where('isfavorite', 1)->count();
+        $favoritescount = $friendsoffline + $friendsonline1 + $friendsonline2;
+
 	    //this route should returns json response
-	    return response()->json(['totalcontacts' => $totalcontacts]);
+	    return response()->json(['totalcontacts' => $totalcontacts, 'favoritescount' => $favoritescount]);
 	});
 
 	// get image
