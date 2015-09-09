@@ -689,7 +689,7 @@ $(document).on('pageinit', '#editfriendprofile', function(){
                       friend.twitter = $('#editfriendtwitter').val();
                       friend.instagram = $('#editfriendinstagram').val();
                       friend.line = $('#editfriendline').val();
-                      $.mobile.pageContainer.pagecontainer("change", "#friendprofile", {transition: "slide"});
+                      $.mobile.back();
                       reloadContact();
                 } else {
                     alert('Something error happened!'); 
