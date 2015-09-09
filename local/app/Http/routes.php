@@ -462,6 +462,10 @@ Route::group(['middleware' => 'user'], function()
 	{
 		$id = Request::input('id');
 		$onlineoffline = Request::input('onlineoffline');
+
+		// delete in detailcategories table
+		DB::table('detailcategories')->where('friendid', $id)->delete();
+
 		if($onlineoffline == "online")
 		{
 			// if user1 is authentic user
