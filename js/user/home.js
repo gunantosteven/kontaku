@@ -1109,6 +1109,17 @@ $(document).on('pagebeforecreate', '#settingsaccount', function(){
               }
             }
         });
+
+  $.ajax({
+            url: index + "/user/profile",
+            type: 'POST',
+            data: {_token: CSRF_TOKEN},
+            dataType: 'JSON',
+            success: function (data) {
+              $('#settingsaccountmyemail').text(data.email);
+              $('#settingsaccountmyurl').text("kontakku.com/" + data.url);
+            }
+        });
 }); 
 /* ===================================end js page settingsaccount=================================== */
 

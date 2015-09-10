@@ -442,6 +442,8 @@
             
             <div class="ui-content" role="main">                
                 <ul data-role="listview" id="listsettings" data-inset="true">
+                  <li id=''><b>My Email </b><p><font id="settingsaccountmyemail" size="2px"></font></p></li>
+                  <li id=''><b>My URL </b><p><font id="settingsaccountmyurl" size="2px"></font></p></li>
                   <li id=''><a href='#editmyprofile'>Edit Profile</a></li>
                   <li id=''><a href='#changepassword'>Change Password</a></li>
                   <li id=''>
@@ -501,7 +503,7 @@
             </div>
         </div><!-- /end page Reports -->  
 
-        <div data-role="page" id="help"><!-- Page Reports -->     
+        <div data-role="page" id="help"><!-- Page Help -->     
                   <div data-role="header" data-theme="a" id="header1">
                      <h3>Help</h3>
                      <a href="#home" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
@@ -528,7 +530,7 @@
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">
                  <h1>Copyright @ 2015 KONTAKKU. All rights reserved.</h1>
             </div>
-        </div><!-- /end page Reports -->  
+        </div><!-- /end page Help -->  
 
         <div data-role="page" id="importantphonecountry"><!-- Page Important Phone Country -->     
             <div data-role="header">         
@@ -551,7 +553,7 @@
             </div>
         </div><!-- /end page Important Phone Country -->   
 
-        <div data-role="page" id="importantphonecityindonesia"><!-- Page Important Phone City -->     
+        <div data-role="page" id="importantphonecityindonesia"><!-- Page Important Phone City Indonesia -->     
             <div data-role="header">         
                 <h1>
                     Select City
