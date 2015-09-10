@@ -485,7 +485,7 @@
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">
                  <h1>Footer</h1>
             </div>
-        </div><!-- /end page Settings -->  
+        </div><!-- /end page Change Password -->  
 
         <div data-role="page" id="reports"><!-- Page Reports -->     
                   <div data-role="header" data-theme="a" id="header1">
@@ -543,7 +543,6 @@
             <div class="ui-content" role="main">                
                 <ul data-role="listview" id="listimportantphonecountry" data-inset="true" data-filter="true">
                   <li id=''><a href='#importantphonecityindonesia'>Indonesian</a></li>
-                  <li id=''><a href='#'>USA</a></li>
 				  </li>
                 </ul>
             </div><!-- /content -->      
@@ -563,23 +562,22 @@
             
             <div class="ui-content" role="main">                
                 <ul data-role="listview" id="listimportantphonecityindonesia" data-inset="true" data-filter="true">
-                  <li id=''><a href='#importantphonesurabaya'>Surabaya</a></li>
                   <li id=''><a href='#'>Jakarta</a></li>
-				  </li>
+                  <li id=''><a href='#importantphonesurabaya'>Surabaya</a></li>
                 </ul>
             </div><!-- /content -->      
             
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">
                  <h1>Footer</h1>
             </div>
-        </div><!-- /end page Important Phone City -->   
+        </div><!-- /end page Important Phone City Indonesia -->   
 
         <div data-role="page" id="importantphonesurabaya"><!-- Page Important Phone Surabaya -->     
             <div data-role="header">         
                 <h1>
                     Call Number Surabaya Important Number
                 </h1>     
-                <a href="#home" data-icon="back" data-iconpos="notext">Back</a>
+                <a href="#importantphonecityindonesia" data-icon="back" data-iconpos="notext">Back</a>
             </div><!-- /header -->      
             
             <div class="ui-content" role="main">                
@@ -608,7 +606,7 @@
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">
                  <h1>Source www.surabaya.go.id accessed 31 August 2015</h1>
             </div>
-        </div><!-- /end page Surabaya -->   
+        </div><!-- /end Page Important Phone Surabaya -->   
 
     </body>
 </html>
