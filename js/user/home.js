@@ -592,10 +592,14 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
     {
       $('#friendprofileonlineoffline').text('OFFLINE');
     }
-    
+
     if (friend.email) {
       $('#actionFriendProfileList').append('<li><a href="mailto:' + friend.email + '"><h3>Email</h3>' +
           '<p>' + friend.email + '</p></a></li>');
+    }
+    if (friend.url) {
+      $('#actionFriendProfileList').append('<li><a target="_blank" href="http://kontakku.com/' + friend.url + '"><h3>URL</h3>' +
+          '<p>kontakku.com/' + friend.url + '</p></a></li>');
     }
     if (friend.phone) {
       $('#actionFriendProfileList').append('<li><a href="tel:' + friend.phone + '"><h3>Call This Number</h3>' +
