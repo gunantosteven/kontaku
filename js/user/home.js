@@ -1145,7 +1145,7 @@ function reloadCategories() {
 	    dataType: 'JSON',
 	    success: function (data) {
 	      $.each (data['categories'], function (index) {
-	      	$("#listmygroups").append("<li id='"  + data['categories'][index]['id'] + ";" + data['categories'][index]['title'] + "'><a href='#'>" + data['categories'][index]['title']  + "</a>" + "</li>").listview("refresh");
+	      	$("#listmygroups").append("<li id='"  + data['categories'][index]['id'] + ";" + data['categories'][index]['title'] + "'><a href='#'>" + data['categories'][index]['title'] + "<span class='ui-li-count'>" + data['categories'][index]['count'] + "</span>"  + "</a>" + "</li>").listview("refresh");
 	      });
 	  }})  
 }
