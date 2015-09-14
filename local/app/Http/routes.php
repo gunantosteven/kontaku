@@ -271,7 +271,8 @@ Route::group(['middleware' => 'user'], function()
 
 		foreach ($categories as $category)
 		{
-			$array[$count++] = array( "id" => $category->id, "title" => $category->title);
+			$countCategory = DB::table('detailcategories')->where('category', $category->id)->count();
+			$array[$count++] = array( "id" => $category->id, "title" => $category->title, "count" => $countCategory);
 		}
 
 	    //this route should returns json response
