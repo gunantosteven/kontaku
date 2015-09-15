@@ -542,71 +542,55 @@
             
             <div class="ui-content" role="main">                
                 <ul data-role="listview" id="listimportantphonecountry" data-inset="true" data-filter="true">
-                  <li id=''><a href='#importantphonecityindonesia'>Indonesian</a></li>
+                  <li id=''><a href='#importantphoneindonesia'>Indonesian</a></li>
 				  </li>
                 </ul>
             </div><!-- /content -->      
             
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
+                 <h1>Source : id.wikipedia.org/wiki/Nomor_telepon_darurat</h1>
             </div>
         </div><!-- /end page Important Phone Country -->   
 
-        <div data-role="page" id="importantphonecityindonesia"><!-- Page Important Phone City Indonesia -->     
+        <div data-role="page" id="importantphoneindonesia"><!-- Page Important Phone Indonesia -->     
             <div data-role="header">         
                 <h1>
-                    Select City
+                    Nomor telepon darurat
                 </h1>     
-                <a href="#home" data-icon="back" data-iconpos="notext">Back</a>
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
             </div><!-- /header -->      
             
             <div class="ui-content" role="main">                
-                <ul data-role="listview" id="listimportantphonecityindonesia" data-inset="true" data-filter="true">
-                  <li id=''><a href='#'>Jakarta</a></li>
-                  <li id=''><a href='#importantphonesurabaya'>Surabaya</a></li>
+                <ul data-role="listview" id="listimportantphoneindonesia" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Polisi</li>
+                    <li><a href='tel:110'>110<p>Polisi</p></a></li>
+                  <li data-role="list-divider">Ambulans</li>
+                    <li><a href='118'>118<p>Ambulans 1</p></a></li>
+                    <li><a href='119'>119<p>Ambulans 2</p></a></li>
+                  <li data-role="list-divider">Badan Search and Rescue Nasional</li>
+                    <li><a href='tel:115'>115<p>Badan Search and Rescue Nasional</p></a></li>
+                  <li data-role="list-divider">Posko bencana alam</li>
+                    <li><a href='tel:129'>129<p>Posko bencana alam</p></a></li>
+                  <li data-role="list-divider">Perusahaan Listrik Negara (PLN)</li>
+                    <li><a href='tel:123'>123<p>Perusahaan Listrik Negara (PLN)</p></a></li>
+                  <li data-role="list-divider">Nomor darurat telpon selular dan satelit</li>
+                    <li><a href='tel:112'>112<p>Nomor darurat telpon selular dan satelit</p></a></li>
+                  <li data-role="list-divider">Keracunan</li>
+                    <li><a href='tel:(021) 4250767'>(021) 4250767<p>Keracunan 1</p></a></li>
+                    <li><a href='tel:(021) 4227875'>(021) 4227875<p>Keracunan 2</p></a></li>
+                  <li data-role="list-divider">Pencegahan bunuh diri</li>
+                    <li><a href='tel:(021) 7256526'>(021) 4250767<p>Pencegahan bunuh diri 1</p></a></li>
+                    <li><a href='tel:(021) 7257826'>(021) 7257826<p>Pencegahan bunuh diri 2</p></a></li>
+                    <li><a href='tel:(021) 7221810'>(021) 7221810<p>Pencegahan bunuh diri 3</p></a></li>
+                  <li data-role="list-divider">Konseling masalah kejiwaan Direktorat Bina Pelayanan Kesehatan Jiwa Kemenkes RI</li>
+                    <li><a href='tel:500-454'>500-454<p>Konseling masalah kejiwaan Direktorat Bina Pelayanan Kesehatan Jiwa Kemenkes RI</p></a></li>
                 </ul>
             </div><!-- /content -->      
             
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">
                  <h1>Footer</h1>
             </div>
-        </div><!-- /end page Important Phone City Indonesia -->   
-
-        <div data-role="page" id="importantphonesurabaya"><!-- Page Important Phone Surabaya -->     
-            <div data-role="header">         
-                <h1>
-                    Call Number Surabaya Important Number
-                </h1>     
-                <a href="#importantphonecityindonesia" data-icon="back" data-iconpos="notext">Back</a>
-            </div><!-- /header -->      
-            
-            <div class="ui-content" role="main">                
-                <ul data-role="listview" id="listimportantphonesurabaya" data-inset="true" data-filter="true">
-                	<li data-role="list-divider">Police Office</li>
-                  	<li><a href='tel:(031) 8280748'>Polda Jatim<p>Jl. Ahmad Yani, Surabaya</p></a></li>
-                  	<li data-role="list-divider">PLN Office</li>
-                  	<li><a href='tel:(031) 3523927'>PLN 101, Surabaya<p>Jl. Sikatan 1, Surabaya</p></a></li>
-                  	<li data-role="list-divider">FireFighters Office</li>
-                  	<li><a href='tel:(031) 3533843-44'>Surabaya Pusat<p>Jl. Pasar Turi 21, Surabaya</p></a></li>
-                  	<li data-role="list-divider">Railway Station</li>
-                  	<li><a href='tel:(031) 3521465'>Stasiun Surabaya Kota<p>Jl Stasiun 9,Bongkaran,Pabean Cantikan</p><p>Surabaya 60161</p></a></li>
-                	<li data-role="list-divider">Travel Agent office</li>
-                	<li><a href='tel:(031) 3533843-44'>Adi Giant Wisata<p>Jl. Kapasan No.194 C Surabaya</p></a></li>
-                	<li data-role="list-divider">Domestic Air Lines</li>
-                	<li><a href='tel:(031) 5468501'>Garuda Indonesia Airways (GIA)<p>Graha Bumi Modern Lt.IV. Jl. Basuki Rachmat 124 - 128 Surabaya</p><p>Jl. Tunjungan No. 29 Surabaya</p></a></li>
-                	<li data-role="list-divider">International Air Lines</li>
-                	<li><a href='tel:(031) 5468501'>Garuda Indonesian Airways (GIA)<p>Graha Bumi Modern Lantai IV</p><p>Jalan Basuki Rachmat 124-128 Surabaya</p></a></li>
-                	<li data-role="list-divider">Taxi</li>
-                	<li><a href='tel:(031) 3721234'>Blue Bird Taksi<p>Jl Platuk Donomulyo XV 2,Sidotopo Wetan,Kenjeran</p><p>SURABAYA 6012</p></a></li>
-                	<li data-role="list-divider">Airpots</li>
-                	<li><a href='tel:(031) 8667513'>Bandara Udara Juanda<p>Jl Raya Bandara Juanda,Sedati - Sidoarjo</p></a></li>
-                </ul>
-            </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Source www.surabaya.go.id accessed 31 August 2015</h1>
-            </div>
-        </div><!-- /end Page Important Phone Surabaya -->   
+        </div><!-- /end page Important Phone Indonesia -->   
 
     </body>
 </html>
