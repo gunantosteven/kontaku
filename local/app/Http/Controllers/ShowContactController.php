@@ -9,6 +9,8 @@ use Input;
 use DB;
 use Auth;
 use Uuid;
+use File;
+use Image;
 
 
 class ShowContactController extends Controller {
@@ -107,6 +109,31 @@ class ShowContactController extends Controller {
 			}
 			return view('showcontact',compact('user'));
 		}	
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  string  $url
+	 * @return Response
+	 */
+	public function image($id, Request $request)
+	{
+		if(File::exists(base_path() . '/resources/assets/images/photos/' . $id . '.png'))
+		{
+			// open an image file
+			$img = Image::make(base_path() . '/resources/assets/images/photos/' . $id . '.png' );
+		}
+		else
+		{
+			// open an image file
+			$img = Image::make(base_path() . '/resources/assets/images/photos/user.png' );
+		}
+
+		// now you are able to resize the instance
+		$img->resize(65, 65);
+
+		return $img->response('png');
 	}
 
 	/**

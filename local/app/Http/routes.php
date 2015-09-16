@@ -959,6 +959,11 @@ Route::get('createdb',function(){
 	return "tables has been created";
 });
 
+Route::get('/image/{id}', [
+	    'as' => 'showcontact.image',
+	    'uses' => 'ShowContactController@image'
+]);
+
 Route::get('/{url}', [
 	    'as' => 'showcontact.show',
 	    'uses' => 'ShowContactController@show'

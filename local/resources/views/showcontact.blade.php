@@ -5,9 +5,15 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
-        <div class="panel-heading"><marquee behavior="alternate">{{ $user->fullname }} Contact :D</marquee></div>
+        <div class="panel-heading"><center>KontaKKu Contact since {{ date("d F Y",strtotime($user->created_at)) }}</center></div>
         <div class="panel-body">
           <form class="form-horizontal" role="form" method="GET" action={{ url("/asd/asd") }}>
+
+          	<div class="form-group">
+          		<center><img src={{ url("/image/$user->id") }}></center>
+          		<center><b>{{ $user->fullname }}</b></center>
+          	</div>
+
             <div class="form-group">
               <label class="col-md-4 control-label">Phone</label>
               <div class="col-md-6">
