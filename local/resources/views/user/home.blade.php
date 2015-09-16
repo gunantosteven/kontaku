@@ -540,10 +540,32 @@
                 <a href="#home" data-icon="back" data-iconpos="notext">Back</a>
             </div><!-- /header -->      
             
-            <div class="ui-content" role="main">                
+            <div class="ui-content" role="main">    
                 <ul data-role="listview" id="listimportantphonecountry" data-inset="true" data-filter="true">
-                  <li id=''><a href='#importantphoneindonesia'>Indonesian</a></li>
-				  </li>
+                  <li data-role="list-divider">Asia</li>
+                    <li id=''><a href='#importantphonephilippines'>Philippines</a></li>
+                    <li id=''><a href='#importantphoneindonesia'>Indonesian</a></li>
+                    <li id=''><a href='#importantphoneindia'>India</a></li>
+                    <li id=''><a href='#importantphoneiran'>Iran</a></li>
+                    <li id=''><a href='#importantphoneisrael'>Israel</a></li>
+                    <li id=''><a href='#importantphonejapan'>Japan</a></li>
+                    <li id=''><a href='#importantphonesouthkorea'>South Korea</a></li>
+                    <li id=''><a href='#importantphonelebanon'>Lebanon</a></li>
+                    <li id=''><a href='#importantphonemalaysia'>Malaysia</a></li>
+                    <li id=''><a href='#importantphonemongolia'>Mongolia</a></li>
+                    <li id=''><a href='#importantphonesingapura'>Singapura</a></li>
+                    <li id=''><a href='#importantphonesrilanka'>Sri Lanka</a></li>
+                    <li id=''><a href='#importantphonetaiwan'>Taiwan</a></li>
+                    <li id=''><a href='#importantphonethailand'>Thailand</a></li>
+                    <li id=''><a href='#importantphoneturki'>Turki</a></li>
+                    <li id=''><a href='#importantphonepakistan'>Pakistan</a></li>
+                    <li id=''><a href='#importantphoneuniemiratarab'>Uni Emirat Arab</a></li>
+                    <li id=''><a href='#importantphoneqatar'>Qatar</a></li>
+                    <li id=''><a href='#importantphonerrcdaratan'>Republik Rakyat Tiongkok (Daratan)</a></li>
+                    <li id=''><a href='#importantphonehongkong'>Republik Rakyat Tiongkok (Hong Kong)</a></li>
+                    <li id=''><a href='#importantphonemakau'>Republik Rakyat Tiongkok (Makau)</a></li>
+                    <li id=''><a href='#importantphonesaudiarabia'>Saudi Arabia</a></li>
+                    <li id=''><a href='#importantphonevietnam'>Vietnam</a></li>
                 </ul>
             </div><!-- /content -->      
             
@@ -551,6 +573,29 @@
                  <h1>Source : id.wikipedia.org/wiki/Nomor_telepon_darurat</h1>
             </div>
         </div><!-- /end page Important Phone Country -->   
+
+        <div data-role="page" id="importantphonephilippines"><!-- Page Important Phone Philippines -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonephilippines" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Emergency Telephone Numbers</li>
+                    <li><a href='tel:112'>112<p>Emergency Telephone Numbers 1</p></a></li>
+                    <li><a href='tel:911'>911<p>Emergency Telephone Numbers 2</p></a></li>
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='tel:117'>117<p>Police</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page Important Phone Philippines -->   
 
         <div data-role="page" id="importantphoneindonesia"><!-- Page Important Phone Indonesia -->     
             <div data-role="header">         
@@ -591,6 +636,497 @@
                  <h1>Footer</h1>
             </div>
         </div><!-- /end page Important Phone Indonesia -->   
+
+        <div data-role="page" id="importantphoneindia"><!-- Page Important Phone India -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphoneindia" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='tel:100'>100<p>Police 1</p></a></li>
+                    <li><a href='tel:103'>103<p>Police 2</p></a></li>
+                  <li data-role="list-divider">Firefighters</li>
+                    <li><a href='tel:100'>101<p>Firefighters</p></a></li>
+                  <li data-role="list-divider">Ambulans</li>
+                    <li><a href='tel:100'>102<p>Ambulans</p></a></li>
+                  <li data-role="list-divider">From GSM</li>
+                    <li><a href='tel:112'>112<p>From GSM</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page Important Phone India --> 
+
+        <div data-role="page" id="importantphoneiran"><!-- Page Important Phone Iran -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphoneiran" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='tel:110'>110<p>Police</p></a></li>
+                  <li data-role="list-divider">Firefighters</li>
+                    <li><a href='tel:125'>125<p>Firefighters</p></a></li>
+                  <li data-role="list-divider">Ambulans</li>
+                    <li><a href='tel:115'>115<p>Ambulans</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page Important Phone Iran --> 
+
+        <div data-role="page" id="importantphoneisrael"><!-- Page Important Phone Israel -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphoneisrael" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='tel:100'>100<p>Police</p></a></li>
+                  <li data-role="list-divider">Firefighters</li>
+                    <li><a href='tel:102'>102<p>Firefighters</p></a></li>
+                  <li data-role="list-divider">Ambulans</li>
+                    <li><a href='tel:101'>101<p>Ambulans</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page Important Phone Israel --> 
+
+        <div data-role="page" id="importantphonejapan"><!-- Page Important Phone Japan -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonejapan" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='tel:110'>110<p>Police</p></a></li>
+                  <li data-role="list-divider">Emergency at sea</li>
+                    <li><a href='tel:118'>118<p>Emergency at sea</p></a></li>
+                  <li data-role="list-divider">Firefighters & Ambulans</li>
+                    <li><a href='tel:119'>119<p>Firefighters & Ambulans</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page Important Phone Japan --> 
+
+        <div data-role="page" id="importantphonesouthkorea"><!-- Page Important Phone South Korea -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonesouthkorea" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='tel:112'>112<p>Police</p></a></li>
+                  <li data-role="list-divider">Firefighters & Ambulans</li>
+                    <li><a href='tel:119'>119<p>Firefighters & Ambulans</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page Important South Korea --> 
+
+        <div data-role="page" id="importantphonelebanon"><!-- Page Important Phone Lebanon -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonelebanon" data-inset="true" data-filter="true">
+                  <li><a href='tel:112'>112</a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page Important Lebanon --> 
+
+        <div data-role="page" id="importantphonemalaysia"><!-- Page Important Phone Malaysia -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonemalaysia" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='tel:999'>999<p>Police</p></a></li>
+                  <li data-role="list-divider">Ambulans</li>
+                    <li><a href='tel:999'>999<p>Ambulans</p></a></li>
+                  <li data-role="list-divider">Firefighters</li>
+                    <li><a href='tel:999'>999<p>Firefighters</p></a></li>
+                  <li data-role="list-divider">Hansip</li>
+                    <li><a href='tel:999'>991<p>Hansip</p></a></li>
+                  <li data-role="list-divider">From GSM</li>
+                    <li><a href='tel:112'>112<p>From GSM</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+        </div><!-- /end page Important Malaysia --> 
+
+      <div data-role="page" id="importantphonemongolia"><!-- Page Important Phone Mongolia -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonemongolia" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Emergency Telephone Numbers</li>
+                    <li><a href='tel:100'>100<p>Emergency Telephone Numbers</p></a></li>
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='tel:101'>101<p>Police</p></a></li>
+                  <li data-role="list-divider">Ambulans</li>
+                    <li><a href='tel:102'>102<p>Ambulans</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+      </div><!-- /end page Important Mongolia --> 
+
+      <div data-role="page" id="importantphonesingapura"><!-- Page Important Phone Singapura -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonesingapura" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='tel:999'>999<p>Police</p></a></li>
+                  <li data-role="list-divider">Firefighters & Ambulans</li>
+                    <li><a href='tel:995'>995<p>Firefighters & Ambulans</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+      </div><!-- /end page Important Singapura --> 
+
+      <div data-role="page" id="importantphonesrilanka"><!-- Page Important Phone Sri Lanka -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonesrilanka" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Traffic accident</li>
+                    <li><a href='tel:11-2691111'>11-2691111<p>Traffic accident</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+      </div><!-- /end page Important Sri Lanka --> 
+
+      <div data-role="page" id="importantphonetaiwan"><!-- Page Important Phone Taiwan -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonetaiwan" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Firefighters & Ambulans</li>
+                    <li><a href='119'>119<p>Firefighters & Ambulans</p></a></li>
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='110'>110<p>Police</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+      </div><!-- /end page Important Taiwan --> 
+
+      <div data-role="page" id="importantphonethailand"><!-- Page Important Phone Thailand -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonethailand" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='191'>191<p>Police</p></a></li>
+                  <li data-role="list-divider">Firefighters</li>
+                    <li><a href='199'>199<p>Firefighters</p></a></li>
+                  <li data-role="list-divider">Ambulans</li>
+                    <li><a href='1669'>1669<p>Ambulans</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+      </div><!-- /end page Important Taiwan --> 
+
+      <div data-role="page" id="importantphoneturki"><!-- Page Important Phone Turki -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphoneturki" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='155'>155<p>Police</p></a></li>
+                  <li data-role="list-divider">Firefighters</li>
+                    <li><a href='110'>110<p>Firefighters</p></a></li>
+                  <li data-role="list-divider">Ambulans</li>
+                    <li><a href='112'>112<p>Ambulans</p></a></li>
+                  <li data-role="list-divider">Coast Guard</li>
+                    <li><a href='158'>158<p>Coast Guard</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+      </div><!-- /end page Important Turki --> 
+
+      <div data-role="page" id="importantphonepakistan"><!-- Page Important Phone Pakistan -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonepakistan" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='15'>15<p>Police</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+      </div><!-- /end page Important Pakistan --> 
+
+      <div data-role="page" id="importantphoneuniemiratarab"><!-- Page Important Phone Uni Emirat Arab -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphoneuniemiratarab" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='999'>999<p>Police</p></a></li>
+                  <li data-role="list-divider">Firefighters</li>
+                    <li><a href='998'>998<p>Firefighters</p></a></li>
+                  <li data-role="list-divider">Ambulans</li>
+                    <li><a href='997'>997<p>Ambulans</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+      </div><!-- /end page Important Uni Emirat Arab --> 
+
+      <div data-role="page" id="importantphoneqatar"><!-- Page Important Phone Qatar -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphoneqatar" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Emergency Telephone Numbers</li>
+                    <li><a href='999'>999<p>Emergency Telephone Numbers</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+      </div><!-- /end page Important Qatar --> 
+
+      <div data-role="page" id="importantphonerrcdaratan"><!-- Page Important Republik Rakyat Tiongkok (Daratan) -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonerrcdaratan" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='110'>110<p>Police</p></a></li>
+                  <li data-role="list-divider">Firefighters</li>
+                    <li><a href='119'>119<p>Firefighters</p></a></li>
+                  <li data-role="list-divider">SAR</li>
+                    <li><a href='120'>120<p>SAR</p></a></li>
+                  <li data-role="list-divider">Traffic accident</li>
+                    <li><a href='122'>122<p>Traffic accident</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+      </div><!-- /end page Important Republik Rakyat Tiongkok (Daratan) --> 
+
+      <div data-role="page" id="importantphonehongkong"><!-- Page Important Republik Rakyat Tiongkok (Hongkong) -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonehongkong" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">S.A.R</li>
+                    <li><a href='999'>999<p>S.A.R (voice)</p></a></li>
+                    <li><a href='992'>992<p>S.A.R ((SMS untuk pelanggan cacat))</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+      </div><!-- /end page Important Republik Rakyat Tiongkok (Hongkong) --> 
+
+      <div data-role="page" id="importantphonemakau"><!-- Page Important Republik Rakyat Tiongkok (Makau) -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonemakau" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Emergency Telephone Numbers</li>
+                    <li><a href='999'>999<p>Emergency Telephone Numbers</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+      </div><!-- /end page Important Republik Rakyat Tiongkok (Makau) --> 
+
+      <div data-role="page" id="importantphonesaudiarabia"><!-- Page Important Saudi Arabia -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonesaudiarabia" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='999'>999<p>Police 1</p></a></li>
+                    <li><a href='993'>993<p>Police 2</p></a></li>
+                  <li data-role="list-divider">Firefighters</li>
+                    <li><a href='998'>998<p>Firefighters</p></a></li>
+                  <li data-role="list-divider">Ambulans</li>
+                    <li><a href='997'>997<p>Ambulans</p></a></li>
+                  <li data-role="list-divider">Emergency</li>
+                    <li><a href='911'>911<p>Emergency 1</p></a></li>
+                    <li><a href='112'>112<p>Emergency 2</p></a></li>
+                    <li><a href='08'>08<p>Emergency 3</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+      </div><!-- /end page Important Saudi Arabia --> 
+
+      <div data-role="page" id="importantphonevietnam"><!-- Page Important Vietnam -->     
+            <div data-role="header">         
+                <h1>
+                    Emergency Telephone Numbers
+                </h1>     
+                <a href="#importantphonecountry" data-icon="back" data-iconpos="notext">Back</a>
+            </div><!-- /header -->      
+            
+            <div class="ui-content" role="main">                
+                <ul data-role="listview" id="listimportantphonevietnam" data-inset="true" data-filter="true">
+                  <li data-role="list-divider">Emergency Telephone Numbers</li>
+                    <li><a href='115'>115<p>Emergency Telephone Numbers</p></a></li>
+                  <li data-role="list-divider">Police</li>
+                    <li><a href='113'>113<p>Police</p></a></li>
+                  <li data-role="list-divider">Firefighers</li>
+                    <li><a href='114'>114<p>Firefighers</p></a></li>
+                </ul>
+            </div><!-- /content -->      
+            
+            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                 <h1>Footer</h1>
+            </div>
+      </div><!-- /end page Important Vietnam --> 
+
 
     </body>
 </html>
