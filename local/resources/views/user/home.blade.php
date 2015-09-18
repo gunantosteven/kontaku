@@ -40,12 +40,7 @@
                 <h2><span id="myHeaderOtherContacts">Other Contacts</span><span id="bubbleCountOtherContacts" class="ui-li-count">0</span></h2>
                 <ul data-role="listview" id="list" data-autodividers="true"></ul>
               </div>
-            </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
-
+            </div><!-- /content -->     
             
              <div id="left-menu" data-role="panel" data-position="left" data-theme="b" data-position-fixed="false" data-display="overlay">
                 <span>Menu</span>
@@ -110,10 +105,6 @@
                   <div class="ui-block-b"><a href="#deletemygroups" id="deletemygroups"  data-role="button" data-theme="b" data-mini="true" data-icon="delete" data-iconpos="top">Delete</a></div>
                 </div>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
 
             <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="add-category" data-theme="b">
               <h2>Create Category</h2>
@@ -159,10 +150,7 @@
                   <div class="ui-block-b"><a href="#deletedetailmygroups" id="deletedetailmygroups"  data-role="button" data-theme="b" data-mini="true" data-icon="delete" data-iconpos="top">Delete</a></div>
               </div>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
+
         </div><!-- /end page DetailMyGroups -->  
 
         <div data-role="page" id="adddetailmygroups"><!-- Page adddetailmygroups -->     
@@ -177,7 +165,7 @@
             </div><!-- /content -->      
             
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <center><a href="#" id="submitadddetailmygroups" class="custom-btn" data-role="button" data-theme="b" data-icon="plus" data-iconpos="top">Add</a></center>
+              <center><a href="#" id="submitadddetailmygroups" class="custom-btn" data-role="button" data-theme="b" data-icon="plus" data-iconpos="top">Add</a></center>
             </div>
         </div><!-- /end page adddetailmygroups -->  
 
@@ -235,10 +223,7 @@
             </form>
           </div> <!-- /content --> 
 
-          <div data-role="footer">
-            <h1>Footer Text</h1>
-          </div>
-        </div>  <!-- /footer --> 
+        </div>  
 
         <!-- friend profile -->
         <div data-role="page" id="friendprofile">
@@ -283,10 +268,7 @@
               </div> <!-- end popup -->
           </div> <!-- /content --> 
 
-          <div data-role="footer">
-            <h1>Footer Text</h1>
-          </div>
-        </div>  <!-- /footer --> 
+        </div>  
 
         <!-- edit friend profile -->
         <div data-role="page" id="editfriendprofile">
@@ -327,10 +309,6 @@
                     <input type="file" name="photo"  id="editfriendphoto" value="" data-clear-btn="true" data-mini="true"/>
                   </div> <!-- /content --> 
           </form>
-
-          <div data-role="footer">
-            <h1>Footer Text</h1>
-          </div> <!-- /footer --> 
         </div>  
 
         <div data-role="page" id="invites"><!-- Page Invites -->     
@@ -345,10 +323,6 @@
             <div class="ui-content" role="main">                
                 <ul data-role="listview" id="listinvites" data-filter="true" data-inset="true" data-divider-theme="a"></ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
         </div><!-- /end page invites -->     
 
         <div data-role="page" id="addfriendsonline"><!-- Add Friends Online -->     
@@ -373,10 +347,6 @@
                   </form>
               </div>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
         </div><!-- /end page invites -->    
 
         <div data-role="page" id="gotinvitation"><!-- Page Got Invitation -->     
@@ -390,11 +360,7 @@
                   <a href="#" id="addfriendsonlinedecline" data-icon="delete" data-role="button" data-iconpos="notext">Decline</a>
                   <a href="#" id="addfriendsonlineaccept" data-icon="check" data-role="button" data-iconpos="notext">Accept</a>
                 </div>
-            </div><!-- /header -->        
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
+            </div><!-- /header -->      
         </div><!-- /end page invites -->  
 
         <div data-role="page" id="sentinvitation"><!-- Page Got Invitation -->     
@@ -407,11 +373,7 @@
                 <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal">
                   <a href="#" id="addfriendsonlinedelete" data-icon="delete" data-role="button" data-iconpos="notext">Delete</a>
                 </div>
-            </div><!-- /header -->        
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
+            </div><!-- /header -->    
         </div><!-- /end page invites -->  
 
         <div data-role="page" id="settings"><!-- Page Settings -->     
@@ -427,10 +389,6 @@
                   <li id="#"><a href='#settingsaccount'>Accounts</a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
         </div><!-- /end page Settings -->    
 
         <div data-role="page" id="settingsaccount"><!-- Page Settings Account -->     
@@ -459,10 +417,6 @@
                 </ul>
                 
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
         </div><!-- /end page Settings Account -->    
 
         <div data-role="page" id="changepassword"><!-- Page Change Password -->     
@@ -482,10 +436,6 @@
                     <input type="password" name="new_password2" id="changepasswordretypepassword" value="" data-clear-btn="true" data-mini="true">
                   </div> <!-- /content --> 
           </form>   
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
         </div><!-- /end page Change Password -->  
 
         <div data-role="page" id="reports"><!-- Page Reports -->     
@@ -498,10 +448,6 @@
                     <h2>Reports a problem</h2>
                     <p>You can directly email the problems to developer gunantosteven@gmail.com</p>
                   </div> <!-- /content --> 
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
         </div><!-- /end page Reports -->  
 
         <div data-role="page" id="help"><!-- Page Help -->     
@@ -592,11 +538,7 @@
                   <li data-role="list-divider">Police</li>
                     <li><a href='tel:117'>117<p>Police</p></a></li>
                 </ul>
-            </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
+            </div><!-- /content -->  
         </div><!-- /end page Important Phone Philippines -->   
 
         <div data-role="page" id="importantphoneindonesia"><!-- Page Important Phone Indonesia -->     
@@ -632,11 +574,7 @@
                   <li data-role="list-divider">Konseling masalah kejiwaan Direktorat Bina Pelayanan Kesehatan Jiwa Kemenkes RI</li>
                     <li><a href='tel:500-454'>500-454<p>Konseling masalah kejiwaan Direktorat Bina Pelayanan Kesehatan Jiwa Kemenkes RI</p></a></li>
                 </ul>
-            </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
+            </div><!-- /content -->     
         </div><!-- /end page Important Phone Indonesia -->   
 
         <div data-role="page" id="importantphoneindia"><!-- Page Important Phone India -->     
@@ -660,10 +598,6 @@
                     <li><a href='tel:112'>112<p>From GSM</p></a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
         </div><!-- /end page Important Phone India --> 
 
         <div data-role="page" id="importantphoneiran"><!-- Page Important Phone Iran -->     
@@ -684,10 +618,6 @@
                     <li><a href='tel:115'>115<p>Ambulans</p></a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
         </div><!-- /end page Important Phone Iran --> 
 
         <div data-role="page" id="importantphoneisrael"><!-- Page Important Phone Israel -->     
@@ -708,10 +638,6 @@
                     <li><a href='tel:101'>101<p>Ambulans</p></a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
         </div><!-- /end page Important Phone Israel --> 
 
         <div data-role="page" id="importantphonejapan"><!-- Page Important Phone Japan -->     
@@ -732,10 +658,6 @@
                     <li><a href='tel:119'>119<p>Firefighters & Ambulans</p></a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
         </div><!-- /end page Important Phone Japan --> 
 
         <div data-role="page" id="importantphonesouthkorea"><!-- Page Important Phone South Korea -->     
@@ -753,11 +675,7 @@
                   <li data-role="list-divider">Firefighters & Ambulans</li>
                     <li><a href='tel:119'>119<p>Firefighters & Ambulans</p></a></li>
                 </ul>
-            </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
+            </div><!-- /content -->     
         </div><!-- /end page Important South Korea --> 
 
         <div data-role="page" id="importantphonelebanon"><!-- Page Important Phone Lebanon -->     
@@ -773,10 +691,6 @@
                   <li><a href='tel:112'>112</a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
         </div><!-- /end page Important Lebanon --> 
 
         <div data-role="page" id="importantphonemalaysia"><!-- Page Important Phone Malaysia -->     
@@ -801,10 +715,6 @@
                     <li><a href='tel:112'>112<p>From GSM</p></a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
         </div><!-- /end page Important Malaysia --> 
 
       <div data-role="page" id="importantphonemongolia"><!-- Page Important Phone Mongolia -->     
@@ -825,10 +735,6 @@
                     <li><a href='tel:102'>102<p>Ambulans</p></a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
       </div><!-- /end page Important Mongolia --> 
 
       <div data-role="page" id="importantphonesingapura"><!-- Page Important Phone Singapura -->     
@@ -846,11 +752,7 @@
                   <li data-role="list-divider">Firefighters & Ambulans</li>
                     <li><a href='tel:995'>995<p>Firefighters & Ambulans</p></a></li>
                 </ul>
-            </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
+            </div><!-- /content -->    
       </div><!-- /end page Important Singapura --> 
 
       <div data-role="page" id="importantphonesrilanka"><!-- Page Important Phone Sri Lanka -->     
@@ -866,11 +768,7 @@
                   <li data-role="list-divider">Traffic accident</li>
                     <li><a href='tel:11-2691111'>11-2691111<p>Traffic accident</p></a></li>
                 </ul>
-            </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
+            </div><!-- /content -->     
       </div><!-- /end page Important Sri Lanka --> 
 
       <div data-role="page" id="importantphonetaiwan"><!-- Page Important Phone Taiwan -->     
@@ -889,10 +787,6 @@
                     <li><a href='110'>110<p>Police</p></a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
       </div><!-- /end page Important Taiwan --> 
 
       <div data-role="page" id="importantphonethailand"><!-- Page Important Phone Thailand -->     
@@ -913,10 +807,6 @@
                     <li><a href='1669'>1669<p>Ambulans</p></a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
       </div><!-- /end page Important Taiwan --> 
 
       <div data-role="page" id="importantphoneturki"><!-- Page Important Phone Turki -->     
@@ -939,10 +829,6 @@
                     <li><a href='158'>158<p>Coast Guard</p></a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
       </div><!-- /end page Important Turki --> 
 
       <div data-role="page" id="importantphonepakistan"><!-- Page Important Phone Pakistan -->     
@@ -959,10 +845,6 @@
                     <li><a href='15'>15<p>Police</p></a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
       </div><!-- /end page Important Pakistan --> 
 
       <div data-role="page" id="importantphoneuniemiratarab"><!-- Page Important Phone Uni Emirat Arab -->     
@@ -982,11 +864,7 @@
                   <li data-role="list-divider">Ambulans</li>
                     <li><a href='997'>997<p>Ambulans</p></a></li>
                 </ul>
-            </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
+            </div><!-- /content -->     
       </div><!-- /end page Important Uni Emirat Arab --> 
 
       <div data-role="page" id="importantphoneqatar"><!-- Page Important Phone Qatar -->     
@@ -1003,10 +881,6 @@
                     <li><a href='999'>999<p>Emergency Telephone Numbers</p></a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
       </div><!-- /end page Important Qatar --> 
 
       <div data-role="page" id="importantphonerrcdaratan"><!-- Page Important Republik Rakyat Tiongkok (Daratan) -->     
@@ -1029,10 +903,6 @@
                     <li><a href='122'>122<p>Traffic accident</p></a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
       </div><!-- /end page Important Republik Rakyat Tiongkok (Daratan) --> 
 
       <div data-role="page" id="importantphonehongkong"><!-- Page Important Republik Rakyat Tiongkok (Hongkong) -->     
@@ -1050,10 +920,6 @@
                     <li><a href='992'>992<p>S.A.R ((SMS untuk pelanggan cacat))</p></a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
       </div><!-- /end page Important Republik Rakyat Tiongkok (Hongkong) --> 
 
       <div data-role="page" id="importantphonemakau"><!-- Page Important Republik Rakyat Tiongkok (Makau) -->     
@@ -1070,10 +936,6 @@
                     <li><a href='999'>999<p>Emergency Telephone Numbers</p></a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
       </div><!-- /end page Important Republik Rakyat Tiongkok (Makau) --> 
 
       <div data-role="page" id="importantphonesaudiarabia"><!-- Page Important Saudi Arabia -->     
@@ -1099,10 +961,6 @@
                     <li><a href='08'>08<p>Emergency 3</p></a></li>
                 </ul>
             </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
       </div><!-- /end page Important Saudi Arabia --> 
 
       <div data-role="page" id="importantphonevietnam"><!-- Page Important Vietnam -->     
@@ -1122,11 +980,7 @@
                   <li data-role="list-divider">Firefighers</li>
                     <li><a href='114'>114<p>Firefighers</p></a></li>
                 </ul>
-            </div><!-- /content -->      
-            
-            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <h1>Footer</h1>
-            </div>
+            </div><!-- /content -->     
       </div><!-- /end page Important Vietnam --> 
 
 
