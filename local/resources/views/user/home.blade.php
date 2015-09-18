@@ -177,7 +177,7 @@
             </div><!-- /content -->      
             
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <center><a href="#" id="submitadddetailmygroups"  data-role="button" data-theme="b" data-mini="true" data-icon="plus" data-iconpos="top">Add</a></center>
+                 <center><a href="#" id="submitadddetailmygroups" class="custom-btn" data-role="button" data-theme="b" data-icon="plus" data-iconpos="top">Add</a></center>
             </div>
         </div><!-- /end page adddetailmygroups -->  
 
