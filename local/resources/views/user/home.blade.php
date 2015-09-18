@@ -252,6 +252,7 @@
               <div id="friendDetails">
                    <h3 id="fullName"></h3>
                    <p id="friendprofileonlineoffline"></p>
+                   <font size="2px" id="friendprofileupdated_at"></font>
               </div>
              
               <ul id="actionFriendProfileList" data-role="listview" data-inset="true"></ul>
@@ -522,9 +523,10 @@
                     <p>1. Login to your account.</p>
                     <p>2. Click/Tap menu button on left top. It will show you some submenu, click/tap Invites.</p>
                     <p>3. Click/Tap plus button on right top. It will show you textbox and search button.</p>
-                    <p>4. Type your friend url like stevengunanto if your friend url is kontakku.com/stevengunanto.</p>
+                    <p>4. Type your friend url like <b>stevengunanto</b> if your friend url is kontakku.com/<b>stevengunanto</b>.</p>
                     <p>5. Click/Tap search button.</p>
                     <p>6. Click/Tap ADD button, you need to wait your friend accept your invitation.</p>
+                    <p>Your friend contacts will be saved in server and It's secure to save here as long as you don't give your account</p>
                   </div> <!-- /content --> 
             
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">

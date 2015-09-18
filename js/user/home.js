@@ -587,6 +587,7 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
     if(friend.onlineoffline == "online")
     {
       $('#friendprofileonlineoffline').text('Status : ' + friend.status);
+      $('#friendprofileupdated_at').text('Last Updated ' + friend.updated_at);
     }
     else
     {
