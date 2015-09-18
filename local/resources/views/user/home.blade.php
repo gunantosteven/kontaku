@@ -244,7 +244,7 @@
         <div data-role="page" id="friendprofile">
           <div data-role="header" data-theme="a" id="header1">
              <h3>My Friend Profile</h3>
-             <a href="#" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
+             <a data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
           </div><!-- /header --> 
 
           <div class="ui-content" role="main">
@@ -264,7 +264,7 @@
                         <option value="no">No</option>
                         <option value="yes">Yes</option>
                       </select>
-                      <label for="checkbox-based-flipswitch"><b>Favorite Contact ?</b></label>
+                      <label for="checkbox-based-flipswitch"><b>Favorite Contact</b></label>
                     </center>
                   </div>
                   <div class="ui-block-b"><a href="#editfriendprofile" id="editfriendprofilebuttonpage"  data-role="button" data-theme="b" data-mini="true" data-icon="edit" data-iconpos="top">Edit</a></div>

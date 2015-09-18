@@ -13,7 +13,7 @@ $(document).on("pagebeforecreate", "#home", function (e, ui) {
 $(document).on('pageinit', '#home', function(){  
   /* create friend offline */
   $(document).on('click', '#submit', function() { // catch the form's submit event
-      if($('#createfullname').val().length > 0 && $('#createemail').val().length > 0){
+      if($('#createfullname').val().length > 0){
           // Send data to server through the Ajax call
           // action is functionality we want to call and outputJSON is our data
           $.ajax({url: index + "/user/create/friendoffline",
@@ -51,7 +51,7 @@ $(document).on('pageinit', '#home', function(){
               }
           });                   
       } else {
-          alert('Please fill all necessary fields');
+          alert('Please fill fullname field');
       }           
       return false; // cancel original event to prevent form submitting
   });      
@@ -661,7 +661,7 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
 
 /* ===================================js page editfriendprofile=================================== */
 $(document).on('pageinit', '#editfriendprofile', function(){  
-  /* create friend offline */
+  /* edit friend */
   $(document).on('click', '#editfriendsubmit', function() { // catch the form's submit event
     if($('#editfriendfullname').val().length > 0 && $('#editfriendemail').val().length > 0){
         var formData = new FormData($('#formEditFriendOffline')[0]);
@@ -729,7 +729,7 @@ $(document).on('pagebeforeshow', '#editfriendprofile', function(){
 
 /* ===================================js page editmyprofile=================================== */
 $(document).on('pageinit', '#editmyprofile', function(){  
-  /* create friend offline */
+  /* edit my profile */
   $(document).on('click', '#editmyprofilesubmit', function() { // catch the form's submit event
     if($('#editmyprofilefullname').val().length > 0){
         var formData = new FormData($('#formEditMyProfile')[0]);
