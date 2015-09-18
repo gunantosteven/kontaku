@@ -20,3 +20,7 @@
 .center-wrapper * {
   margin: 0 auto;
 }
+
+.custom-btn {
+    width: 150px !important;
+}
