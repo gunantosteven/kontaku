@@ -1065,11 +1065,12 @@ $(document).on('pageinit', '#changepassword', function(){
               },
               success: function (result) {
                   if(result.status) {
+                  	$('#changepasswordoldpassword').val("");
                     $('#changepasswordnewpassword').val("");
                     $('#changepasswordretypepassword').val("");
                     $.mobile.pageContainer.pagecontainer("change", "#settingsaccount", {transition: "slide"});
                   } else {
-                      alert('Something error happened!'); 
+                      alert('Something error happened!\n' + result.message); 
                   }
               },
               error: function (request,error) {

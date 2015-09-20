@@ -429,6 +429,9 @@
 
                   <div class="ui-content" role="main">
                     <h2>Change Password</h2>
+                    <label for="name">Old Password</label>
+                    <input type="password" name="old_password" id="changepasswordoldpassword" value="" data-clear-btn="true" data-mini="true"> 
+
                     <label for="name">New Password</label>
                     <input type="password" name="new_password" id="changepasswordnewpassword" value="" data-clear-btn="true" data-mini="true"> 
 

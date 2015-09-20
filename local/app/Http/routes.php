@@ -689,17 +689,26 @@ Route::group(['middleware' => 'user'], function()
 	{
 		parse_str(Request::input('formData'), $output);
 		// authenticated user
-		if($output['new_password'] == $output['new_password2'])
+		if(Hash::check($output['old_password'], Auth::user()->password))
 		{
-			$new_password = $output['new_password'];
-			$user = Auth::user();
-			$user->password = Hash::make($new_password);
-			// finally we save the authenticated user
-			$user->save();
-	   		return response()->json(['status' => true]);
+			if($output['new_password'] == $output['new_password2'])
+			{
+				$new_password = $output['new_password'];
+				$user = Auth::user();
+				$user->password = Hash::make($new_password);
+				// finally we save the authenticated user
+				$user->save();
+		   		return response()->json(['status' => true]);
+			}
+			else
+			{
+				return response()->json(['status' => false, 'message' => "New Password And Retype Password don't mismatch"]);
+			}
 		}
-
-		return response()->json(['status' => false]);
+		else
+		{
+			return response()->json(['status' => false, 'message' => "Current Password is not valid"]);
+		}
 	});
 
 	// edit my private account status
