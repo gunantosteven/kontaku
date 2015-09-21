@@ -108,7 +108,7 @@
                 </div>
             </div><!-- /content -->      
 
-            <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="add-category" data-theme="b">
+            <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="add-category" data-theme="a">
               <h2>Create Category</h2>
               <form id="createcategory" class="ui-body ui-body-a ui-corner-all" data-ajax="false" >
                 <label for="name">Category Title</label>
