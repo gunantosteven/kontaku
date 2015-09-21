@@ -892,6 +892,57 @@ Route::group(['middleware' => 'user'], function()
 
    		return response()->json(['status' => true]);
 	});
+
+	// get image from friendprofile
+	Route::get('/user/photo', function()
+	{
+		if(File::exists(base_path() . '/resources/assets/images/photos/' . Auth::user()->id . '.png'))
+		{
+			// open an image file
+			$img = Image::make(base_path() . '/resources/assets/images/photos/' . Auth::user()->id . '.png' );
+		}
+		else
+		{
+			// open an image file
+			$img = Image::make(base_path() . '/resources/assets/images/photos/user.png' );
+		}
+
+		// now you are able to resize the instance
+		$img->resize(65, 65);
+
+		return $img->response('png');
+	});
+
+	Route::post('/user/fullname', function()
+	{
+	    //this route should returns json response
+	    return response()->json(['fullname' => Auth::user()->fullname]);
+	});
+
+	Route::post('/user/removephoto', function()
+	{
+	    if(File::exists(base_path() . '/resources/assets/images/photos/' . Auth::user()->id . '.png'))
+		{
+			File::delete(base_path() . '/resources/assets/images/photos/' . Auth::user()->id . '.png');
+		}
+
+	    return response()->json(['status' => true]);
+	});
+
+	Route::post('/user/removefriendphoto', function()
+	{
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('id', Request::input('id'))->where('user', Auth::user()->id)->count();
+        
+        if($friendsoffline > 0)
+        {
+        	if(File::exists(base_path() . '/resources/assets/images/photos/' . Request::input('id') . '.png'))
+			{
+				File::delete(base_path() . '/resources/assets/images/photos/' . Request::input('id') . '.png');
+			}
+        }
+	    
+	    return response()->json(['status' => true]);
+	});
 });
 
 Route::get('createdb',function(){

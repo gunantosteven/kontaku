@@ -285,9 +285,34 @@ $(document).on('pageinit', '#home', function(){
           });       
   });
 
+  $(document).on("click", "#btnRemoveCurrentPhoto" ,function (event) {
+    $.ajax({
+              url: index + "/user/removephoto",
+              type: 'POST',
+              data: {_token: CSRF_TOKEN},
+              dataType: 'JSON',
+              success: function (data) {
+                $('#myphoto').attr('src', window.index + '/user/photo?' + Math.random());
+              }
+          });
+  }); 
+
 });
 $(document).on('pagebeforeshow', '#home', function(){  
+  $('#myphoto').attr('src', window.index + '/user/photo?' + Math.random());
 
+  $.ajax({
+        url: index + "/user/fullname",
+        type: 'POST',
+        data: {_token: CSRF_TOKEN},
+        dataType: 'JSON',
+        success: function (data) {
+          if(data != null)
+          {
+            $('#myfullname').text(data.fullname);
+          }
+        }
+    });
 });  
 /* ===================================end js page home=================================== */
 
@@ -570,7 +595,22 @@ $(document).on('pageinit', '#friendprofile', function(){
                   // This callback function will trigger on unsuccessful action                
                   alert('Network error has occurred please try again!');
               }
-          });            
+      });           
+  }); 
+
+  $(document).on("click", "#btnRemoveFriendPhoto" ,function (event) {
+    $.ajax({
+            url: index + "/user/removefriendphoto",
+            type: 'POST',
+            data: {_token: CSRF_TOKEN, id: friend.id},
+            dataType: 'JSON',
+            success: function (data) {
+              if(data.status)
+              {
+                $('#friendPic').attr('src', window.index + '/user/images/photos/friendsprofile/' + friend.id + '?' + Math.random());
+              }
+          }
+    });
   }); 
 
   $(document).on('click', '#pinbbfriendprofile', function() { 
@@ -588,10 +628,13 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
     {
       $('#friendprofileonlineoffline').text('Status : ' + friend.status);
       $('#friendprofileupdated_at').text('Last Updated ' + friend.updated_at);
+      $('#btnRemoveFriendPhoto').hide();
     }
     else
     {
       $('#friendprofileonlineoffline').text('OFFLINE');
+      $('#friendprofileupdated_at').text('');
+      $('#btnRemoveFriendPhoto').show();
     }
 
     if (friend.email) {

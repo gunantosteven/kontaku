@@ -42,8 +42,10 @@
               </div>
             </div><!-- /content -->     
             
-             <div id="left-menu" data-role="panel" data-position="left" data-theme="b" data-position-fixed="false" data-display="overlay">
-                <span>Menu</span>
+             <div id="left-menu" data-role="panel" data-position="left" data-theme="a" data-position-fixed="false" data-display="overlay">
+                <center><img id="myphoto"/></center>
+                <center><font id="myfullname"></font></center>
+                <center><a id="btnRemoveCurrentPhoto" data-role="button" data-theme="a" data-mini="true">Remove Current Photo</a></center>     
                 <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-active" data-theme="b" data-rel="close" gid="0">Home</a>
                 <a id="subMenuInvites" href="#invites" class="ui-btn ui-icon-plus ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">Invites</a>
                 <a href="#importantphonecountry" class="ui-btn ui-icon-phone ui-btn-icon-left" data-theme="b" data-rel="close" >Important Phone</a>
@@ -53,7 +55,7 @@
                 <a href="{{ url("/auth/logout") }}" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="b" data-rel="close" data-ajax="false" >Sign Out</a>
              </div>
 
-              <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="add-form" data-theme="b">
+              <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="add-form" data-theme="a">
                   <form id="createcontactoffline" class="ui-body ui-body-a ui-corner-all" data-ajax="false" >
                     <h2>Create new contact offline</h2>
                     <label for="name">Full Name</label>
@@ -239,7 +241,8 @@
                    <p id="friendprofileonlineoffline"></p>
                    <font size="2px" id="friendprofileupdated_at"></font>
               </div>
-             
+             <a id="btnRemoveFriendPhoto" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-left" data-theme="a" data-mini="true">Remove Friend Photo</a>
+
               <ul id="actionFriendProfileList" data-role="listview" data-inset="true"></ul>
 
               <div class="ui-grid-b">
