@@ -18,8 +18,18 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- Load Facebook SDK for JavaScript -->
   </head>
   <body>
+  	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.4";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	</script>
     <header>
 		<div class="main-menu">
 			<div class="container">
@@ -118,7 +128,20 @@
 				<h4>Download App Free</h4>
 				<img src="img/googleplay.png" alt="" class="img-responsive" height="120" width="120" />
 			</center>
+			<br>
+			<center>
+				<!-- Your like button code -->
+			    <div 
+			    	 class="fb-like" 
+			         data-href="https://www.facebook.com/kontakku" 
+			    	 data-layout="button_count" 
+			    	 data-action="like" data-show-faces="true" data-share="true">
+			   	</div>
+			</center>
 		</div>	
+		<div class="container">
+
+		</div>
 	</div>
 	<!-- end column content -->	
 	<footer>
