@@ -32,13 +32,7 @@ $(document).on('pageinit', '#home', function(){
               success: function (result) {
                   if(result.status) {
                         $('input[id=createfullname]').val('');
-                        $('input[id=createemail]').val('');
                         $('input[id=createphone]').val('');
-                        $('input[id=createpinbb]').val('');
-                        $('input[id=createfacebook]').val('');
-                        $('input[id=createtwitter]').val('');
-                        $('input[id=createinstagram]').val('');
-                        $('input[id=createline]').val('');
                        $.mobile.pageContainer.pagecontainer("change", "#", {transition: "slide"});
                        reloadContact();
                   } else {

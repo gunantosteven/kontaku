@@ -422,13 +422,7 @@ Route::group(['middleware' => 'user'], function()
 			'id' => $id,
 		    'user' => Auth::user()->id,
 		    'fullname' => $output['fullname'],
-		    'email' => $output['email'],
 		    'phone' => $output['phone'],
-		    'pinbb' => $output['pinbb'],
-		    'facebook' => $output['facebook'],
-		    'twitter' => $output['twitter'],
-		    'instagram' => $output['instagram'],
-		    'line' => $output['line'],
 			));
    		return response()->json(['status' => true, 'id' => $id, 'fullname' => $output['fullname']]);
 	});

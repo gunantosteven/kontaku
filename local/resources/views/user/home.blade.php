@@ -61,26 +61,8 @@
                     <label for="name">Full Name</label>
                     <input type="text" name="fullname" id="createfullname" value="" data-clear-btn="true" data-mini="true">
 
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="createemail" value="" data-clear-btn="true" data-mini="true">
-
                     <label for="name">Phone</label>
                     <input type="text" name="phone" id="createphone" value="" data-clear-btn="true" data-mini="true">
-
-                    <label for="name">Pin BB</label>
-                    <input type="text" name="pinbb" id="createpinbb" value="" data-clear-btn="true" data-mini="true">
-
-                    <label for="name">Facebook</label>
-                    <input type="text" name="facebook" id="createfacebook" value="" data-clear-btn="true" data-mini="true">
-
-                    <label for="name">Twitter</label>
-                    <input type="text" name="twitter" id="createtwitter" value="" data-clear-btn="true" data-mini="true">
-
-                    <label for="name">Instagram</label>
-                    <input type="text" name="instagram" id="createinstagram" value="" data-clear-btn="true" data-mini="true">
-
-                    <label for="name">Line</label>
-                    <input type="text" name="line" id="createline" value="" data-clear-btn="true" data-mini="true">
 
                     <div class="ui-grid-a">
                         <div class="ui-block-a"><a href="#" data-rel="close" data-role="button" data-theme="c" data-mini="true">Cancel</a></div>
