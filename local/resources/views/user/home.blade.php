@@ -345,7 +345,11 @@
                   <a href="#" id="addfriendsonlinedecline" data-icon="delete" data-role="button" data-iconpos="notext">Decline</a>
                   <a href="#" id="addfriendsonlineaccept" data-icon="check" data-role="button" data-iconpos="notext">Accept</a>
                 </div>
-            </div><!-- /header -->      
+            </div><!-- /header -->
+
+            <div class="ui-content" role="main">
+                <center><p>I'd like to invite you to be my friend contact.</p></center>
+            </div>      
         </div><!-- /end page invites -->  
 
         <div data-role="page" id="sentinvitation"><!-- Page Got Invitation -->     
