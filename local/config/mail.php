@@ -80,7 +80,7 @@ return [
 	|
 	*/
 
-	'username' => 'mycontactofficial@gmail.com',
+	'username' => 'kontakkuofficial@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
 	|
 	*/
 
-	'password' => 'mycontactofficial2015',
+	'password' => 'kontakkuofficial2015',
 
 	/*
 	|--------------------------------------------------------------------------

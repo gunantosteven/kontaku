@@ -1,4 +1,4 @@
-Click here to ativate your account: 
+Click here to activate your account: 
 <a href="{{ url('activate/'.$code) }}" >
 {{ url('activate/') }}
 </a>
