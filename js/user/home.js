@@ -4,7 +4,6 @@ var friend;
 var friendonlineinvatitation;
 var category;
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
 /* ===================================js page home=================================== */
 $(document).on("pagebeforecreate", "#home", function (e, ui) {
      reloadContact();
@@ -291,6 +290,27 @@ $(document).on('pageinit', '#home', function(){
           });
   }); 
 
+  $(document).delegate('#toTop', 'click', function () {
+      $('html, body').stop().animate({ scrollTop : 0 }, 500);
+      return false;
+  });
+
+  $(document).on("scrollstop", function (e) {
+
+        /* active page */
+        var activePage = $.mobile.pageContainer.pagecontainer("getActivePage");
+
+        /* window's scrollTop() */
+        scrolled = $(window).scrollTop();
+
+        if (activePage[0].id == "home" && scrolled != 0) {
+         $('#toTop').fadeIn();  
+        }
+        else
+        {
+          $('#toTop').fadeOut();
+        }
+  });
 });
 $(document).on('pagebeforeshow', '#home', function(){  
   $('#myphoto').attr('src', window.index + '/user/photo?' + Math.random());
@@ -481,6 +501,8 @@ $(document).on('pageinit', '#adddetailmygroups', function(){
       });    
 
   }); 
+
+
 }); 
 /* getmygroups before show */
 $(document).on('pagebeforeshow', '#adddetailmygroups', function(){    
