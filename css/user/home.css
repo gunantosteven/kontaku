@@ -26,5 +26,5 @@
 }
 
 p { margin-bottom: 15px; }
-#toTop { position: fixed; bottom: 50px; right: 30px; width: 45px; height: 45px; background-color: #CCC; cursor: pointer; display: none; background-image: url("http://3.bp.blogspot.com/-G3o2qn1pfVE/U6-6DBW5NvI/AAAAAAAAApc/re7VoE5vkSw/s1600/newbloggerwidget-back-to-top4.gif"); background-size: 45px 45px;
+#toTop { position: fixed; bottom: 50px; right: 30px; width: 45px; height: 45px; background-color: #CCC; cursor: pointer; display: none; background-image: url("../images/arrow-back-to-top.png"); background-color: transparent; background-size: 45px 45px;
     background-repeat: no-repeat; }
