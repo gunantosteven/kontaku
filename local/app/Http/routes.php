@@ -423,6 +423,7 @@ Route::group(['middleware' => 'user'], function()
 		    'user' => Auth::user()->id,
 		    'fullname' => $output['fullname'],
 		    'phone' => $output['phone'],
+		    'phone2' => $output['phone2'],
 			));
    		return response()->json(['status' => true, 'id' => $id, 'fullname' => $output['fullname']]);
 	});
@@ -489,6 +490,7 @@ Route::group(['middleware' => 'user'], function()
             ->where('id', $id)
             ->update(['fullname' => $output['fullname'], 
             		'phone' => $output['phone'], 
+            		'phone2' => $output['phone2'], 
             		'pinbb' => $output['pinbb'], 
             		'facebook' => $output['facebook'],
             		'twitter' => $output['twitter'],
@@ -952,6 +954,7 @@ Route::get('createdb',function(){
 		$table->string('fullname',30)->default('');
 		$table->string('url', 30)->unique();
 		$table->string('phone',30)->default('');
+		$table->string('phone2',30)->default('');
 		$table->string('pinbb',30)->default('');
 		$table->string('facebook',30)->default('');
 		$table->string('twitter',30)->default('');
@@ -984,6 +987,7 @@ Route::get('createdb',function(){
 		$table->string('fullname',30)->default('');
 		$table->string('email',32)->default('');
 		$table->string('phone',30)->default('');
+		$table->string('phone2',30)->default('');
 		$table->string('pinbb',30)->default('');
 		$table->string('facebook',30)->default('');
 		$table->string('twitter',30)->default('');

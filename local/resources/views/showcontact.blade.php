@@ -15,9 +15,16 @@
           	</div>
 
             <div class="form-group">
-              <label class="col-md-4 control-label">Phone</label>
+              <label class="col-md-4 control-label">Phone 1</label>
               <div class="col-md-6">
                 <input type="text" class="form-control" name="phone" value="{{ $user->phone }}" readonly="">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label">Phone 2</label>
+              <div class="col-md-6">
+                <input type="text" class="form-control" name="phone" value="{{ $user->phone2 }}" readonly="">
               </div>
             </div>
 

@@ -61,8 +61,11 @@
                     <label for="name">Full Name</label>
                     <input type="text" name="fullname" id="createfullname" value="" data-clear-btn="true" data-mini="true">
 
-                    <label for="name">Phone</label>
+                    <label for="name">Phone 1</label>
                     <input type="text" name="phone" id="createphone" value="" data-clear-btn="true" data-mini="true">
+
+                    <label for="name">Phone 2</label>
+                    <input type="text" name="phone2" id="createphone2" value="" data-clear-btn="true" data-mini="true">
 
                     <div class="ui-grid-a">
                         <div class="ui-block-a"><a href="#" data-rel="close" data-role="button" data-theme="c" data-mini="true">Cancel</a></div>
@@ -186,8 +189,11 @@
                   <label for="name">Full Name</label>
                   <input type="text" name="fullname" id="editmyprofilefullname" value="" data-clear-btn="true" data-mini="true"> 
 
-                  <label for="name">Phone</label>
+                  <label for="name">Phone 1</label>
                   <input type="text" name="phone" id="editmyprofilephone" value="" data-clear-btn="true" data-mini="true">
+
+                  <label for="name">Phone 2</label>
+                  <input type="text" name="phone2" id="editmyprofilephone2" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Pin BB</label>
                   <input type="text" name="pinbb" id="editmyprofilepinbb" value="" data-clear-btn="true" data-mini="true">
@@ -275,8 +281,11 @@
                     <label for="email">Email</label>
                     <input type="email" name="email" id="editfriendemail" value="" data-clear-btn="true" data-mini="true">
 
-                    <label for="name">Phone</label>
+                    <label for="name">Phone1</label>
                     <input type="text" name="phone" id="editfriendphone" value="" data-clear-btn="true" data-mini="true">
+
+                    <label for="name">Phone2</label>
+                    <input type="text" name="phone" id="editfriendphone2" value="" data-clear-btn="true" data-mini="true">
 
                     <label for="name">Pin BB</label>
                     <input type="text" name="pinbb" id="editfriendpinbb" value="" data-clear-btn="true" data-mini="true">
