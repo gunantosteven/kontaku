@@ -56,6 +56,15 @@ Route::controllers([
 ]);
 
 
+// admin
+
+Route::get('/admin', function()
+{
+    return View::make('errors.404');
+});
+
+// admin //
+
 
 Route::get('/activate/{code}', 'Auth\AuthController@activateAccount');
 Route::get('/resendEmail', 'Auth\AuthController@resendEmail');

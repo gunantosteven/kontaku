@@ -26,7 +26,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4">						
-						<h1><a class="navbar-brand" href="" data-0="line-height:90px;" data-300="line-height:50px;">			KontaKKu
+						<h1><a class="navbar-brand" href={{ url("/") }} data-0="line-height:90px;" data-300="line-height:50px;">			KontaKKu
 						</a></h1>   						
 					</div>						
 					<div class="col-md-8">

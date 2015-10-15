@@ -11,7 +11,7 @@
 	}(document, 'script', 'facebook-jssdk'));
 	</script>
 	<div class="slider">		
-		  <center><img src="{{ asset('img/logo.jpg') }}" alt="" class="img-responsive" height="683" width="750" /></center> 		
+		  <center><img src="" alt="" class="img-responsive" height="683" width="750" /></center> 		
 	</div>	
 	<!-- column content -->
 	<div id="main-content">

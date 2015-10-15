@@ -51,7 +51,12 @@ class AuthController extends Controller {
 	public function postRegister(Request $request)
 	{
 		$validator = $this->registrar->validator($request->all());
-	
+
+		if(strtolower($request->input('url')) == "admin")
+		{
+			$validator->getMessageBag()->add('url', 'You cannot register with this url name');
+			return redirect()->back()->withErrors($validator)->withInput();
+		}
 		if ($validator->fails())
 		{
 			$this->throwValidationException(
