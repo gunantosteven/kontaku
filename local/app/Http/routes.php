@@ -426,6 +426,21 @@ Route::group(['middleware' => 'user'], function()
 	Route::post('/user/create/friendoffline', function()
 	{
 		parse_str(Request::input('formData'), $output);
+
+		// Setup the validator
+		$rules = array('fullname' => 'required|max:30', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30');
+		$validator = Validator::make($output, $rules);
+
+		// Validate the input and return correct response
+		if ($validator->fails())
+		{
+		    return Response::json(array(
+		        'status' => false,
+		        'errors' => $validator->getMessageBag()->toArray()
+
+		    ), 400); // 400 being the HTTP code for an invalid request.
+		}
+		
 		$id = Uuid::generate();
 		\App\Models\FriendOffline::create(array(
 			'id' => $id,
