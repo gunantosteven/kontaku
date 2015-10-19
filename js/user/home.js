@@ -12,40 +12,56 @@ $(document).on("pagebeforecreate", "#home", function (e, ui) {
 $(document).on('pageinit', '#home', function(){  
   /* create friend offline */
   $(document).on('click', '#submit', function() { // catch the form's submit event
-      if($('#createfullname').val().length > 0){
-          // Send data to server through the Ajax call
-          // action is functionality we want to call and outputJSON is our data
-          $.ajax({url: index + "/user/create/friendoffline",
-              data: {_token: CSRF_TOKEN, action : 'create', formData : $('#createcontactoffline').serialize()},
-              type: 'post',                   
-              async: 'true',
-              dataType: 'json',
-              beforeSend: function() {
-                  // This callback function will trigger before data is sent
-                  $.mobile.loading('show'); // This will show ajax spinner
-              },
-              complete: function() {
-                  // This callback function will trigger on data sent/received complete
-                  $.mobile.loading('hide'); // This will hide ajax spinner
-              },
-              success: function (result) {
-                  if(result.status) {
-                        $('input[id=createfullname]').val('');
-                        $('input[id=createphone]').val('');
-                       $.mobile.pageContainer.pagecontainer("change", "#", {transition: "slide"});
-                       reloadContact();
-                  } else {
-                      alert('Something error happened!'); 
-                  }
-              },
-              error: function (request,error) {
-                  // This callback function will trigger on unsuccessful action                
-                  alert('Network error has occurred please try again!');
+      // Send data to server through the Ajax call
+      // action is functionality we want to call and outputJSON is our data
+      $.ajax({url: index + "/user/create/friendoffline",
+          data: {_token: CSRF_TOKEN, action : 'create', formData : $('#createcontactoffline').serialize()},
+          type: 'post',                   
+          async: 'true',
+          dataType: 'json',
+          beforeSend: function() {
+              // This callback function will trigger before data is sent
+              $.mobile.loading('show'); // This will show ajax spinner
+          },
+          complete: function() {
+              // This callback function will trigger on data sent/received complete
+              $.mobile.loading('hide'); // This will hide ajax spinner
+          },
+          success: function (result) {
+              if(result.status) {
+                    $('input[id=createfullname]').val('');
+                    $('input[id=createphone]').val('');
+                    $('input[id=createphone2]').val('');
+                   $.mobile.pageContainer.pagecontainer("change", "#", {transition: "slide"});
+                   reloadContact();
+              } 
+              else {
+                  alert('Something error happened!'); 
               }
-          });                   
-      } else {
-          alert('Please fill fullname field');
-      }           
+          },
+          error: function (xhr, status, data) {
+              // This callback function will trigger on unsuccessful action 
+              if(xhr.responseJSON.status == false)
+              {
+                if(xhr.responseJSON.errors.fullname)
+                {
+                  alert(xhr.responseJSON.errors.fullname);
+                }
+                else if(xhr.responseJSON.errors.phone)
+                {
+                  alert(xhr.responseJSON.errors.phone);
+                }
+                else if(xhr.responseJSON.errors.phone2)
+                {
+                  alert(xhr.responseJSON.errors.phone2);
+                }
+              }
+              else
+              {
+                alert('Network error has occurred please try again!'); 
+              }    
+          }
+      });                            
       return false; // cancel original event to prevent form submitting
   });      
 
@@ -107,6 +123,7 @@ $(document).on('pageinit', '#home', function(){
   $(document).on("input", "#searchbar", function (e) { 
     if($("#searchbar").val() == "")
     {
+      $("#listMyGroups").show();
        reloadContact();
     }
     else
@@ -118,6 +135,7 @@ $(document).on('pageinit', '#home', function(){
           dataType: 'JSON',
           success: function (data) {
           	$("#collapsibleFavorites").hide();
+            $("#listMyGroups").hide();
 
           	$("#collapsibleOtherContacts h2 #myHeaderOtherContacts").text("All Contacts");
           	$("#collapsibleOtherContacts").collapsible( "option", "collapsed", false );
@@ -662,10 +680,16 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
           '<p>kontakku.com/' + friend.url + '</p></a></li>');
     }
     if (friend.phone) {
-      $('#actionFriendProfileList').append('<li><a href="tel:' + friend.phone + '"><h3>Call This Number</h3>' +
+      $('#actionFriendProfileList').append('<li><a href="tel:' + friend.phone + '"><h3>Call This Phone 1</h3>' +
           '<p>' + friend.phone + '</p></a></li>');
-      $('#actionFriendProfileList').append('<li><a href="sms:' + friend.phone + '"><h3>SMS</h3>' +
+      $('#actionFriendProfileList').append('<li><a href="sms:' + friend.phone + '"><h3>SMS Phone 1</h3>' +
           '<p>' + friend.phone + '</p></a></li>');
+    }
+    if (friend.phone2) {
+      $('#actionFriendProfileList').append('<li><a href="tel:' + friend.phone2 + '"><h3>Call This Phone 2</h3>' +
+          '<p>' + friend.phone2 + '</p></a></li>');
+      $('#actionFriendProfileList').append('<li><a href="sms:' + friend.phone2 + '"><h3>SMS Phone 2</h3>' +
+          '<p>' + friend.phone2 + '</p></a></li>');
     }
     if (friend.pinbb) {
       $('#actionFriendProfileList').append('<li><a id="pinbbfriendprofile"><h3>PIN BB</h3>' +
@@ -722,7 +746,7 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
 $(document).on('pageinit', '#editfriendprofile', function(){  
   /* edit friend */
   $(document).on('click', '#editfriendsubmit', function() { // catch the form's submit event
-    if($('#editfriendfullname').val().length > 0 && $('#editfriendemail').val().length > 0){
+    if($('#editfriendfullname').val().length > 0){
         var formData = new FormData($('#formEditFriendOffline')[0]);
         formData.append("_token", CSRF_TOKEN);
         formData.append("id", friend.id);
@@ -748,6 +772,7 @@ $(document).on('pageinit', '#editfriendprofile', function(){
                       friend.fullname = $('#editfriendfullname').val();
                       friend.email = $('#editfriendemail').val();
                       friend.phone = $('#editfriendphone').val();
+                      friend.phone2 = $('#editfriendphone2').val();
                       friend.pinbb = $('#editfriendpinbb').val();
                       friend.facebook = $('#editfriendfacebook').val();
                       friend.twitter = $('#editfriendtwitter').val();
@@ -776,6 +801,7 @@ $(document).on('pagebeforeshow', '#editfriendprofile', function(){
   $('#editfriendfullname').val(friend.fullname);
   $('#editfriendemail').val(friend.email);
   $('#editfriendphone').val(friend.phone);
+  $('#editfriendphone2').val(friend.phone2);
   $('#editfriendpinbb').val(friend.pinbb);
   $('#editfriendfacebook').val(friend.facebook);
   $('#editfriendtwitter').val(friend.twitter);
@@ -843,6 +869,7 @@ $(document).on('pagebeforeshow', '#editmyprofile', function(){
                 // initialization my profile form
               $('#editmyprofilefullname').val(data.fullname);
               $('#editmyprofilephone').val(data.phone);
+              $('#editmyprofilephone2').val(data.phone2);
               $('#editmyprofilepinbb').val(data.pinbb);
               $('#editmyprofilefacebook').val(data.facebook);
               $('#editmyprofiletwitter').val(data.twitter);

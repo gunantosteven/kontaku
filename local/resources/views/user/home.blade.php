@@ -28,7 +28,7 @@
             <input type="search" placeholder="Search" id="searchbar" />
             <center><font size="2" color="black" id="totalcontacts">Total Contacts 0</font></center>
             <div class="ui-content" role="main">      
-              <ul data-role="listview">
+              <ul id="listMyGroups" data-role="listview">
                 <li><a href="#mygroups">My Groups</a></li>
                 <li data-role="list-divider"></li>
               </ul> 
