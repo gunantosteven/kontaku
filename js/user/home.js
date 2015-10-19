@@ -123,7 +123,6 @@ $(document).on('pageinit', '#home', function(){
   $(document).on("input", "#searchbar", function (e) { 
     if($("#searchbar").val() == "")
     {
-      $("#listMyGroups").show();
        reloadContact();
     }
     else
@@ -1217,6 +1216,7 @@ $(document).on('pagebeforecreate', '#settingsaccount', function(){
 
 // function reloadContact
 function reloadContact() {
+  $("#listMyGroups").show();
 	setBubbleCount();    
 	getFavoritesContact();
 	getContacts();
