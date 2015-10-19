@@ -112,7 +112,7 @@
         <div data-role="page" id="deletemygroups"><!-- Page deletemygroups -->     
             <div data-role="header">         
                 <h1>
-                    Select items
+                    Select groups
                 </h1>     
                 <a href="#mygroups" data-icon="back" data-iconpos="notext">Back</a>
             </div><!-- /header -->      
@@ -146,7 +146,7 @@
         <div data-role="page" id="adddetailmygroups"><!-- Page adddetailmygroups -->     
             <div data-role="header">         
                 <h1>
-                    Select items
+                    Select contacts
                 </h1>     
                 <a href="#detailmygroups" data-icon="back" data-iconpos="notext">Back</a>
             </div><!-- /header -->      
@@ -162,7 +162,7 @@
         <div data-role="page" id="deletedetailmygroups"><!-- Page deletedetailmygroups -->     
             <div data-role="header">         
                 <h1>
-                    Select items
+                    Select contacts
                 </h1>     
                 <a href="#detailmygroups" data-icon="back" data-iconpos="notext">Back</a>
             </div><!-- /header -->      
