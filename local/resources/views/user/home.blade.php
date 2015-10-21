@@ -29,7 +29,7 @@
             <center><font size="2" color="black" id="totalcontacts">Total Contacts 0</font></center>
             <div class="ui-content" role="main">      
               <ul id="listMyGroups" data-role="listview">
-                <li><a href="#mygroups">My Groups</a></li>
+                <li><a href="#mygroups"><img class='ui-li-icon' src={{ asset('img/groups.png') }} width="65px" height="65px" />My Groups</a></li>
                 <li data-role="list-divider"></li>
               </ul> 
               <div id="collapsibleFavorites" data-role="collapsible" data-inset="false" data-collapsed="false">
