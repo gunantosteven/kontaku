@@ -11,7 +11,7 @@
 	}(document, 'script', 'facebook-jssdk'));
 	</script>
 	<div class="slider">		
-		  <center><img src="" alt="" class="img-responsive" height="683" width="750" /></center> 		
+		  <center><img src="img/logo.png" alt="" class="img-responsive" height="683" width="406" /></center> 		
 	</div>	
 	<!-- column content -->
 	<div id="main-content">
@@ -93,10 +93,11 @@
 			    	 data-action="like" data-show-faces="true" data-share="true">
 			   	</div>
 			</center>
+			<br>
+			<center>
+				<h4>Total Users : {{ DB::table('users')->count() }}</h4> 
+			</center>
 		</div>	
-		<div class="container">
-
-		</div>
 	</div>
 	<!-- end column content -->	
 @endsection
