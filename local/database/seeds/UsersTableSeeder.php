@@ -32,7 +32,7 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'email' => 'gunantosteven@gmail.com',
 		'password' => Hash::make('admin'),
 		'active' => 1,
-		'role' => 'USER',
+		'role' => 'ADMIN',
 		'remember_token' => '',
 		'fullname' => 'Steven Gunanto',
 		'url' => 'stevengunanto',
