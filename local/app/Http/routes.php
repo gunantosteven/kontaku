@@ -55,19 +55,18 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-
-// admin
-
-Route::get('/admin', function()
-{
-    return View::make('errors.404');
-});
-
-// admin //
-
-
 Route::get('/activate/{code}', 'Auth\AuthController@activateAccount');
 Route::get('/resendEmail', 'Auth\AuthController@resendEmail');
+
+Route::group(['middleware' => 'admin'], function()
+{
+    Route::get('/admin', function()
+    {
+        // can only access this if type == O
+    });
+
+    Route::get('/admin/dashboard', 'Admin\DashboardController@index');
+});
 
 Route::group(['middleware' => 'user'], function()
 {

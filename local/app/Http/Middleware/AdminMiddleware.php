@@ -1,10 +1,9 @@
 <?php namespace App\Http\Middleware;
 
 use Closure;
+use View;
 
-use BrowserDetect;
-
-class UserMiddleware {
+class AdminMiddleware {
 
 	/**
 	 * Handle an incoming request.
@@ -16,13 +15,13 @@ class UserMiddleware {
 	public function handle($request, Closure $next)
 	{
 		$user = $request->user();
-		if ($user && $user->role == 'USER')
+		if ($user && $user->role == 'ADMIN')
 		{
 			return $next($request);
 		}
-		else if ($user && $user->role == 'ADMIN')
+		else if ($user && $user->role == 'USER')
 		{
-			return $next($request);
+			return View::make('errors.404');
 		}
 
 		return redirect('/');
