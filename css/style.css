@@ -44,6 +44,11 @@ p {
 
 }
 
+.dropdown-menu a{
+    color: #000 !important;
+
+}
+
 .dropdown ul.nav li a:hover {
 	color:#428bca;
 
