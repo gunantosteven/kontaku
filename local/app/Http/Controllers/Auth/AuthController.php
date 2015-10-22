@@ -142,7 +142,7 @@ class AuthController extends Controller {
 	    {
 	        if($this->auth->User()->role == 'ADMIN')
             {
-                return redirect('admin/home');
+                return redirect('user/home');
             }
             else if($this->auth->User()->role == 'USER')
             {
