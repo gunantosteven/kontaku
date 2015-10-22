@@ -44,7 +44,7 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'instagram' => 'stevengunanto',
 		'line' => 'stevengunanto',
 		'status' => 'Haiii I\'m the first',
-		'privateaccount' => 1,
+		'privateaccount' => 0,
 		'newinvitesnotification' => 1,
 		));
 

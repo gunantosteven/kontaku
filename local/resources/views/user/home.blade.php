@@ -185,7 +185,7 @@
           </div><!-- /header --> 
 
           <div class="ui-content" role="main">
-                  <h2>Edit My Profile</h2>
+                  <h2>Edit My Profile</h2> <h5><a href="http://localhost/kontakku/stevengunanto" target="_blank">(Example click here)</a></h5>
                   <label for="name">Full Name</label>
                   <input type="text" name="fullname" id="editmyprofilefullname" value="" data-clear-btn="true" data-mini="true"> 
 
@@ -268,13 +268,12 @@
         <div data-role="page" id="editfriendprofile">
           <form id="formEditFriendOffline"  data-ajax="false">
                   <div data-role="header" data-theme="a" id="header1">
-                     <h3>Edit Friend Contact</h3>
+                     <h3>Edit Friend Contact</h3> 
                      <a href="#friendprofile" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
                      <a href="#" data-role="button" id="editfriendsubmit" data-theme="b" data-mini="true">OK</a>
                   </div><!-- /header --> 
-
                   <div class="ui-content" role="main">
-                    <h2>Edit Friend Contact</h2>
+                    <h2>Edit Friend Contact</h2> <h5><a href="http://localhost/kontakku/stevengunanto" target="_blank">(Example click here)</a></h5>
                     <label for="name">Full Name</label>
                     <input type="text" name="fullname" id="editfriendfullname" value="" data-clear-btn="true" data-mini="true"> 
 
