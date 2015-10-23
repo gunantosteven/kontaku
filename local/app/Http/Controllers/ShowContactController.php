@@ -72,7 +72,7 @@ class ShowContactController extends Controller {
 	            ->where('id', Request::input('id'))
 	            ->update(['newinvitesnotification' => 1]);
 
-	        return redirect('/user/home');
+	        return redirect('/user/home#invites');
 	    }
 		
 		$url = DB::table('users')

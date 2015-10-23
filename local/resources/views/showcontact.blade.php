@@ -12,6 +12,7 @@
           	<div class="form-group">
           		<center><img src={{ url("/image/$user->id") }}></center>
           		<center><b>{{ $user->fullname }}</b></center>
+              <center>{{ $user->status }}</center>
           	</div>
 
             <div class="form-group">
@@ -55,26 +56,19 @@
                 <input type="text" class="form-control" name="instagram" value="{{ $user->instagram }}" readonly="">
               </div>
             </div>
-
-            <div class="form-group">
-              <label class="col-md-4 control-label">Status</label>
-              <div class="col-md-6">
-                <input type="text" class="form-control" name="status" value="{{ $user->status }}" readonly="">
-              </div>
-            </div>
           </form>
-          @if (Auth::user() && !Auth::user()->isFriendOnline($user->id))
-          <form class="form-horizontal" role="form" method="POST" action={{ url("/user/invite") }}>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <input type="hidden" name="id" value="{{ $user->id }}">
-            <div class="form-group">
-               <label class="col-md-4 control-label"></label>
-              <div class="col-md-6">
-                <input type="submit" class="btn btn-primary active" value="Invite">
+            @if (Auth::user() && Auth::user()->id != $user->id && !Auth::user()->isFriendOnline($user->id))
+            <form class="form-horizontal" role="form" method="POST" action={{ url("/user/invite") }}>
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <input type="hidden" name="id" value="{{ $user->id }}">
+              <div class="form-group">
+                <label class="col-md-6"></label>
+                <div class="col-md-6">
+                  <input type="submit" class="btn btn-primary active" value="Invite">
+                </div>
               </div>
-            </div>
-          </form>
-          @endif
+            </form>
+            @endif
         </div>
       </div>
     </div>
