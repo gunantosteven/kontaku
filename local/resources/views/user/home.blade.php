@@ -335,7 +335,7 @@
                 <input type="submit" name="search" value="Search" id="submitsearchaddfriendsonline"/>  
               </form>       
               <div class="center-wrapper">     
-                  <img class='ui-li-icon' id="imguseraddfriendsonline" src='http://www.haverhill-ps.org/wp-content/uploads/sites/12/2013/11/user.png' height='80' width='80' />
+                  <img class='ui-li-icon' id="imguseraddfriendsonline" height='80' width='80' />
                   <label for="name" id="fullnameuseraddfriendsonline">FullName</label>
                   <form id="formAddFriendOnline"  data-ajax="false">
                     <input type="hidden" name="id" id="iduseraddfriendsonline"/>

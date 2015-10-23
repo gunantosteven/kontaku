@@ -883,18 +883,9 @@ Route::group(['middleware' => 'user'], function()
 	Route::get('/user/images/photos/friendsprofile/{id}', function($id)
 	{
 		// security check if this profile is her/his friend.
-		$friendsonline1 = DB::table('users')
-            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
-            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
-            ->where('friendsonline.user2', Auth::user()->id)
-            ->where('friendsonline.user1', $id)->count();
-        $friendsonline2 = DB::table('users')
-            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
-            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
-            ->where('friendsonline.user1', Auth::user()->id)
-            ->where('friendsonline.user2', $id)->count();
+		$friendsonline = DB::table('users')->where('id', $id)->count();
         $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('id', $id)->where('user', Auth::user()->id)->count();
-        $combinedCount = $friendsoffline + $friendsonline1 + $friendsonline2;
+        $combinedCount = $friendsonline + $friendsoffline;
 
         if($combinedCount > 0)
         {
@@ -908,6 +899,10 @@ Route::group(['middleware' => 'user'], function()
 				// open an image file
 				$img = Image::make(base_path() . '/resources/assets/images/photos/user.png' );
 			}
+        }
+        else
+        {
+        	$img = Image::make(base_path() . '/resources/assets/images/photos/imagenotfound.png' );
         }
 
 		// now you are able to resize the instance

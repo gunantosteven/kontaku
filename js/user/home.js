@@ -1039,6 +1039,7 @@ $(document).on('pageinit', '#addfriendsonline', function(){
             success: function (result) {
                 if(result.status) 
                 {
+                  $('#imguseraddfriendsonline').attr('src', window.index + '/user/images/photos/friendsprofile/' + result['users'][0].id);
                   $('#fullnameuseraddfriendsonline').text(result['users'][0].fullname);
                   $('#iduseraddfriendsonline').val(result['users'][0].id);
 
