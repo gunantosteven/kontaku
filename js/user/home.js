@@ -350,7 +350,6 @@ $(document).on('pagebeforeshow', '#home', function(){
 /* ===================================js page mygroups=================================== */
 $(document).on('pageinit', '#mygroups', function(){  
 	$(document).on('click', '#submitCategory', function() { // catch the form's submit event
-      if($('#categorytitle').val().length > 0){
           // Send data to server through the Ajax call
           // action is functionality we want to call and outputJSON is our data
           $.ajax({url: index + "/user/create/groups",
@@ -374,15 +373,22 @@ $(document).on('pageinit', '#mygroups', function(){
                       alert('Something error happened!'); 
                   }
               },
-              error: function (request,error) {
+              error: function (xhr, status, data) {
                   // This callback function will trigger on unsuccessful action                
-                  alert('Network error has occurred please try again!');
+                  if(xhr.responseJSON.status == false)
+                  {
+                    if(xhr.responseJSON.errors.title)
+                    {
+                      alert(xhr.responseJSON.errors.title);
+                    }
+                  }
+                  else
+                  {
+                    alert('Network error has occurred please try again!'); 
+                  } 
               }
-          });                   
-      } else {
-          alert('Please fill all necessary fields');
-      }           
-      return false; // cancel original event to prevent form submitting
+          });                              
+          return false; // cancel original event to prevent form submitting
   });      
   $('#listmygroups').on('click', 'li', function() {
       category = {id:$(this).attr('id').split(";")[0], title:$(this).attr('id').split(";")[1]};
@@ -783,9 +789,31 @@ $(document).on('pageinit', '#editfriendprofile', function(){
                     alert('Something error happened!'); 
                 }
             },
-            error: function (request,error) {
+            error: function (xhr, status, data) {
                 // This callback function will trigger on unsuccessful action                
-                alert('Network error has occurred please try again!');
+                if(xhr.responseJSON.status == false)
+                {
+                  if(xhr.responseJSON.errors.fullname)
+                  {
+                    alert(xhr.responseJSON.errors.fullname);
+                  }
+                  else if(xhr.responseJSON.errors.email)
+                  {
+                    alert(xhr.responseJSON.errors.email);
+                  }
+                  else if(xhr.responseJSON.errors.phone)
+                  {
+                    alert(xhr.responseJSON.errors.phone);
+                  }
+                  else if(xhr.responseJSON.errors.phone2)
+                  {
+                    alert(xhr.responseJSON.errors.phone2);
+                  }
+                }
+                else
+                {
+                  alert('Network error has occurred please try again!'); 
+                }    
             }
         });                   
     } else {
@@ -842,9 +870,27 @@ $(document).on('pageinit', '#editmyprofile', function(){
                     alert('Something error happened!'); 
                 }
             },
-            error: function (request,error) {
+            error: function (xhr, status, data) {
                 // This callback function will trigger on unsuccessful action                
-                alert('Network error has occurred please try again!');
+                if(xhr.responseJSON.status == false)
+                {
+                  if(xhr.responseJSON.errors.fullname)
+                  {
+                    alert(xhr.responseJSON.errors.fullname);
+                  }
+                  else if(xhr.responseJSON.errors.phone)
+                  {
+                    alert(xhr.responseJSON.errors.phone);
+                  }
+                  else if(xhr.responseJSON.errors.phone2)
+                  {
+                    alert(xhr.responseJSON.errors.phone2);
+                  }
+                }
+                else
+                {
+                  alert('Network error has occurred please try again!'); 
+                }   
             }
         });      
 

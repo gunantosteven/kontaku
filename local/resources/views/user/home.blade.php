@@ -284,7 +284,7 @@
                     <input type="text" name="phone" id="editfriendphone" value="" data-clear-btn="true" data-mini="true">
 
                     <label for="name">Phone2</label>
-                    <input type="text" name="phone" id="editfriendphone2" value="" data-clear-btn="true" data-mini="true">
+                    <input type="text" name="phone2" id="editfriendphone2" value="" data-clear-btn="true" data-mini="true">
 
                     <label for="name">Pin BB</label>
                     <input type="text" name="pinbb" id="editfriendpinbb" value="" data-clear-btn="true" data-mini="true">

@@ -290,6 +290,21 @@ Route::group(['middleware' => 'user'], function()
 	Route::post('/user/create/groups', function()
 	{
 		parse_str(Request::input('formData'), $output);
+
+		// Setup the validator
+		$rules = array('title' => 'required|max:30');
+		$validator = Validator::make($output, $rules);
+
+		// Validate the input and return correct response
+		if ($validator->fails())
+		{
+		    return Response::json(array(
+		        'status' => false,
+		        'errors' => $validator->getMessageBag()->toArray()
+
+		    ), 400); // 400 being the HTTP code for an invalid request.
+		}
+
 		$id = Uuid::generate();
 		\App\Models\Category::create(array(
 			'id' => $id,
@@ -455,6 +470,21 @@ Route::group(['middleware' => 'user'], function()
 	Route::post('user/edit/friendoffline', function()
 	{
 		$output = Input::all();
+
+		// Setup the validator
+		$rules = array('fullname' => 'required|max:30', 'email' => 'email|max:32', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30');
+		$validator = Validator::make($output, $rules);
+
+		// Validate the input and return correct response
+		if ($validator->fails())
+		{
+		    return Response::json(array(
+		        'status' => false,
+		        'errors' => $validator->getMessageBag()->toArray()
+
+		    ), 400); // 400 being the HTTP code for an invalid request.
+		}
+
 		DB::table('friendsoffline')
             ->where('id', $output['id'])
             ->update(['fullname' => $output['fullname'], 
@@ -508,6 +538,21 @@ Route::group(['middleware' => 'user'], function()
 	Route::post('user/editprofile', function()
 	{
 		$output = Input::all();
+
+		// Setup the validator
+		$rules = array('fullname' => 'required|max:30', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30');
+		$validator = Validator::make($output, $rules);
+
+		// Validate the input and return correct response
+		if ($validator->fails())
+		{
+		    return Response::json(array(
+		        'status' => false,
+		        'errors' => $validator->getMessageBag()->toArray()
+
+		    ), 400); // 400 being the HTTP code for an invalid request.
+		}
+
 		$id = Auth::user()->id;
 		DB::table('users')
             ->where('id', $id)
@@ -1024,7 +1069,7 @@ Route::get('createdb',function(){
 		$table->string('id')->primary();
 		$table->string('user');
 		$table->foreign('user')->references('id')->on('users');
-		$table->string('title')->unique();
+		$table->string('title',30)->unique();
 		$table->timestamps();
 	});
 
