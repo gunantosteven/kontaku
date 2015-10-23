@@ -472,7 +472,7 @@ Route::group(['middleware' => 'user'], function()
 		$output = Input::all();
 
 		// Setup the validator
-		$rules = array('fullname' => 'required|max:30', 'email' => 'email|max:32', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30');
+		$rules = array('fullname' => 'required|max:30', 'email' => 'email|max:32', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'photo' => 'image|mimes:jpeg,png');
 		$validator = Validator::make($output, $rules);
 
 		// Validate the input and return correct response
@@ -496,7 +496,7 @@ Route::group(['middleware' => 'user'], function()
             		'instagram' => $output['instagram'],
             		'line' => $output['line']]);
 
-        if(isset($output['photo']) && $output['photo'] != "")
+        if(isset($output['photo']) && !empty($output['photo']))
         {
         	$createImage = Image::make($output['photo']);
 			$createImage->resize(65, 65);
@@ -540,7 +540,7 @@ Route::group(['middleware' => 'user'], function()
 		$output = Input::all();
 
 		// Setup the validator
-		$rules = array('fullname' => 'required|max:30', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30');
+		$rules = array('fullname' => 'required|max:30', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'photo' => 'image|mimes:jpeg,png');
 		$validator = Validator::make($output, $rules);
 
 		// Validate the input and return correct response
@@ -565,7 +565,7 @@ Route::group(['middleware' => 'user'], function()
             		'instagram' => $output['instagram'],
             		'line' => $output['line']]);
 
-        if(isset($output['photo']) && $output['photo'] != "")
+        if(isset($output['photo']) && !empty($output['photo']))
         {
         	$createImage = Image::make($output['photo']);
 			$createImage->resize(65, 65);

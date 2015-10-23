@@ -211,7 +211,7 @@
                   <input type="text" name="line" id="editmyprofileline" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Choose Photo</label>
-                  <input type="file" name="photo"  id="editmyprofilephoto" value="" data-clear-btn="true" data-mini="true"/>
+                  <input type="file" name="photo"  id="editmyprofilephoto" accept="image/x-png, image/jpeg" value="" data-clear-btn="true" data-mini="true"/>
 
             </form>
           </div> <!-- /content --> 
@@ -302,7 +302,7 @@
                     <input type="text" name="line" id="editfriendline" value="" data-clear-btn="true" data-mini="true">
 
                     <label for="name">Choose Photo</label>
-                    <input type="file" name="photo"  id="editfriendphoto" value="" data-clear-btn="true" data-mini="true"/>
+                    <input type="file" name="photo"  id="editfriendphoto" accept="image/x-png, image/jpeg" value="" data-clear-btn="true" data-mini="true"/>
                   </div> <!-- /content --> 
           </form>
         </div>  

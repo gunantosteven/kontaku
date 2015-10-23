@@ -751,7 +751,6 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
 $(document).on('pageinit', '#editfriendprofile', function(){  
   /* edit friend */
   $(document).on('click', '#editfriendsubmit', function() { // catch the form's submit event
-    if($('#editfriendfullname').val().length > 0){
         var formData = new FormData($('#formEditFriendOffline')[0]);
         formData.append("_token", CSRF_TOKEN);
         formData.append("id", friend.id);
@@ -809,17 +808,18 @@ $(document).on('pageinit', '#editfriendprofile', function(){
                   {
                     alert(xhr.responseJSON.errors.phone2);
                   }
+                  else if(xhr.responseJSON.errors.photo)
+                  {
+                    alert(xhr.responseJSON.errors.photo);
+                  }
                 }
                 else
                 {
                   alert('Network error has occurred please try again!'); 
                 }    
             }
-        });                   
-    } else {
-        alert('Please fill all necessary fields');
-    }           
-      return false; // cancel original event to prevent form submitting
+        });        
+        return false; // cancel original event to prevent form submitting
   });    
 });
 /* edit friend profile */
@@ -885,6 +885,10 @@ $(document).on('pageinit', '#editmyprofile', function(){
                   else if(xhr.responseJSON.errors.phone2)
                   {
                     alert(xhr.responseJSON.errors.phone2);
+                  }
+                  else if(xhr.responseJSON.errors.photo)
+                  {
+                    alert(xhr.responseJSON.errors.photo);
                   }
                 }
                 else
