@@ -679,11 +679,22 @@ Route::group(['middleware' => 'user'], function()
                       ->orWhere('friendsonline.status', 'PENDING')
                       ->orWhere('friendsonline.status', 'ACCEPTED');
             });
-        $combinedcount = $friendsonline1->unionAll($friendsonline2)->get();
+        $combined = $friendsonline1->unionAll($friendsonline2)->get();
 
-        foreach ($combinedcount as $friend)
+        foreach ($combined as $friend)
 		{
-			return response()->json(['status' => false]);
+			if($friend->status == "ACCEPTED")
+			{
+				return response()->json(['status' => false, 'msg' => $usersearch->fullname . " is your friend"]);
+			}
+			else if($friend->status == "PENDING")
+			{
+				return response()->json(['status' => false, 'msg' => "You have invited " . $usersearch->fullname  . " but still PENDING"]);
+			}
+			else if($friend->status == "DECLINED")
+			{
+				return response()->json(['status' => false, 'msg' => "You have invited " . $usersearch->fullname  . " but has been DECLINED"]);
+			}
 		}
 
         $array = array();

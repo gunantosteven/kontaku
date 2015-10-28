@@ -1047,7 +1047,17 @@ $(document).on('pageinit', '#addfriendsonline', function(){
                   $('#fullnameuseraddfriendsonline').show();
                   $('#buttonaddfriendsonline').show();
                 } 
-                else 
+                else if(result.status == false && result.msg != "")
+                {
+                    $('#fullnameuseraddfriendsonline').val('');
+                    $('#iduseraddfriendsonline').val('');
+
+                    $('#imguseraddfriendsonline').hide();
+                    $('#fullnameuseraddfriendsonline').hide();
+                    $('#buttonaddfriendsonline').hide();
+                    alert(result.msg); 
+                }
+                else
                 {
                     $('#fullnameuseraddfriendsonline').val('');
                     $('#iduseraddfriendsonline').val('');
