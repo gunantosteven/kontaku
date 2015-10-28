@@ -14,7 +14,14 @@
           		<center><b>{{ $user->fullname }}</b></center>
               <center>{{ $user->status }}</center>
           	</div>
-
+          @if( $user->showemailinpublic == true )
+            <div class="form-group">
+              <label class="col-md-4 control-label">Email</label>
+              <div class="col-md-6">
+                <input type="text" class="form-control" name="phone" value="{{ $user->email }}" readonly="">
+              </div>
+            </div>
+          @endif
             <div class="form-group">
               <label class="col-md-4 control-label">Phone 1</label>
               <div class="col-md-6">

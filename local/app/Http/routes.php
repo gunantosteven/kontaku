@@ -786,6 +786,25 @@ Route::group(['middleware' => 'user'], function()
 		}
 	});
 
+	Route::put('user/showemailinpublic', function()
+	{
+		$id = Auth::user()->id;
+		$showemailinpublic = 0;
+		if( Request::input('showemailinpublic') == "yes")
+		{
+			$showemailinpublic = 1;
+		}
+		else
+		{
+			$showemailinpublic = 0;
+		}
+		DB::table('users')
+            ->where('id', $id)
+            ->update(['showemailinpublic' => $showemailinpublic]);
+
+   		return response()->json(['status' => true]);
+	});
+
 	// edit my private account status
 	Route::put('user/changeprivateaccount', function()
 	{
@@ -1035,6 +1054,7 @@ Route::get('createdb',function(){
 		$table->string('instagram',30)->default('');
 		$table->string('line',30)->default('');
 		$table->string('status',30)->default('Welcome to my contact');
+		$table->boolean('showemailinpublic')->default(0);
 		$table->boolean('privateaccount')->default(0);
 		$table->boolean('newinvitesnotification')->default(0);
 		$table->timestamps();

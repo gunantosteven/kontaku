@@ -1243,6 +1243,9 @@ $(document).on('pagebeforecreate', '#settingsaccount', function(){
             data: {_token: CSRF_TOKEN},
             dataType: 'JSON',
             success: function (data) {
+              $('#settingsaccountmyemail').text(data.email);
+              $('#settingsaccountmyurl').text("kontakku.com/" + data.url);
+
               if(data.privateaccount == true)
               {
               	$("#privateaccountflipswitch")
@@ -1259,17 +1262,23 @@ $(document).on('pagebeforecreate', '#settingsaccount', function(){
 		            .flipswitch('refresh') /* re-enhance switch */
 		            .on("change", flipChangedPrivateAccount); /* add listener again */
               }
-            }
-        });
 
-  $.ajax({
-            url: index + "/user/profile",
-            type: 'POST',
-            data: {_token: CSRF_TOKEN},
-            dataType: 'JSON',
-            success: function (data) {
-              $('#settingsaccountmyemail').text(data.email);
-              $('#settingsaccountmyurl').text("kontakku.com/" + data.url);
+              if(data.showemailinpublic == true)
+              {
+                $("#showemailinpublicflipswitch")
+                .off("change") /* remove previous listener */
+                .val('yes') /* update value */
+                .flipswitch('refresh') /* re-enhance switch */
+                .on("change", flipChangedShowEmailInPublic); /* add listener again */
+              }
+              else
+              {
+                $("#showemailinpublicflipswitch")
+                .off("change") /* remove previous listener */
+                .val('no') /* update value */
+                .flipswitch('refresh') /* re-enhance switch */
+                .on("change", flipChangedShowEmailInPublic); /* add listener again */
+              }
             }
         });
 }); 
@@ -1410,6 +1419,34 @@ function flipChangedIsFavorite(e) {
 function flipChangedPrivateAccount(e) {
 	$.ajax({url: index + "/user/changeprivateaccount",
               data: {_token: CSRF_TOKEN, action : 'change', privateaccount : this.value},
+              type: 'put',                   
+              async: 'true',
+              dataType: 'json',
+              beforeSend: function() {
+                  // This callback function will trigger before data is sent
+                  $.mobile.loading('show'); // This will show ajax spinner
+              },
+              complete: function() {
+                  // This callback function will trigger on data sent/received complete
+                  $.mobile.loading('hide'); // This will hide ajax spinner
+              },
+              success: function (result) {
+                  if(result.status) {
+                  } else {
+                      alert('Something error happened!'); 
+                  }
+              },
+              error: function (request,error) {
+                  // This callback function will trigger on unsuccessful action                
+                  alert('Network error has occurred please try again!');
+              }
+          });  
+}
+
+/* change event handler */
+function flipChangedShowEmailInPublic(e) {
+  $.ajax({url: index + "/user/showemailinpublic",
+              data: {_token: CSRF_TOKEN, action : 'change', showemailinpublic : this.value},
               type: 'put',                   
               async: 'true',
               dataType: 'json',

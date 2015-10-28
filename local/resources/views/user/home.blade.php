@@ -406,13 +406,20 @@
                   <li id=''><a href='#editmyprofile'>Edit Profile</a></li>
                   <li id=''><a href='#changepassword'>Change Password</a></li>
                   <li id=''>
+                  <div data-role="fieldcontain">
+                    <label for="checkbox-based-flipswitch"><b>Show Email In Public :</b></label>
+                    <select id="showemailinpublicflipswitch" data-role="flipswitch">
+                      <option value="no">No</option>
+                      <option value="yes">Yes</option>
+                    </select>
+                  </div>
               		<div data-role="fieldcontain">
-					    <label for="checkbox-based-flipswitch"><b>Private Account :</b></label>
-					    <select id="privateaccountflipswitch" data-role="flipswitch">
-						    <option value="no">No</option>
-						    <option value="yes">Yes</option>
-						  </select>
-					</div>
+      					    <label for="checkbox-based-flipswitch"><b>Private Account :</b></label>
+                    <select id="showemailinpublicflipswitch" data-role="flipswitch">
+                      <option value="no">No</option>
+                      <option value="yes">Yes</option>
+                    </select>
+                  </div>
 				  </li>
                 </ul>
                 
