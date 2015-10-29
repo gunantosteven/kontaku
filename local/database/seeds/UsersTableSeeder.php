@@ -39,7 +39,7 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'phone' => '083854968000',
 		'phone2' => '',
 		'pinbb' => '51EF1391',
-		'facebook' => 'Tasikutus',
+		'facebook' => 'UngApps',
 		'twitter' => '@StevenGunanto',
 		'instagram' => 'stevengunanto',
 		'line' => 'stevengunanto',
