@@ -317,7 +317,7 @@
             </div><!-- /header -->      
             
             <div class="ui-content" role="main">                
-                <ul data-role="listview" id="listinvites" data-filter="true" data-inset="true" data-divider-theme="a"></ul>
+                <ul data-role="listview" id="listinvites"  data-filter="true" data-inset="true" data-divider-theme="a"></ul>
             </div><!-- /content -->      
         </div><!-- /end page invites -->     
 
@@ -331,7 +331,7 @@
             
             <div class="ui-content" role="main">
               <form id="formSearchAddFriendOnline"  data-ajax="false">  
-                <input type="text" placeholder="Search" name="search" id="searchbaraddfriendsonline" data-clear-btn="true"/>
+                <input type="text" placeholder="Search by url" name="search" id="searchbaraddfriendsonline" data-clear-btn="true"/>
                 <input type="submit" name="search" value="Search" id="submitsearchaddfriendsonline"/>  
               </form>       
               <div class="center-wrapper">     
@@ -343,7 +343,7 @@
                   </form>
               </div>
             </div><!-- /content -->      
-        </div><!-- /end page invites -->    
+        </div><!-- /end page Friends Online -->    
 
         <div data-role="page" id="gotinvitation"><!-- Page Got Invitation -->     
             <div data-role="header">         
