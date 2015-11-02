@@ -11,7 +11,11 @@
 
           	<div class="form-group">
           		<center><img src={{ url("/image/$user->id") }}></center>
-          		<center><b>{{ $user->fullname }}</b></center>
+              @if( $user->fullname == "" )
+              <center><b>{{ $user->url }}</b></center>
+              @else
+              <center><b>{{ $user->fullname }}</b></center>
+              @endif
               <center>{{ $user->status }}</center>
           	</div>
           @if( $user->showemailinpublic == true )
