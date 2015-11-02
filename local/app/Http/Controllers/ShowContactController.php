@@ -103,7 +103,11 @@ class ShowContactController extends Controller {
 		}
 		else
 		{
-			if($user->privateaccount == true)
+			if($user->active == false)
+			{
+				return view('contactisnotactive');
+			}
+			else if($user->privateaccount == true)
 			{
 				return view('contactisprivate');
 			}
