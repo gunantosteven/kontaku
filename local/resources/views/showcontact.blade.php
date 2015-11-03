@@ -22,7 +22,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label">Email</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="phone" value="{{ $user->email }}" readonly="">
+                <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="phone" value="{{ $user->email }}" readonly="">
               </div>
             </div>
           @endif
@@ -30,7 +30,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label">Phone 1</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="phone" value="{{ $user->phone }}" readonly="">
+                <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="phone" value="{{ $user->phone }}" readonly="">
               </div>
             </div>
           @endif
@@ -38,7 +38,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label">Phone 2</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="phone" value="{{ $user->phone2 }}" readonly="">
+                <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="phone" value="{{ $user->phone2 }}" readonly="">
               </div>
             </div>
           @endif
@@ -46,7 +46,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label">PIN BB</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="pinbb" value="{{ $user->pinbb }}" readonly="">
+                <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="pinbb" value="{{ $user->pinbb }}" readonly="">
               </div>
             </div>
           @endif
@@ -54,7 +54,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label">Facebook</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="facebook" value="{{ $user->facebook }}" readonly="">
+                <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="facebook" value="{{ $user->facebook }}" readonly="">
               </div>
             </div>
           @endif
@@ -62,7 +62,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label">Twitter</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="twitter" value="{{ $user->twitter }}" readonly="">
+                <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="twitter" value="{{ $user->twitter }}" readonly="">
               </div>
             </div>
           @endif
@@ -70,7 +70,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label">Instagram</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="instagram" value="{{ $user->instagram }}" readonly="">
+                <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="instagram" value="{{ $user->instagram }}" readonly="">
               </div>
             </div>
           @endif
@@ -78,7 +78,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label">Line</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="instagram" value="{{ $user->line }}" readonly="">
+                <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="instagram" value="{{ $user->line }}" readonly="">
               </div>
             </div>
           @endif
