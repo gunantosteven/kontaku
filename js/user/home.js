@@ -700,7 +700,11 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
       $('#actionFriendProfileList').append('<li><a id="pinbbfriendprofile"><h3>PIN BB</h3>' +
           '<p>' + friend.pinbb + '</p></a></li>');
     }
-    if (friend.facebook) {
+    if (friend.facebook.substring(0, 4) === "http") {
+      $('#actionFriendProfileList').append('<li><a href="' + friend.facebook + '" target="_blank"><h3>Facebook</h3>' +
+          '<p>' + friend.facebook+ '</p></a></li>');
+    }
+    else if (friend.facebook) {
       $('#actionFriendProfileList').append('<li><a href="https://www.facebook.com/' + friend.facebook + '" target="_blank"><h3>Facebook</h3>' +
           '<p>' + friend.facebook+ '</p></a></li>');
     }

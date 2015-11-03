@@ -1049,7 +1049,7 @@ Route::get('createdb',function(){
 		$table->string('phone',30)->default('');
 		$table->string('phone2',30)->default('');
 		$table->string('pinbb',30)->default('');
-		$table->string('facebook',30)->default('');
+		$table->string('facebook',100)->default('');
 		$table->string('twitter',30)->default('');
 		$table->string('instagram',30)->default('');
 		$table->string('line',30)->default('');
@@ -1083,7 +1083,7 @@ Route::get('createdb',function(){
 		$table->string('phone',30)->default('');
 		$table->string('phone2',30)->default('');
 		$table->string('pinbb',30)->default('');
-		$table->string('facebook',30)->default('');
+		$table->string('facebook',100)->default('');
 		$table->string('twitter',30)->default('');
 		$table->string('instagram',30)->default('');
 		$table->string('line',30)->default('');
