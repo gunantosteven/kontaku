@@ -210,6 +210,9 @@
                   <label for="name">Line</label>
                   <input type="text" name="line" id="editmyprofileline" value="" data-clear-btn="true" data-mini="true">
 
+                  <label for="name">Status</label>
+                  <input type="text" name="status" id="editmyprofilestatus" value="" data-clear-btn="true" data-mini="true">
+
                   <label for="name">Choose Photo</label>
                   <input type="file" name="photo"  id="editmyprofilephoto" accept="image/x-png, image/jpeg" value="" data-clear-btn="true" data-mini="true"/>
 

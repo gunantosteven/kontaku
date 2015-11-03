@@ -563,7 +563,8 @@ Route::group(['middleware' => 'user'], function()
             		'facebook' => $output['facebook'],
             		'twitter' => $output['twitter'],
             		'instagram' => $output['instagram'],
-            		'line' => $output['line']]);
+            		'line' => $output['line'],
+            		'status' => $output['status']]);
 
         if(isset($output['photo']) && !empty($output['photo']))
         {

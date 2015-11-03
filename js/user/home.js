@@ -928,6 +928,7 @@ $(document).on('pagebeforeshow', '#editmyprofile', function(){
               $('#editmyprofiletwitter').val(data.twitter);
               $('#editmyprofileinstagram').val(data.instagram);
               $('#editmyprofileline').val(data.line);
+              $('#editmyprofilestatus').val(data.status);
               // clear select photo
               $('#editmyprofilephoto').val('');
             }
