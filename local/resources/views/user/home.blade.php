@@ -187,34 +187,34 @@
           <div class="ui-content" role="main">
                   <h2>Edit My Profile</h2> <h5><a href={{ URL('/stevengunanto') }} target="_blank">(Example click here)</a></h5>
                   <label for="name">Full Name</label>
-                  <input type="text" name="fullname" id="editmyprofilefullname" value="" data-clear-btn="true" data-mini="true"> 
+                  <input type="text" name="fullname" id="editmyprofilefullname" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true"> 
 
                   <label for="name">Phone 1</label>
-                  <input type="text" name="phone" id="editmyprofilephone" value="" data-clear-btn="true" data-mini="true">
+                  <input type="text" name="phone" id="editmyprofilephone" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Phone 2</label>
-                  <input type="text" name="phone2" id="editmyprofilephone2" value="" data-clear-btn="true" data-mini="true">
+                  <input type="text" name="phone2" id="editmyprofilephone2" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Address</label>
-                  <input type="text" name="address" id="editmyprofileaddress" value="" data-clear-btn="true" data-mini="true">
+                  <input type="text" name="address" id="editmyprofileaddress" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Pin BB</label>
-                  <input type="text" name="pinbb" id="editmyprofilepinbb" value="" data-clear-btn="true" data-mini="true">
+                  <input type="text" name="pinbb" id="editmyprofilepinbb" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Facebook</label>
-                  <input type="text" name="facebook" id="editmyprofilefacebook" value="" data-clear-btn="true" data-mini="true">
+                  <input type="text" name="facebook" id="editmyprofilefacebook" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Twitter</label>
-                  <input type="text" name="twitter" id="editmyprofiletwitter" value="" data-clear-btn="true" data-mini="true">
+                  <input type="text" name="twitter" id="editmyprofiletwitter" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Instagram</label>
-                  <input type="text" name="instagram" id="editmyprofileinstagram" value="" data-clear-btn="true" data-mini="true">
+                  <input type="text" name="instagram" id="editmyprofileinstagram" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Line</label>
-                  <input type="text" name="line" id="editmyprofileline" value="" data-clear-btn="true" data-mini="true">
+                  <input type="text" name="line" id="editmyprofileline" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Status</label>
-                  <input type="text" name="status" id="editmyprofilestatus" value="" data-clear-btn="true" data-mini="true">
+                  <input type="text" name="status" id="editmyprofilestatus" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Choose Photo</label>
                   <input type="file" name="photo"  id="editmyprofilephoto" accept="image/x-png, image/jpeg" value="" data-clear-btn="true" data-mini="true"/>

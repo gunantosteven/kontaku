@@ -856,7 +856,6 @@ $(document).on('pagebeforeshow', '#editfriendprofile', function(){
 $(document).on('pageinit', '#editmyprofile', function(){  
   /* edit my profile */
   $(document).on('click', '#editmyprofilesubmit', function() { // catch the form's submit event
-    if($('#editmyprofilefullname').val().length > 0){
         var formData = new FormData($('#formEditMyProfile')[0]);
         formData.append("_token", CSRF_TOKEN);
         // Send data to server through the Ajax call
@@ -913,13 +912,7 @@ $(document).on('pageinit', '#editmyprofile', function(){
                   alert('Network error has occurred please try again!'); 
                 }   
             }
-        });      
-
-        
-
-    } else {
-        alert('Please fill all necessary fields');
-    }           
+        });                
       return false; // cancel original event to prevent form submitting
   });    
 });
