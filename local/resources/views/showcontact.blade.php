@@ -42,6 +42,14 @@
               </div>
             </div>
           @endif
+          @if($user->address)
+            <div class="form-group">
+              <label class="col-md-4 control-label">Address</label>
+              <div class="col-md-6">
+                <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="address" value="{{ $user->address }}" readonly="">
+              </div>
+            </div>
+          @endif
           @if($user->pinbb)
             <div class="form-group">
               <label class="col-md-4 control-label">PIN BB</label>
@@ -83,18 +91,18 @@
             </div>
           @endif
           </form>
-            @if (Auth::user() && Auth::user()->id != $user->id && !Auth::user()->isFriendOnline($user->id))
-            <form class="form-horizontal" role="form" method="POST" action={{ url("/user/invite") }}>
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-              <input type="hidden" name="id" value="{{ $user->id }}">
-              <div class="form-group">
-                <label class="col-md-6"></label>
-                <div class="col-md-6">
-                  <input type="submit" class="btn btn-primary active" value="Invite">
-                </div>
-              </div>
-            </form>
-            @endif
+	        @if (Auth::user() && Auth::user()->id != $user->id && !Auth::user()->isFriendOnline($user->id))
+	        <form class="form-horizontal" role="form" method="POST" action={{ url("/user/invite") }}>
+	          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+	          <input type="hidden" name="id" value="{{ $user->id }}">
+	          <div class="form-group">
+	            <label class="col-md-6"></label>
+	            <div class="col-md-6">
+	              <input type="submit" class="btn btn-primary active" value="Invite">
+	            </div>
+	          </div>
+	        </form>
+	        @endif
         </div>
       </div>
     </div>

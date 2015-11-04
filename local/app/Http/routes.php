@@ -472,7 +472,7 @@ Route::group(['middleware' => 'user'], function()
 		$output = Input::all();
 
 		// Setup the validator
-		$rules = array('fullname' => 'required|max:30', 'email' => 'email|max:32', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'photo' => 'image|mimes:jpeg,png');
+		$rules = array('fullname' => 'required|max:30', 'email' => 'email|max:32', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'photo' => 'image|mimes:jpeg,png');
 		$validator = Validator::make($output, $rules);
 
 		// Validate the input and return correct response
@@ -490,6 +490,8 @@ Route::group(['middleware' => 'user'], function()
             ->update(['fullname' => $output['fullname'], 
             		'email' => $output['email'], 
             		'phone' => $output['phone'], 
+            		'phone2' => $output['phone2'], 
+            		'address' => $output['address'], 
             		'pinbb' => $output['pinbb'], 
             		'facebook' => $output['facebook'],
             		'twitter' => $output['twitter'],
@@ -540,7 +542,7 @@ Route::group(['middleware' => 'user'], function()
 		$output = Input::all();
 
 		// Setup the validator
-		$rules = array('fullname' => 'required|max:30', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'photo' => 'image|mimes:jpeg,png');
+		$rules = array('fullname' => 'required|max:30', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'photo' => 'image|mimes:jpeg,png');
 		$validator = Validator::make($output, $rules);
 
 		// Validate the input and return correct response
@@ -559,6 +561,7 @@ Route::group(['middleware' => 'user'], function()
             ->update(['fullname' => $output['fullname'], 
             		'phone' => $output['phone'], 
             		'phone2' => $output['phone2'], 
+            		'address' => $output['address'],
             		'pinbb' => $output['pinbb'], 
             		'facebook' => $output['facebook'],
             		'twitter' => $output['twitter'],
@@ -1049,6 +1052,7 @@ Route::get('createdb',function(){
 		$table->string('url', 30)->unique();
 		$table->string('phone',30)->default('');
 		$table->string('phone2',30)->default('');
+		$table->string('address',90)->default('');
 		$table->string('pinbb',30)->default('');
 		$table->string('facebook',100)->default('');
 		$table->string('twitter',30)->default('');
@@ -1083,6 +1087,7 @@ Route::get('createdb',function(){
 		$table->string('email',32)->default('');
 		$table->string('phone',30)->default('');
 		$table->string('phone2',30)->default('');
+		$table->string('address',90)->default('');
 		$table->string('pinbb',30)->default('');
 		$table->string('facebook',100)->default('');
 		$table->string('twitter',30)->default('');

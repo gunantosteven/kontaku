@@ -696,6 +696,10 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
       $('#actionFriendProfileList').append('<li><a href="sms:' + friend.phone2 + '"><h3>SMS Phone 2</h3>' +
           '<p>' + friend.phone2 + '</p></a></li>');
     }
+    if (friend.address) {
+      $('#actionFriendProfileList').append('<li><h3>Address</h3>' +
+          '<p>' + friend.address + '</p></li>');
+    }
     if (friend.pinbb) {
       $('#actionFriendProfileList').append('<li><a id="pinbbfriendprofile"><h3>PIN BB</h3>' +
           '<p>' + friend.pinbb + '</p></a></li>');
@@ -781,6 +785,7 @@ $(document).on('pageinit', '#editfriendprofile', function(){
                       friend.email = $('#editfriendemail').val();
                       friend.phone = $('#editfriendphone').val();
                       friend.phone2 = $('#editfriendphone2').val();
+                      friend.address = $('#editfriendaddress').val();
                       friend.pinbb = $('#editfriendpinbb').val();
                       friend.facebook = $('#editfriendfacebook').val();
                       friend.twitter = $('#editfriendtwitter').val();
@@ -811,6 +816,10 @@ $(document).on('pageinit', '#editfriendprofile', function(){
                   else if(xhr.responseJSON.errors.phone2)
                   {
                     alert(xhr.responseJSON.errors.phone2);
+                  }
+                  else if(xhr.responseJSON.errors.address)
+                  {
+                    alert(xhr.responseJSON.errors.address);
                   }
                   else if(xhr.responseJSON.errors.photo)
                   {
@@ -890,6 +899,10 @@ $(document).on('pageinit', '#editmyprofile', function(){
                   {
                     alert(xhr.responseJSON.errors.phone2);
                   }
+                  else if(xhr.responseJSON.errors.address)
+                  {
+                    alert(xhr.responseJSON.errors.address);
+                  }
                   else if(xhr.responseJSON.errors.photo)
                   {
                     alert(xhr.responseJSON.errors.photo);
@@ -923,6 +936,7 @@ $(document).on('pagebeforeshow', '#editmyprofile', function(){
               $('#editmyprofilefullname').val(data.fullname);
               $('#editmyprofilephone').val(data.phone);
               $('#editmyprofilephone2').val(data.phone2);
+              $('#editmyprofileaddress').val(data.address);
               $('#editmyprofilepinbb').val(data.pinbb);
               $('#editmyprofilefacebook').val(data.facebook);
               $('#editmyprofiletwitter').val(data.twitter);

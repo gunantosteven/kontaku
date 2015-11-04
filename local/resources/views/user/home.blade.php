@@ -185,7 +185,7 @@
           </div><!-- /header --> 
 
           <div class="ui-content" role="main">
-                  <h2>Edit My Profile</h2> <h5><a href="http://localhost/kontakku/stevengunanto" target="_blank">(Example click here)</a></h5>
+                  <h2>Edit My Profile</h2> <h5><a href={{ URL('/stevengunanto') }} target="_blank">(Example click here)</a></h5>
                   <label for="name">Full Name</label>
                   <input type="text" name="fullname" id="editmyprofilefullname" value="" data-clear-btn="true" data-mini="true"> 
 
@@ -194,6 +194,9 @@
 
                   <label for="name">Phone 2</label>
                   <input type="text" name="phone2" id="editmyprofilephone2" value="" data-clear-btn="true" data-mini="true">
+
+                  <label for="name">Address</label>
+                  <input type="text" name="address" id="editmyprofileaddress" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Pin BB</label>
                   <input type="text" name="pinbb" id="editmyprofilepinbb" value="" data-clear-btn="true" data-mini="true">
@@ -288,6 +291,9 @@
 
                     <label for="name">Phone2</label>
                     <input type="text" name="phone2" id="editfriendphone2" value="" data-clear-btn="true" data-mini="true">
+
+                    <label for="name">Address</label>
+                    <input type="text" name="address" id="editfriendaddress" value="" data-clear-btn="true" data-mini="true">
 
                     <label for="name">Pin BB</label>
                     <input type="text" name="pinbb" id="editfriendpinbb" value="" data-clear-btn="true" data-mini="true">
