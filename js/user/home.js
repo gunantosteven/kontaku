@@ -821,6 +821,26 @@ $(document).on('pageinit', '#editfriendprofile', function(){
                   {
                     alert(xhr.responseJSON.errors.address);
                   }
+                  else if(xhr.responseJSON.errors.pinbb)
+                  {
+                    alert(xhr.responseJSON.errors.pinbb);
+                  }
+                  else if(xhr.responseJSON.errors.facebook)
+                  {
+                    alert(xhr.responseJSON.errors.facebook);
+                  }
+                  else if(xhr.responseJSON.errors.twitter)
+                  {
+                    alert(xhr.responseJSON.errors.twitter);
+                  }
+                  else if(xhr.responseJSON.errors.instagram)
+                  {
+                    alert(xhr.responseJSON.errors.instagram);
+                  }
+                  else if(xhr.responseJSON.errors.line)
+                  {
+                    alert(xhr.responseJSON.errors.line);
+                  }
                   else if(xhr.responseJSON.errors.photo)
                   {
                     alert(xhr.responseJSON.errors.photo);
@@ -901,6 +921,30 @@ $(document).on('pageinit', '#editmyprofile', function(){
                   else if(xhr.responseJSON.errors.address)
                   {
                     alert(xhr.responseJSON.errors.address);
+                  }
+                  else if(xhr.responseJSON.errors.pinbb)
+                  {
+                    alert(xhr.responseJSON.errors.pinbb);
+                  }
+                  else if(xhr.responseJSON.errors.facebook)
+                  {
+                    alert(xhr.responseJSON.errors.facebook);
+                  }
+                  else if(xhr.responseJSON.errors.twitter)
+                  {
+                    alert(xhr.responseJSON.errors.twitter);
+                  }
+                  else if(xhr.responseJSON.errors.instagram)
+                  {
+                    alert(xhr.responseJSON.errors.instagram);
+                  }
+                  else if(xhr.responseJSON.errors.line)
+                  {
+                    alert(xhr.responseJSON.errors.line);
+                  }
+                  else if(xhr.responseJSON.errors.status)
+                  {
+                    alert(xhr.responseJSON.errors.status);
                   }
                   else if(xhr.responseJSON.errors.photo)
                   {

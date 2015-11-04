@@ -472,7 +472,7 @@ Route::group(['middleware' => 'user'], function()
 		$output = Input::all();
 
 		// Setup the validator
-		$rules = array('fullname' => 'required|max:30', 'email' => 'email|max:32', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'photo' => 'image|mimes:jpeg,png');
+		$rules = array('fullname' => 'required|max:30', 'email' => 'email|max:32', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'pinbb' => 'max:8', 'facebook' => 'max:100', 'twitter' => 'max:30', 'instagram' => 'max:30', 'line' => 'max:30', 'photo' => 'image|mimes:jpeg,png');
 		$validator = Validator::make($output, $rules);
 
 		// Validate the input and return correct response
@@ -542,7 +542,7 @@ Route::group(['middleware' => 'user'], function()
 		$output = Input::all();
 
 		// Setup the validator
-		$rules = array('fullname' => 'required|max:30', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'photo' => 'image|mimes:jpeg,png');
+		$rules = array('fullname' => 'max:30', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'pinbb' => 'max:8', 'facebook' => 'max:100', 'twitter' => 'max:30', 'instagram' => 'max:30', 'line' => 'max:30', 'status' => 'max:100', 'photo' => 'image|mimes:jpeg,png');
 		$validator = Validator::make($output, $rules);
 
 		// Validate the input and return correct response
@@ -1053,12 +1053,12 @@ Route::get('createdb',function(){
 		$table->string('phone',30)->default('');
 		$table->string('phone2',30)->default('');
 		$table->string('address',90)->default('');
-		$table->string('pinbb',30)->default('');
+		$table->string('pinbb',8)->default('');
 		$table->string('facebook',100)->default('');
 		$table->string('twitter',30)->default('');
 		$table->string('instagram',30)->default('');
 		$table->string('line',30)->default('');
-		$table->string('status',30)->default('Welcome to my contact');
+		$table->string('status',100)->default('Welcome to my contact');
 		$table->boolean('showemailinpublic')->default(0);
 		$table->boolean('privateaccount')->default(0);
 		$table->boolean('newinvitesnotification')->default(0);
@@ -1088,7 +1088,7 @@ Route::get('createdb',function(){
 		$table->string('phone',30)->default('');
 		$table->string('phone2',30)->default('');
 		$table->string('address',90)->default('');
-		$table->string('pinbb',30)->default('');
+		$table->string('pinbb',8)->default('');
 		$table->string('facebook',100)->default('');
 		$table->string('twitter',30)->default('');
 		$table->string('instagram',30)->default('');
