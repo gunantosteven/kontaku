@@ -1414,12 +1414,20 @@ function getContacts()
         data: {_token: CSRF_TOKEN},
         dataType: 'JSON',
         success: function (data) {
-          $("#collapsibleOtherContacts h2 #myHeaderOtherContacts").text("Other Contacts");
-          $("#collapsibleOtherContacts").collapsible( "option", "collapsed", false );
-          $("#list").empty();
-          $.each (data['friends'], function (index) {
-            $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
-          });
+          if(data['friends'].length == 0)
+          {
+            $("#collapsibleOtherContacts").hide();
+          }
+          else
+          {
+            $("#collapsibleOtherContacts").show();
+            $("#collapsibleOtherContacts h2 #myHeaderOtherContacts").text("Other Contacts");
+            $("#collapsibleOtherContacts").collapsible( "option", "collapsed", false );
+            $("#list").empty();
+            $.each (data['friends'], function (index) {
+              $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+            });
+          }
           friendscount = data['friendscount'];
       }})   
 }
@@ -1432,7 +1440,14 @@ function setBubbleCount() {
         data: {_token: CSRF_TOKEN},
         dataType: 'JSON',
         success: function (data) {
-          $("#totalcontacts").text('Total Contacts ' + data['totalcontacts']);
+          if(friendscount == 0)
+          {
+            $("#totalcontacts").text('* No Contacts *');
+          }
+          else
+          {
+            $("#totalcontacts").text('Total Contacts ' + data['totalcontacts']);
+          }
           $("#bubbleCountFavorites").text(data['favoritescount']);
           $("#bubbleCountOtherContacts").show();
           $("#bubbleCountOtherContacts").text(data['totalcontacts'] - data['favoritescount']);
