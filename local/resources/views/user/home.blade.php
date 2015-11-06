@@ -26,7 +26,7 @@
             </div><!-- /header -->      
             
             <input type="search" placeholder="Search" id="searchbar" />
-            <center><font size="2" color="black" id="totalcontacts">Total Contacts 0</font></center>
+            <center><font size="2" color="black" id="totalcontacts"></font></center>
             <div class="ui-content" role="main">      
               <ul id="listMyGroups" data-role="listview">
                 <li><a href="#mygroups"><img class='ui-li-icon' src={{ asset('img/groups.png') }} width="65px" height="65px" />My Groups</a></li>
