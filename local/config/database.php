@@ -67,7 +67,7 @@ return [
 		'pgsql' => [
 			'driver'   => 'pgsql',
 			'host'     => isset($_SERVER['DB1_HOST']) ? $_SERVER['DB1_HOST'] : '127.0.0.1',
-			'database' => isset($_SERVER['DB1_NAME']) ? $_SERVER['DB1_NAME'] : 'mycontact',
+			'database' => isset($_SERVER['DB1_NAME']) ? $_SERVER['DB1_NAME'] : 'kontakku',
 			'username' => isset($_SERVER['DB1_USER']) ? $_SERVER['DB1_USER'] : 'postgres',
 			'password' => isset($_SERVER['DB1_PASS']) ? $_SERVER['DB1_PASS'] : 'postgres',
 			'charset'  => 'utf8',

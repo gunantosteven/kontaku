@@ -94,7 +94,7 @@ class AuthController extends Controller {
 			);
 			
 		\Mail::queue('emails.activateAccount', $data, function($message) use ($user) {
-			$message->from('mycontactofficial@gmail.com');
+			$message->from('noreply@kontakku.com');
 			$message->subject('Please activate your account.');
 			$message->to($user->email);
 		});

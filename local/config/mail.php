@@ -28,7 +28,7 @@ return [
 	|
 	*/
 
-	'host' => '74.125.130.108',
+	'host' => 'smtp.zoho.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => 'mycontactofficial@gmail.com', 'name' => 'My Contact Official'],
+	'from' => ['address' => 'noreply@kontakku.com', 'name' => 'Kontakku Official'],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
 	|
 	*/
 
-	'username' => 'kontakkuofficial@gmail.com',
+	'username' => 'noreply@kontakku.com',
 
 	/*
 	|--------------------------------------------------------------------------
