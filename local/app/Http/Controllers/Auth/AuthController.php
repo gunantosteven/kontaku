@@ -103,7 +103,11 @@ class AuthController extends Controller {
  	public function resendEmail()
 	{
 		$user = \Auth::user();
-		if( $user->resent >= 3 )
+		if( $user->active == true )
+		{
+			return redirect('user\home');
+		}
+		else if( $user->resent >= 3 )
 		{
 			return view('auth.tooManyEmails')
 				->with('email', $user->email);
@@ -118,15 +122,19 @@ class AuthController extends Controller {
 	
 	public function activateAccount($code, User $user)
 	{
-	
-		if($user->accountIsActive($code)) {
+		if( \Auth::user()->active == true )
+		{
+			return redirect('user\home');
+		}
+		else if($user->accountIsActive($code)) {
 			\Session::flash('message', 'Success, your account has been activated.');
 			return redirect('user\home');
 		}
-	
-		\Session::flash('message', 'Your account could not be activated; please try again.');
-		return view('auth.activateAccountError');
-	
+		else
+		{
+			\Session::flash('message', 'Your account could not be activated; please try again.');
+			return view('auth.activateAccountError');
+		}
 	}
 
 	public function postLogin(Request $request)
