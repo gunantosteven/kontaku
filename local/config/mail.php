@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => 'noreply@kontakku.com', 'name' => 'Kontakku Official'],
+	'from' => ['address' => 'noreply@kontakku.com', 'name' => 'Kontakku Team'],
 
 	/*
 	|--------------------------------------------------------------------------
