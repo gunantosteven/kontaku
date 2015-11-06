@@ -1440,7 +1440,7 @@ function setBubbleCount() {
         data: {_token: CSRF_TOKEN},
         dataType: 'JSON',
         success: function (data) {
-          if(friendscount == 0)
+          if(data['totalcontacts'] == 0)
           {
             $("#totalcontacts").text('* No Contacts *');
           }
