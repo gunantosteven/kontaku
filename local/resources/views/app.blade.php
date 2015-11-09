@@ -69,6 +69,7 @@
 					</div>
 				</div>
 				<div class="row align-center copyright">
+					<p><a href="{{ url("/site/privacy") }}" title="Privacy Policy" target="_new">Privacy Policy</a> - <a href="{{ url("/site/copyright") }}" title="Copyright Policy" target="_new">Copyright Policy</a> - <a href="{{ url("/site/termsofuse") }}" title="Terms of Use" target="_new">Terms of Use</a></p>
 					<div class="col-sm-12"><p>Copyright &copy; 2015 kontakku.com - template by <a href="http://bootstraptaste.com">Bootstraptaste</a></p></div>
 				</div>
 			</div>
