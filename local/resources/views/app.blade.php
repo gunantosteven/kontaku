@@ -44,6 +44,7 @@
 										</ul>
 									</li>
 								@endif
+								<li class=""><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#107;&#111;&#110;&#116;&#97;&#107;&#107;&#117;&#46;&#99;&#111;&#109;">Contact Us</a></li>
 							</ul>
 						</div>
 					</div>	
@@ -69,7 +70,7 @@
 					</div>
 				</div>
 				<div class="row align-center copyright">
-					<p><a href="{{ url("/site/privacy") }}" title="Privacy Policy" target="_new">Privacy Policy</a> - <a href="{{ url("/site/copyright") }}" title="Copyright Policy" target="_new">Copyright Policy</a> - <a href="{{ url("/site/termsofuse") }}" title="Terms of Use" target="_new">Terms of Use</a></p>
+					<p><a href="{{ url("/site/privacy") }}" title="Privacy Policy" target="_new">Privacy Policy</a> - <a href="{{ url("/site/terms") }}" title="Terms and Conditions" target="_new">Terms and Conditions</a></p>
 					<div class="col-sm-12"><p>Copyright &copy; 2015 kontakku.com - template by <a href="http://bootstraptaste.com">Bootstraptaste</a></p></div>
 				</div>
 			</div>

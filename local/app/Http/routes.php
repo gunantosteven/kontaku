@@ -50,6 +50,7 @@ Route::post('/checkauthlogin', function()
 
 Route::get('/', 'WelcomeController@index');
 Route::get('/site/privacy', 'PrivacyController@index');
+Route::get('/site/terms', 'TermsController@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
