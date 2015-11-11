@@ -122,7 +122,7 @@ class AuthController extends Controller {
 	
 	public function activateAccount($code, User $user)
 	{
-		if( \Auth::user()->active == true )
+		if( \Auth::user() != null && \Auth::user()->active == true )
 		{
 			return redirect('user\home');
 		}
