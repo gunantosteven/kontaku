@@ -217,7 +217,7 @@
                   <label for="name">Status</label>
                   <input type="text" name="status" id="editmyprofilestatus" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
 
-                  <label for="name">Choose Photo</label>
+                  <label for="name">Choose Photo (png or jpeg 65 x 65 pixel required)</label>
                   <input type="file" name="photo"  id="editmyprofilephoto" accept="image/x-png, image/jpeg" value="" data-clear-btn="true" data-mini="true"/>
 
             </form>
@@ -311,7 +311,7 @@
                     <label for="name">Line</label>
                     <input type="text" name="line" id="editfriendline" value="" data-clear-btn="true" data-mini="true">
 
-                    <label for="name">Choose Photo</label>
+                    <label for="name">Choose Photo (png or jpeg 65 x 65 pixel required)</label>
                     <input type="file" name="photo"  id="editfriendphoto" accept="image/x-png, image/jpeg" value="" data-clear-btn="true" data-mini="true"/>
                   </div> <!-- /content --> 
           </form>
