@@ -1,9 +1,9 @@
-var friendscount;
-var searchfriendscount;
-var friend;
-var friendonlineinvatitation;
-var category;
-var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+var friendscount,
+    searchfriendscount,
+    friend,
+    friendonlineinvatitation,
+    category,
+    CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 /* ===================================js page home=================================== */
 $(document).on("pagebeforecreate", "#home", function (e, ui) {
      reloadContact();
@@ -406,7 +406,7 @@ $(document).on('pagebeforeshow', '#mygroups', function(){
 $(document).on('pageinit', '#deletemygroups', function(){  
   $(document).on("click", "#submitdeletemygroups" ,function (event) {
       var count = $("#cbFieldSetDeleteMyGroups input:checked").length;
-      var categoriesid = new Array();
+      var categoriesid = [];
       for(i=0;i<count;i++){
       	categoriesid[i] = $("#cbFieldSetDeleteMyGroups input:checked")[i].value;
       }
@@ -492,7 +492,7 @@ $(document).on('pageinit', '#adddetailmygroups', function(){
 	/*When click contact listdetailmygroups*/
   $(document).on("click", "#submitadddetailmygroups" ,function (event) {
       var count = $("#cbFieldSet input:checked").length;
-      var friends = new Array();
+      var friends = [];
       for(i=0;i<count;i++){
       	friends[i] = $("#cbFieldSet input:checked")[i].value;
       }
@@ -552,7 +552,7 @@ $(document).on('pagebeforeshow', '#adddetailmygroups', function(){
 $(document).on('pageinit', '#deletedetailmygroups', function(){  
   $(document).on("click", "#submitdeletedetailmygroups" ,function (event) {
       var count = $("#cbFieldSetDeleteDetailMyGroups input:checked").length;
-      var detailcategoriesid = new Array();
+      var detailcategoriesid = [];
       for(i=0;i<count;i++){
       	detailcategoriesid[i] = $("#cbFieldSetDeleteDetailMyGroups input:checked")[i].value;
       }
@@ -725,7 +725,7 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
           '<p>' + friend.line + '</p></a></li>');
     }
 
-    if(friend.onlineoffline == 'online')
+    if(friend.onlineoffline === 'online')
     {
       $('#editfriendprofilebuttonpage').addClass('ui-disabled');
     }
@@ -734,7 +734,7 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
       $('#editfriendprofilebuttonpage').removeClass('ui-disabled');
     }
     
-    if(friend.isfavorite == true)
+    if(friend.isfavorite === true)
     {
     	$("#isfavoriteflipswitch")
             .off("change") /* remove previous listener */
@@ -799,7 +799,7 @@ $(document).on('pageinit', '#editfriendprofile', function(){
             },
             error: function (xhr, status, data) {
                 // This callback function will trigger on unsuccessful action                
-                if(xhr.responseJSON.status == false)
+                if(xhr.responseJSON.status === false)
                 {
                   if(xhr.responseJSON.errors.fullname)
                   {
@@ -904,7 +904,7 @@ $(document).on('pageinit', '#editmyprofile', function(){
             },
             error: function (xhr, status, data) {
                 // This callback function will trigger on unsuccessful action                
-                if(xhr.responseJSON.status == false)
+                if(xhr.responseJSON.status === false)
                 {
                   if(xhr.responseJSON.errors.fullname)
                   {
@@ -991,16 +991,16 @@ $(document).on('pagebeforeshow', '#editmyprofile', function(){
 $(document).on('pageinit', '#invites', function(){  
   $('#listinvites').on('click', 'li', function() {
       friendonlineinvatitation = {id:$(this).attr('id').split(";")[0], fullname:$(this).attr('id').split(";")[1], status:$(this).attr('id').split(";")[2]};
-      if($(this).attr('id').split(";")[3] == "got")
+      if($(this).attr('id').split(";")[3] === "got")
       {
-        if(friendonlineinvatitation.status == "PENDING")
+        if(friendonlineinvatitation.status === "PENDING")
         {
           $.mobile.changePage("#gotinvitation");
         }
       }
-      else if($(this).attr('id').split(";")[3] == "sent")
+      else if($(this).attr('id').split(";")[3] === "sent")
       {
-        if(friendonlineinvatitation.status == "PENDING" || friendonlineinvatitation.status == "DECLINED")
+        if(friendonlineinvatitation.status === "PENDING" || friendonlineinvatitation.status === "DECLINED")
         {
           $.mobile.changePage("#sentinvitation");
         }
@@ -1103,7 +1103,7 @@ $(document).on('pageinit', '#addfriendsonline', function(){
                   $('#fullnameuseraddfriendsonline').show();
                   $('#buttonaddfriendsonline').show();
                 } 
-                else if(result.status == false && result.msg != "")
+                else if(result.status === false && result.msg !== "")
                 {
                     $('#fullnameuseraddfriendsonline').val('');
                     $('#iduseraddfriendsonline').val('');
@@ -1302,7 +1302,7 @@ $(document).on('pagebeforecreate', '#settingsaccount', function(){
               $('#settingsaccountmyemail').text(data.email);
               $('#settingsaccountmyurl').text("kontakku.com/" + data.url);
 
-              if(data.privateaccount == true)
+              if(data.privateaccount === true)
               {
               	$("#privateaccountflipswitch")
 		            .off("change") /* remove previous listener */
@@ -1319,7 +1319,7 @@ $(document).on('pagebeforecreate', '#settingsaccount', function(){
 		            .on("change", flipChangedPrivateAccount); /* add listener again */
               }
 
-              if(data.showemailinpublic == true)
+              if(data.showemailinpublic === true)
               {
                 $("#showemailinpublicflipswitch")
                 .off("change") /* remove previous listener */
