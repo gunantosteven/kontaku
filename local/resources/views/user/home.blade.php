@@ -427,7 +427,7 @@
                   <li id=''>
               		  <div data-role="fieldcontain">
         					    <label for="checkbox-based-flipswitch"><b>Private Account :</b></label>
-                      <select id="showemailinpublicflipswitch" data-role="flipswitch">
+                      <select id="privateaccountflipswitch" data-role="flipswitch">
                         <option value="no">No</option>
                         <option value="yes">Yes</option>
                       </select>
