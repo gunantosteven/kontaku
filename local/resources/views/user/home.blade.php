@@ -495,6 +495,7 @@
                     <p>5. Click/Tap search button.</p>
                     <p>6. Click/Tap ADD button, you need to wait your friend accept your invitation.</p>
                     <p>Your friend contacts will be saved in server and It's secure to save here as long as you don't give your account</p>
+                    <p>If you have any questions please feel free to ask <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#107;&#111;&#110;&#116;&#97;&#107;&#107;&#117;&#46;&#99;&#111;&#109;">support@kontakku.com</a></p>
                   </div> <!-- /content --> 
             
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">
