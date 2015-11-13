@@ -69,6 +69,7 @@ class AuthController extends Controller {
 		$user->email = $request->input('email');
 		$user->password = Hash::make($request->input('password'));
 		$user->url = $request->input('url');
+		$user->fullname = $request->input('fullname');
 		$user->activation_code = $activation_code;
 		if ($user->save()) {
 			
