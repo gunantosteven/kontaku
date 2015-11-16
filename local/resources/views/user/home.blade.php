@@ -122,8 +122,20 @@
             </div><!-- /content -->      
             
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-                 <center><a href="#" id="submitdeletemygroups"  data-role="button" data-theme="b" data-mini="true" data-icon="delete" data-iconpos="top">Delete</a></center>
+                 <center><a href="#popupDialogDeleteGroups" data-rel="popup" data-position-to="window"  data-role="button"  data-transition="pop"  data-icon="delete" data-theme="b" data-mini="true" data-iconpos="top">Delete</a></center>
             </div>
+
+            <!-- popupDialog creating form -->
+            <div data-role="popup" id="popupDialogDeleteGroups" data-overlay-theme="a" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+                <div data-role="header" data-theme="a" class="ui-corner-top">
+                    <h1>Delete Groups ?</h1>
+                </div>
+                <div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+                    <h3 class="ui-title">Are you sure you want to delete these groups?</h3>
+                    <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">Cancel</a>
+                    <a href="#" id="submitdeletemygroups" data-role="button" data-inline="true"  data-transition="flow" data-theme="b">Delete</a>
+                </div>
+            </div> <!-- end popup --> 
         </div><!-- /end page deletemygroups --> 
 
         <div data-role="page" id="detailmygroups"><!-- Page DetailMyGroups -->     
@@ -168,7 +180,7 @@
                 <a href="#detailmygroups" data-icon="back" data-iconpos="notext">Back</a>
             </div><!-- /header -->      
             
-            <div class="ui-content" role="main" id="mainDeleteDetailMyGroups">    
+            <div class="ui-content" role="main" id="mainDeleteDetailMyGroups">  
             </div><!-- /content -->      
             
             <div data-role="footer" data-position="fixed" data-tap-toggle="false">
@@ -254,10 +266,10 @@
                     </center>
                   </div>
                   <div class="ui-block-b"><a href="#editfriendprofile" id="editfriendprofilebuttonpage"  data-role="button" data-theme="b" data-mini="true" data-icon="edit" data-iconpos="top">Edit</a></div>
-                  <div class="ui-block-c"><a href="#popupDialog" data-rel="popup" data-position-to="window"  data-role="button"  data-transition="pop"  data-icon="delete" data-theme="b" data-mini="true" data-iconpos="top">Delete</a></div>
+                  <div class="ui-block-c"><a href="#popupDialogDeleteFriend" data-rel="popup" data-position-to="window"  data-role="button"  data-transition="pop"  data-icon="delete" data-theme="b" data-mini="true" data-iconpos="top">Delete</a></div>
               </div>
               <!-- popupDialog creating form -->
-              <div data-role="popup" id="popupDialog" data-overlay-theme="a" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+              <div data-role="popup" id="popupDialogDeleteFriend" data-overlay-theme="a" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
                   <div data-role="header" data-theme="a" class="ui-corner-top">
                       <h1>Delete Contact?</h1>
                   </div>
