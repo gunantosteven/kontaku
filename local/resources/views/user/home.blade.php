@@ -456,6 +456,11 @@
 
                     <label for="email">Retype Password</label>
                     <input type="password" name="new_password2" id="changepasswordretypepassword" value="" data-clear-btn="true" data-mini="true">
+                    
+                    <label>
+                        <input type="checkbox" name="logoutAllDevices" id="changepasswordlogoutalldevices">Log out from all devices
+                    </label>
+
                   </div> <!-- /content --> 
           </form>   
         </div><!-- /end page Change Password -->  

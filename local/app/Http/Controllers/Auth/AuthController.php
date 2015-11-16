@@ -149,6 +149,9 @@ class AuthController extends Controller {
 
 	    if ($this->auth->attempt($credentials, $request->has('remember')))
 	    {
+	    	\DB::table('sessions')->insert(
+			    array('id' => Uuid::generate(), 'user' => $this->auth->User()->id, 'sessionId' => \Session::getId())
+			);
 	        if($this->auth->User()->role == 'ADMIN')
             {
                 return redirect('user/home');
@@ -181,6 +184,7 @@ class AuthController extends Controller {
     public function getLogout()
     {
         $this->auth->logout();
+        \DB::table('sessions')->where('sessionId', \Session::getId())->delete();
         return redirect('auth/login');
     }
 

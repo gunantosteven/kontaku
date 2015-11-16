@@ -1270,6 +1270,7 @@ $(document).on('pageinit', '#changepassword', function(){
                   	$('#changepasswordoldpassword').val("");
                     $('#changepasswordnewpassword').val("");
                     $('#changepasswordretypepassword').val("");
+                    $('#changepasswordlogoutalldevices').attr('checked',false).checkboxradio('refresh');
                     $.mobile.pageContainer.pagecontainer("change", "#settingsaccount", {transition: "slide"});
                   } else {
                       alert('Something error happened!\n' + result.message); 

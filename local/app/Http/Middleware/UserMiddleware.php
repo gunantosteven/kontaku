@@ -16,6 +16,11 @@ class UserMiddleware {
 	public function handle($request, Closure $next)
 	{
 		$user = $request->user();
+		if (!\DB::table('sessions')->where('sessionId', \Session::getId())->first())
+		{
+			\Auth::logout();
+			return redirect()->guest('auth/login');
+		}
 		if ($user && $user->role == 'USER')
 		{
 			return $next($request);

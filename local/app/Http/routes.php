@@ -70,7 +70,7 @@ Route::group(['middleware' => 'admin'], function()
     Route::get('/admin/dashboard', 'Admin\DashboardController@index');
 });
 
-Route::group(['middleware' => 'user'], function()
+Route::group(['middleware' => 'user', 'session'], function()
 {
     Route::get('/user', function()
     {
@@ -779,6 +779,12 @@ Route::group(['middleware' => 'user'], function()
 				$user->password = Hash::make($new_password);
 				// finally we save the authenticated user
 				$user->save();
+
+				if(isset($output['logoutAllDevices']) && $output['logoutAllDevices'] == "on")
+				{
+					\DB::table('sessions')->where('user', \Auth::user()->id)->where('sessionId', '!=', \Session::getId())->delete();
+				}
+
 		   		return response()->json(['status' => true]);
 			}
 			else
@@ -1070,6 +1076,12 @@ Route::get('createdb',function(){
 		$table->string('email')->index();
 		$table->string('token')->index();
 		$table->timestamp('created_at');
+	});
+	Schema::create('sessions',function($table){
+		$table->string('id')->primary();
+		$table->string('user');
+		$table->foreign('user')->references('id')->on('users');
+		$table->string('sessionId',60)->default('');
 	});
 	Schema::create('friendsonline',function($table){
 		$table->string('id')->primary();
