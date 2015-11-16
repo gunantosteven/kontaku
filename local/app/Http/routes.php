@@ -70,7 +70,7 @@ Route::group(['middleware' => 'admin'], function()
     Route::get('/admin/dashboard', 'Admin\DashboardController@index');
 });
 
-Route::group(['middleware' => 'user', 'session'], function()
+Route::group(['middleware' => 'user'], function()
 {
     Route::get('/user', function()
     {
