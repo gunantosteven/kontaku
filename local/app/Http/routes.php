@@ -456,16 +456,34 @@ Route::group(['middleware' => 'user'], function()
 
 		    ), 400); // 400 being the HTTP code for an invalid request.
 		}
-		
-		$id = Uuid::generate();
-		\App\Models\FriendOffline::create(array(
-			'id' => $id,
-		    'user' => Auth::user()->id,
-		    'fullname' => $output['fullname'],
-		    'phone' => $output['phone'],
-		    'phone2' => $output['phone2'],
-			));
-   		return response()->json(['status' => true, 'id' => $id, 'fullname' => $output['fullname']]);
+
+		$friendsonline1 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user2', Auth::user()->id)->count();
+        $friendsonline2 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user1', Auth::user()->id)->count();
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('user', Auth::user()->id)->count();
+        $totalcontacts = $friendsoffline + $friendsonline1 + $friendsonline2;
+
+        if(($totalcontacts + 1) > Auth::user()->limitcontacts)
+        {
+        	return response()->json(['status' => true, 'over' => "You have reached a limit for adding contacts"]);
+        }
+        else
+        {
+        	$id = Uuid::generate();
+			\App\Models\FriendOffline::create(array(
+				'id' => $id,
+			    'user' => Auth::user()->id,
+			    'fullname' => $output['fullname'],
+			    'phone' => $output['phone'],
+			    'phone2' => $output['phone2'],
+				));
+	   		return response()->json(['status' => true, 'id' => $id, 'fullname' => $output['fullname']]);
+        }
 	});
 
 	// edit friendoffline
@@ -712,6 +730,22 @@ Route::group(['middleware' => 'user'], function()
 	// create friendonline
 	Route::post('/user/create/friendonline', function()
 	{
+		$friendsonline1 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user2', Auth::user()->id)->count();
+        $friendsonline2 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user1', Auth::user()->id)->count();
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('user', Auth::user()->id)->count();
+        $totalcontacts = $friendsoffline + $friendsonline1 + $friendsonline2;
+
+        if(($totalcontacts + 1) > Auth::user()->limitcontacts)
+        {
+        	return response()->json(['status' => true, 'over' => "You have reached a limit for adding contacts"]);
+        }
+
 		parse_str(Request::input('formData'), $output);
 		$id = Uuid::generate();
 		\App\Models\FriendOnline::create(array(
@@ -1070,6 +1104,7 @@ Route::get('createdb',function(){
 		$table->boolean('showemailinpublic')->default(0);
 		$table->boolean('privateaccount')->default(0);
 		$table->boolean('newinvitesnotification')->default(0);
+		$table->integer('limitcontacts')->default(1000);
 		$table->timestamps();
 	});
 	Schema::create('password_resets',function($table){

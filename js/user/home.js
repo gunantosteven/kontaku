@@ -29,11 +29,18 @@ $(document).on('pageinit', '#home', function(){
           },
           success: function (result) {
               if(result.status) {
-                    $('input[id=createfullname]').val('');
-                    $('input[id=createphone]').val('');
-                    $('input[id=createphone2]').val('');
-                   $.mobile.pageContainer.pagecontainer("change", "#", {transition: "slide"});
-                   reloadContact();
+              		if(typeof result.over !== "undefined" && result.over)
+              		{
+              			alert(result.over); 
+              		}
+              		else
+              		{
+              			$('input[id=createfullname]').val('');
+	                    $('input[id=createphone]').val('');
+	                    $('input[id=createphone2]').val('');
+	                   	$.mobile.pageContainer.pagecontainer("change", "#", {transition: "slide"});
+	                   reloadContact();
+              		}
               } 
               else {
                   alert('Something error happened!'); 
@@ -1063,8 +1070,15 @@ $(document).on('pageinit', '#addfriendsonline', function(){
               },
               success: function (result) {
                   if(result.status) {
-                       $('#searchbaraddfriendsonline').val('');
-                       $.mobile.pageContainer.pagecontainer("change", "#invites", {transition: "slide"});
+                  		if(typeof result.over !== "undefined" && result.over)
+	              		{
+	              			alert(result.over); 
+	              		}
+	              		else
+	              		{
+	              			$('#searchbaraddfriendsonline').val('');
+                       		$.mobile.pageContainer.pagecontainer("change", "#invites", {transition: "slide"});
+	              		}
                   } else {
                       alert('Something error happened!'); 
                   }
