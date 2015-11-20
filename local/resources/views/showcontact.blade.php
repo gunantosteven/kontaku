@@ -14,8 +14,8 @@
                 <span class="label label-success">PREMIUM</span>
               @elseif ( $user->membertype == "BOSS")
                 <span class="label label-primary">BOSS</span>
-              @else ( $user->membertype == "FREE" )
-                <span class="label label-default">FREE</span>
+              @else
+                <span class="label label-default">MEMBER</span>
               @endif
             </div>
 
