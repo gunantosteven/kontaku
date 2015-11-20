@@ -25,6 +25,7 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'instagram' => 'coba',
 		'line' => 'coba',
 		'status' => 'Haiii I\'m the second',
+		'membertype' => 'PREMIUM',
 		));
 		
 		\App\Models\User::create(array(
@@ -47,6 +48,7 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'status' => 'Haiii I\'m the first',
 		'privateaccount' => 0,
 		'newinvitesnotification' => 1,
+		'membertype' => 'BOSS',
 		));
 
 		

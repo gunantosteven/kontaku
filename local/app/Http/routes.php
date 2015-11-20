@@ -1105,6 +1105,7 @@ Route::get('createdb',function(){
 		$table->boolean('privateaccount')->default(0);
 		$table->boolean('newinvitesnotification')->default(0);
 		$table->integer('limitcontacts')->default(1000);
+		$table->string('membertype')->default('FREE');
 		$table->timestamps();
 	});
 	Schema::create('password_resets',function($table){

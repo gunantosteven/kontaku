@@ -9,6 +9,16 @@
         <div class="panel-body">
           <form class="form-horizontal" role="form" method="GET" action={{ url("/asd/asd") }}>
 
+            <div class="form-group">
+              @if ( $user->membertype == "PREMIUM" )
+                <span class="label label-success">PREMIUM</span>
+              @elseif ( $user->membertype == "BOSS")
+                <span class="label label-primary">BOSS</span>
+              @else ( $user->membertype == "FREE" )
+                <span class="label label-default">FREE</span>
+              @endif
+            </div>
+
           	<div class="form-group">
           		<center><img src={{ url("/image/$user->id") }}></center>
               @if( $user->fullname == "" )
