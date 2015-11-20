@@ -147,7 +147,25 @@ $(document).on('pageinit', '#home', function(){
           	$("#collapsibleOtherContacts").collapsible( "option", "collapsed", false );
             $("#list").empty();
             $.each (data['friends'], function (index) {
-              $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");   
+              if(data['friends'][index]['onlineoffline'] == "ONLINE")
+              {
+                if(data['friends'][index]['membertype'] == "PREMIUM")
+                {
+                  $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb memberpremium'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+                }
+                else if(data['friends'][index]['membertype'] == "BOSS")
+                {
+                  $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb memberboss'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+                }
+                else
+                {
+                  $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+                }
+              }
+              else
+              {
+                $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+              }
             });
             searchfriendscount = data['searchfriendscount'];
             $("#totalcontacts").text('Total Found ' + data['searchfriendscount']);
@@ -174,7 +192,25 @@ $(document).on('pageinit', '#home', function(){
               dataType: 'JSON',
               success: function (data) {
                 $.each (data['friends'], function (index) {
-                  items += "<li id='" + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" +  data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>"  + "</li>";
+                  if(data['friends'][index]['onlineoffline'] == "ONLINE")
+                  {
+                    if(data['friends'][index]['membertype'] == "PREMIUM")
+                    {
+                      items += "<li id='" + data['friends'][index]['id'] + "' class='ui-li-has-thumb memberpremium'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" +  data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>"  + "</li>";  
+                    }
+                    else if(data['friends'][index]['membertype'] == "BOSS")
+                    {
+                      items += "<li id='" + data['friends'][index]['id'] + "' class='ui-li-has-thumb memberboss'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" +  data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>"  + "</li>";
+                    }
+                    else
+                    {
+                      items += "<li id='" + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" +  data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>"  + "</li>";  
+                    }
+                  }
+                  else
+                  {
+                    items += "<li id='" + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" +  data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>"  + "</li>";  
+                  }
                 });
                 friendscount = data['friendscount'];
                 $("#list", page).append(items).listview("refresh");
@@ -201,7 +237,25 @@ $(document).on('pageinit', '#home', function(){
               dataType: 'JSON',
               success: function (data) {
                 $.each (data['friends'], function (index) {
-                  items += "<li id='" + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" +  data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>"  + "</li>";
+                  if(data['friends'][index]['onlineoffline'] == "ONLINE")
+                  {
+                    if(data['friends'][index]['membertype'] == "PREMIUM")
+                    {
+                      items += "<li id='" + data['friends'][index]['id'] + "' class='ui-li-has-thumb memberpremium'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" +  data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>"  + "</li>";  
+                    }
+                    else if(data['friends'][index]['membertype'] == "BOSS")
+                    {
+                      items += "<li id='" + data['friends'][index]['id'] + "' class='ui-li-has-thumb memberboss'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" +  data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>"  + "</li>";
+                    }
+                    else
+                    {
+                      items += "<li id='" + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" +  data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>"  + "</li>";  
+                    }
+                  }
+                  else
+                  {
+                    items += "<li id='" + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" +  data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>"  + "</li>";  
+                  }
                 });
                 searchfriendscount = data['searchfriendscount'];
                 $("#list", page).append(items).listview("refresh");
@@ -1414,8 +1468,26 @@ function getFavoritesContact()
           	$("#collapsibleFavorites").collapsible( "option", "collapsed", false );
             $("#listFavorites").empty();
             $.each (data['friends'], function (index) {
-            	$("#listFavorites").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
-          	});
+              if(data['friends'][index]['onlineoffline'] == "ONLINE")
+              {
+                if(data['friends'][index]['membertype'] == "PREMIUM")
+                {
+                  $("#listFavorites").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb memberpremium'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+                }
+                else if(data['friends'][index]['membertype'] == "BOSS")
+                {
+                  $("#listFavorites").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb memberboss'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+                }
+                else
+                {
+                  $("#listFavorites").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+                }
+              }
+              else
+              {
+                $("#listFavorites").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+              }
+           });
           }
       }})  
 }
@@ -1440,7 +1512,26 @@ function getContacts()
             $("#collapsibleOtherContacts").collapsible( "option", "collapsed", false );
             $("#list").empty();
             $.each (data['friends'], function (index) {
-              $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+              if(data['friends'][index]['onlineoffline'] == "ONLINE")
+              {
+                if(data['friends'][index]['membertype'] == "PREMIUM")
+                {
+                  $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb memberpremium'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+                }
+                else if(data['friends'][index]['membertype'] == "BOSS")
+                {
+                  $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb memberboss'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+                }
+                else
+                {
+                  $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+                }
+              }
+              else
+              {
+                $("#list").append("<li id='"  + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id'] + "?" + Math.random() + "'/>" + data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>" + "</li>").listview("refresh");
+              }
+              
             });
           }
           friendscount = data['friendscount'];

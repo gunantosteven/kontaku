@@ -35,11 +35,11 @@
               </ul> 
               <div id="collapsibleFavorites" data-role="collapsible" data-inset="false" data-collapsed="false">
                 <h2><span id="myHeaderFavorites">Favorites</span><span id="bubbleCountFavorites" class="ui-li-count">0</span></h2>
-                <ul data-role="listview" id="listFavorites"></ul>
+                <ul data-role="listview" id="listFavorites" class="listMember"></ul>
               </div>
               <div id="collapsibleOtherContacts" data-role="collapsible" data-inset="false" data-collapsed="false">
                 <h2><span id="myHeaderOtherContacts">Other Contacts</span><span id="bubbleCountOtherContacts" class="ui-li-count">0</span></h2>
-                <ul data-role="listview" id="list" data-autodividers="true"></ul>
+                <ul data-role="listview" id="list" data-autodividers="true" class="listMember"></ul>
               </div>
             </div><!-- /content -->     
             
