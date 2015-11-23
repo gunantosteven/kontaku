@@ -68,6 +68,20 @@ Route::group(['middleware' => 'admin'], function()
     });
 
     Route::get('/admin/dashboard', 'Admin\DashboardController@index');
+
+    Route::get('/admin/members', [
+	    'as' => 'admin.members.index',
+	    'uses' => 'Admin\MemberController@index'
+	]);
+
+	Route::get('/admin/members/type/{id}', [
+	    'as' => 'admin.membertype.index',
+	    'uses' => 'Admin\MemberTypeController@index'
+	]);
+	Route::post('/admin/members/type/{id}', [
+	    'as' => 'admin.membertype.update',
+	    'uses' => 'Admin\MemberTypeController@update'
+	]);
 });
 
 Route::group(['middleware' => 'user'], function()

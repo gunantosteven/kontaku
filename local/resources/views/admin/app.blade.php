@@ -33,13 +33,19 @@
 					<div class="col-md-8">
 						<div class="dropdown">
 							<ul class="nav nav-pills">
-							    <li class="{{ Request::is('/') ? 'active' : '' }}"><a href={{ url("/") }}>Home</a></li>		
+							    <li class="{{ Request::is('/') ? 'active' : '' }}"><a href={{ url("/admin/dashboard") }}>Home</a></li>	
+							    <li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Member <span class="caret"></span></a>
+										<ul class="dropdown-menu" role="menu">
+											<li><a href={{ url("/admin/members") }}>Data Member</a></li>
+										</ul>
+								</li>	
 							    @if (Auth::guest())					    
 									<li class="{{ Request::is('auth/login') ? 'active' : '' }}"><a href={{ url("/auth/login") }}>Login</a></li>
 								    <li class="{{ Request::is('auth/register') ? 'active' : '' }}"><a href={{ url("/auth/register") }}>Register</a></li>
 							    @else
 							    	<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->fullname }} <span class="caret"></span></a>
 										<ul class="dropdown-menu" role="menu">
 											<li><a href={{ url("/auth/logout") }}>Logout</a></li>
 										</ul>
