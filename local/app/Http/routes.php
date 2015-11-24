@@ -82,6 +82,11 @@ Route::group(['middleware' => 'admin'], function()
 	    'as' => 'admin.membertype.update',
 	    'uses' => 'Admin\MemberTypeController@update'
 	]);
+
+	Route::get('/admin/toptotalcontacts', [
+	    'as' => 'admin.toptotalcontacts.index',
+	    'uses' => 'Admin\TopTotalContactsController@index'
+	]);
 });
 
 Route::group(['middleware' => 'user'], function()
