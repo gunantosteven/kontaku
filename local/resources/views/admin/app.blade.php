@@ -39,6 +39,7 @@
 										<ul class="dropdown-menu" role="menu">
 											<li><a href={{ url("/admin/members") }}>Data Member</a></li>
 											<li><a href={{ url("/admin/toptotalcontacts") }}>Top Total Contacts Member</a></li>
+											<li><a href={{ url("/admin/topnewmembers") }}>Top New Members</a></li>
 										</ul>
 								</li>	
 							    @if (Auth::guest())					    
