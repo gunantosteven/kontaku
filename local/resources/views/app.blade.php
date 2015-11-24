@@ -33,7 +33,7 @@
 						<div class="dropdown">
 							<ul class="nav nav-pills">
 							    <li class="{{ Request::is('/') ? 'active' : '' }}"><a href={{ url("/") }}>Home</a></li>	
-							    <li class="{{ Request::is('/site/membertype') ? 'active' : '' }}"><a href={{ url("/site/membertype") }}>Member Type</a></li>
+							    <li class="{{ Request::is('site/membertype') ? 'active' : '' }}"><a href={{ url("/site/membertype") }}>Member Type</a></li>
 							    @if (Auth::guest())					    
 									<li class="{{ Request::is('auth/login') ? 'active' : '' }}"><a href={{ url("/auth/login") }}>Login</a></li>
 								    <li class="{{ Request::is('auth/register') ? 'active' : '' }}"><a href={{ url("/auth/register") }}>Register</a></li>
