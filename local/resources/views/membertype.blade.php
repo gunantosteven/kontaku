@@ -50,7 +50,7 @@
           <img src="{{ url("/img/logo-bca.png") }}" alt="" width="128px" height="40px" />
           <p><b>7290109552 a/n Steven Gunanto</b></p>
 
-          <p> After you transfer send SMS Format : <b>YourURL MemberTypeYouChoose TransferAccountName</b> 
+          <p> After you transfer send SMS / Whatsapp Format : <b>YourURL MemberTypeYouChoose TransferAccountName</b> 
           <br> Example : <b>kontakku.com/stevengunanto BOSS Steven Gunanto</b>
           <br> Send to +6283854968000 or 083854968000. </p>
 
