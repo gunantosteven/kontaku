@@ -61,7 +61,7 @@
 			<div class="row">					
 				<div class="wow bounceInRight">	
 					<div class="col-lg-6">
-						<img src="img/money-icon.png" alt="" width="65px" height="65px"> 
+						<img src="img/money-icon.png" alt="" width="132px" height="65px"> 
 						<h4>Is it free</h4>
 						<p>Yes, for now it is 100% free to register. 
 						   Register Now <a href={{ url("/auth/register") }}>Here</a>.
