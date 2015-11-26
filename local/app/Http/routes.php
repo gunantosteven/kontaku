@@ -84,6 +84,15 @@ Route::group(['middleware' => 'admin'], function()
 	    'uses' => 'Admin\MemberTypeController@update'
 	]);
 
+	Route::get('/admin/members/limitcontacts/{id}', [
+	    'as' => 'admin.limitcontacts.index',
+	    'uses' => 'Admin\LimitContactsController@index'
+	]);
+	Route::post('/admin/members/limitcontacts/{id}', [
+	    'as' => 'admin.limitcontacts.update',
+	    'uses' => 'Admin\LimitContactsController@update'
+	]);
+
 	Route::get('/admin/toptotalcontacts', [
 	    'as' => 'admin.toptotalcontacts.index',
 	    'uses' => 'Admin\TopTotalContactsController@index'

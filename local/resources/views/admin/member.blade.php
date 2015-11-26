@@ -19,7 +19,7 @@
          <th>URL</th>
          <th>Limit Contacts</th>
          <th>Member Type</th>
-         <th colspan="1">Actions</th>
+         <th colspan="2">Actions</th>
      </tr>
      </thead>
      <tbody>
@@ -30,6 +30,7 @@
              <td>{{ $user->limitcontacts }}</td>
              <td>{{ $user->membertype }}</td>
              <td><a href="{{route('admin.membertype.index',$user->id)}}" class="btn btn-warning">Change Member Type</a></td>
+             <td><a href="{{route('admin.limitcontacts.index',$user->id)}}" class="btn btn-danger">Change Limit Contacts</a></td>
          </tr>
      @endforeach
 
