@@ -1138,7 +1138,7 @@ Route::get('createdb',function(){
 		$table->boolean('showemailinpublic')->default(0);
 		$table->boolean('privateaccount')->default(0);
 		$table->boolean('newinvitesnotification')->default(0);
-		$table->integer('limitcontacts')->default(1000);
+		$table->integer('limitcontacts')->default(250);
 		$table->string('membertype')->default('MEMBER');
 		$table->timestamps();
 	});

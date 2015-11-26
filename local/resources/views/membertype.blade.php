@@ -32,6 +32,12 @@
                 <td><span class="label label-primary">BOSS</span></td>
               </tr>
               <tr>
+                <td>Limit Contacts</td>
+                <td>250</td>
+                <td>500</td>
+                <td>1000</td>
+              </tr>
+              <tr>
                 <td>Cost</td>
                 <td>FREE</td>
                 <td>IDR 50.000, 00</td>

@@ -26,6 +26,7 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'line' => 'coba',
 		'status' => 'Haiii I\'m the second',
 		'membertype' => 'PREMIUM',
+		'limitcontacts' => 500,
 		));
 		
 		\App\Models\User::create(array(
@@ -49,6 +50,7 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'privateaccount' => 0,
 		'newinvitesnotification' => 1,
 		'membertype' => 'BOSS',
+		'limitcontacts' => 1000,
 		));
 
 		

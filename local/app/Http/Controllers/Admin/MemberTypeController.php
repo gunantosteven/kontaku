@@ -50,8 +50,26 @@ class MemberTypeController extends Controller {
 	{
 		//
 		$userUpdate = Request::all();
-   		$user = User::find($id);
-   		$user->update($userUpdate);
+		$limitContacts = 0;
+
+		if($userUpdate['membertype'] == "BOSS")
+		{
+			$limitContacts = 1000;
+		}
+		else if($userUpdate['membertype'] == "PREMIUM")
+		{
+			$limitContacts = 500;
+		}
+		else
+		{
+			$limitContacts = 250;
+		}
+
+   		DB::table('users')
+            ->where('id', $id)
+            ->update(['membertype' => $userUpdate['membertype'], 
+            		'limitcontacts' => $limitContacts]);
+
    		return redirect('admin/members?success=true');
 	}
 
