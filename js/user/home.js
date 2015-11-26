@@ -1045,6 +1045,7 @@ $(document).on('pagebeforeshow', '#editmyprofile', function(){
               $('#editmyprofilephoto').val('');
             }
         });
+  $("#exampleProfile").prop("href", index + "/stevengunanto");
 }); 
 /* ===================================end js page myprofile=================================== */
 
@@ -1408,6 +1409,8 @@ $(document).on('pagebeforecreate', '#settingsaccount', function(){
               }
             }
         });
+
+	$("#membertypehref").prop("href", index + "/site/membertype");
 }); 
 /* ===================================end js page settingsaccount=================================== */
 

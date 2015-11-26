@@ -198,7 +198,7 @@
           </div><!-- /header --> 
 
           <div class="ui-content" role="main">
-                  <h2>Edit My Profile</h2> <h5><a href={{ URL('/stevengunanto') }} target="_blank">(Example click here)</a></h5>
+                  <h2>Edit My Profile</h2> <h5><a href="" target="_blank" id="exampleProfile">(Example click here)</a></h5>
                   <label for="name">Full Name</label>
                   <input type="text" name="fullname" id="editmyprofilefullname" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true"> 
 
@@ -425,7 +425,7 @@
                 <ul data-role="listview" id="listsettings" data-inset="true">
                   <li id=''><b>My Email </b><p><font id="settingsaccountmyemail" size="2px"></font></p></li>
                   <li id=''><b>My URL </b><p><font id="settingsaccountmyurl" size="2px"></font></p></li>
-                  <li id=''><b>Member Type </b><p><font id="settingsaccountmembertype" size="2px"></font></p></li>
+                  <li id=''><b><a href="" target="_blank" id="membertypehref">Member Type </a></b><p><font id="settingsaccountmembertype" size="2px"></font></p></li>
                   <li id=''><b>My Limit Contacts </b><p><font id="settingsaccountmylimitcontacts" size="2px"></font></p></li>
                   <li id=''><a href='#editmyprofile'>Edit Profile</a></li>
                   <li id=''><a href='#changepassword'>Change Password</a></li>
