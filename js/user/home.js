@@ -930,6 +930,8 @@ $(document).on('pagebeforeshow', '#editfriendprofile', function(){
   $('#editfriendline').val(friend.line);
   // clear select photo
   $('#editfriendphoto').val('');
+
+  $("#exampleProfileEditFriend").prop("href", index + "/stevengunanto");
 }); 
 /* ===================================end js page editfriendprofile=================================== */
 

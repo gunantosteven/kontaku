@@ -292,7 +292,7 @@
                      <a href="#" data-role="button" id="editfriendsubmit" data-theme="b" data-mini="true">OK</a>
                   </div><!-- /header --> 
                   <div class="ui-content" role="main">
-                    <h2>Edit Friend Contact</h2> <h5><a href="http://localhost/kontakku/stevengunanto" target="_blank">(Example click here)</a></h5>
+                    <h2>Edit Friend Contact</h2> <h5><a href="" target="_blank" id="exampleProfileEditFriend">(Example click here)</a></h5>
                     <label for="name">Full Name</label>
                     <input type="text" name="fullname" id="editfriendfullname" value="" data-clear-btn="true" data-mini="true"> 
 
