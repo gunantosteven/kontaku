@@ -1370,6 +1370,8 @@ $(document).on('pagebeforecreate', '#settingsaccount', function(){
             success: function (data) {
               $('#settingsaccountmyemail').text(data.email);
               $('#settingsaccountmyurl').text("kontakku.com/" + data.url);
+              $('#settingsaccountmembertype').text(data.membertype);
+              $('#settingsaccountmylimitcontacts').text(data.limitcontacts);
 
               if(data.privateaccount === true)
               {

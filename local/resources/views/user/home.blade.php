@@ -425,6 +425,8 @@
                 <ul data-role="listview" id="listsettings" data-inset="true">
                   <li id=''><b>My Email </b><p><font id="settingsaccountmyemail" size="2px"></font></p></li>
                   <li id=''><b>My URL </b><p><font id="settingsaccountmyurl" size="2px"></font></p></li>
+                  <li id=''><b>Member Type </b><p><font id="settingsaccountmembertype" size="2px"></font></p></li>
+                  <li id=''><b>My Limit Contacts </b><p><font id="settingsaccountmylimitcontacts" size="2px"></font></p></li>
                   <li id=''><a href='#editmyprofile'>Edit Profile</a></li>
                   <li id=''><a href='#changepassword'>Change Password</a></li>
                   <li id=''>
