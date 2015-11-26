@@ -40,8 +40,8 @@
               <tr>
                 <td>Cost</td>
                 <td>FREE</td>
-                <td>IDR 50.000, 00</td>
-                <td>IDR 100.000, 00</td>
+                <td>$5 / IDR 50.000, 00</td>
+                <td>$10 / IDR 100.000, 00</td>
               </tr>
             </tbody>
           </table>
@@ -58,6 +58,13 @@
 
           <p> After you transfer send SMS / Whatsapp Format : <b>YourURL MemberTypeYouChoose TransferAccountName</b> 
           <br> Example : <b>kontakku.com/stevengunanto BOSS Steven Gunanto</b>
+          <br> Send to +6283854968000 or 083854968000. </p>
+
+          <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_150x38.png" alt="Buy now with PayPal" />
+          <p><b>gunantosteven@gmail.com</b></p>
+
+          <p> After you transfer send SMS / Whatsapp Format : <b>YourURL MemberTypeYouChoose EmailTransfer</b> 
+          <br> Example : <b>kontakku.com/stevengunanto BOSS gunantosteven@gmail.com</b>
           <br> Send to +6283854968000 or 083854968000. </p>
 
           <p> If you require any more information or have any questions about our member type, please feel free to contact us by email at <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#115;&#x75;&#x70;&#x70;&#111;&#114;&#x74;&#64;&#x6b;&#111;&#110;&#116;&#x61;&#x6b;&#x6b;&#x75;&#x2e;&#99;&#111;&#x6d;">&#115;&#x75;&#x70;&#x70;&#111;&#114;&#x74;&#64;&#x6b;&#111;&#110;&#116;&#x61;&#x6b;&#x6b;&#x75;&#x2e;&#99;&#111;&#x6d;</a>.</p>
