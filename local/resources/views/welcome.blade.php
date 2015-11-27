@@ -62,7 +62,7 @@
 				<div class="wow bounceInRight">	
 					<div class="col-lg-6">
 						<img src="img/money-icon.png" alt="" width="132px" height="65px"> 
-						<h4>Is it free</h4>
+						<h4>Is it free ?</h4>
 						<p>Yes, for now it is 100% free to register. 
 						   Register Now <a href={{ url("/auth/register") }}>Here</a>.
 						</p>
@@ -71,7 +71,7 @@
 				<div class="wow bounceInLeft">
 					<div class="col-lg-6">
 						<img src="img/save-icon.png" alt="" width="65px" height="65px"> 
-						<h4>Is it save</h4>
+						<h4>Is it secure ?</h4>
 						<p>Your friend contacts will be saved in server and It's secure to save here as long as you don't give your account
 						</p>
 					</div>
