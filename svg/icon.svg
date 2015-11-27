@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r"
+   sodipodi:docname="icon.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="262.12955"
+     inkscape:cy="855.06256"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1301"
+     inkscape:window-height="744"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000d00;stroke-width:0.99600008;stroke-opacity:0.70440249;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;stroke-linejoin:bevel"
+       id="rect4153"
+       width="41.433105"
+       height="35.36097"
+       x="300.54181"
+       y="197.59604"
+       ry="17.680485"
+       transform="matrix(0.99945637,0.03296917,-0.03240748,0.99947474,0,0)" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.77979624;stroke-opacity:1"
+       id="rect4140"
+       width="204.8054"
+       height="80.7873"
+       x="216.06253"
+       y="259.28238"
+       ry="26.467142" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Verdana;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Verdana;font-stretch:normal;font-variant:normal;"
+       x="228.29446"
+       y="312.93051"
+       id="text4136"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4138"
+         x="228.29446"
+         y="312.93051">Kontakku</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:40px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="290.45956"
+       y="188.04857"
+       id="text4167"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/gunanto/Desktop/favicon.png"
+       inkscape:export-xdpi="86"
+       inkscape:export-ydpi="86"><tspan
+         sodipodi:role="line"
+         id="tspan4169"
+         x="290.45956"
+         y="188.04857"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'">K</tspan></text>
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000d00;stroke-width:0.99599999;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.70440249"
+       id="path4171"
+       sodipodi:sides="3"
+       sodipodi:cx="303.55084"
+       sodipodi:cy="172.77188"
+       sodipodi:r1="4.2931485"
+       sodipodi:r2="2.1465743"
+       sodipodi:arg1="0"
+       sodipodi:arg2="1.0471976"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 307.84399,172.77188 -6.43972,3.71798 0,-7.43595 z"
+       inkscape:transform-center-x="-0.95966057"
+       transform="matrix(0.89413557,0,0,0.90188821,32.109407,17.235058)"
+       inkscape:export-filename="/home/gunanto/Desktop/favicon.png"
+       inkscape:export-xdpi="86"
+       inkscape:export-ydpi="86" />
+  </g>
+</svg>

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
     <title>KontaKKu Online - Free For Everyone who wants to save contacts</title>
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" />
