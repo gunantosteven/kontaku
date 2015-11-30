@@ -597,8 +597,8 @@
                   <li data-role="list-divider">Polisi</li>
                     <li><a href='tel:110'>110<p>Polisi</p></a></li>
                   <li data-role="list-divider">Ambulans</li>
-                    <li><a href='118'>118<p>Ambulans 1</p></a></li>
-                    <li><a href='119'>119<p>Ambulans 2</p></a></li>
+                    <li><a href='tel:118'>118<p>Ambulans 1</p></a></li>
+                    <li><a href='tel:119'>119<p>Ambulans 2</p></a></li>
                   <li data-role="list-divider">Badan Search and Rescue Nasional</li>
                     <li><a href='tel:115'>115<p>Badan Search and Rescue Nasional</p></a></li>
                   <li data-role="list-divider">Posko bencana alam</li>
