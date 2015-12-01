@@ -189,55 +189,6 @@
             </div>
         </div><!-- /end page deletedetailmygroups --> 
 
-
-        <div data-role="page" id="editmyprofile">
-          <form id="formEditMyProfile"  data-ajax="false">
-          <div data-role="header" data-theme="a" id="header1">
-             <h3>My Profile</h3>
-             <a href="#settingsaccount" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
-             <a href="#" data-role="button" id="editmyprofilesubmit" data-theme="b" data-mini="true">OK</a>
-          </div><!-- /header --> 
-
-          <div class="ui-content" role="main">
-                  <h2>Edit My Profile</h2> <h5><a href="" target="_blank" id="exampleProfile">(Example click here)</a></h5>
-                  <label for="name">Full Name</label>
-                  <input type="text" name="fullname" id="editmyprofilefullname" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true"> 
-
-                  <label for="name">Phone 1</label>
-                  <input type="text" name="phone" id="editmyprofilephone" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
-
-                  <label for="name">Phone 2</label>
-                  <input type="text" name="phone2" id="editmyprofilephone2" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
-
-                  <label for="name">Address</label>
-                  <input type="text" name="address" id="editmyprofileaddress" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
-
-                  <label for="name">Pin BB</label>
-                  <input type="text" name="pinbb" id="editmyprofilepinbb" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
-
-                  <label for="name">Facebook</label>
-                  <input type="text" name="facebook" id="editmyprofilefacebook" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
-
-                  <label for="name">Twitter</label>
-                  <input type="text" name="twitter" id="editmyprofiletwitter" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
-
-                  <label for="name">Instagram</label>
-                  <input type="text" name="instagram" id="editmyprofileinstagram" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
-
-                  <label for="name">Line</label>
-                  <input type="text" name="line" id="editmyprofileline" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
-
-                  <label for="name">Status</label>
-                  <input type="text" name="status" id="editmyprofilestatus" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
-
-                  <label for="name">Choose Photo (png or jpeg 65 x 65 pixel required)</label>
-                  <input type="file" name="photo"  id="editmyprofilephoto" accept="image/x-png, image/jpeg" value="" data-clear-btn="true" data-mini="true"/>
-
-            </form>
-          </div> <!-- /content --> 
-
-        </div>  
-
         <!-- friend profile -->
         <div data-role="page" id="friendprofile">
           <div data-role="header" data-theme="a" id="header1">
@@ -409,10 +360,58 @@
             
             <div class="ui-content" role="main">                
                 <ul data-role="listview" id="listsettings" data-inset="true">
+                  <li id="#"><a href='#editmyprofile'>Profile</a></li>
                   <li id="#"><a href='#settingsaccount'>Accounts</a></li>
                 </ul>
             </div><!-- /content -->      
         </div><!-- /end page Settings -->    
+
+        <div data-role="page" id="editmyprofile">
+          <form id="formEditMyProfile"  data-ajax="false">
+          <div data-role="header" data-theme="a" id="header1">
+             <h3>My Profile</h3>
+             <a href="#settingsaccount" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
+             <a href="#" data-role="button" id="editmyprofilesubmit" data-theme="b" data-mini="true">OK</a>
+          </div><!-- /header --> 
+
+          <div class="ui-content" role="main">
+                  <h2>Edit My Profile</h2> <h5><a href="" target="_blank" id="exampleProfile">(Example click here)</a></h5>
+                  <label for="name">Full Name</label>
+                  <input type="text" name="fullname" id="editmyprofilefullname" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true"> 
+
+                  <label for="name">Phone 1</label>
+                  <input type="text" name="phone" id="editmyprofilephone" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
+
+                  <label for="name">Phone 2</label>
+                  <input type="text" name="phone2" id="editmyprofilephone2" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
+
+                  <label for="name">Address</label>
+                  <input type="text" name="address" id="editmyprofileaddress" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
+
+                  <label for="name">Pin BB</label>
+                  <input type="text" name="pinbb" id="editmyprofilepinbb" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
+
+                  <label for="name">Facebook</label>
+                  <input type="text" name="facebook" id="editmyprofilefacebook" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
+
+                  <label for="name">Twitter</label>
+                  <input type="text" name="twitter" id="editmyprofiletwitter" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
+
+                  <label for="name">Instagram</label>
+                  <input type="text" name="instagram" id="editmyprofileinstagram" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
+
+                  <label for="name">Line</label>
+                  <input type="text" name="line" id="editmyprofileline" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
+
+                  <label for="name">Status</label>
+                  <input type="text" name="status" id="editmyprofilestatus" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
+
+                  <label for="name">Choose Photo (png or jpeg 65 x 65 pixel required)</label>
+                  <input type="file" name="photo"  id="editmyprofilephoto" accept="image/x-png, image/jpeg" value="" data-clear-btn="true" data-mini="true"/>
+
+            </form>
+          </div> <!-- /content --> 
+        </div>  
 
         <div data-role="page" id="settingsaccount"><!-- Page Settings Account -->     
             <div data-role="header">         
@@ -428,7 +427,6 @@
                   <li id=''><b>My URL </b><p><font id="settingsaccountmyurl" size="2px"></font></p></li>
                   <li id=''><b>Member Type <a href="" target="_blank" id="membertypehref" style="font-size: 12px; text-decoration: none">What's this </a></b><p><font id="settingsaccountmembertype" size="2px"></font></p></li>
                   <li id=''><b>My Limit Contacts </b><p><font id="settingsaccountmylimitcontacts" size="2px"></font></p></li>
-                  <li id=''><a href='#editmyprofile'>Edit Profile</a></li>
                   <li id=''><a href='#changepassword'>Change Password</a></li>
                   <li id=''>
                     <div data-role="fieldcontain">
