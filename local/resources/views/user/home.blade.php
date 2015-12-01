@@ -70,7 +70,7 @@
 
                     <div class="ui-grid-a">
                         <div class="ui-block-a"><a href="#" data-rel="close" data-role="button" data-theme="c" data-mini="true">Cancel</a></div>
-                        <div class="ui-block-b"><input type="button" data-theme="b" name="submit"   id="submit" value="Submit" data-theme="b" data-mini="true"></div>
+                        <div class="ui-block-b"><input type="button" data-theme="b" name="submit" id="submit" value="Submit" data-theme="b" data-mini="true"></div>
                     </div>
                 </form>
               <!-- panel content goes here -->
@@ -359,10 +359,10 @@
             
             <div class="ui-content" role="main">                
                 <ul data-role="listview" id="listsettings" data-inset="true">
-                  <li id="#"><a href='#editmyprofile' class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="b" data-rel="close">Profile</a></li>
-                  <li id="#"><a href='#settingsaccount' class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b" data-rel="close">Accounts</a></li>
-                  <li><a href="#reports" class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b" data-rel="close" >Reports a Problem</a></li>
-                  <li><a href="#help" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="b" data-rel="close" >Help</a></li>
+                  <li id="#"><a href='#editmyprofile' class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="b">Profile</a></li>
+                  <li id="#"><a href='#settingsaccount' class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b">Accounts</a></li>
+                  <li><a href="#reports" class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b">Reports a Problem</a></li>
+                  <li><a href="#help" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="b">Help</a></li>
                 </ul>
             </div><!-- /content -->      
         </div><!-- /end page Settings -->    
