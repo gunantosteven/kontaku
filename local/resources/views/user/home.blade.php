@@ -75,9 +75,6 @@
                 </form>
               <!-- panel content goes here -->
             </div><!-- /panel -->
-
-            <!-- scroll to top button -->
-            <div id="toTop"></div>
         </div><!-- /page -->      
 
         <div data-role="page" id="mygroups"><!-- Page MyGroups -->     

@@ -369,7 +369,7 @@ $(document).on('pageinit', '#home', function(){
   }); 
 
   $(document).delegate('#toTop', 'click', function () {
-      $('html, body').stop().animate({ scrollTop : 0 }, 500);
+      $.mobile.silentScroll(0);
       return false;
   });
 
