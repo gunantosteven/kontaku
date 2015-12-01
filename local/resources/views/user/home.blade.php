@@ -54,6 +54,7 @@
                 <a href="#settings" class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b" data-rel="close" >Settings</a>
                 <a href="#reports" class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b" data-rel="close" >Reports a Problem</a>
                 <a href="#help" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="b" data-rel="close" >Help</a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fkontakku.com" class="ui-btn ui-btn-icon-left" data-theme="b" data-rel="close" target="_blank" >Share On Facebook</a>
                 <a href="{{ url("/auth/logout") }}" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="b" data-rel="close" data-ajax="false" >Sign Out</a>
              </div>
 
