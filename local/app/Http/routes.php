@@ -163,7 +163,7 @@ Route::group(['middleware' => 'user'], function()
             ->where('friendsonline.status', 'ACCEPTED')
             ->where('friendsonline.isfavorite', 0);
         $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname', DB::raw("'' as membertype"), DB::raw("'OFFLINE' as onlineoffline"))->where('user', Auth::user()->id)->where('isfavorite', 0);
-        $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->skip($friendscount)->take(10)->orderBy('fullname')->get();
+        $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->skip($friendscount)->take(20)->orderBy('fullname')->get();
 
 		$count = 0;
 		$array = array();
