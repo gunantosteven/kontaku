@@ -38,7 +38,7 @@ $(document).on('pageinit', '#home', function(){
               			$('input[id=createfullname]').val('');
 	                    $('input[id=createphone]').val('');
 	                    $('input[id=createphone2]').val('');
-	                   	$.mobile.pageContainer.pagecontainer("change", "#", {transition: "slide"});
+	                   	$.mobile.pageContainer.pagecontainer("change", "#");
 	                   reloadContact();
               		}
               } 
@@ -368,11 +368,6 @@ $(document).on('pageinit', '#home', function(){
           });
   }); 
 
-  $(document).delegate('#toTop', 'click', function () {
-      $.mobile.silentScroll(0);
-      return false;
-  });
-
   $(document).on("scrollstop", function (e) {
 
         /* active page */
@@ -486,7 +481,7 @@ $(document).on('pageinit', '#deletemygroups', function(){
               },
               success: function (result) {
                   if(result.status) {
-                  	   $.mobile.pageContainer.pagecontainer("change", "#mygroups", {transition: "slide"});
+                  	   $.mobile.pageContainer.pagecontainer("change", "#mygroups");
                   } else {
                       alert('Something error happened!'); 
                   }
@@ -573,7 +568,7 @@ $(document).on('pageinit', '#adddetailmygroups', function(){
               },
               success: function (result) {
                   if(result.status) {
-                  	   $.mobile.pageContainer.pagecontainer("change", "#detailmygroups", {transition: "slide"});
+                  	   $.mobile.pageContainer.pagecontainer("change", "#detailmygroups");
                   } else {
                       alert('Something error happened!'); 
                   }
@@ -632,7 +627,7 @@ $(document).on('pageinit', '#deletedetailmygroups', function(){
               },
               success: function (result) {
                   if(result.status) {
-                  	   $.mobile.pageContainer.pagecontainer("change", "#detailmygroups", {transition: "slide"});
+                  	   $.mobile.pageContainer.pagecontainer("change", "#detailmygroups");
                   } else {
                       alert('Something error happened!'); 
                   }
@@ -685,7 +680,7 @@ $(document).on('pageinit', '#friendprofile', function(){
               },
               success: function (result) {
                   if(result.status) {
-                       $.mobile.pageContainer.pagecontainer("change", "#", {transition: "slide"});
+                       $.mobile.pageContainer.pagecontainer("change", "#");
                        reloadContact();
                   } else {
                       alert('Something error happened!'); 
@@ -1134,7 +1129,7 @@ $(document).on('pageinit', '#addfriendsonline', function(){
 	              		else
 	              		{
 	              			$('#searchbaraddfriendsonline').val('');
-                       		$.mobile.pageContainer.pagecontainer("change", "#invites", {transition: "slide"});
+                       		$.mobile.pageContainer.pagecontainer("change", "#invites");
 	              		}
                   } else {
                       alert('Something error happened!'); 
@@ -1232,7 +1227,7 @@ $(document).on('pageinit', '#gotinvitation', function(){
               },
               success: function (result) {
                   if(result.status) {
-                       $.mobile.pageContainer.pagecontainer("change", "#invites", {transition: "slide"});
+                       $.mobile.pageContainer.pagecontainer("change", "#invites");
                        reloadContact();
                   } else {
                       alert('Something error happened!'); 
@@ -1260,7 +1255,7 @@ $(document).on('pageinit', '#gotinvitation', function(){
                 },
                 success: function (result) {
                     if(result.status) {
-                         $.mobile.pageContainer.pagecontainer("change", "#invites", {transition: "slide"});
+                         $.mobile.pageContainer.pagecontainer("change", "#invites");
                     } else {
                         alert('Something error happened!'); 
                     }
@@ -1299,7 +1294,7 @@ $(document).on('pageinit', '#sentinvitation', function(){
                 },
                 success: function (result) {
                     if(result.status) {
-                         $.mobile.pageContainer.pagecontainer("change", "#invites", {transition: "slide"});
+                         $.mobile.pageContainer.pagecontainer("change", "#invites");
                     } else {
                         alert('Something error happened!'); 
                     }
@@ -1342,7 +1337,7 @@ $(document).on('pageinit', '#changepassword', function(){
                     $('#changepasswordnewpassword').val("");
                     $('#changepasswordretypepassword').val("");
                     $('#changepasswordlogoutalldevices').attr('checked',false).checkboxradio('refresh');
-                    $.mobile.pageContainer.pagecontainer("change", "#settingsaccount", {transition: "slide"});
+                    $.mobile.pageContainer.pagecontainer("change", "#settingsaccount");
                   } else {
                       alert('Something error happened!\n' + result.message); 
                   }
