@@ -3,6 +3,7 @@ var friendscount,
     friend,
     friendonlineinvatitation,
     category,
+    isLoadMore = true,
     CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 /* ===================================js page home=================================== */
 $(document).on("pagebeforecreate", "#home", function (e, ui) {
@@ -215,6 +216,7 @@ $(document).on('pageinit', '#home', function(){
                 friendscount = data['friendscount'];
                 $("#list", page).append(items).listview("refresh");
                 $.mobile.loading("hide");
+                isLoadMore = true;
               }
           });
       }, 500);
@@ -261,6 +263,7 @@ $(document).on('pageinit', '#home', function(){
                 $("#list", page).append(items).listview("refresh");
                 $.mobile.loading("hide");
                 $("#totalcontacts").text('Total Found ' + data['searchfriendscount']);
+                isLoadMore = true;
               }
           });
       }, 500);
@@ -276,10 +279,18 @@ $(document).on('pageinit', '#home', function(){
           footer = $(".ui-footer", activePage).hasClass("ui-footer-fixed") ? $(".ui-footer", activePage).outerHeight() - 1 : $(".ui-footer", activePage).outerHeight(),
           scrollEnd = contentHeight - screenHeight + header + footer;
       if (activePage[0].id == "home" && scrolled >= scrollEnd && (friendscount > 0) && $('#searchbar').val().length == 0) {
-          addMore(activePage);
+	  	  if(isLoadMore == true)
+	  	  {
+	  	  	isLoadMore = false;
+	  	  	addMore(activePage);
+	  	  }
       }
       else if (activePage[0].id == "home" && scrolled >= scrollEnd && (searchfriendscount > 0) && $('#searchbar').val().length != 0) {
-          addMoreSearchContact(activePage);
+          if(isLoadMore == true)
+	  	  {
+	  	  	isLoadMore = false;
+	  	  	addMoreSearchContact(activePage);
+	  	  }
       }
   });
 
