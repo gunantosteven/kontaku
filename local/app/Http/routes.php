@@ -714,6 +714,10 @@ Route::group(['middleware' => 'user'], function()
 		{
 			return response()->json(['status' => false, 'msg' => "URL not found."]);
 		}
+		if(Auth::user()->url == $output['search'])
+		{
+			return response()->json(['status' => false, 'msg' => "You can't add your url."]);
+		}
 
 		$friendsonline1 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
