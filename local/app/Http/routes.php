@@ -712,7 +712,7 @@ Route::group(['middleware' => 'user'], function()
 		$usersearch = DB::table('users')->where('url', $output['search'])->first();
 		if($usersearch == null)
 		{
-			return response()->json(['status' => false]);
+			return response()->json(['status' => false, 'msg' => "URL not found."]);
 		}
 
 		$friendsonline1 = DB::table('users')

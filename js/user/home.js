@@ -1192,13 +1192,7 @@ $(document).on('pageinit', '#addfriendsonline', function(){
                 }
                 else
                 {
-                    $('#fullnameuseraddfriendsonline').val('');
-                    $('#iduseraddfriendsonline').val('');
-
-                    $('#imguseraddfriendsonline').hide();
-                    $('#fullnameuseraddfriendsonline').hide();
-                    $('#buttonaddfriendsonline').hide();
-                    alert('User Not Found'); 
+                    alert('Something error happened!'); 
                 }
             },
             error: function (request,error) {

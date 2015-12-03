@@ -301,7 +301,7 @@
             
             <div class="ui-content" role="main">
               <form id="formSearchAddFriendOnline"  data-ajax="false">  
-                <input type="text" placeholder="Search by url" name="search" id="searchbaraddfriendsonline" data-clear-btn="true"/>
+                <input type="text" placeholder="Search by URL" name="search" id="searchbaraddfriendsonline" data-clear-btn="true"/>
                 <input type="submit" name="search" value="Search" id="submitsearchaddfriendsonline"/>  
               </form>       
               <div class="center-wrapper">     
