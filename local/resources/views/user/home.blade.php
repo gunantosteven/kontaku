@@ -283,7 +283,7 @@
                     Invites
                 </h1>     
                 <a href="#home" data-icon="back" data-iconpos="notext">Back</a>
-                <a href="#addfriendsonline" data-icon="plus" data-iconpos="notext">Add By Url</a>
+                <a href="#addfriendsonline" data-icon="plus" data-iconpos="notext">Add By URL</a>
             </div><!-- /header -->      
             
             <div class="ui-content" role="main">                
@@ -507,7 +507,7 @@
                     <p>1. Login to your account.</p>
                     <p>2. Click/Tap menu button on left top. It will show you some submenu, click/tap Invites.</p>
                     <p>3. Click/Tap plus button on right top. It will show you textbox and search button.</p>
-                    <p>4. Type your friend url like <b>stevengunanto</b> if your friend url is kontakku.com/<b>stevengunanto</b>.</p>
+                    <p>4. Type your friend URL like <b>stevengunanto</b> if your friend URL is kontakku.com/<b>stevengunanto</b>.</p>
                     <p>5. Click/Tap search button.</p>
                     <p>6. Click/Tap ADD button, you need to wait your friend accept your invitation.</p>
                     <p>Your friend contacts will be saved in server and It's secure to save here as long as you don't give your account</p>
