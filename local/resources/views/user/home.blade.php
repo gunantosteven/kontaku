@@ -360,6 +360,7 @@
                   <li id="#"><a href='#settingsaccount' class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b">Accounts</a></li>
                   <li><a href="#reports" class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b">Reports a Problem</a></li>
                   <li><a href="#help" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="b">Help</a></li>
+                  <li><a href="#" class="ui-btn" data-theme="b">Version</a><div class="ui-li-aside ui-li-desc">1.0.0</div></li>
                 </ul>
             </div><!-- /content -->      
         </div><!-- /end page Settings -->    
