@@ -58,7 +58,7 @@
 
               <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="add-form" data-theme="a">
                   <form id="createcontactoffline" class="ui-body ui-body-a ui-corner-all" data-ajax="false" >
-                    <h2>Create new contact offline</h2>
+                    <h2>Create Contact</h2>
                     <label for="name">Full Name</label>
                     <input type="text" name="fullname" id="createfullname" value="" data-clear-btn="true" data-mini="true">
 
@@ -318,8 +318,8 @@
         <div data-role="page" id="gotinvitation"><!-- Page Got Invitation -->     
             <div data-role="header">         
                 <h1>
-                    <label for="name" id="fullnameusergotinvitation">FullName</label>
-                    <label for="status" id="statususergotinvitation">Status</label>
+                    <label for="name" id="fullnameusergotinvitation">Got Invitation</label>
+                    <label for="status" id="statususergotinvitation"></label>
                 </h1>     
                 <a href="#invites" data-icon="back" data-iconpos="notext">Back</a>
                 <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal">
@@ -336,8 +336,8 @@
         <div data-role="page" id="sentinvitation"><!-- Page Got Invitation -->     
             <div data-role="header">         
                 <h1>
-                    <label for="name" id="fullnameusersentinvitation">FullName</label>
-                    <label for="status" id="statususersentinvitation">Status</label>
+                    <label for="name" id="fullnameusersentinvitation">Sent Invitation</label>
+                    <label for="status" id="statususersentinvitation"></label>
                 </h1>     
                 <a href="#invites" data-icon="back" data-iconpos="notext">Back</a>
                 <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal">
@@ -367,7 +367,7 @@
 
         <div data-role="page" id="editmyprofile">
           <form id="formEditMyProfile"  data-ajax="false">
-          <div data-role="header" data-theme="a" id="header1">
+          <div data-role="header">
              <h3>My Profile</h3>
              <a href="#settingsaccount" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
              <a href="#" data-role="button" id="editmyprofilesubmit" data-theme="b" data-mini="true">OK</a>
@@ -452,7 +452,7 @@
 
         <div data-role="page" id="changepassword"><!-- Page Change Password -->     
             <form id="formChangePassword"  data-ajax="false">
-                  <div data-role="header" data-theme="a" id="header1">
+                  <div data-role="header">
                      <h3>Change Password</h3>
                      <a href="#settingsaccount" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
                      <a href="#" data-role="button" id="changepasswordsubmit" data-theme="b" data-mini="true">Change</a>
@@ -490,7 +490,7 @@
         </div><!-- /end page Reports -->  
 
         <div data-role="page" id="help"><!-- Page Help -->     
-                  <div data-role="header" data-theme="a" id="header1">
+                  <div data-role="header">
                      <h3>Help</h3>
                      <a href="#home" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
                   </div><!-- /header --> 
