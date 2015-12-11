@@ -58,7 +58,7 @@
 
               <div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="add-form" data-theme="a">
                   <form id="createcontactoffline" class="ui-body ui-body-a ui-corner-all" data-ajax="false" >
-                    <h2>Create Contact</h2>
+                    <h2>Friend Offline</h2>
                     <label for="name">Full Name</label>
                     <input type="text" name="fullname" id="createfullname" value="" data-clear-btn="true" data-mini="true">
 
@@ -70,7 +70,7 @@
 
                     <div class="ui-grid-a">
                         <div class="ui-block-a"><a href="#" data-rel="close" data-role="button" data-theme="c" data-mini="true">Cancel</a></div>
-                        <div class="ui-block-b"><input type="button" data-theme="b" name="submit" id="submit" value="Submit" data-theme="b" data-mini="true"></div>
+                        <div class="ui-block-b"><input type="button" data-theme="b" name="submit" id="submit" value="Create" data-theme="b" data-mini="true"></div>
                     </div>
                 </form>
               <!-- panel content goes here -->
@@ -294,7 +294,7 @@
         <div data-role="page" id="addfriendsonline"><!-- Add Friends Online -->     
             <div data-role="header">         
                 <h1>
-                    Add Friends Online
+                    Friend Online
                 </h1>     
                 <a href="#invites" data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
             </div><!-- /header -->      
