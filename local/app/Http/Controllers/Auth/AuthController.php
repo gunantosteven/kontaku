@@ -183,8 +183,8 @@ class AuthController extends Controller {
      */
     public function getLogout()
     {
+    	\DB::table('sessions')->where('user', \Auth::user()->id)->where('sessionId', \Session::getId())->delete();
         $this->auth->logout();
-        \DB::table('sessions')->where('sessionId', \Session::getId())->delete();
         return redirect('auth/login');
     }
 

@@ -52,7 +52,8 @@ Route::post('/logout', function()
 {
 	if (Auth::user())
 	{
-		\Auth::logout();
+		DB::table('sessions')->where('user', \Auth::user()->id)->where('sessionId', Session::getId())->delete();
+		Auth::logout();
 		return response()->json(['status' => true]);
 	 	//return Redirect::to_action('user@index'); you'd use this if it's not AJAX request
 	}else{
