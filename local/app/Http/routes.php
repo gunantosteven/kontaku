@@ -23,6 +23,9 @@ Route::post('/login', function()
 
 	if (Auth::attempt( $credentials, Request::has('remember') ))
 	{
+		DB::table('sessions')->insert(
+			    array('id' => Uuid::generate(), 'user' => \Auth::user()->id, 'sessionId' => \Session::getId())
+			);
 		return response()->json(['status' => true]);
 	 	//return Redirect::to_action('user@index'); you'd use this if it's not AJAX request
 	}else{
