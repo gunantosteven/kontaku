@@ -48,6 +48,20 @@ Route::post('/checkauthlogin', function()
 		-> with('login_errors', true);*/
     }
 });
+Route::post('/logout', function()
+{
+	if (Auth::user())
+	{
+		\Auth::logout();
+		return response()->json(['status' => true]);
+	 	//return Redirect::to_action('user@index'); you'd use this if it's not AJAX request
+	}else{
+		return Response::json('Error logout', 400);
+		/*return Redirect::to_action('home@login')
+		-> with_input('only', array('new_username')) 
+		-> with('login_errors', true);*/
+    }
+});
 ////////////////////cordova//////////////////////////////////////////////////////////////////////
 
 
