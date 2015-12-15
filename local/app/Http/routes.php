@@ -120,6 +120,11 @@ Route::group(['middleware' => 'admin'], function()
 	    'as' => 'admin.topnewmembers.index',
 	    'uses' => 'Admin\TopNewMembersController@index'
 	]);
+
+	Route::get('/admin/members/statistics', [
+	    'as' => 'admin.members.statistics.index',
+	    'uses' => 'Admin\MembersStatisticsController@index'
+	]);
 });
 
 Route::group(['middleware' => 'user'], function()
