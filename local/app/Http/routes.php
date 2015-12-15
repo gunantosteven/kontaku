@@ -236,15 +236,32 @@ Route::group(['middleware' => 'user'], function()
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
             ->select('friendsonline.user1 as id', 'users.fullname as fullname', 'users.membertype as membertype', DB::raw("'ONLINE' as onlineoffline"))
             ->where('friendsonline.user2', Auth::user()->id)
-            ->where('users.fullname', 'ilike', "%" . Request::input('search') . "%")
+            ->where(function($query)
+            {
+                $query->where('users.fullname', 'ilike', "%" . Request::input('search') . "%")
+			          ->orWhere('users.phone', 'ilike', "%" . Request::input('search') . "%")
+			          ->orWhere('users.phone2', 'ilike', "%" . Request::input('search') . "%");
+            })
             ->where('friendsonline.status', 'ACCEPTED');
         $friendsonline2 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
             ->select('friendsonline.user2 as id', 'users.fullname as fullname', 'users.membertype as membertype', DB::raw("'ONLINE' as onlineoffline"))
             ->where('friendsonline.user1', Auth::user()->id)
-            ->where('users.fullname', 'ilike', "%" . Request::input('search') . "%")
+            ->where(function($query)
+            {
+                $query->where('users.fullname', 'ilike', "%" . Request::input('search') . "%")
+			          ->orWhere('users.phone', 'ilike', "%" . Request::input('search') . "%")
+			          ->orWhere('users.phone2', 'ilike', "%" . Request::input('search') . "%");
+            })
             ->where('friendsonline.status', 'ACCEPTED');
-        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname', DB::raw("'' as membertype"), DB::raw("'OFFLINE' as onlineoffline"))->where('user', Auth::user()->id)->where('fullname', 'ilike', "%" . Request::input('search') . "%");
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname', DB::raw("'' as membertype"), DB::raw("'OFFLINE' as onlineoffline"))
+			 ->where('user', Auth::user()->id)
+			 ->where(function($query)
+            {
+                $query->where('fullname', 'ilike', "%" . Request::input('search') . "%")
+			          ->orWhere('phone', 'ilike', "%" . Request::input('search') . "%")
+			          ->orWhere('phone2', 'ilike', "%" . Request::input('search') . "%");
+            });
         $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->take(20)->orderBy('fullname')->get();
 
 		$count = 0;
@@ -264,15 +281,32 @@ Route::group(['middleware' => 'user'], function()
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
             ->select('friendsonline.user1 as id', 'users.fullname as fullname', 'users.membertype as membertype', DB::raw("'ONLINE' as onlineoffline"))
             ->where('friendsonline.user2', Auth::user()->id)
-            ->where('users.fullname', 'ilike', "%" . Request::input('search') . "%")
+            ->where(function($query)
+            {
+                $query->where('users.fullname', 'ilike', "%" . Request::input('search') . "%")
+			          ->orWhere('users.phone', 'ilike', "%" . Request::input('search') . "%")
+			          ->orWhere('users.phone2', 'ilike', "%" . Request::input('search') . "%");
+            })
             ->where('friendsonline.status', 'ACCEPTED');
         $friendsonline2 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
             ->select('friendsonline.user2 as id', 'users.fullname as fullname', 'users.membertype as membertype', DB::raw("'ONLINE' as onlineoffline"))
             ->where('friendsonline.user1', Auth::user()->id)
-            ->where('users.fullname', 'ilike', "%" . Request::input('search') . "%")
+            ->where(function($query)
+            {
+                $query->where('users.fullname', 'ilike', "%" . Request::input('search') . "%")
+			          ->orWhere('users.phone', 'ilike', "%" . Request::input('search') . "%")
+			          ->orWhere('users.phone2', 'ilike', "%" . Request::input('search') . "%");
+            })
             ->where('friendsonline.status', 'ACCEPTED');
-        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname', DB::raw("'' as membertype"), DB::raw("'OFFLINE' as onlineoffline"))->where('user', Auth::user()->id)->where('fullname', 'ilike', "%" . Request::input('search') . "%");
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname', DB::raw("'' as membertype"), DB::raw("'OFFLINE' as onlineoffline"))
+			  ->where('user', Auth::user()->id)
+			  ->where(function($query)
+	          {
+	            $query->where('fullname', 'ilike', "%" . Request::input('search') . "%")
+			          ->orWhere('phone', 'ilike', "%" . Request::input('search') . "%")
+			          ->orWhere('phone2', 'ilike', "%" . Request::input('search') . "%");
+	          });
         $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->skip($searchfriendscount)->take(20)->orderBy('fullname')->get();
 
 		$count = 0;
