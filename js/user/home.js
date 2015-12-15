@@ -169,7 +169,7 @@ $(document).on('pageinit', '#home', function(){
               }
             });
             searchfriendscount = data['searchfriendscount'];
-            $("#totalcontacts").text('Total Found ' + data['searchfriendscount']);
+            $("#totalcontacts").text('Total Found ' + data['totalfound']);
             $("#bubbleCountOtherContacts").hide();
         }
       });
@@ -262,7 +262,6 @@ $(document).on('pageinit', '#home', function(){
                 searchfriendscount = data['searchfriendscount'];
                 $("#list", page).append(items).listview("refresh");
                 $.mobile.loading("hide");
-                $("#totalcontacts").text('Total Found ' + data['searchfriendscount']);
                 isLoadMore = true;
               }
           });

@@ -262,7 +262,12 @@ Route::group(['middleware' => 'user'], function()
 			          ->orWhere('phone', 'ilike', "%" . Request::input('search') . "%")
 			          ->orWhere('phone2', 'ilike', "%" . Request::input('search') . "%");
             });
+		$countfriendsonline1 = clone $friendsonline1;
+        $countfriendsonline2 = clone $friendsonline2;
+        $countfriendsoffline = clone $friendsoffline;
+
         $combined = $friendsoffline->unionAll($friendsonline1)->unionAll($friendsonline2)->take(20)->orderBy('fullname')->get();
+		$totalfound = count($countfriendsoffline->unionAll($countfriendsonline1)->unionAll($countfriendsonline2)->get());
 
 		$count = 0;
 		$array = array();
@@ -272,7 +277,7 @@ Route::group(['middleware' => 'user'], function()
 		}
 	    
 	    //this route should returns json response
-	    return response()->json(['searchfriendscount' => $count, 'friends' => $array]);
+	    return response()->json(['searchfriendscount' => $count, 'friends' => $array, 'totalfound' => $totalfound]);
 	});
 
 	Route::post('/user/search/{searchfriendscount}', function($searchfriendscount)
