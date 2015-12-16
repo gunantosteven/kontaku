@@ -23,8 +23,8 @@
 							<div class="box-bg">
 								<div class="wow bounceInLeft" data-wow-duration="2s" data-wow-delay="0.9s">
 									<div class="align-center">
-										<h4 class="text-bold">What is KontaKKu</h4>
-										<p>KontaKKu is a provider to save your contact by online. You can use kontakku on web, smartphone and tablet easily.
+										<h4 class="text-bold">What is KontaKKu ?</h4>
+										<p>KontaKKu is a provider to save your contacts by online and you can share your phone, pin BB, facebook and etc easily too. It is like your contacts phone but with more features. You can use kontakku on web, smartphone and tablet easily.
 										</p>
 									</div>
 								</div>
@@ -34,8 +34,8 @@
 							<div class="box-bg">
 								<div class="wow bounceInLeft" data-wow-duration="2s" data-wow-delay="0.6s">
 									<div class="align-center">
-										<h4 class="text-bold">Why KontaKKu</h4>
-										<p>You don't need to write your friends contact many times just saving here it will be last.
+										<h4 class="text-bold">Why use KontaKKu</h4>
+										<p>In daily life, you will face situation where you need to save your contacts in one phone, but when you phone is gone or stealed you need to write your contacts again on your new phone. You don't need to write your contacts many times just saving here and it will be the last. Don't worry if you have many smartphone because your contacts are not saved in your phone but in server. <b>Use kontakku as your second contacts backup.</b> 
 										</p>
 									</div>
 								</div>
@@ -45,8 +45,8 @@
 							<div class="box-bg">
 								<div class="wow bounceInLeft" data-wow-duration="2s" data-wow-delay="0.2s">
 									<div class="align-center">
-										<h4 class="text-bold">Friend Online Or Offline</h4>
-										<p>If you have friends who using KontaKKu too you just invite him/her to be your contact friends online.
+										<h4 class="text-bold">Friend Online And Offline</h4>
+										<p>If you have friends who are using KontaKKu too you can invite him/her to be your contacts friend online.
 											But if your friends haven't used KontaKKu you can save him/her contact too through friends offline.
 										</p>
 									</div>
@@ -64,7 +64,7 @@
 						<img src="img/money-icon.png" alt="" width="132px" height="65px"> 
 						<h4>Is it free ?</h4>
 						<p>Yes, for now it is 100% free to register. 
-						   Register Now <a href={{ url("/auth/register") }}>Here</a>.
+						   Register Now <a href={{ url("/auth/register") }}>Here</a>. But if you want more access and capacity you can change your <a href={{ url("/site/membertype") }}>member type</a>.
 						</p>
 					</div>
 				</div>
@@ -72,7 +72,7 @@
 					<div class="col-lg-6">
 						<img src="img/save-icon.png" alt="" width="65px" height="65px"> 
 						<h4>Is it secure ?</h4>
-						<p>Your friend contacts will be saved in server and It's secure to save here as long as you don't give your account
+						<p>Your contacts will be saved in server and It's secure to save here as long as you don't give your account
 						</p>
 					</div>
 				</div>
