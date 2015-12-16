@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use DB;
+
 class WelcomeController extends Controller {
 
 	/*
@@ -30,7 +32,13 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('welcome');
+		$totalusers = DB::table('users')->count();
+
+		$friendsonline = DB::table('friendsonline')->select('id')->where('status', 'ACCEPTED')->count();
+        $friendsoffline = DB::table('friendsoffline')->select('id')->count();
+        $totalcontacts = $friendsonline + $friendsoffline;
+
+		return view('welcome', compact('totalusers', 'totalcontacts'));
 	}
 
 }
