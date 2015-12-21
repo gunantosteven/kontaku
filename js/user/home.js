@@ -774,6 +774,11 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
       $('#actionFriendProfileList').append('<li><a href="' + friend.facebook + '" target="_blank"><h3>Facebook</h3>' +
           '<p>' + friend.facebook+ '</p></a></li>');
     }
+    else if(friend.facebook.indexOf(' ') >= 0)
+    {
+      $('#actionFriendProfileList').append('<li><a href=""><h3>Facebook</h3>' +
+          '<p>' + friend.facebook+ '</p></a></li>');
+    }
     else if (friend.facebook) {
       $('#actionFriendProfileList').append('<li><a href="https://www.facebook.com/' + friend.facebook + '" target="_blank"><h3>Facebook</h3>' +
           '<p>' + friend.facebook+ '</p></a></li>');
