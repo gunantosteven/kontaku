@@ -111,5 +111,28 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'line' => 'baru2',
 		'status' => 'Haiii I\'m the fifth',
 		));
+
+		// Data dummy
+		/*for($i = 0; 1000 > $i; $i++)
+		{
+			\App\Models\User::create(array(
+			'id' => Uuid::generate(),
+			'email' => $i . '@gmail.com',
+			'password' => Hash::make('123456'),
+			'active' => 1,
+			'role' => 'USER',
+			'remember_token' => '',
+			'fullname' => 'Coba',
+			'url' => $i . '',
+			'phone' => '12345678',
+			'phone2' => '8712654321',
+			'pinbb' => 'abcdefgh',
+			'facebook' => 'baru12',
+			'twitter' => '@baru2',
+			'instagram' => 'baru2',
+			'line' => 'baru2',
+			'status' => 'Haiii I\'m the fifth',
+			));
+		}*/
 	}
 }

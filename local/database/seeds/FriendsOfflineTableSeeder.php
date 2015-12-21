@@ -9,23 +9,6 @@ class FriendsOfflineTableSeeder extends Seeder {
 		DB::table('friendsoffline')->delete();
 		// buat data users
 
-		for($i = 0; 150 > $i; $i++)
-		{
-			\App\Models\FriendOffline::create(array(
-			'id' => Uuid::generate(),
-			'user' => DB::table('users')->where('email', 'gunantosteven@gmail.com')->first()->id,
-			'fullname' => 'test' . $i,
-			'email' => 'test' . $i . '@gmail.com',
-			'phone' => '00000' . $i,
-			'phone2' => '00000' . ($i+1),
-			'pinbb' => 'abc11' . $i,
-			'facebook' => 'test' . $i,
-			'twitter' => '@test' . $i,
-			'instagram' => 'test' . $i,
-			'line' => 'test' . $i,
-			));
-		}
-
 		\App\Models\FriendOffline::create(array(
 			'id' => Uuid::generate(),
 			'user' => DB::table('users')->where('email', 'gunantosteven@gmail.com')->first()->id,
@@ -40,5 +23,23 @@ class FriendsOfflineTableSeeder extends Seeder {
 			'line' => 'test150',
 			'isfavorite' => 1,
 			));
+
+		// Data dummy
+		/*for($i = 0; 1000000 > $i; $i++)
+		{
+			\App\Models\FriendOffline::create(array(
+			'id' => Uuid::generate(),
+			'user' => DB::table('users')->where('email', 'gunantosteven@gmail.com')->first()->id,
+			'fullname' => 'test' . $i,
+			'email' => 'test' . $i . '@gmail.com',
+			'phone' => '' . $i,
+			'phone2' => '' . ($i+1),
+			'pinbb' => '' . $i,
+			'facebook' => '' . $i,
+			'twitter' => '@' . $i,
+			'instagram' => '' . $i,
+			'line' => '' . $i,
+			));
+		}*/
 	}
 }
