@@ -95,8 +95,8 @@
 			</center>
 			<br>
 			<center>
-				<h4>Total Users : {{ $totalusers }}</h4> 
-				<h4>Total Contacts : {{ $totalcontacts }}</h4> 
+				<h4>Total Users : {{ number_format($totalusers) }}</h4> 
+				<h4>Total Contacts : {{ number_format($totalcontacts) }}</h4> 
 			</center>
 		</div>	
 	</div>
