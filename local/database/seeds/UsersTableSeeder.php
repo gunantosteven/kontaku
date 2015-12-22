@@ -42,7 +42,7 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'phone2' => '+6283854968000',
 		'address' => 'Jl. Sesuatu No.1',
 		'pinbb' => '51EF1391',
-		'facebook' => 'https://www.facebook.com/profile.php?id=1671663690',
+		'facebook' => 'Steven Gunanto (UngApps)',
 		'twitter' => '@StevenGunanto',
 		'instagram' => 'stevengunanto',
 		'line' => 'stevengunanto',
