@@ -29,7 +29,7 @@ Route::post('/login', function()
 		return response()->json(['status' => true]);
 	 	//return Redirect::to_action('user@index'); you'd use this if it's not AJAX request
 	}else{
-		return Response::json('Error logging in', 400);
+		return Response::json('Username and password do not match', 400);
 		/*return Redirect::to_action('home@login')
 		-> with_input('only', array('new_username')) 
 		-> with('login_errors', true);*/
