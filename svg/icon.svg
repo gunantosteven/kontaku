@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="262.12955"
-     inkscape:cy="855.06256"
+     inkscape:zoom="3.4289063"
+     inkscape:cx="297.00528"
+     inkscape:cy="860.98843"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -53,14 +53,17 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000d00;stroke-width:0.99600008;stroke-opacity:0.70440249;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;stroke-linejoin:bevel"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000d00;stroke-width:1.05161798;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.70440249"
        id="rect4153"
-       width="41.433105"
-       height="35.36097"
-       x="300.54181"
-       y="197.59604"
-       ry="17.680485"
-       transform="matrix(0.99945637,0.03296917,-0.03240748,0.99947474,0,0)" />
+       width="43.746784"
+       height="37.335571"
+       x="291.01175"
+       y="144.80016"
+       ry="18.667786"
+       transform="matrix(0.99945637,0.03296917,-0.03240748,0.99947474,0,0)"
+       inkscape:export-filename="/mnt/drived/CordovaProject/kontakku/www/img/icon.png"
+       inkscape:export-xdpi="340.4158"
+       inkscape:export-ydpi="340.4158" />
     <rect
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.77979624;stroke-opacity:1"
        id="rect4140"
@@ -87,9 +90,9 @@
        y="188.04857"
        id="text4167"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/gunanto/Desktop/favicon.png"
-       inkscape:export-xdpi="86"
-       inkscape:export-ydpi="86"><tspan
+       inkscape:export-filename="/mnt/drived/CordovaProject/kontakku/www/img/icon.png"
+       inkscape:export-xdpi="340.4158"
+       inkscape:export-ydpi="340.4158"><tspan
          sodipodi:role="line"
          id="tspan4169"
          x="290.45956"
@@ -112,8 +115,43 @@
        d="m 307.84399,172.77188 -6.43972,3.71798 0,-7.43595 z"
        inkscape:transform-center-x="-0.95966057"
        transform="matrix(0.89413557,0,0,0.90188821,32.109407,17.235058)"
-       inkscape:export-filename="/home/gunanto/Desktop/favicon.png"
-       inkscape:export-xdpi="86"
-       inkscape:export-ydpi="86" />
+       inkscape:export-filename="/mnt/drived/CordovaProject/kontakku/www/img/icon.png"
+       inkscape:export-xdpi="340.4158"
+       inkscape:export-ydpi="340.4158" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:40px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="241.61855"
+       y="187.94479"
+       id="text4167-7"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/mnt/drived/CordovaProject/kontakku/www/img/icon.png"
+       inkscape:export-xdpi="340.4158"
+       inkscape:export-ydpi="340.4158"><tspan
+         sodipodi:role="line"
+         id="tspan4169-7"
+         x="241.61855"
+         y="187.94479"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'">K</tspan></text>
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000d00;stroke-width:0.99599999;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.70440249"
+       id="path4171-0"
+       sodipodi:sides="3"
+       sodipodi:cx="303.55084"
+       sodipodi:cy="172.77188"
+       sodipodi:r1="4.2931485"
+       sodipodi:r2="2.1465743"
+       sodipodi:arg1="0"
+       sodipodi:arg2="1.0471976"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 307.84399,172.77188 -6.43972,3.71798 0,-7.43595 z"
+       inkscape:transform-center-x="-0.95966057"
+       transform="matrix(0.89413557,0,0,0.90188821,-16.731624,17.131288)"
+       inkscape:export-filename="/mnt/drived/CordovaProject/kontakku/www/img/icon.png"
+       inkscape:export-xdpi="340.4158"
+       inkscape:export-ydpi="340.4158" />
   </g>
 </svg>
