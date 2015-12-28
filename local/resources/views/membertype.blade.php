@@ -56,14 +56,14 @@
           <img src="{{ url("/img/logo-bca.png") }}" alt="" width="128px" height="40px" />
           <p><b>7290109552 a/n Steven Gunanto</b></p>
 
-          <p> After you transfer send SMS / Whatsapp Format : <b>YourURL MemberTypeYouChoose TransferAccountName</b> 
+          <p> After you transfer, send SMS / Whatsapp Format : <b>YourURL MemberTypeYouChoose TransferAccountName</b> 
           <br> Example : <b>kontakku.com/stevengunanto BOSS Steven Gunanto</b>
           <br> Send to +6283854968000 or 083854968000. </p>
 
           <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_150x38.png" alt="Buy now with PayPal" />
           <p><b>gunantosteven@gmail.com</b></p>
 
-          <p> After you transfer send SMS / Whatsapp Format : <b>YourURL MemberTypeYouChoose EmailTransfer</b> 
+          <p> After you transfer, send SMS / Whatsapp Format : <b>YourURL MemberTypeYouChoose EmailTransfer</b> 
           <br> Example : <b>kontakku.com/stevengunanto BOSS gunantosteven@gmail.com</b>
           <br> Send to +6283854968000 or 083854968000. </p>
 
