@@ -254,7 +254,7 @@
                     <input type="text" name="phone2" id="editfriendphone2" value="" data-clear-btn="true" data-mini="true">
 
                     <label for="name">Address</label>
-                    <input type="text" name="address" id="editfriendaddress" value="" data-clear-btn="true" data-mini="true">
+                    <textarea name="address" id="editfriendaddress" value="" data-clear-btn="true" data-mini="true"></textarea>
 
                     <label for="name">Pin BB</label>
                     <input type="text" name="pinbb" id="editfriendpinbb" value="" data-clear-btn="true" data-mini="true">
@@ -385,7 +385,7 @@
                   <input type="text" name="phone2" id="editmyprofilephone2" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Address</label>
-                  <input type="text" name="address" id="editmyprofileaddress" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
+                  <textarea name="address" id="editmyprofileaddress" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true"></textarea>
 
                   <label for="name">Pin BB</label>
                   <input type="text" name="pinbb" id="editmyprofilepinbb" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">

@@ -763,7 +763,7 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
           '<p>' + friend.phone2 + '</p></a></li>');
     }
     if (friend.address) {
-      $('#actionFriendProfileList').append('<li><h3>Address</h3>' +
+      $('#actionFriendProfileList').append('<li style="white-space:normal;"><h3>Address</h3>' +
           '<p>' + friend.address + '</p></li>');
     }
     if (friend.pinbb) {
@@ -933,6 +933,7 @@ $(document).on('pagebeforeshow', '#editfriendprofile', function(){
   $('#editfriendemail').val(friend.email);
   $('#editfriendphone').val(friend.phone);
   $('#editfriendphone2').val(friend.phone2);
+  $('#editfriendaddress').val(friend.address);
   $('#editfriendpinbb').val(friend.pinbb);
   $('#editfriendfacebook').val(friend.facebook);
   $('#editfriendtwitter').val(friend.twitter);

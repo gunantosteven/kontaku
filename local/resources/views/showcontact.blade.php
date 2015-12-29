@@ -56,7 +56,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label">Address</label>
               <div class="col-md-6">
-                <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="address" value="{{ $user->address }}" readonly="">
+                <textarea onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="address" readonly="">{{ $user->address }}</textarea>
               </div>
             </div>
           @endif
