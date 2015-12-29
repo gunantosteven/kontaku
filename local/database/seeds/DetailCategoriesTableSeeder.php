@@ -11,14 +11,14 @@ class DetailCategoriesTableSeeder extends Seeder {
 		\App\Models\DetailCategory::create(array(
 		'id' => Uuid::generate(),
 		'category' => DB::table('categories')->where('title', 'Friends')->first()->id,
-		'friendid' => DB::table('users')->where('email', 'coba@gmail.com')->first()->id,
+		'friendid' => DB::table('users')->where('email', 'admin@kontakku.com')->first()->id,
 		'onlineoffline' => 'ONLINE',
 		));
 
 		\App\Models\DetailCategory::create(array(
 		'id' => Uuid::generate(),
 		'category' => DB::table('categories')->where('title', 'Friends')->first()->id,
-		'friendid' => DB::table('friendsoffline')->where('fullname', 'test1')->first()->id,
+		'friendid' => DB::table('friendsoffline')->where('fullname', 'test150')->first()->id,
 		'onlineoffline' => 'OFFLINE',
 		));
 	}

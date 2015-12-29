@@ -11,7 +11,7 @@ class FriendsOnlineTableSeeder extends Seeder {
 		\App\Models\FriendOnline::create(array(
 		'id' => Uuid::generate(),
 		'user1' => DB::table('users')->where('email', 'gunantosteven@gmail.com')->first()->id,
-		'user2' => DB::table('users')->where('email', 'coba@gmail.com')->first()->id,
+		'user2' => DB::table('users')->where('email', 'admin@kontakku.com')->first()->id,
 		'status' => 'ACCEPTED',
 		'isfavorite' => 1,
 		));
