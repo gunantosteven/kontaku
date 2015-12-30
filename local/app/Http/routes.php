@@ -125,6 +125,11 @@ Route::group(['middleware' => 'admin'], function()
 	    'as' => 'admin.members.statistics.index',
 	    'uses' => 'Admin\MembersStatisticsController@index'
 	]);
+
+	Route::get('/admin/infostorage', [
+	    'as' => 'admin.infostorage.index',
+	    'uses' => 'Admin\InfoStorageController@index'
+	]);
 });
 
 Route::group(['middleware' => 'user'], function()

@@ -44,6 +44,12 @@
 											<li><a href={{ url("/admin/members/statistics") }}>Statistics</a></li>
 										</ul>
 								</li>	
+								<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tools <span class="caret"></span></a>
+										<ul class="dropdown-menu" role="menu">
+											<li><a href={{ url("/admin/infostorage") }}>Info Storage</a></li>
+										</ul>
+								</li>	
 							    @if (Auth::guest())					    
 									<li class="{{ Request::is('auth/login') ? 'active' : '' }}"><a href={{ url("/auth/login") }}>Login</a></li>
 								    <li class="{{ Request::is('auth/register') ? 'active' : '' }}"><a href={{ url("/auth/register") }}>Register</a></li>
