@@ -16,10 +16,6 @@
 		        <td>Size Images</td>
 		        <td class="text-right">{{ $fileSizeImages }}</td>
 		      </tr>
-		      <tr>
-		        <td>Total</td>
-		        <td class="text-right">{{ $total }}</td>
-		      </tr>
 		    </tbody>
 	    </table>
      </div>

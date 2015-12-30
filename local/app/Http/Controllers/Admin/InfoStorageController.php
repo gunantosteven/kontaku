@@ -41,34 +41,18 @@ class InfoStorageController extends Controller {
 	    {
 	        $fileSizeImages += $file->getSize();
 	    }
-	    $total = formatSizeUnits($fileSizeImages + explode(' ', $sizeDatabase)[0]);
-	    $sizeDatabase = formatSizeUnits(explode(' ', $sizeDatabase)[0]);
 	    $fileSizeImages = formatSizeUnits($fileSizeImages);
 
 		$tableCategories = DB::select(DB::raw('SELECT pg_size_pretty(pg_relation_size(\'categories\'))'))[0]->pg_size_pretty;
-		$tableCategories = formatSizeUnits(explode(' ', $tableCategories)[0]);
-
 		$tableDetailCategories = DB::select(DB::raw('SELECT pg_size_pretty(pg_relation_size(\'detailcategories\'))'))[0]->pg_size_pretty;
-		$tableDetailCategories = formatSizeUnits(explode(' ', $tableDetailCategories)[0]);
-
 		$tableFriendsOffline = DB::select(DB::raw('SELECT pg_size_pretty(pg_relation_size(\'friendsoffline\'))'))[0]->pg_size_pretty;
-		$tableFriendsOffline = formatSizeUnits(explode(' ', $tableFriendsOffline)[0]);
-
 		$tableFriendsOnline = DB::select(DB::raw('SELECT pg_size_pretty(pg_relation_size(\'friendsonline\'))'))[0]->pg_size_pretty;
-		$tableFriendsOnline = formatSizeUnits(explode(' ', $tableFriendsOnline)[0]);
-
 		$tablePasswordResets = DB::select(DB::raw('SELECT pg_size_pretty(pg_relation_size(\'password_resets\'))'))[0]->pg_size_pretty;
-		$tablePasswordResets = formatSizeUnits(explode(' ', $tablePasswordResets)[0]);
-
 		$tableSessions = DB::select(DB::raw('SELECT pg_size_pretty(pg_relation_size(\'sessions\'))'))[0]->pg_size_pretty;
-		$tableSessions = formatSizeUnits(explode(' ', $tableSessions)[0]);
-
 		$tableUsers = DB::select(DB::raw('SELECT pg_size_pretty(pg_relation_size(\'users\'))'))[0]->pg_size_pretty;
-		$tableUsers = formatSizeUnits(explode(' ', $tableUsers)[0]);
-
+		
 		return view('/admin/infostorage', compact('sizeDatabase', 'tableCategories', 'tableDetailCategories', 'tableFriendsOffline'
-												, 'tableFriendsOnline', 'tablePasswordResets', 'tableSessions', 'tableUsers', 'fileSizeImages'
-												, 'total'));
+												, 'tableFriendsOnline', 'tablePasswordResets', 'tableSessions', 'tableUsers', 'fileSizeImages'));
 	}
 
 }
