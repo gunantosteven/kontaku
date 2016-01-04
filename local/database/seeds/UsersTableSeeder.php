@@ -55,7 +55,7 @@ class UsersTableSeederTableSeeder extends Seeder {
 
 		
 
-		\App\Models\User::create(array(
+		/*\App\Models\User::create(array(
 		'id' => Uuid::generate(),
 		'email' => 'baru@gmail.com',
 		'password' => Hash::make('baru'),
@@ -110,7 +110,7 @@ class UsersTableSeederTableSeeder extends Seeder {
 		'instagram' => 'baru2',
 		'line' => 'baru2',
 		'status' => 'Haiii I\'m the fifth',
-		));
+		));*/
 
 		// Data dummy
 		/*for($i = 0; 1000 > $i; $i++)
