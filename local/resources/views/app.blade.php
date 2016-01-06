@@ -26,6 +26,10 @@
     <meta property="og:image"         content="http://kontakku.com/img/logo.png" />
     <!-- google site verification -->
     <meta name="google-site-verification" content="fa1nygFnfM1Eq8XpgyVn70UY1KEaxvQPVbhlnmKl1Zk" />
+    <!-- meta description -->
+    <meta content='Save your contacts by online  
+    			   Share your phone number, pin BB, facebook, twitter, instagram, line
+    			   Running on your web, smartphone and tablet easily' name='description'/>
 </head>
 <body>
 	<header>
