@@ -24,6 +24,8 @@
     <meta property="og:title"         content="KontaKKu Online - Free For Everyone who wants to save contacts" />
     <meta property="og:description"   content="KontaKKu is a provider to save your contact by online. You can use kontakku on web, smartphone and tablet easily." />
     <meta property="og:image"         content="http://kontakku.com/img/logo.png" />
+    <!-- google site verification -->
+    <meta name="google-site-verification" content="fa1nygFnfM1Eq8XpgyVn70UY1KEaxvQPVbhlnmKl1Zk" />
 </head>
 <body>
 	<header>
