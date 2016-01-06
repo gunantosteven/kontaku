@@ -16,7 +16,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">Contact Not Found</div>
         <div class="panel-body">
-          <h3>You can register this url <a href={{ url("/auth/register") }}> Click Here to register</a></h3>
+          <h3>Luckily, you can register this url to be yours. <br><a href={{ url("/auth/register") }}> Click Here to register.</a></h3>
         </div>
       </div>
     </div>
