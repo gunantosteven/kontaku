@@ -14,9 +14,9 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
-        <div class="panel-heading"><center>KontaKKu Contact since {{ date("d F Y",strtotime($user->created_at)) }}</center></div>
+        <div class="panel-heading"><center>Registered since {{ date("d F Y",strtotime($user->created_at)) }}</center></div>
         <div class="panel-body">
-          <form class="form-horizontal" role="form" method="GET" action={{ url("/asd/asd") }}>
+          <form class="form-horizontal" role="form" method="GET" >
 
             <div class="form-group">
               @if ( $user->membertype == "PREMIUM" )
