@@ -129,7 +129,7 @@ class AuthController extends Controller {
 		}
 		else if($user->accountIsActive($code)) {
 			\Session::flash('message', 'Success, your account has been activated.');
-			return redirect('user\home');
+			return view('auth.activateAccountSuccess');
 		}
 		else
 		{
