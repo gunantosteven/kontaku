@@ -67,7 +67,7 @@
 
 						<div class="form-group">
 							<h6>
-								By hitting submit and registering an account, you have read and agree to the Kontakku <a href="http://localhost/kontakku/site/terms" target="_blank">Terms and Conditions</a> & <a href="http://localhost/kontakku/site/privacy" target="_blank">Privacy Policy</a>.
+								By hitting submit and registering an account, you have read and agree to the Kontakku <a href="{{ url('/site/terms') }}" target="_blank">Terms and Conditions</a> & <a href="{{ url('/site/privacy') }}" target="_blank">Privacy Policy</a>.
 							</h6>
 						</div>
 
