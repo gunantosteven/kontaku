@@ -70,6 +70,10 @@ Route::get('/', 'WelcomeController@index');
 Route::get('/site/privacy', 'PrivacyController@index');
 Route::get('/site/terms', 'TermsController@index');
 Route::get('/site/membertype', 'MemberTypeController@index');
+Route::get('/site/contact', 
+  ['as' => 'contact', 'uses' => 'ContactUsController@create']);
+Route::post('/site/contact', 
+  ['as' => 'contact_store', 'uses' => 'ContactUsController@store']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
