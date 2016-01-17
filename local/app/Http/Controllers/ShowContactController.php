@@ -89,7 +89,7 @@ class ShowContactController extends Controller {
 	public function show($url, Request $request)
 	{
 		//
-		$user=DB::table('users')->where('url', $url)->first();
+		$user=DB::table('users')->where('url', strtolower($url))->first();
 
 		if(Request::input('error') != "" && $user != null)
 		{
