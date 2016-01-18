@@ -40,7 +40,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">Kontakku.com/</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="url" placeholder="stevengunanto" value="{{ old('name') }}">
+								<input type="text" class="form-control" name="url" placeholder="stevengunanto" value="{{ old('url') }}">
 							</div>
 						</div>
 
