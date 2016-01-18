@@ -1,0 +1,3 @@
+Untuk penyimpanan foto letaknya bukan di dalam folder laravel, disediakan khusus untuk openshift yaitu menggunakan getenv('OPENSHIFT_DATA_DIR').
+Caranya :
+Ganti base_path() dengan getenv('OPENSHIFT_DATA_DIR') di file route.php.
