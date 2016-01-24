@@ -19,17 +19,8 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <meta property="og:url"           content="http://kontakku.com" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="KontaKKu Online - Free For Everyone who wants to save contacts" />
-    <meta property="og:description"   content="KontaKKu is a provider to save your contact by online. You can use kontakku on web, smartphone and tablet easily." />
-    <meta property="og:image"         content="http://kontakku.com/img/logo.png" />
     <!-- google site verification -->
     <meta name="google-site-verification" content="fa1nygFnfM1Eq8XpgyVn70UY1KEaxvQPVbhlnmKl1Zk" />
-    <!-- meta description -->
-    <meta content='Save your contacts by online  
-    			   Share your phone number, pin BB, facebook, twitter, instagram, line
-    			   Running on your web, smartphone and tablet easily' name='description'/>
 </head>
 <body>
 	<header>
