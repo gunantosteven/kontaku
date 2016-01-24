@@ -93,7 +93,7 @@
 		<a href="#" class="scrollup"><i class="fa fa-chevron-up"> </i></a>
 	</footer>		
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-1.12.0.min.js') }}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.isotope.min.js') }}"></script>

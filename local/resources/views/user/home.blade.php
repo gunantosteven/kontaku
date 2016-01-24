@@ -7,7 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}" />    
         <meta name="robots" content="noindex">
         <!-- JavaScript -->
-        <script type='text/javascript' src={{ asset('js/jquery-1.11.1.min.js') }}></script>
+        <script type='text/javascript' src={{ asset('js/jquery-1.12.0.min.js') }}></script>
         <script type='text/javascript' src={{ asset('js/jquery.mobile-1.4.5.min.js') }}></script>
         <script type='text/javascript' src={{ asset('js/user/home.js') }}></script>
         <!-- CSS -->
