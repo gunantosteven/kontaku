@@ -941,6 +941,7 @@ $(document).on('pagebeforeshow', '#editfriendprofile', function(){
   $('#editfriendline').val(friend.line);
   // clear select photo
   $('#editfriendphoto').val('');
+  $("#outputEditFriend").attr("src", index + "/image/" + friend.id);
 
   $("#exampleProfileEditFriend").prop("href", index + "/stevengunanto");
 }); 
@@ -1033,6 +1034,7 @@ $(document).on('pageinit', '#editmyprofile', function(){
         });                
       return false; // cancel original event to prevent form submitting
   });    
+
 });
 /* edit my profile before show */
 $(document).on('pagebeforeshow', '#editmyprofile', function(){    
@@ -1056,6 +1058,7 @@ $(document).on('pagebeforeshow', '#editmyprofile', function(){
               $('#editmyprofilestatus').val(data.status);
               // clear select photo
               $('#editmyprofilephoto').val('');
+              $("#outputEditProfile").attr("src", index + "/image/" + data.id);
             }
         });
   $("#exampleProfile").prop("href", index + "/stevengunanto");
@@ -1659,3 +1662,13 @@ function flipChangedShowEmailInPublic(e) {
               }
           });  
 }
+
+var loadFileEditProfile = function(event) {
+		var output = document.getElementById('outputEditProfile');
+		output.src = URL.createObjectURL(event.target.files[0]);
+  	};
+
+var loadFileEditFriend = function(event) {
+		var output = document.getElementById('outputEditFriend');
+		output.src = URL.createObjectURL(event.target.files[0]);
+  	};

@@ -281,7 +281,9 @@
                     <input type="text" name="line" id="editfriendline" value="" data-clear-btn="true" data-mini="true">
 
                     <label for="name">Choose Photo (png or jpeg 65 x 65 pixel required)</label>
-                    <input type="file" name="photo"  id="editfriendphoto" accept="image/x-png, image/jpeg" value="" data-clear-btn="true" data-mini="true"/>
+                    <input type="file" name="photo"  id="editfriendphoto" accept="image/x-png, image/jpeg" value="" data-clear-btn="true" data-mini="true" onchange="loadFileEditFriend(event)"/>
+                    <img id="outputEditFriend" width="65px" height="65px" />
+
                   </div> <!-- /content --> 
           </form>
         </div>  
@@ -415,8 +417,9 @@
                   <input type="text" name="status" id="editmyprofilestatus" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
 
                   <label for="name">Choose Photo (png or jpeg 65 x 65 pixel required)</label>
-                  <input type="file" name="photo"  id="editmyprofilephoto" accept="image/x-png, image/jpeg" value="" data-clear-btn="true" data-mini="true"/>
-
+                  <input type="file" name="photo"  id="editmyprofilephoto" accept="image/x-png, image/jpeg" value="" data-clear-btn="true" data-mini="true" onchange="loadFileEditProfile(event)"/>
+                  <img id="outputEditProfile" width="65px" height="65px" />
+                  
             </form>
           </div> <!-- /content --> 
         </div>  
