@@ -246,7 +246,7 @@
                   <div data-role="header" data-theme="a" id="header1">
                      <h3>Edit Friend Contact</h3> 
                      <a href="#friendprofile" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
-                     <a href="#" data-role="button" id="editfriendsubmit" data-theme="b" data-mini="true">OK</a>
+                     <a href="#" data-role="button" id="editfriendsubmit" data-theme="b" data-mini="true">Save</a>
                   </div><!-- /header --> 
                   <div class="ui-content" role="main">
                     <h2>Edit Friend Contact</h2> <h5><a href="" target="_blank" id="exampleProfileEditFriend">(Example click here)</a></h5>
@@ -283,6 +283,8 @@
                     <label for="name">Choose Photo (png or jpeg 65 x 65 pixel required)</label>
                     <input type="file" name="photo"  id="editfriendphoto" accept="image/x-png, image/jpeg" value="" data-clear-btn="true" data-mini="true" onchange="loadFileEditFriend(event)"/>
                     <img id="outputEditFriend" width="65px" height="65px" />
+
+                    <input type="submit" value="Save" id="editfriendsubmit" data-theme="b" >
 
                   </div> <!-- /content --> 
           </form>
@@ -381,7 +383,7 @@
           <div data-role="header">
              <h3>My Profile</h3>
              <a href="#settingsaccount" data-icon="back" data-iconpos="notext" data-rel="back">Cancel</a>
-             <a href="#" data-role="button" id="editmyprofilesubmit" data-theme="b" data-mini="true">OK</a>
+             <a href="#" data-role="button" id="editmyprofilesubmit" data-theme="b" data-mini="true">Save</a>
           </div><!-- /header --> 
 
           <div class="ui-content" role="main">
@@ -419,6 +421,8 @@
                   <label for="name">Choose Photo (png or jpeg 65 x 65 pixel required)</label>
                   <input type="file" name="photo"  id="editmyprofilephoto" accept="image/x-png, image/jpeg" value="" data-clear-btn="true" data-mini="true" onchange="loadFileEditProfile(event)"/>
                   <img id="outputEditProfile" width="65px" height="65px" />
+
+                  <input type="submit" value="Save" id="editmyprofilesubmit" data-theme="b" >
                   
             </form>
           </div> <!-- /content --> 
