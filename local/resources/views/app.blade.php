@@ -74,7 +74,7 @@
 				</div>
 				<div class="row align-center copyright">
 					<p><a href="{{ url("/site/privacy") }}" title="Privacy Policy" target="_new">Privacy Policy</a> - <a href="{{ url("/site/terms") }}" title="Terms and Conditions" target="_new">Terms and Conditions</a></p>
-					<div class="col-sm-12"><p>Copyright &copy; 2015 kontakku.com - template by <a href="http://bootstraptaste.com">Bootstraptaste</a></p></div>
+					<div class="col-sm-12"><p>Copyright &copy; {{ date("Y") }} kontakku.com - template by <a href="http://bootstraptaste.com">Bootstraptaste</a></p></div>
 				</div>
 			</div>
 		</section>
