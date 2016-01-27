@@ -549,6 +549,10 @@ $(document).on('pageinit', '#detailmygroups', function(){
 }); 
 /* getmygroups before show */
 $(document).on('pagebeforeshow', '#detailmygroups', function(){    
+  if(category == null)
+  {
+	window.location.replace(window.index + "");
+  } 
   reloadDetailCategories();
 }); 
 /* ===================================end js page detailmygroups=================================== */
@@ -723,7 +727,12 @@ $(document).on('pageinit', '#friendprofile', function(){
   });
 });
 /* show friend profile who clicked */
-$(document).on('pagebeforeshow', '#friendprofile', function(){    
+$(document).on('pagebeforeshow', '#friendprofile', function(){   
+	if(friend == null)
+	{
+		window.location.replace(window.index + "");
+	} 
+	
     // make list empty first
     $("#actionFriendProfileList").empty();
 
@@ -1282,7 +1291,11 @@ $(document).on('pageinit', '#gotinvitation', function(){
 
 });
 /* edit friend profile */
-$(document).on('pagebeforeshow', '#gotinvitation', function(){    
+$(document).on('pagebeforeshow', '#gotinvitation', function(){   
+  if(friendonlineinvatitation == null)
+  {
+	window.location.replace(window.index + "");
+  }  
   // initialization form edit
   $('#fullnameusergotinvitation').text(friendonlineinvatitation.fullname);
   $('#statususergotinvitation').text(friendonlineinvatitation.status);
@@ -1321,6 +1334,10 @@ $(document).on('pageinit', '#sentinvitation', function(){
 
 });
 $(document).on('pagebeforeshow', '#sentinvitation', function(){    
+  if(friendonlineinvatitation == null)
+  {
+	window.location.replace(window.index + "");
+  } 
   // initialization form edit
   $('#fullnameusersentinvitation').text(friendonlineinvatitation.fullname);
   $('#statususersentinvitation').text(friendonlineinvatitation.status);
