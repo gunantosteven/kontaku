@@ -4,6 +4,8 @@ var friendscount,
     friendonlineinvatitation,
     category,
     isLoadMore = true,
+    isLoadMoreContact = true,
+    isLoadMoreSearchContact = true,
     CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 /* ===================================js page home=================================== */
 $(document).on("pagebeforecreate", "#home", function (e, ui) {
@@ -178,11 +180,14 @@ $(document).on('pageinit', '#home', function(){
 
   /* add more contact */
   function addMore(page) {
-      $.mobile.loading("show", {
-          text: "loading more..",
-          textVisible: true,
-          theme: "a"
-      });
+  	  if(isLoadMoreContact == true)
+  	  {
+	  	  	$.mobile.loading("show", {
+	          text: "loading more..",
+	          textVisible: true,
+	          theme: "a"
+	      });
+  	  }
       setTimeout(function () {
           var items = '';
           var count = 0;
@@ -213,6 +218,14 @@ $(document).on('pageinit', '#home', function(){
                     items += "<li id='" + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" +  data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>"  + "</li>";  
                   }
                 });
+				if(friendscount == data['friendscount'])
+				{
+					isLoadMoreContact = false;
+				}
+				else
+				{
+					isLoadMoreContact = true;
+				}
                 friendscount = data['friendscount'];
                 $("#list", page).append(items).listview("refresh");
                 $.mobile.loading("hide");
@@ -224,11 +237,14 @@ $(document).on('pageinit', '#home', function(){
 
   /* add more search contact */
   function addMoreSearchContact(page) {
-      $.mobile.loading("show", {
-          text: "loading more..",
-          textVisible: true,
-          theme: "a"
-      });
+      if(isLoadMoreSearchContact == true)
+  	  {
+	  	  	$.mobile.loading("show", {
+	          text: "loading more..",
+	          textVisible: true,
+	          theme: "a"
+	      });
+  	  }
       setTimeout(function () {
           var items = '';
           var count = 0;
@@ -259,6 +275,14 @@ $(document).on('pageinit', '#home', function(){
                     items += "<li id='" + data['friends'][index]['id'] + "' class='ui-li-has-thumb'><a href='#'><img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + data['friends'][index]['id']  + "?" + Math.random() + "'/>" +  data['friends'][index]['fullname'] + "<p>" + data['friends'][index]['onlineoffline'] + "</p></>"  + "</li>";  
                   }
                 });
+				if(searchfriendscount == data['searchfriendscount'])
+				{
+					isLoadMoreSearchContact = false;
+				}
+				else
+				{
+					isLoadMoreSearchContact = true;
+				}
                 searchfriendscount = data['searchfriendscount'];
                 $("#list", page).append(items).listview("refresh");
                 $.mobile.loading("hide");
@@ -1444,6 +1468,8 @@ $(document).on('pagebeforecreate', '#settingsaccount', function(){
 // function reloadContact
 function reloadContact() {
   $("#listMyGroups").show();
+  	isLoadMoreContact = true;
+  	isLoadMoreSearchContact = true;
 	setBubbleCount();    
 	getFavoritesContact();
 	getContacts();
