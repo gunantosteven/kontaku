@@ -33,21 +33,21 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">Fullname</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="fullname" placeholder="Steven Gunanto" value="{{ old('fullname') }}">
+								<input type="text" class="form-control" name="fullname" placeholder="Your Name" value="{{ old('fullname') }}">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-md-4 control-label">Kontakku.com/</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="url" placeholder="stevengunanto" value="{{ old('url') }}">
+								<input type="text" class="form-control" name="url" placeholder="yourname" value="{{ old('url') }}">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-md-4 control-label">Active E-Mail Address</label>
 							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" placeholder="example@domain.com" value="{{ old('email') }}">
+								<input type="email" class="form-control" name="email" placeholder="name@example.com" value="{{ old('email') }}">
 							</div>
 						</div>
 
