@@ -141,7 +141,7 @@ class AuthController extends Controller {
 
 	public function postLogin(Request $request)
 	{
-		Input::merge(array_map('trim', Input::only(array('username'))));
+		Input::merge(array_map('trim', Input::only(array('email'))));
 		Input::merge(array('email' => strtolower(Input::get('email'))));
 	    $this->validate($request, [
 	        'email' => 'required',
