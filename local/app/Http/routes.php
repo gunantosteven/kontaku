@@ -790,7 +790,34 @@ Route::group(['middleware' => 'user'], function()
 			return response()->json(['status' => false, 'msg' => "You can't add your url."]);
 		}
 
+        $array = array();
+    	$array[0] = array( "id" => $usersearch->id, "fullname" => $usersearch->fullname);
+    	//this route should returns json response
+    	return response()->json(['status' => true, 'users' => $array]);
+	});
+
+	// create friendonline
+	Route::post('/user/create/friendonline', function()
+	{
+		parse_str(Request::input('formData'), $output);
+		
 		$friendsonline1 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user2', Auth::user()->id)->count();
+        $friendsonline2 = DB::table('users')
+            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+            ->where('friendsonline.user1', Auth::user()->id)->count();
+        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('user', Auth::user()->id)->count();
+        $totalcontacts = $friendsoffline + $friendsonline1 + $friendsonline2;
+        if(($totalcontacts + 1) > Auth::user()->limitcontacts)
+        {
+        	return response()->json(['status' => true, 'over' => "You have reached a limit for adding contacts"]);
+        }
+
+        $usersearch = DB::table('users')->where('id', $output['id'])->first();
+        $friendsonline1 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
             ->select('friendsonline.user1 as id', 'users.fullname as fullname', 'friendsonline.status as status')
             ->where('friendsonline.user2', $usersearch->id)
@@ -813,7 +840,6 @@ Route::group(['middleware' => 'user'], function()
                       ->orWhere('friendsonline.status', 'ACCEPTED');
             });
         $combined = $friendsonline1->unionAll($friendsonline2)->get();
-
         foreach ($combined as $friend)
 		{
 			if($friend->status == "ACCEPTED")
@@ -830,32 +856,6 @@ Route::group(['middleware' => 'user'], function()
 			}
 		}
 
-        $array = array();
-    	$array[0] = array( "id" => $usersearch->id, "fullname" => $usersearch->fullname);
-    	//this route should returns json response
-    	return response()->json(['status' => true, 'users' => $array]);
-	});
-
-	// create friendonline
-	Route::post('/user/create/friendonline', function()
-	{
-		$friendsonline1 = DB::table('users')
-            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
-            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
-            ->where('friendsonline.user2', Auth::user()->id)->count();
-        $friendsonline2 = DB::table('users')
-            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
-            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
-            ->where('friendsonline.user1', Auth::user()->id)->count();
-        $friendsoffline = DB::table('friendsoffline')->select('id', 'fullname')->where('user', Auth::user()->id)->count();
-        $totalcontacts = $friendsoffline + $friendsonline1 + $friendsonline2;
-
-        if(($totalcontacts + 1) > Auth::user()->limitcontacts)
-        {
-        	return response()->json(['status' => true, 'over' => "You have reached a limit for adding contacts"]);
-        }
-
-		parse_str(Request::input('formData'), $output);
 		$id = Uuid::generate();
 		\App\Models\FriendOnline::create(array(
 			'id' => $id,

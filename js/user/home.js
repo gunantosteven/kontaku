@@ -1183,7 +1183,12 @@ $(document).on('pageinit', '#addfriendsonline', function(){
 	              			$('#searchbaraddfriendsonline').val('');
                        		$.mobile.pageContainer.pagecontainer("change", "#invites");
 	              		}
-                  } else {
+                  } 
+                  else if(result.status === false && result.msg !== "")
+                  {
+	                    alert(result.msg); 
+                  }
+                  else {
                       alert('Something error happened!'); 
                   }
               },
