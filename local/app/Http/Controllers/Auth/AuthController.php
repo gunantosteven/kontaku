@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use Hash;
 use Uuid;
+use Input;
 
 class AuthController extends Controller {
 
@@ -66,7 +67,7 @@ class AuthController extends Controller {
 		$activation_code = str_random(60) . $request->input('email');
 		$user = new User;
 		$user->id = Uuid::generate();
-		$user->email = $request->input('email');
+		$user->email = strtolower($request->input('email'));
 		$user->password = Hash::make($request->input('password'));
 		$user->url = strtolower($request->input('url'));
 		$user->fullname = $request->input('fullname');
@@ -140,6 +141,8 @@ class AuthController extends Controller {
 
 	public function postLogin(Request $request)
 	{
+		Input::merge(array_map('trim', Input::only(array('username'))));
+		Input::merge(array('email' => strtolower(Input::get('email'))));
 	    $this->validate($request, [
 	        'email' => 'required',
 	        'password' => 'required',

@@ -15,6 +15,8 @@
 // cordova/phonegap login
 Route::post('/login', function()
 {
+	Input::merge(array_map('trim', Input::except('password')));
+	Input::merge(array('email' => strtolower(Input::only(array('username')))));
 	$remember = Input::get('remember');
 	$credentials = array(
 		'email' => Input::get('email'), 
