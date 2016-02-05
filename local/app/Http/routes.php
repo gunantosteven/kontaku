@@ -782,7 +782,7 @@ Route::group(['middleware' => 'user'], function()
 	Route::post('/user/searchaddfriendsonline', function()
 	{
 		parse_str(Request::input('formData'), $output);
-		$usersearch = DB::table('users')->where('url', $output['search'])->first();
+		$usersearch = DB::table('users')->where('url', strtolower(trim($output['search'])))->first();
 		if($usersearch == null)
 		{
 			return response()->json(['status' => false, 'msg' => "URL not found."]);
