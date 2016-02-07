@@ -90,7 +90,7 @@
 		<div class="container">
 			<center>
 				<h4>Download App Free</h4>
-				<img src="img/googleplay.png" alt="" class="img-responsive" height="120" width="120" />
+				<a href="https://play.google.com/store/apps/details?id=com.ungapps.kontakku" target="_blank"><img src="img/googleplay.png" alt="" class="img-responsive" height="120" width="120" /></a>
 			</center>
 			<br>
 			<center>
