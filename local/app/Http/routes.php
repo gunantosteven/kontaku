@@ -599,7 +599,14 @@ Route::group(['middleware' => 'user'], function()
 		$output = Input::all();
 
 		// Setup the validator
-		$rules = array('fullname' => 'required|max:30', 'email' => 'email|max:32', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'pinbb' => 'max:8', 'facebook' => 'max:100', 'twitter' => 'max:30', 'instagram' => 'max:30', 'line' => 'max:30', 'photo' => 'image|mimes:jpeg,png');
+		if (base64_encode(base64_decode($output['photo'], true)) === $output['photo']) // check if base64 string image
+		{ 
+			$rules = array('fullname' => 'required|max:30', 'email' => 'email|max:32', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'pinbb' => 'max:8', 'facebook' => 'max:100', 'twitter' => 'max:30', 'instagram' => 'max:30', 'line' => 'max:30');
+		} 
+		else 
+		{
+		    $rules = array('fullname' => 'required|max:30', 'email' => 'email|max:32', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'pinbb' => 'max:8', 'facebook' => 'max:100', 'twitter' => 'max:30', 'instagram' => 'max:30', 'line' => 'max:30', 'photo' => 'image|mimes:jpeg,png');
+		}
 		$validator = Validator::make($output, $rules);
 
 		// Validate the input and return correct response
@@ -669,7 +676,14 @@ Route::group(['middleware' => 'user'], function()
 		$output = Input::all();
 
 		// Setup the validator
-		$rules = array('fullname' => 'required|max:30', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'pinbb' => 'max:8', 'facebook' => 'max:100', 'twitter' => 'max:30', 'instagram' => 'max:30', 'line' => 'max:30', 'status' => 'max:160', 'photo' => 'image|mimes:jpeg,png');
+		if (base64_encode(base64_decode($output['photo'], true)) === $output['photo']) // check if base64 string image
+		{
+			$rules = array('fullname' => 'required|max:30', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'pinbb' => 'max:8', 'facebook' => 'max:100', 'twitter' => 'max:30', 'instagram' => 'max:30', 'line' => 'max:30', 'status' => 'max:160');
+		}
+		else
+		{
+			$rules = array('fullname' => 'required|max:30', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'pinbb' => 'max:8', 'facebook' => 'max:100', 'twitter' => 'max:30', 'instagram' => 'max:30', 'line' => 'max:30', 'status' => 'max:160', 'photo' => 'image|mimes:jpeg,png');
+		}
 		$validator = Validator::make($output, $rules);
 
 		// Validate the input and return correct response
