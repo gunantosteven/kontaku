@@ -24,7 +24,6 @@
 	</div>	
 	<!-- column content -->
 	<div id="main-content">
-
 		<div class="container">
 			<center>
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
