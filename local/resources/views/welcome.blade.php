@@ -24,7 +24,20 @@
 	</div>	
 	<!-- column content -->
 	<div id="main-content">
+
 		<div class="container">
+			<center>
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- welcome_page -->
+				<ins class="adsbygoogle"
+				     style="display:block"
+				     data-ad-client="ca-pub-5254482915141018"
+				     data-ad-slot="3800578687"
+				     data-ad-format="auto"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+			</center>
 			<div class="row">
 				<div class="big-box">
 					<div class="col-lg-12">

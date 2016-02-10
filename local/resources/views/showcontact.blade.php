@@ -11,6 +11,21 @@
   ga('send', 'pageview', 'showcontact');
 </script>
 <div id="main-content">
+  <div class="container">
+    <center>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- welcome_page -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5254482915141018"
+           data-ad-slot="3800578687"
+           data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br>
+    </center>
+  </div>
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
