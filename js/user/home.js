@@ -741,6 +741,7 @@ $(document).on('pageinit', '#friendprofile', function(){
               if(data.status)
               {
                 $('#friendPic').attr('src', window.index + '/user/images/photos/friendsprofile/' + friend.id + '?' + Math.random());
+                reloadContact();
               }
           }
     });
