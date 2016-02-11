@@ -897,9 +897,7 @@ $(document).on('pageinit', '#editfriendprofile', function(){
                       friend.instagram = $('#editfriendinstagram').val();
                       friend.line = $('#editfriendline').val();
                       $.mobile.back();
-                      $('#' + friend.id).find('a').text(friend.fullname);
-                      $('#' + friend.id).find('a').append("<img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + friend.id + "?" + Math.random() + "'/>");
-                      $('#' + friend.id).find('a').append("<p>" + friend.onlineoffline.toUpperCase() + "</p>");
+                      reloadContact();
                 } else {
                     alert('Something error happened!'); 
                 }
