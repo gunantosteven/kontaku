@@ -42,8 +42,7 @@ $(document).on('pageinit', '#home', function(){
 	                    $('input[id=createphone]').val('');
 	                    $('input[id=createphone2]').val('');
 	                   	$.mobile.pageContainer.pagecontainer("change", "#");
-                      setBubbleCount();
-	                    getContacts();
+                      reloadContact();
               		}
               } 
               else {
@@ -720,19 +719,7 @@ $(document).on('pageinit', '#friendprofile', function(){
               success: function (result) {
                   if(result.status) {
                        $.mobile.pageContainer.pagecontainer("change", "#");
-                       $('#' + friend.id).remove();
-                       $('list').listview("refresh");
-                       $('listFavorites').listview("refresh");
-                       if($('#list li').size() == 1)
-                       {
-                          $("#collapsibleOtherContacts").hide();
-                       }
-                       if($('#listFavorites li').size() == 0)
-                       {
-                          $("#collapsibleFavorites").hide();
-                       }
-                       setBubbleCount();
-                       friendscount = friendscount - 1;
+                       reloadContact();
                   } else {
                       alert('Something error happened!'); 
                   }
@@ -1295,8 +1282,7 @@ $(document).on('pageinit', '#gotinvitation', function(){
               success: function (result) {
                   if(result.status) {
                        $.mobile.pageContainer.pagecontainer("change", "#invites");
-                       setBubbleCount();
-                       getContacts();
+                       reloadContact();
                   } else {
                       alert('Something error happened!'); 
                   }
