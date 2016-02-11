@@ -38,11 +38,12 @@ $(document).on('pageinit', '#home', function(){
               		}
               		else
               		{
-              			$('input[id=createfullname]').val('');
+              			  $('input[id=createfullname]').val('');
 	                    $('input[id=createphone]').val('');
 	                    $('input[id=createphone2]').val('');
 	                   	$.mobile.pageContainer.pagecontainer("change", "#");
-	                   reloadContact();
+                      setBubbleCount();
+	                    getContacts();
               		}
               } 
               else {
@@ -719,7 +720,19 @@ $(document).on('pageinit', '#friendprofile', function(){
               success: function (result) {
                   if(result.status) {
                        $.mobile.pageContainer.pagecontainer("change", "#");
-                       reloadContact();
+                       $('#' + friend.id).remove();
+                       $('list').listview("refresh");
+                       $('listFavorites').listview("refresh");
+                       if($('#list li').size() == 1)
+                       {
+                          $("#collapsibleOtherContacts").hide();
+                       }
+                       if($('#listFavorites li').size() == 0)
+                       {
+                          $("#collapsibleFavorites").hide();
+                       }
+                       setBubbleCount();
+                       friendscount = friendscount - 1;
                   } else {
                       alert('Something error happened!'); 
                   }
@@ -741,7 +754,7 @@ $(document).on('pageinit', '#friendprofile', function(){
               if(data.status)
               {
                 $('#friendPic').attr('src', window.index + '/user/images/photos/friendsprofile/' + friend.id + '?' + Math.random());
-                reloadContact();
+                $('#' + friend.id).find('img').attr('src', window.index + '/user/images/photos/friendsprofile/' + friend.id + '?' + Math.random());
               }
           }
     });
@@ -897,7 +910,9 @@ $(document).on('pageinit', '#editfriendprofile', function(){
                       friend.instagram = $('#editfriendinstagram').val();
                       friend.line = $('#editfriendline').val();
                       $.mobile.back();
-                      reloadContact();
+                      $('#' + friend.id).find('a').text(friend.fullname);
+                      $('#' + friend.id).find('a').append("<img class='ui-li-icon' src='" + window.index + "/user/images/photos/" + friend.id + "?" + Math.random() + "'/>");
+                      $('#' + friend.id).find('a').append("<p>" + friend.onlineoffline.toUpperCase() + "</p>");
                 } else {
                     alert('Something error happened!'); 
                 }
@@ -1280,7 +1295,8 @@ $(document).on('pageinit', '#gotinvitation', function(){
               success: function (result) {
                   if(result.status) {
                        $.mobile.pageContainer.pagecontainer("change", "#invites");
-                       reloadContact();
+                       setBubbleCount();
+                       getContacts();
                   } else {
                       alert('Something error happened!'); 
                   }
@@ -1474,8 +1490,8 @@ $(document).on('pagebeforecreate', '#settingsaccount', function(){
 // function reloadContact
 function reloadContact() {
   $("#listMyGroups").show();
-  	isLoadMoreContact = true;
-  	isLoadMoreSearchContact = true;
+  isLoadMoreContact = true;
+  isLoadMoreSearchContact = true;
 	setBubbleCount();    
 	getFavoritesContact();
 	getContacts();
@@ -1618,8 +1634,8 @@ function setBubbleCount() {
           {
             $("#totalcontacts").text('Total Contacts ' + data['totalcontacts']);
             $("#bubbleCountFavorites").text(data['favoritescount']);
-	        $("#bubbleCountOtherContacts").show();
-	        $("#bubbleCountOtherContacts").text(data['totalcontacts'] - data['favoritescount']);
+  	        $("#bubbleCountOtherContacts").show();
+  	        $("#bubbleCountOtherContacts").text(data['totalcontacts'] - data['favoritescount']);
           }
       }})             
 }
@@ -1642,10 +1658,11 @@ function flipChangedIsFavorite(e) {
 	          success: function (result) {
 	              if(result.status) {
 	              	if($("#searchbar").val() == "")
-				    {
-				       reloadContact();
-				    }
-	              } else {
+      				    {
+                     reloadContact();
+      				    }
+	              } 
+                else {
 	                  alert('Something error happened!'); 
 	              }
 	          },
