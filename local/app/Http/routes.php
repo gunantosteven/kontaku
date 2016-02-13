@@ -25,13 +25,17 @@ Route::post('/login', function()
 
 	if (Auth::attempt( $credentials, Request::has('remember') ))
 	{
+		if(Auth::user()->active == false)
+		{
+			return Response::json('Your account is not active, please active your account first. Check your email to get link activation.', 400);
+		}
 		DB::table('sessions')->insert(
 			    array('id' => Uuid::generate(), 'user' => \Auth::user()->id, 'sessionId' => \Session::getId())
 			);
 		return response()->json(['status' => true]);
 	 	//return Redirect::to_action('user@index'); you'd use this if it's not AJAX request
 	}else{
-		return Response::json('Username and password do not match', 400);
+		return Response::json('Username and password do not match.', 400);
 		/*return Redirect::to_action('home@login')
 		-> with_input('only', array('new_username')) 
 		-> with('login_errors', true);*/
