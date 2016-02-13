@@ -537,8 +537,8 @@ Route::group(['middleware' => 'user'], function()
 			}
 
 			$user->onlineoffline = 'online';
-
 			$user->isfavorite = $isfavorite;
+			$user->updated_at = date("d F Y H:i:s e",strtotime($user->updated_at));
 
 		    //this route should returns json response
 		    return Response::json($user);
