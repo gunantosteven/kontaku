@@ -36,7 +36,7 @@
                 <a href="#add-form" data-icon="plus" data-iconpos="notext">Add</a>
             </div><!-- /header -->      
             
-            <input type="search" placeholder="Search" id="searchbar" />
+            <input type="search" placeholder="Search for names or phones" id="searchbar" />
             <center><font size="2" color="black" id="totalcontacts"></font></center>
             <div class="ui-content" role="main">      
               <ul id="listMyGroups" data-role="listview">
