@@ -107,32 +107,35 @@ class ShowContactController extends Controller {
 			{
 				return view('contactisnotactive');
 			}
-			else if(empty(Auth::user()) && $user->privateaccount == true)
+			else if(Auth::user() == null && $user->privateaccount == true)
 			{
 				return view('contactisprivate');
 			}
-			else if(empty(Auth::user()) && $user->privateaccount == false)
+			else if($user->privateaccount == false)
 			{
 				return view('showcontact',compact('user'));
 			}
-
-			$friendsonline1 = DB::table('users')
-            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
-            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
-            ->where('friendsonline.user2', Auth::user()->id)
-            ->where('friendsonline.user1', $user->id)
-            ->count();
-	        $friendsonline2 = DB::table('users')
-	            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
-	            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
-	            ->where('friendsonline.user1', Auth::user()->id)
-	            ->where('friendsonline.user2', $user->id)
-	            ->count();
-	        $combinedCount = $friendsonline1 + $friendsonline2;
-			if($user->privateaccount == true && $combinedCount == 0)
+			else if(Auth::user() && $user->privateaccount == true)
 			{
-				return view('contactisprivate');
+				$friendsonline1 = DB::table('users')
+	            ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
+	            ->select('friendsonline.user1 as id', 'users.fullname as fullname')
+	            ->where('friendsonline.user2', Auth::user()->id)
+	            ->where('friendsonline.user1', $user->id)
+	            ->count();
+		        $friendsonline2 = DB::table('users')
+		            ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
+		            ->select('friendsonline.user2 as id', 'users.fullname as fullname')
+		            ->where('friendsonline.user1', Auth::user()->id)
+		            ->where('friendsonline.user2', $user->id)
+		            ->count();
+		        $combinedCount = $friendsonline1 + $friendsonline2;
+				if($combinedCount == 0)
+				{
+					return view('contactisprivate');
+				}
 			}
+			
 			return view('showcontact',compact('user'));
 		}	
 	}
