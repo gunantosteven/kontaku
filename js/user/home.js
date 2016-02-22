@@ -7,6 +7,12 @@ var friendscount,
     isLoadMoreContact = true,
     isLoadMoreSearchContact = true,
     CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+$(window).load(function() {
+  // When the page has loaded
+  $("body").fadeIn(0);
+});
+
 /* ===================================js page home=================================== */
 $(document).on("pagebeforecreate", "#home", function (e, ui) {
      reloadContact();
