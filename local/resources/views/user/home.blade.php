@@ -33,7 +33,10 @@
                     KontaKKu
                 </h1>     
                 <a  href="#left-menu" id="menubutton" data-icon="bars" data-iconpos="notext">Menu</a>
-                <a href="#add-form" data-icon="plus" data-iconpos="notext">Add</a>
+                <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal">
+                  <a href="#" data-role="button" data-icon="refresh" data-iconpos="notext" onclick="reloadContact();">Refresh</a>
+                  <a href="#add-form" data-role="button" data-icon="plus" data-iconpos="notext">Add</a>
+                </div>
             </div><!-- /header -->      
             
             <input type="search" placeholder="Search for names or phones" id="searchbar" />
