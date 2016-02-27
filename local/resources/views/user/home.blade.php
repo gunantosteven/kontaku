@@ -201,7 +201,7 @@
         <div data-role="page" id="friendprofile">
           <div data-role="header" data-theme="a" id="header1">
              <h3>My Friend Profile</h3>
-             <a data-icon="back" data-iconpos="notext" data-rel="back">Back</a>
+             <a data-icon="back" data-iconpos="notext" data-rel="back" href="#home">Back</a>
           </div><!-- /header --> 
 
           <div class="ui-content" role="main">
