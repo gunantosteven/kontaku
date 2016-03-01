@@ -680,7 +680,7 @@ Route::group(['middleware' => 'user'], function()
 		$output = Input::all();
 
 		// Setup the validator
-		if (base64_encode(base64_decode($output['photo'], true)) === $output['photo']) // check if base64 string image
+		if (isset($output['photo']) && base64_encode(base64_decode($output['photo'], true)) === $output['photo']) // check if base64 string image
 		{
 			$rules = array('fullname' => 'required|max:30', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'pinbb' => 'max:8', 'facebook' => 'max:100', 'twitter' => 'max:30', 'instagram' => 'max:30', 'line' => 'max:30', 'status' => 'max:160');
 		}
