@@ -14,7 +14,7 @@
   <div class="container">
     <center>
       <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- welcome_page -->
+      <!-- show contact -->
       <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-5254482915141018"
