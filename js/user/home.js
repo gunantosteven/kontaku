@@ -1470,6 +1470,40 @@ $(document).on('pagebeforecreate', '#settingsaccount', function(){
                 .flipswitch('refresh') /* re-enhance switch */
                 .on("change", flipChangedShowEmailInPublic); /* add listener again */
               }
+
+              if(data.privatephone1 === true)
+              {
+                $("#privatephone1flipswitch")
+                .off("change") /* remove previous listener */
+                .val('yes') /* update value */
+                .flipswitch('refresh') /* re-enhance switch */
+                .on("change", flipChangedPrivatePhone1); /* add listener again */
+              }
+              else
+              {
+                $("#privatephone1flipswitch")
+                .off("change") /* remove previous listener */
+                .val('no') /* update value */
+                .flipswitch('refresh') /* re-enhance switch */
+                .on("change", flipChangedPrivatePhone1); /* add listener again */
+              }
+
+              if(data.privatephone2 === true)
+              {
+                $("#privatephone2flipswitch")
+                .off("change") /* remove previous listener */
+                .val('yes') /* update value */
+                .flipswitch('refresh') /* re-enhance switch */
+                .on("change", flipChangedPrivatePhone2); /* add listener again */
+              }
+              else
+              {
+                $("#privatephone2flipswitch")
+                .off("change") /* remove previous listener */
+                .val('no') /* update value */
+                .flipswitch('refresh') /* re-enhance switch */
+                .on("change", flipChangedPrivatePhone2); /* add listener again */
+              }
             }
         });
 
@@ -1695,6 +1729,60 @@ function flipChangedPrivateAccount(e) {
 function flipChangedShowEmailInPublic(e) {
   $.ajax({url: index + "/user/showemailinpublic",
               data: {_token: CSRF_TOKEN, action : 'change', showemailinpublic : this.value},
+              type: 'put',                   
+              async: 'true',
+              dataType: 'json',
+              beforeSend: function() {
+                  // This callback function will trigger before data is sent
+                  $.mobile.loading('show'); // This will show ajax spinner
+              },
+              complete: function() {
+                  // This callback function will trigger on data sent/received complete
+                  $.mobile.loading('hide'); // This will hide ajax spinner
+              },
+              success: function (result) {
+                  if(result.status) {
+                  } else {
+                      alert('Something error happened!'); 
+                  }
+              },
+              error: function (request,error) {
+                  // This callback function will trigger on unsuccessful action                
+                  alert('Network error has occurred please try again!');
+              }
+          });  
+}
+
+function flipChangedPrivatePhone1(e) {
+  $.ajax({url: index + "/user/changeprivatephone1",
+              data: {_token: CSRF_TOKEN, action : 'change', privatephone1 : this.value},
+              type: 'put',                   
+              async: 'true',
+              dataType: 'json',
+              beforeSend: function() {
+                  // This callback function will trigger before data is sent
+                  $.mobile.loading('show'); // This will show ajax spinner
+              },
+              complete: function() {
+                  // This callback function will trigger on data sent/received complete
+                  $.mobile.loading('hide'); // This will hide ajax spinner
+              },
+              success: function (result) {
+                  if(result.status) {
+                  } else {
+                      alert('Something error happened!'); 
+                  }
+              },
+              error: function (request,error) {
+                  // This callback function will trigger on unsuccessful action                
+                  alert('Network error has occurred please try again!');
+              }
+          });  
+}
+
+function flipChangedPrivatePhone2(e) {
+  $.ajax({url: index + "/user/changeprivatephone2",
+              data: {_token: CSRF_TOKEN, action : 'change', privatephone2 : this.value},
               type: 'put',                   
               async: 'true',
               dataType: 'json',

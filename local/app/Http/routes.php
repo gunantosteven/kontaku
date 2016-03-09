@@ -682,11 +682,11 @@ Route::group(['middleware' => 'user'], function()
 		// Setup the validator
 		if (isset($output['photo']) && base64_encode(base64_decode($output['photo'], true)) === $output['photo']) // check if base64 string image
 		{
-			$rules = array('fullname' => 'required|max:30', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'pinbb' => 'max:8', 'facebook' => 'max:100', 'twitter' => 'max:30', 'instagram' => 'max:30', 'line' => 'max:30', 'status' => 'max:160');
+			$rules = array('fullname' => 'required|max:30', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'pinbb' => 'max:8', 'facebook' => 'max:100', 'twitter' => 'max:30', 'instagram' => 'max:30', 'line' => 'max:30', 'status' => 'max:160', 'note' => 'max:500');
 		}
 		else
 		{
-			$rules = array('fullname' => 'required|max:30', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'pinbb' => 'max:8', 'facebook' => 'max:100', 'twitter' => 'max:30', 'instagram' => 'max:30', 'line' => 'max:30', 'status' => 'max:160', 'photo' => 'image|mimes:jpeg,png');
+			$rules = array('fullname' => 'required|max:30', 'phone' => 'phone|max:30', 'phone2' => 'phone|max:30', 'address' => 'max:90', 'pinbb' => 'max:8', 'facebook' => 'max:100', 'twitter' => 'max:30', 'instagram' => 'max:30', 'line' => 'max:30', 'status' => 'max:160', 'note' => 'max:500', 'photo' => 'image|mimes:jpeg,png');
 		}
 		$validator = Validator::make($output, $rules);
 
@@ -712,7 +712,8 @@ Route::group(['middleware' => 'user'], function()
             		'twitter' => $output['twitter'],
             		'instagram' => $output['instagram'],
             		'line' => $output['line'],
-            		'status' => $output['status']]);
+            		'status' => $output['status'],
+            		'note' => $output['note']]);
 
         if(isset($output['photo']) && !empty($output['photo']))
         {
@@ -1000,6 +1001,44 @@ Route::group(['middleware' => 'user'], function()
    		return response()->json(['status' => true]);
 	});
 
+	Route::put('user/changeprivatephone1', function()
+	{
+		$id = Auth::user()->id;
+		$privatephone1 = 0;
+		if( Request::input('privatephone1') == "yes")
+		{
+			$privatephone1 = 1;
+		}
+		else
+		{
+			$privatephone1 = 0;
+		}
+		DB::table('users')
+            ->where('id', $id)
+            ->update(['privatephone1' => $privatephone1]);
+
+   		return response()->json(['status' => true]);
+	});
+
+	Route::put('user/changeprivatephone2', function()
+	{
+		$id = Auth::user()->id;
+		$privatephone2 = 0;
+		if( Request::input('privatephone2') == "yes")
+		{
+			$privatephone2 = 1;
+		}
+		else
+		{
+			$privatephone2 = 0;
+		}
+		DB::table('users')
+            ->where('id', $id)
+            ->update(['privatephone2' => $privatephone2]);
+
+   		return response()->json(['status' => true]);
+	});
+
 	// edit newinvitesnotificationoff user
 	Route::put('user/newinvitesnotificationoff', function()
 	{
@@ -1230,8 +1269,11 @@ Route::get('createdb',function(){
 		$table->string('instagram',30)->default('');
 		$table->string('line',30)->default('');
 		$table->string('status',160)->default('Welcome to my contact');
+		$table->string('note',500)->default('');
 		$table->boolean('showemailinpublic')->default(0);
 		$table->boolean('privateaccount')->default(0);
+		$table->boolean('privatephone1')->default(0);
+		$table->boolean('privatephone2')->default(0);
 		$table->boolean('newinvitesnotification')->default(0);
 		$table->integer('limitcontacts')->default(250);
 		$table->string('membertype')->default('MEMBER');

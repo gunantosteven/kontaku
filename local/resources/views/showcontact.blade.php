@@ -60,7 +60,7 @@
               </div>
             </div>
           @endif
-          @if($user->phone)
+          @if($user->phone && !$user->privatephone1)
             <div class="form-group">
               <label class="col-md-4 control-label">Phone 1</label>
               <div class="col-md-6">
@@ -68,7 +68,7 @@
               </div>
             </div>
           @endif
-          @if($user->phone2)
+          @if($user->phone2 && !$user->privatephone2)
             <div class="form-group">
               <label class="col-md-4 control-label">Phone 2</label>
               <div class="col-md-6">

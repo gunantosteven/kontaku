@@ -57,8 +57,8 @@
             </div><!-- /content -->     
             
              <div id="left-menu" data-role="panel" data-position="left" data-theme="a" data-position-fixed="false" data-display="overlay">
-                <center><img id="myphoto"/></center>
-                <center><font id="myfullname"></font></center>
+                <center><a href="#editmyprofile"><img id="myphoto"/></a></center>
+                <center><a href="#editmyprofile"><font id="myfullname"></font></a></center>
                 <center><a id="btnRemoveCurrentPhoto" data-role="button" data-theme="a" data-mini="true">Remove Current Photo</a></center>     
                 <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-active" data-theme="b" data-rel="close" gid="0">Home</a>
                 <a id="subMenuInvites" href="#invites" class="ui-btn ui-icon-plus ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">Invites</a>
@@ -376,7 +376,7 @@
                   <li id="#"><a href='#settingsaccount' class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b">Accounts</a></li>
                   <li><a href="#reports" class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b">Reports a Problem</a></li>
                   <li><a href="#help" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="b">Help</a></li>
-                  <li><a href="#" class="ui-btn" data-theme="b">Version</a><div class="ui-li-aside ui-li-desc">1.0.0</div></li>
+                  <li><a href="#" class="ui-btn" data-theme="b">Version</a><div class="ui-li-aside ui-li-desc">1.0.1</div></li>
                 </ul>
             </div><!-- /content -->      
         </div><!-- /end page Settings -->    
@@ -421,6 +421,9 @@
                   <label for="name">Status</label>
                   <input type="text" name="status" id="editmyprofilestatus" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true">
 
+                  <label for="name">Note (Only you can see this note)</label>
+                  <textarea name="note" id="editmyprofilenote" placeholder="Fill empty if you don't want to show it" value="" data-clear-btn="true" data-mini="true"></textarea>
+
                   <label for="name">Choose Photo (png or jpeg 65 x 65 pixel required)</label>
                   <input type="file" name="photo"  id="editmyprofilephoto" accept="image/x-png, image/jpeg" value="" data-clear-btn="true" data-mini="true" onchange="loadFileEditProfile(event)"/>
                   <img id="outputEditProfile" width="65px" height="65px" />
@@ -464,6 +467,24 @@
                       </select>
                     </div>
 				          </li>
+                  <li id=''>
+                    <div data-role="fieldcontain">
+                      <label for="checkbox-based-flipswitch"><b>Private Phone 1 :</b></label>
+                      <select id="privatephone1flipswitch" data-role="flipswitch">
+                        <option value="no">No</option>
+                        <option value="yes">Yes</option>
+                      </select>
+                    </div>
+                  </li>
+                  <li id=''>
+                    <div data-role="fieldcontain">
+                      <label for="checkbox-based-flipswitch"><b>Private Phone 2 :</b></label>
+                      <select id="privatephone2flipswitch" data-role="flipswitch">
+                        <option value="no">No</option>
+                        <option value="yes">Yes</option>
+                      </select>
+                    </div>
+                  </li>
                 </ul>
                 
             </div><!-- /content -->      
