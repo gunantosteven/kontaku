@@ -1061,6 +1061,10 @@ $(document).on('pageinit', '#editmyprofile', function(){
                   {
                     alert(xhr.responseJSON.errors.status);
                   }
+                  else if(xhr.responseJSON.errors.note)
+                  {
+                    alert(xhr.responseJSON.errors.note);
+                  }
                   else if(xhr.responseJSON.errors.photo)
                   {
                     alert(xhr.responseJSON.errors.photo);
@@ -1096,6 +1100,7 @@ $(document).on('pagebeforeshow', '#editmyprofile', function(){
               $('#editmyprofileinstagram').val(data.instagram);
               $('#editmyprofileline').val(data.line);
               $('#editmyprofilestatus').val(data.status);
+              $('#editmyprofilenote').val(data.note);
               // clear select photo
               $('#editmyprofilephoto').val('');
               $("#outputEditProfile").attr("src", index + "/image/" + data.id);
