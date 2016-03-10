@@ -38,9 +38,9 @@
 							    <li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Member <span class="caret"></span></a>
 										<ul class="dropdown-menu" role="menu">
-											<li><a href={{ url("/admin/members") }}>Data Member</a></li>
-											<li><a href={{ url("/admin/toptotalcontacts") }}>Top Total Contacts Member</a></li>
-											<li><a href={{ url("/admin/topnewmembers") }}>Top New Members</a></li>
+											<li><a href={{ url("/admin/members?page=1") }}>Data Member</a></li>
+											<li><a href={{ url("/admin/toptotalcontacts?page=1") }}>Top Total Contacts Member</a></li>
+											<li><a href={{ url("/admin/topnewmembers?page=1") }}>Top New Members</a></li>
 											<li><a href={{ url("/admin/members/statistics") }}>Statistics</a></li>
 										</ul>
 								</li>	
