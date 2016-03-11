@@ -37,7 +37,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		$user->active = 1;
 		$user->activation_code = '';
 		if($user->save()) {
-			\Auth::login($user);
+			//\Auth::login($user);
 		}
 		return true;
 	}
