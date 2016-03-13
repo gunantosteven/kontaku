@@ -118,11 +118,11 @@
 			    	 data-action="like" data-show-faces="true" data-share="true">
 			   	</div>
 			</center>
-			<br>
+			<!-- <br>
 			<center>
 				<h4>Total Users : {{ number_format($totalusers) }}</h4> 
 				<h4>Total Contacts : {{ number_format($totalcontacts) }}</h4> 
-			</center>
+			</center> -->
 		</div>	
 	</div>
 	<!-- end column content -->	
