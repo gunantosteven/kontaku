@@ -451,7 +451,7 @@
                   <li id=''><a href='#changepassword'>Change Password</a></li>
                   <li id=''>
                     <div data-role="fieldcontain">
-                      <label for="checkbox-based-flipswitch"><b>Show Email In Public :</b></label>
+                      <label for="checkbox-based-flipswitch"><b>Show E-mail in Public :</b></label>
                       <select id="showemailinpublicflipswitch" data-role="flipswitch">
                         <option value="no">No</option>
                         <option value="yes">Yes</option>
