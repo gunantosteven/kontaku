@@ -6,12 +6,8 @@ var friendscount,
     isLoadMore = true,
     isLoadMoreContact = true,
     isLoadMoreSearchContact = true,
+    beforePage = "",
     CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
-$(window).load(function() {
-  // When the page has loaded
-  $("body").fadeIn(0);
-});
 
 /* ===================================js page home=================================== */
 $(document).on("pagebeforecreate", "#home", function (e, ui) {
@@ -342,6 +338,7 @@ $(document).on('pageinit', '#home', function(){
                 {
                   friend = data;
                   $.mobile.changePage("#friendprofile");
+                  beforePage = "#home";
                 }
               }
           });
@@ -362,6 +359,7 @@ $(document).on('pageinit', '#home', function(){
                 {
                   friend = data;
                   $.mobile.changePage("#friendprofile");
+                  beforePage = "#home";
                 }
               }
           });
@@ -571,6 +569,7 @@ $(document).on('pageinit', '#detailmygroups', function(){
                 {
                   friend = data;
                   $.mobile.changePage("#friendprofile");
+                  beforePage = "#detailmygroups";
                 }
               }
           });
@@ -707,6 +706,16 @@ $(document).on('pagebeforeshow', '#deletedetailmygroups', function(){
 
 /* ===================================js page friendprofile=================================== */
 $(document).on('pageinit', '#friendprofile', function(){  
+  $(document).on("click", "#backFriendProfile" ,function () {
+    if(beforePage != "")
+    {
+      $.mobile.changePage(beforePage);
+    }
+    else
+    {
+      $.mobile.changePage("#home");
+    }
+  }); 
   $(document).on('click', '#deletefriend', function() { 
 
     $.ajax({url: index + "/user/delete/friend",
@@ -988,7 +997,17 @@ $(document).on('pagebeforeshow', '#editfriendprofile', function(){
 /* ===================================end js page editfriendprofile=================================== */
 
 /* ===================================js page editmyprofile=================================== */
-$(document).on('pageinit', '#editmyprofile', function(){  
+$(document).on('pageinit', '#editmyprofile', function(){ 
+  $(document).on("click", "#backEditMyProfile" ,function () {
+    if(beforePage != "")
+    {
+      $.mobile.changePage(beforePage);
+    }
+    else
+    {
+      $.mobile.changePage("#home");
+    }
+  });  
   /* edit my profile */
   $(document).on('click', '#editmyprofilesubmit', function() { // catch the form's submit event
         var formData = new FormData($('#formEditMyProfile')[0]);
