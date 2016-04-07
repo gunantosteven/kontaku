@@ -7,11 +7,26 @@ var friendscount,
     isLoadMoreContact = true,
     isLoadMoreSearchContact = true,
     beforePage = "",
+    isLoadSuccess = false,
     CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
 /* ===================================js page home=================================== */
 $(document).on("pagebeforecreate", "#home", function (e, ui) {
      reloadContact();
+});
+$(document).on('pageshow', '#home', function(){  
+  if(isLoadSuccess == false)
+  {
+    $.mobile.loading('show');
+  }
+}); 
+$(window).load(function() {
+    //everything is loaded
+  if(isLoadSuccess == false)
+  {
+    $.mobile.loading('hide');
+    isLoadSuccess = true;
+  }
 });
 /* page home initialization */
 $(document).on('pageinit', '#home', function(){  
