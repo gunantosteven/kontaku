@@ -4,7 +4,27 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KontaKKu Online - Free For Everyone who wants to save contacts</title>
+    @if ( Request::is('/') )
+    	<title>Kontakku Online - Free For Everyone who wants to save contacts - Kontakku</title>
+  	@elseif ( Request::is('site/membertype') )
+    	<title>Member Type - Kontakku</title>
+  	@elseif ( Request::is('auth/login') )
+    	<title>Login - Kontakku</title>
+    @elseif ( Request::is('auth/register') )
+    	<title>Register - Kontakku</title>
+    @elseif ( Request::is('site/contact') )
+    	<title>Contact Us - Kontakku</title>
+    @elseif ( Request::is('site/privacy') )
+    	<title>Privacy Policy - Kontakku</title>
+    @elseif ( Request::is('site/terms') )
+    	<title>Terms and Conditions - Kontakku</title>
+    @elseif ( isset($user) && $user->url != "" && Request::is($user->url) )
+    	@if ( $user->fullname != "" )
+    		<title>{{ $user->fullname . " - " . $user->membertype }} - Kontakku</title>
+    	@else 
+    		<title>{{ $user->url . " - " . $user->membertype }} - Kontakku</title>
+    	@endif
+  	@endif
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -47,7 +67,7 @@
 										</ul>
 									</li>
 								@endif
-								<li class="{{ Request::is('/site/contact') ? 'active' : '' }}"><a href={{ url("/site/contact") }}>Contact Us</a></li>
+								<li class="{{ Request::is('site/contact') ? 'active' : '' }}"><a href={{ url("/site/contact") }}>Contact Us</a></li>
 							</ul>
 						</div>
 					</div>	
