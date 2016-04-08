@@ -357,7 +357,7 @@ Route::group(['middleware' => 'user'], function()
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user1')
             ->select('friendsonline.user1 as id', 'users.fullname as fullname', DB::raw("'ONLINE' as onlineoffline"))
             ->where('friendsonline.user2', Auth::user()->id)
-            ->where('friendsonline.user1', 'ACCEPTED')
+            ->where('friendsonline.status', 'ACCEPTED')
             ->whereNotIn('friendsonline.user1', $array);
         $friendsonline2 = DB::table('users')
             ->join('friendsonline', 'users.id', '=', 'friendsonline.user2')
