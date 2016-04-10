@@ -736,7 +736,11 @@ $(document).on('pageinit', '#friendprofile', function(){
 	    {
 	      $.mobile.changePage("#home");
 	    }
-	    pageAfterLoadSuccess = "home";
+      
+      if(pageAfterLoadSuccess != "")
+	    {
+        pageAfterLoadSuccess = "home";
+      }
   	}
   }); 
   $(document).on('click', '#deletefriend', function() { 
