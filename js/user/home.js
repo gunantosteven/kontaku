@@ -7,7 +7,7 @@ var friendscount,
     isLoadMoreContact = true,
     isLoadMoreSearchContact = true,
     beforePage = "",
-    isLoadSuccess = false,
+    pageAfterLoadSuccess = "",
     CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
 /* ===================================js page home=================================== */
@@ -15,17 +15,17 @@ $(document).on("pagebeforecreate", "#home", function (e, ui) {
      reloadContact();
 });
 $(document).on('pageshow', '#home', function(){  
-  if(isLoadSuccess == false)
+  if(pageAfterLoadSuccess == "")
   {
     $.mobile.loading('show');
   }
 }); 
 $(window).load(function() {
     //everything is loaded
-  if(isLoadSuccess == false)
+  if(pageAfterLoadSuccess == "")
   {
     $.mobile.loading('hide');
-    isLoadSuccess = true;
+    pageAfterLoadSuccess = $('body').pagecontainer('getActivePage').prop('id');
   }
 });
 /* page home initialization */
@@ -722,7 +722,7 @@ $(document).on('pagebeforeshow', '#deletedetailmygroups', function(){
 /* ===================================js page friendprofile=================================== */
 $(document).on('pageinit', '#friendprofile', function(){  
   $(document).on("click", "#backFriendProfile" ,function () {
-  	if(isLoadSuccess == true)
+  	if(pageAfterLoadSuccess == "home")
   	{
   		history.back();
   	}
@@ -736,6 +736,7 @@ $(document).on('pageinit', '#friendprofile', function(){
 	    {
 	      $.mobile.changePage("#home");
 	    }
+	    pageAfterLoadSuccess = "home";
   	}
   }); 
   $(document).on('click', '#deletefriend', function() { 
