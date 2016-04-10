@@ -722,14 +722,21 @@ $(document).on('pagebeforeshow', '#deletedetailmygroups', function(){
 /* ===================================js page friendprofile=================================== */
 $(document).on('pageinit', '#friendprofile', function(){  
   $(document).on("click", "#backFriendProfile" ,function () {
-    if(beforePage != "")
-    {
-      $.mobile.changePage(beforePage);
-    }
-    else
-    {
-      $.mobile.changePage("#home");
-    }
+  	if(isLoadSuccess == true)
+  	{
+  		history.back();
+  	}
+  	else
+  	{
+  		if(beforePage != "")
+	    {
+	      $.mobile.changePage(beforePage);
+	    }
+	    else
+	    {
+	      $.mobile.changePage("#home");
+	    }
+  	}
   }); 
   $(document).on('click', '#deletefriend', function() { 
 
