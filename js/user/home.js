@@ -247,6 +247,10 @@ $(document).on('pageinit', '#home', function(){
                 $("#list", page).append(items).listview("refresh");
                 $.mobile.loading("hide");
                 isLoadMore = true;
+                if(pageAfterLoadSuccess == "")
+			    {
+			    	$.mobile.loading('show');
+			    }
               }
           });
       }, 500);
@@ -304,6 +308,10 @@ $(document).on('pageinit', '#home', function(){
                 $("#list", page).append(items).listview("refresh");
                 $.mobile.loading("hide");
                 isLoadMore = true;
+                if(pageAfterLoadSuccess == "")
+			    {
+			    	$.mobile.loading('show');
+			    }
               }
           });
       }, 500);
