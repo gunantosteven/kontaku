@@ -732,7 +732,14 @@ $(document).on('pageinit', '#friendprofile', function(){
   $(document).on("click", "#backFriendProfile" ,function () {
   	if(pageAfterLoadSuccess == "home")
   	{
-  		history.back();
+  		if(history.length > 1)
+        {
+          history.back();
+        }
+        else
+        {
+          $.mobile.changePage("#home");
+        }
   	}
   	else
   	{
@@ -745,10 +752,10 @@ $(document).on('pageinit', '#friendprofile', function(){
 	      $.mobile.changePage("#home");
 	    }
       
-      if(pageAfterLoadSuccess != "")
+      	if(pageAfterLoadSuccess != "")
 	    {
-        pageAfterLoadSuccess = "home";
-      }
+        	pageAfterLoadSuccess = "home";
+      	}
   	}
   }); 
   $(document).on('click', '#deletefriend', function() { 
