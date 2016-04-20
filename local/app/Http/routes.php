@@ -21,87 +21,86 @@ Route::filter('www',  function () {
   }
 });
 
-Route::group(['before' => 'www'], function () {
-	////////////////////////////////////Cordova API///////////////////////////////////////////////
-	// cordova/phonegap login
-	Route::post('/login', function()
+////////////////////////////////////Cordova API///////////////////////////////////////////////
+// cordova/phonegap login
+Route::post('/login', function()
+{
+	Input::merge(array_map('trim', Input::only(array('email'))));
+	Input::merge(array('email' => strtolower(Input::get('email'))));
+	$remember = Input::get('remember');
+	$credentials = array(
+		'email' => Input::get('email'), 
+		'password' => Input::get('password')
+	);
+
+	if (Auth::attempt( $credentials, Request::has('remember') ))
 	{
-		Input::merge(array_map('trim', Input::only(array('email'))));
-		Input::merge(array('email' => strtolower(Input::get('email'))));
-		$remember = Input::get('remember');
-		$credentials = array(
-			'email' => Input::get('email'), 
-			'password' => Input::get('password')
-		);
-
-		if (Auth::attempt( $credentials, Request::has('remember') ))
+		if(Auth::user()->active == false)
 		{
-			if(Auth::user()->active == false)
-			{
-				return Response::json('Your account is not active, please active your account first. Check your email to get link activation.', 400);
-			}
-			DB::table('sessions')->insert(
-				    array('id' => Uuid::generate(), 'user' => \Auth::user()->id, 'sessionId' => \Session::getId())
-				);
-			return response()->json(['status' => true]);
-		 	//return Redirect::to_action('user@index'); you'd use this if it's not AJAX request
-		}else{
-			return Response::json('Username and password do not match.', 400);
-			/*return Redirect::to_action('home@login')
-			-> with_input('only', array('new_username')) 
-			-> with('login_errors', true);*/
-	    }
-	});
-	Route::post('/checkauthlogin', function()
-	{
-		if (Auth::user() != null)
-		{
-			return response()->json(['status' => true]);
-		 	//return Redirect::to_action('user@index'); you'd use this if it's not AJAX request
-		}else{
-			return response()->json(['status' => false]);
-			/*return Redirect::to_action('home@login')
-			-> with_input('only', array('new_username')) 
-			-> with('login_errors', true);*/
-	    }
-	});
-	Route::post('/logout', function()
-	{
-		if (Auth::user())
-		{
-			DB::table('sessions')->where('user', \Auth::user()->id)->where('sessionId', Session::getId())->delete();
-			Auth::logout();
-			return response()->json(['status' => true]);
-		 	//return Redirect::to_action('user@index'); you'd use this if it's not AJAX request
-		}else{
-			return Response::json('Error logout', 400);
-			/*return Redirect::to_action('home@login')
-			-> with_input('only', array('new_username')) 
-			-> with('login_errors', true);*/
-	    }
-	});
-	////////////////////cordova//////////////////////////////////////////////////////////////////////
-
-	Route::get('/', 'WelcomeController@index');
-	Route::get('/site/privacy', 'PrivacyController@index');
-	Route::get('/site/terms', 'TermsController@index');
-	Route::get('/site/membertype', 'MemberTypeController@index');
-	Route::get('/site/contact', 
-	  ['as' => 'contact', 'uses' => 'ContactUsController@create']);
-	Route::post('/site/contact', 
-	  ['as' => 'contact_store', 'uses' => 'ContactUsController@store']);
-
-	Route::controllers([
-		'auth' => 'Auth\AuthController',
-		'password' => 'Auth\PasswordController',
-	]);
-
-	Route::get('/activate/{code}', 'Auth\AuthController@activateAccount');
-	Route::get('/resendEmail', 'Auth\AuthController@resendEmail');
-
+			return Response::json('Your account is not active, please active your account first. Check your email to get link activation.', 400);
+		}
+		DB::table('sessions')->insert(
+			    array('id' => Uuid::generate(), 'user' => \Auth::user()->id, 'sessionId' => \Session::getId())
+			);
+		return response()->json(['status' => true]);
+	 	//return Redirect::to_action('user@index'); you'd use this if it's not AJAX request
+	}else{
+		return Response::json('Username and password do not match.', 400);
+		/*return Redirect::to_action('home@login')
+		-> with_input('only', array('new_username')) 
+		-> with('login_errors', true);*/
+    }
 });
+Route::post('/checkauthlogin', function()
+{
+	if (Auth::user() != null)
+	{
+		return response()->json(['status' => true]);
+	 	//return Redirect::to_action('user@index'); you'd use this if it's not AJAX request
+	}else{
+		return response()->json(['status' => false]);
+		/*return Redirect::to_action('home@login')
+		-> with_input('only', array('new_username')) 
+		-> with('login_errors', true);*/
+    }
+});
+Route::post('/logout', function()
+{
+	if (Auth::user())
+	{
+		DB::table('sessions')->where('user', \Auth::user()->id)->where('sessionId', Session::getId())->delete();
+		Auth::logout();
+		return response()->json(['status' => true]);
+	 	//return Redirect::to_action('user@index'); you'd use this if it's not AJAX request
+	}else{
+		return Response::json('Error logout', 400);
+		/*return Redirect::to_action('home@login')
+		-> with_input('only', array('new_username')) 
+		-> with('login_errors', true);*/
+    }
+});
+////////////////////cordova//////////////////////////////////////////////////////////////////////
 
-Route::group(['middleware' => 'admin', 'before' => 'www'], function()
+Route::group(['before' => 'www'], function () {
+	Route::get('/', 'WelcomeController@index');
+});
+Route::get('/site/privacy', 'PrivacyController@index');
+Route::get('/site/terms', 'TermsController@index');
+Route::get('/site/membertype', 'MemberTypeController@index');
+Route::get('/site/contact', 
+  ['as' => 'contact', 'uses' => 'ContactUsController@create']);
+Route::post('/site/contact', 
+  ['as' => 'contact_store', 'uses' => 'ContactUsController@store']);
+
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
+]);
+
+Route::get('/activate/{code}', 'Auth\AuthController@activateAccount');
+Route::get('/resendEmail', 'Auth\AuthController@resendEmail');
+
+Route::group(['middleware' => 'admin'], function()
 {
     Route::get('/admin', function()
     {
@@ -154,7 +153,7 @@ Route::group(['middleware' => 'admin', 'before' => 'www'], function()
 	]);
 });
 
-Route::group(['middleware' => 'user', 'before' => 'www'], function()
+Route::group(['middleware' => 'user'], function()
 {
     Route::get('/user', function()
     {
@@ -1260,107 +1259,103 @@ Route::group(['middleware' => 'user', 'before' => 'www'], function()
 	});
 });
 
-Route::group(['before' => 'www'], function () {
-
-	Route::get('createdb',function(){
-		Schema::create('users',function($table){
-			$table->string('id')->primary();
-			$table->string('email',32)->unique();
-			$table->string('password',60);
-			$table->string('activation_code')->default('');
-			$table->boolean('active')->default(0);
-			$table->tinyInteger('resent')->unsigned()->default(0);
-			$table->string('role',32)->default('USER');
-			$table->string('remember_token',60)->default('');
-			$table->string('fullname',30)->default('');
-			$table->string('url', 30)->unique();
-			$table->string('phone',30)->default('');
-			$table->string('phone2',30)->default('');
-			$table->string('address',90)->default('');
-			$table->string('pinbb',8)->default('');
-			$table->string('facebook',100)->default('');
-			$table->string('twitter',30)->default('');
-			$table->string('instagram',30)->default('');
-			$table->string('line',30)->default('');
-			$table->string('status',160)->default('Welcome to my contact');
-			$table->string('note',20000)->default('');
-			$table->boolean('showemailinpublic')->default(0);
-			$table->boolean('privateaccount')->default(0);
-			$table->boolean('privatephone1')->default(0);
-			$table->boolean('privatephone2')->default(0);
-			$table->boolean('newinvitesnotification')->default(0);
-			$table->integer('limitcontacts')->default(250);
-			$table->string('membertype')->default('MEMBER');
-			$table->timestamps();
-		});
-		Schema::create('password_resets',function($table){
-			$table->string('email')->index();
-			$table->string('token')->index();
-			$table->timestamp('created_at');
-		});
-		Schema::create('sessions',function($table){
-			$table->string('id')->primary();
-			$table->string('user');
-			$table->foreign('user')->references('id')->on('users');
-			$table->string('sessionId',60)->default('');
-		});
-		Schema::create('friendsonline',function($table){
-			$table->string('id')->primary();
-			$table->string('user1');
-			$table->foreign('user1')->references('id')->on('users');
-			$table->string('user2');
-			$table->foreign('user2')->references('id')->on('users');
-			$table->string('status');
-			$table->boolean('isfavorite')->default(0);
-			$table->timestamps();
-		});
-		Schema::create('friendsoffline',function($table){
-			$table->string('id')->primary();
-			$table->string('user');
-			$table->foreign('user')->references('id')->on('users');
-			$table->string('fullname',30)->default('');
-			$table->string('email',32)->default('');
-			$table->string('phone',30)->default('');
-			$table->string('phone2',30)->default('');
-			$table->string('address',90)->default('');
-			$table->string('pinbb',8)->default('');
-			$table->string('facebook',100)->default('');
-			$table->string('twitter',30)->default('');
-			$table->string('instagram',30)->default('');
-			$table->string('line',30)->default('');
-			$table->boolean('isfavorite')->default(0);
-			$table->timestamps();
-		});
-
-		Schema::create('categories',function($table){
-			$table->string('id')->primary();
-			$table->string('user');
-			$table->foreign('user')->references('id')->on('users');
-			$table->string('title',30)->unique();
-			$table->timestamps();
-		});
-
-		Schema::create('detailcategories',function($table){
-			$table->string('id')->primary();
-			$table->string('category');
-			$table->foreign('category')->references('id')->on('categories');
-			$table->string('friendid');
-			$table->string('onlineoffline')->default('');
-			$table->timestamps();
-		});
-
-		return "tables has been created";
+Route::get('createdb',function(){
+	Schema::create('users',function($table){
+		$table->string('id')->primary();
+		$table->string('email',32)->unique();
+		$table->string('password',60);
+		$table->string('activation_code')->default('');
+		$table->boolean('active')->default(0);
+		$table->tinyInteger('resent')->unsigned()->default(0);
+		$table->string('role',32)->default('USER');
+		$table->string('remember_token',60)->default('');
+		$table->string('fullname',30)->default('');
+		$table->string('url', 30)->unique();
+		$table->string('phone',30)->default('');
+		$table->string('phone2',30)->default('');
+		$table->string('address',90)->default('');
+		$table->string('pinbb',8)->default('');
+		$table->string('facebook',100)->default('');
+		$table->string('twitter',30)->default('');
+		$table->string('instagram',30)->default('');
+		$table->string('line',30)->default('');
+		$table->string('status',160)->default('Welcome to my contact');
+		$table->string('note',20000)->default('');
+		$table->boolean('showemailinpublic')->default(0);
+		$table->boolean('privateaccount')->default(0);
+		$table->boolean('privatephone1')->default(0);
+		$table->boolean('privatephone2')->default(0);
+		$table->boolean('newinvitesnotification')->default(0);
+		$table->integer('limitcontacts')->default(250);
+		$table->string('membertype')->default('MEMBER');
+		$table->timestamps();
+	});
+	Schema::create('password_resets',function($table){
+		$table->string('email')->index();
+		$table->string('token')->index();
+		$table->timestamp('created_at');
+	});
+	Schema::create('sessions',function($table){
+		$table->string('id')->primary();
+		$table->string('user');
+		$table->foreign('user')->references('id')->on('users');
+		$table->string('sessionId',60)->default('');
+	});
+	Schema::create('friendsonline',function($table){
+		$table->string('id')->primary();
+		$table->string('user1');
+		$table->foreign('user1')->references('id')->on('users');
+		$table->string('user2');
+		$table->foreign('user2')->references('id')->on('users');
+		$table->string('status');
+		$table->boolean('isfavorite')->default(0);
+		$table->timestamps();
+	});
+	Schema::create('friendsoffline',function($table){
+		$table->string('id')->primary();
+		$table->string('user');
+		$table->foreign('user')->references('id')->on('users');
+		$table->string('fullname',30)->default('');
+		$table->string('email',32)->default('');
+		$table->string('phone',30)->default('');
+		$table->string('phone2',30)->default('');
+		$table->string('address',90)->default('');
+		$table->string('pinbb',8)->default('');
+		$table->string('facebook',100)->default('');
+		$table->string('twitter',30)->default('');
+		$table->string('instagram',30)->default('');
+		$table->string('line',30)->default('');
+		$table->boolean('isfavorite')->default(0);
+		$table->timestamps();
 	});
 
+	Schema::create('categories',function($table){
+		$table->string('id')->primary();
+		$table->string('user');
+		$table->foreign('user')->references('id')->on('users');
+		$table->string('title',30)->unique();
+		$table->timestamps();
+	});
 
-	Route::get('/image/{id}', [
-		    'as' => 'showcontact.image',
-		    'uses' => 'ShowContactController@image'
-	]);
+	Schema::create('detailcategories',function($table){
+		$table->string('id')->primary();
+		$table->string('category');
+		$table->foreign('category')->references('id')->on('categories');
+		$table->string('friendid');
+		$table->string('onlineoffline')->default('');
+		$table->timestamps();
+	});
 
-	Route::get('/{url}', [
-		    'as' => 'showcontact.show',
-		    'uses' => 'ShowContactController@show'
-	]);
-
+	return "tables has been created";
 });
+
+Route::get('/image/{id}', [
+	    'as' => 'showcontact.image',
+	    'uses' => 'ShowContactController@image'
+]);
+
+Route::get('/{url}', [
+	    'as' => 'showcontact.show',
+	    'uses' => 'ShowContactController@show'
+]);
+
