@@ -734,7 +734,7 @@ $(document).on('pageinit', '#friendprofile', function(){
   	{
   		if(history.length > 1)
         {
-          history.back();
+          $.mobile.changePage(beforePage);
         }
         else
         {
