@@ -804,9 +804,106 @@ $(document).on('pageinit', '#friendprofile', function(){
     });
   }); 
 
-  $(document).on('click', '#pinbbfriendprofile', function() { 
-    window.prompt("Copy to clipboard: ", friend.pinbb);
+  $(document).on('mousedown', '#emailfriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+    this.downTimer = setTimeout(function() {
+      window.prompt("Copy to clipboard: ", friend.email);
+    }, 1500);
   });
+  $(document).on('click', '#emailfriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+  });
+
+  $(document).on('mousedown', '#urlfriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+    this.downTimer = setTimeout(function() {
+      window.prompt("Copy to clipboard: ",index + "/" + friend.url);
+    }, 1500);
+  });
+  $(document).on('click', '#urlfriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+  });
+
+  $(document).on('mousedown', '#phonefriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+    this.downTimer = setTimeout(function() {
+      window.prompt("Copy to clipboard: ", friend.phone);
+    }, 1500);
+  });
+  $(document).on('click', '#phonefriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+  });
+
+  $(document).on('mousedown', '#phone2friendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+    this.downTimer = setTimeout(function() {
+      window.prompt("Copy to clipboard: ", friend.phone2);
+    }, 1500);
+  });
+  $(document).on('click', '#phone2friendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+  });
+
+  $(document).on('mousedown', '#addressfriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+    this.downTimer = setTimeout(function() {
+      window.prompt("Copy to clipboard: ", friend.address);
+    }, 1500);
+  });
+  $(document).on('click', '#addressfriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+  });
+
+  $(document).on('mousedown', '#pinbbfriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+    this.downTimer = setTimeout(function() {
+      window.prompt("Copy to clipboard: ", friend.pinbb);
+    }, 1500);
+  });
+  $(document).on('click', '#pinbbfriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+  });
+
+  $(document).on('mousedown', '#facebookfriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+    this.downTimer = setTimeout(function() {
+      window.prompt("Copy to clipboard: ", friend.facebook);
+    }, 1500);
+  });
+  $(document).on('click', '#facebookfriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+  });
+
+  $(document).on('mousedown', '#twitterfriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+    this.downTimer = setTimeout(function() {
+      window.prompt("Copy to clipboard: ", friend.twitter);
+    }, 1500);
+  });
+  $(document).on('click', '#twitterfriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+  });
+
+  $(document).on('mousedown', '#instagramfriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+    this.downTimer = setTimeout(function() {
+      window.prompt("Copy to clipboard: ", friend.instagram);
+    }, 1500);
+  });
+  $(document).on('click', '#instagramfriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+  });
+
+  $(document).on('mousedown', '#linefriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+    this.downTimer = setTimeout(function() {
+      window.prompt("Copy to clipboard: ", friend.line);
+    }, 1500);
+  });
+  $(document).on('click', '#linefriendprofile', function(event) { 
+    clearTimeout(this.downTimer);
+  });
+
 });
 /* show friend profile who clicked */
 $(document).on('pagebeforeshow', '#friendprofile', function(){   
@@ -834,56 +931,56 @@ $(document).on('pagebeforeshow', '#friendprofile', function(){
     }
 
     if (friend.email) {
-      $('#actionFriendProfileList').append('<li><a href="mailto:' + friend.email + '"><h3>Email</h3>' +
+      $('#actionFriendProfileList').append('<li><a href="mailto:' + friend.email + '" id="emailfriendprofile"><h3>Email</h3>' +
           '<p>' + friend.email + '</p></a></li>');
     }
     if (friend.url) {
-      $('#actionFriendProfileList').append('<li><a target="_blank" href="http://kontakku.com/' + friend.url + '"><h3>URL</h3>' +
+      $('#actionFriendProfileList').append('<li><a target="_blank" href="http://kontakku.com/' + friend.url + '" id="urlfriendprofile"><h3>URL</h3>' +
           '<p>kontakku.com/' + friend.url + '</p></a></li>');
     }
     if (friend.phone) {
-      $('#actionFriendProfileList').append('<li><a href="tel:' + friend.phone + '"><h3>Call This Phone 1</h3>' +
+      $('#actionFriendProfileList').append('<li><a href="tel:' + friend.phone + '" id="phonefriendprofile"><h3>Call This Phone 1</h3>' +
           '<p>' + friend.phone + '</p></a></li>');
-      $('#actionFriendProfileList').append('<li><a href="sms:' + friend.phone + '"><h3>SMS Phone 1</h3>' +
+      $('#actionFriendProfileList').append('<li><a href="sms:' + friend.phone + '" id="phonefriendprofile"><h3>SMS Phone 1</h3>' +
           '<p>' + friend.phone + '</p></a></li>');
     }
     if (friend.phone2) {
-      $('#actionFriendProfileList').append('<li><a href="tel:' + friend.phone2 + '"><h3>Call This Phone 2</h3>' +
+      $('#actionFriendProfileList').append('<li><a href="tel:' + friend.phone2 + '" id="phone2friendprofile"><h3>Call This Phone 2</h3>' +
           '<p>' + friend.phone2 + '</p></a></li>');
-      $('#actionFriendProfileList').append('<li><a href="sms:' + friend.phone2 + '"><h3>SMS Phone 2</h3>' +
+      $('#actionFriendProfileList').append('<li><a href="sms:' + friend.phone2 + '" id="phone2friendprofile"><h3>SMS Phone 2</h3>' +
           '<p>' + friend.phone2 + '</p></a></li>');
     }
     if (friend.address) {
-      $('#actionFriendProfileList').append('<li style="white-space:normal;"><h3>Address</h3>' +
-          '<p>' + friend.address + '</p></li>');
+      $('#actionFriendProfileList').append('<li style="white-space:normal;"><a id="addressfriendprofile"><h3>Address</h3>' +
+          '<p>' + friend.address + '</p></a></li>');
     }
     if (friend.pinbb) {
       $('#actionFriendProfileList').append('<li><a id="pinbbfriendprofile"><h3>PIN BB</h3>' +
           '<p>' + friend.pinbb + '</p></a></li>');
     }
     if (friend.facebook.substring(0, 4) === "http") {
-      $('#actionFriendProfileList').append('<li><a href="' + friend.facebook + '" target="_blank"><h3>Facebook</h3>' +
+      $('#actionFriendProfileList').append('<li><a href="' + friend.facebook + '" target="_blank" id="facebookfriendprofile"><h3>Facebook</h3>' +
           '<p>' + friend.facebook+ '</p></a></li>');
     }
     else if(friend.facebook.indexOf(' ') >= 0)
     {
-      $('#actionFriendProfileList').append('<li><a href=""><h3>Facebook</h3>' +
+      $('#actionFriendProfileList').append('<li><a href="" id="facebookfriendprofile"><h3>Facebook</h3>' +
           '<p>' + friend.facebook+ '</p></a></li>');
     }
     else if (friend.facebook) {
-      $('#actionFriendProfileList').append('<li><a href="https://www.facebook.com/' + friend.facebook + '" target="_blank"><h3>Facebook</h3>' +
+      $('#actionFriendProfileList').append('<li><a href="https://www.facebook.com/' + friend.facebook + '" target="_blank" id="facebookfriendprofile"><h3>Facebook</h3>' +
           '<p>' + friend.facebook+ '</p></a></li>');
     }
     if (friend.twitter) {
-      $('#actionFriendProfileList').append('<li><a href="https://twitter.com/' + friend.twitter + '" target="_blank"><h3>Twitter</h3>' +
+      $('#actionFriendProfileList').append('<li><a href="https://twitter.com/' + friend.twitter + '" target="_blank" id="twitterfriendprofile"><h3>Twitter</h3>' +
           '<p>' + friend.twitter + '</p></a></li>');
     }
     if (friend.instagram) {
-      $('#actionFriendProfileList').append('<li><a href="https://instagram.com/' + friend.instagram + '" target="_blank"><h3>Instagram</h3>' +
+      $('#actionFriendProfileList').append('<li><a href="https://instagram.com/' + friend.instagram + '" target="_blank" id="instagramfriendprofile"><h3>Instagram</h3>' +
           '<p>' + friend.instagram + '</p></a></li>');
     }
     if(friend.line) {
-      $('#actionFriendProfileList').append('<li><a href="http://line.me/R/ti/p/~' + friend.line + '" target="_blank"><h3>Line</h3>' +
+      $('#actionFriendProfileList').append('<li><a href="http://line.me/R/ti/p/~' + friend.line + '" target="_blank" id="linefriendprofile"><h3>Line</h3>' +
           '<p>' + friend.line + '</p></a></li>');
     }
 
@@ -1882,3 +1979,60 @@ var loadFileEditFriend = function(event) {
 		var output = document.getElementById('outputEditFriend');
 		output.src = URL.createObjectURL(event.target.files[0]);
   	};
+
+function copyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+
+  //
+  // *** This styling is an extra step which is likely not required. ***
+  //
+  // Why is it here? To ensure:
+  // 1. the element is able to have focus and selection.
+  // 2. if element was to flash render it has minimal visual impact.
+  // 3. less flakyness with selection and copying which **might** occur if
+  //    the textarea element is not visible.
+  //
+  // The likelihood is the element won't even render, not even a flash,
+  // so some of these are just precautions. However in IE the element
+  // is visible whilst the popup box asking the user for permission for
+  // the web page to copy to the clipboard.
+  //
+
+  // Place in top-left corner of screen regardless of scroll position.
+  textArea.style.position = 'fixed';
+  textArea.style.top = 0;
+  textArea.style.left = 0;
+
+  // Ensure it has a small width and height. Setting to 1px / 1em
+  // doesn't work as this gives a negative w/h on some browsers.
+  textArea.style.width = '2em';
+  textArea.style.height = '2em';
+
+  // We don't need padding, reducing the size if it does flash render.
+  textArea.style.padding = 0;
+
+  // Clean up any borders.
+  textArea.style.border = 'none';
+  textArea.style.outline = 'none';
+  textArea.style.boxShadow = 'none';
+
+  // Avoid flash of white box if rendered for any reason.
+  textArea.style.background = 'transparent';
+
+
+  textArea.value = text;
+
+  document.body.appendChild(textArea);
+
+  textArea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+
+  document.body.removeChild(textArea);
+}
