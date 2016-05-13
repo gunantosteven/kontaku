@@ -70,11 +70,26 @@
           <br> Send to +6283854968000 or 083854968000. </p>
 
           <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_150x38.png" alt="Buy now with PayPal" />
-          <p><b>gunantosteven@gmail.com</b></p>
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+			<input type="hidden" name="cmd" value="_s-xclick">
+			<input type="hidden" name="hosted_button_id" value="QREWY3LXC7USC">
+			<table>
+			<tr><td><input type="hidden" name="on0" value="TYPE MEMBER">TYPE MEMBER</td></tr><tr><td><select name="os0">
+				<option value="PREMIUM">PREMIUM $5,00 USD</option>
+				<option value="BOSS">BOSS $10,00 USD</option>
+			</select> </td></tr>
+			</table>
+			<input type="hidden" name="currency_code" value="USD">
+			<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+			<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+		  </form><br>
 
           <p> After you transfer, send SMS / Whatsapp Format : <b>YourURL MemberTypeYouChoose EmailTransfer</b> 
           <br> Example : <b>kontakku.com/stevengunanto BOSS gunantosteven@gmail.com</b>
           <br> Send to +6283854968000 or 083854968000. </p>
+
+          
+
 
           <p> If you require any more information or have any questions about our member type, please feel free to contact us by email at <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#115;&#x75;&#x70;&#x70;&#111;&#114;&#x74;&#64;&#x6b;&#111;&#110;&#116;&#x61;&#x6b;&#x6b;&#x75;&#x2e;&#99;&#111;&#x6d;">&#115;&#x75;&#x70;&#x70;&#111;&#114;&#x74;&#64;&#x6b;&#111;&#110;&#116;&#x61;&#x6b;&#x6b;&#x75;&#x2e;&#99;&#111;&#x6d;</a>.</p>
   </div>
