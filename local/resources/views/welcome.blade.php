@@ -25,7 +25,7 @@
 	<!-- column content -->
 	<div id="main-content">
 		<div class="container">
-			<!-- <center>
+			<center>
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 				<ins class="adsbygoogle"
 				     style="display:block"
@@ -35,7 +35,7 @@
 				<script>
 				(adsbygoogle = window.adsbygoogle || []).push({});
 				</script>
-			</center> -->
+			</center>
 			<div class="row">
 				<div class="big-box">
 					<div class="col-lg-12">
