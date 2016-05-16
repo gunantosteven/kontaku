@@ -44,7 +44,7 @@
 								<div class="wow bounceInLeft" data-wow-duration="2s" data-wow-delay="0.9s">
 									<div class="align-center">
 										<h4 class="text-bold">What is KontaKKu?</h4>
-										<p>KontaKKu is a provider to save your contacts by online and you can share your phone, pin BB, facebook and etc easily too. It is like your contacts phone but with more features. You can use kontakku on web, smartphone and tablet easily.
+										<p>KontaKKu is a provider to save your contacts by online and you can share your phone, pin BBM, facebook and etc easily too. It is like your contacts phone but with more features. You can use kontakku on web, smartphone and tablet easily.
 										</p>
 									</div>
 								</div>
