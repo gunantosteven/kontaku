@@ -31,16 +31,16 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Fullname</label>
+							<label class="col-md-4 control-label">Full Name</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="fullname" placeholder="Your Name" value="{{ old('fullname') }}">
+								<input type="text" class="form-control" id="fullname" name="fullname" placeholder="Your Name" value="{{ old('fullname') }}">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Kontakku.com/</label>
+							<label class="col-md-4 control-label">Username</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="url" placeholder="yourname" value="{{ old('url') }}">
+								<input type="text" class="form-control" id="url" name="url" placeholder="yourname" value="{{ old('url') }}">
 							</div>
 						</div>
 
@@ -84,4 +84,24 @@
 		</div>
 	</div>
 </div>
+<script>
+	//setup before functions
+	var typingTimer;                //timer identifier
+	var doneTypingInterval = 1000;  //time in ms, 5 second for example
+
+	//on keyup, start the countdown
+	$('#fullname').keyup(function(){
+	    clearTimeout(typingTimer);
+	    if ($('#fullname').val) {
+	        typingTimer = setTimeout(function(){
+	            //do stuff here e.g ajax call etc....
+	             var v = $("#fullname").val().replace(/ /g,'').toLowerCase();
+	             if(v != "")
+	             {
+	             	$("#url").val(v);
+	             }
+	        }, doneTypingInterval);
+	    }
+	});
+</script>
 @endsection
