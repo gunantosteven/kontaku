@@ -303,7 +303,7 @@
             </div><!-- /header -->      
             
             <div class="ui-content" role="main">                
-                <ul data-role="listview" id="listinvites"  data-filter="true" data-inset="true" data-divider-theme="a"></ul>
+                <ul data-role="listview" id="listinvites" data-inset="true" data-divider-theme="a"></ul>
             </div><!-- /content -->      
         </div><!-- /end page invites -->     
 
