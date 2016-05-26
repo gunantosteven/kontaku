@@ -422,6 +422,7 @@
                   <li id="#"><a href='#editmyprofile' onclick="beforePage = '#settings'" class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="b">Profile</a></li>
                   <li id="#"><a href='#settingsaccount' class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b">Accounts</a></li>
                   <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fkontakku.com" class="ui-btn ui-icon-comment ui-btn-icon-left" data-theme="b" data-rel="close" target="_blank" >Share On Facebook</a></li>
+                  <li><a href="http://twitter.com/share?text=Im Sharing Kontakku on Twitter&url=http://kontakku.com&hashtags=app,web,android,apple,kontakku," class="ui-btn ui-icon-comment ui-btn-icon-left" data-theme="b" data-rel="close" target="_blank" >Share On Twitter</a></li>
                   <li><a href="#reports" class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b">Reports a Problem</a></li>
                   <li><a href="#help" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="b">Help</a></li>
                   <li><a href="#" class="ui-btn" data-theme="b">Version</a><div class="ui-li-aside ui-li-desc">1.0.1</div></li>
