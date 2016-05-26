@@ -1269,13 +1269,20 @@ Route::group(['middleware' => 'user'], function()
 
 		foreach ($notes as $note)
 		{
-			if(strlen(strtok($note->note, "\n")) > 24)
+			if(trim(preg_replace('/\s+/', ' ', $note->note)) == '')
 			{
-				$note->note = substr(strtok($note->note, "\n"), 0, 24) . '...';
+				$note->note = 'Empty';
 			}
 			else
 			{
-				$note->note = substr(strtok($note->note, "\n"), 0, 24);
+				if(strlen(strtok($note->note, "\n")) > 24)
+				{
+					$note->note = substr(strtok($note->note, "\n"), 0, 24) . '...';
+				}
+				else
+				{
+					$note->note = substr(strtok($note->note, "\n"), 0, 24);
+				}
 			}
 			$note->updated_at = date("d F Y H:i:s e",strtotime($note->updated_at));
 			$array[$count++] = array( "id" => $note->id, "note" => $note->note, "updated_at" => $note->updated_at);
@@ -1383,6 +1390,68 @@ Route::group(['middleware' => 'user'], function()
 	    //this route should returns json response
 	    return response()->json(['searchnotescount' => $searchnotescount, 'notes' => $array]);
 	});
+
+	Route::delete('user/delete/note', function()
+	{
+		$id = Request::input('id');
+
+		DB::table('notes')->where('id', $id)->delete();
+
+   		return response()->json(['status' => true]);
+	});
+
+	Route::post('/user/note', function()
+	{
+		$id = Request::input('id');
+
+		$note = DB::table('notes')->where('id', $id)->first();
+
+		if($note != null)
+		{
+			//this route should returns json response
+		    return Response::json($note);
+		}
+
+		return Response::json(null);
+		
+	});
+
+	Route::post('/user/edit/note', function()
+	{
+		$output = Input::all();
+
+		// Setup the validator
+		$rules = array('note' => 'max:20000');
+		$validator = Validator::make($output, $rules);
+
+		// Validate the input and return correct response
+		if ($validator->fails())
+		{
+		    return Response::json(array(
+		        'status' => false,
+		        'errors' => $validator->getMessageBag()->toArray()
+
+		    ), 400); // 400 being the HTTP code for an invalid request.
+		}
+
+		DB::table('notes')
+            ->where('id', $output['id'])
+            ->update(['note' => $output['note']]);
+
+		return response()->json(['status' => true]);
+		
+	});
+
+	Route::post('/user/create/note', function()
+	{
+		$id = Uuid::generate();
+		\App\Models\Note::create(array(
+			'id' => $id,
+			'user' => Auth::user()->id,
+		));
+		$note = DB::table('notes')->where('id', $id)->first();
+   		return response()->json(['note' => $note, 'status' => true]);
+	});
 });
 
 Route::get('createdb',function(){
@@ -1473,7 +1542,7 @@ Route::get('createdb',function(){
 		$table->string('id')->primary();
 		$table->string('user');
 		$table->foreign('user')->references('id')->on('users');
-		$table->string('note',2000)->default('');;
+		$table->string('note',20000)->default('');;
 		$table->timestamps();
 	});
 

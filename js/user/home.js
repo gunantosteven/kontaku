@@ -2,6 +2,7 @@ var friendscount,
     notescount,
     searchfriendscount,
     searchnotescount,
+    note,
     friend,
     friendonlineinvatitation,
     category,
@@ -1549,10 +1550,91 @@ $(document).on('pagebeforeshow', '#sentinvitation', function(){
 /* ===================================end js page sentinvitation=================================== */
 
 /* ===================================js page notes=================================== */
-$(document).on("pagebeforecreate", "#notes", function (e, ui) {
+$(document).on("pageshow", "#notes", function (e, ui) {
      reloadNote();
 });
 $(document).on('pageinit', '#notes', function(){  
+    var deletedIdNoteClicked;
+
+    $('#listNotes').on("click", ".delbtn", function() {
+      deletedIdNoteClicked = $(this).attr('id');
+    });
+
+    $("#listNotes").on("click", ".view", function(e){
+      if($(this).attr('id') !== undefined)
+      {
+        $.ajax({
+                url: index + "/user/note",
+                type: 'POST',
+                data: {_token: CSRF_TOKEN, id : $(this).attr('id')},
+                dataType: 'JSON',
+                success: function (data) {
+                  if(data != null)
+                  {
+                    note = data;
+                    $.mobile.changePage("#fillnote");
+                  }
+                }
+            });
+      }
+    }); 
+
+    $(document).on('click', '#submitdeletenote', function() { 
+      $.ajax({url: index + "/user/delete/note",
+              data: {_token: CSRF_TOKEN, action : 'delete', id : deletedIdNoteClicked },
+              type: 'delete',                   
+              async: 'true',
+              dataType: 'json',
+              beforeSend: function() {
+                  // This callback function will trigger before data is sent
+                  $.mobile.loading('show'); // This will show ajax spinner
+              },
+              complete: function() {
+                  // This callback function will trigger on data sent/received complete
+                  $.mobile.loading('hide'); // This will hide ajax spinner
+              },
+              success: function (result) {
+                  if(result.status) {
+                       reloadNote();
+                  } else {
+                      alert('Something error happened!'); 
+                  }
+              },
+              error: function (request,error) {
+                  // This callback function will trigger on unsuccessful action                
+                  alert('Network error has occurred please try again!');
+              }
+      }); 
+    });  
+
+    $(document).on('click', '#addnote', function() { 
+      $.ajax({url: index + "/user/create/note",
+              data: {_token: CSRF_TOKEN, action : 'create' },
+              type: 'post',                   
+              async: 'true',
+              dataType: 'json',
+              beforeSend: function() {
+                  // This callback function will trigger before data is sent
+                  $.mobile.loading('show'); // This will show ajax spinner
+              },
+              complete: function() {
+                  // This callback function will trigger on data sent/received complete
+                  $.mobile.loading('hide'); // This will hide ajax spinner
+              },
+              success: function (result) {
+                  if(result.status) {
+                       note = result.note;
+                       $.mobile.changePage("#fillnote");
+                  } else {
+                      alert('Something error happened!'); 
+                  }
+              },
+              error: function (request,error) {
+                  // This callback function will trigger on unsuccessful action                
+                  alert('Network error has occurred please try again!');
+              }
+      }); 
+    });  
 
   /* add more contact */
   function addMoreNote(page) {
@@ -1574,7 +1656,7 @@ $(document).on('pageinit', '#notes', function(){
               dataType: 'JSON',
               success: function (data) {
                 $.each (data['notes'], function (index) {
-                  items += "<li id='" + data['notes'][index]['id'] + "'><a href='#'>" + data['notes'][index]['note'] + "<p>" + data['notes'][index]['updated_at'] + "</p></>"  + "</li>";  
+                  items += "<li data-icon='delete'><a class='view' id='" + data['notes'][index]['id'] + "' href='#'>" + data['notes'][index]['note'] + "<p>" + data['notes'][index]['updated_at'] + "</p></>"  + "<a href='#popupDialogDeleteNote' id='" + data['notes'][index]['id'] + "' data-rel='popup' class='delbtn' data-position-to='window' data-transition='pop'>remove</a></li>";  
                 });
                 if(notescount == data['notescount'])
                 {
@@ -1617,7 +1699,7 @@ $(document).on('pageinit', '#notes', function(){
               dataType: 'JSON',
               success: function (data) {
                 $.each (data['notes'], function (index) {
-                  items += "<li id='" + data['notes'][index]['id'] + "'><a href='#'>" + data['notes'][index]['note'] + "<p>" + data['notes'][index]['updated_at'] + "</p></>"  + "</li>";  
+                  items += "<li data-icon='delete'><a class='view' id='" + data['notes'][index]['id'] + "' href='#'>" + data['notes'][index]['note'] + "<p>" + data['notes'][index]['updated_at'] + "</p></>"  + "<a href='#popupDialogDeleteNote' id='" + data['notes'][index]['id'] + "' data-rel='popup' class='delbtn' data-position-to='window' data-transition='pop'>remove</a></li>";  
                 });
                 if(searchnotescount == data['searchnotescount'])
                 {
@@ -1680,7 +1762,7 @@ $(document).on('pageinit', '#notes', function(){
           success: function (data) {
             $("#listNotes").empty();
             $.each (data['notes'], function (index) {
-              $("#listNotes").append("<li id='" + data['notes'][index]['id'] + "'><a href='#'>" + data['notes'][index]['note'] + "<p>" + data['notes'][index]['updated_at'] + "</p></>"  + "</li>").listview("refresh");
+              $("#listNotes").append("<li data-icon='delete'><a class='view' id='" + data['notes'][index]['id'] + "' href='#'>" + data['notes'][index]['note'] + "<p>" + data['notes'][index]['updated_at'] + "</p></>"  + "<a href='#popupDialogDeleteNote' id='" + data['notes'][index]['id'] + "' data-rel='popup' class='delbtn' data-position-to='window' data-transition='pop'>remove</a></li>").listview("refresh");
             });
             searchnotescount = data['searchnotescount'];
             $("#totalnotes").text('Total Found ' + data['totalfound']);
@@ -1696,6 +1778,88 @@ $(document).on('pageinit', '#notes', function(){
 
 });
 /* ===================================js page notes=================================== */
+
+/* ===================================js fill note=================================== */
+$(document).on('pageinit', '#fillnote', function(){  
+  //setup before functions
+  var typingTimer;                //timer identifier
+  var doneTypingInterval = 1000;  //time in ms, 5 second for example
+  var $input = $('#textareaNote');
+
+  //on keyup, start the countdown
+  $input.on('keyup', function () {
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(doneTyping, doneTypingInterval);
+  });
+
+  //on keydown, clear the countdown 
+  $input.on('keydown', function () {
+    $('#infonote').text('You are typing...');
+    clearTimeout(typingTimer);
+  });
+
+  //user is "finished typing," do something
+  function doneTyping () {
+    var formData = new FormData($('#formEditNote')[0]);
+        formData.append("_token", CSRF_TOKEN);
+        formData.append("id", note.id);
+    //do something
+    $.ajax({url: index + "/user/edit/note",
+              data: formData,
+              type: 'post',                   
+              async: 'true',
+              dataType: 'json',
+              contentType: false,
+              processData: false,
+              beforeSend: function() {
+                  // This callback function will trigger before data is sent
+                  $.mobile.loading('show'); // This will show ajax spinner
+              },
+              complete: function() {
+                  // This callback function will trigger on data sent/received complete
+                  $.mobile.loading('hide'); // This will hide ajax spinner
+              },
+              success: function (result) {
+                  if(result.status) {
+                    $('#infonote').text('Note\'s been saved');
+                    if($('body').pagecontainer('getActivePage').prop('id') == 'notes')
+                    {
+                      reloadNote();
+                    }
+                  } else {
+                    $('#infonote').text('Something error happened!');
+                  }
+              },
+              error: function (xhr, status, data) {
+                  // This callback function will trigger on unsuccessful action     
+                  if(xhr.responseJSON.status == false)
+                  {
+                    if(xhr.responseJSON.errors.note)
+                    {
+                      alert(xhr.responseJSON.errors.note);
+                    }
+                  }
+                  else
+                  {
+                    alert('Network error has occurred please try again!'); 
+                  } 
+              }
+      });  
+  }
+
+});  
+$(document).on("pagebeforeshow", "#fillnote", function (e, ui) {
+  if(note == undefined)
+  {
+    $.mobile.changePage("#notes");
+  }
+  else
+  {
+    $('#infonote').text('Fill your note');
+    $('#textareaNote').val(note.note);
+  }
+});
+/* ===================================js fill note=================================== */
 
 /* ===================================js page changepassword=================================== */
 $(document).on('pageinit', '#changepassword', function(){  
@@ -1999,7 +2163,7 @@ function getNotes()
         success: function (data) {
           $("#listNotes").empty();
           $.each (data['notes'], function (index) {
-            $("#listNotes").append("<li id='" + data['notes'][index]['id'] + "'><a href='#'>" + data['notes'][index]['note'] + "<p>" + data['notes'][index]['updated_at'] + "</p></>"  + "</li>").listview("refresh");
+            $("#listNotes").append("<li data-icon='delete'><a class='view' id='" + data['notes'][index]['id'] + "' href='#'>" + data['notes'][index]['note'] + "<p>" + data['notes'][index]['updated_at'] + "</p></>"  + "<a href='#popupDialogDeleteNote' id='" + data['notes'][index]['id'] + "' data-rel='popup' class='delbtn' data-position-to='window' data-transition='pop'>remove</a></li>").listview("refresh");
           });
           notescount = data['notescount'];
       }})   

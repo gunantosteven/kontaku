@@ -368,14 +368,44 @@
                 Notes
             </h1>     
             <a href="#home" data-icon="back" data-iconpos="notext">Back</a>
-            <a href="#addnote" data-icon="plus" data-iconpos="notext">Add Note</a>
+            <a id="addnote" data-icon="plus" data-iconpos="notext">Add Note</a>
           </div><!-- /header -->      
 
           <input type="search" placeholder="Search Notes" id="searchbarnotes" />
           <center><font size="2" color="black" id="totalnotes"></font></center>
-            <div class="ui-content" role="main">      
-              <ul data-role="listview" id="listNotes" data-autodividers="false"></ul>
-            </div><!-- /content -->     
+          <div class="ui-content" role="main">      
+            <ul data-role="listview" id="listNotes" data-autodividers="false"></ul>
+
+            <!-- popupDialog creating form -->
+              <div data-role="popup" id="popupDialogDeleteNote" data-overlay-theme="a" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+                  <div data-role="header" data-theme="a" class="ui-corner-top">
+                      <h1>Delete Note ?</h1>
+                  </div>
+                  <div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+                      <h3 class="ui-title">Are you sure you want to delete this note?</h3>
+                      <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">Cancel</a>
+                      <a href="#" id="submitdeletenote" data-role="button" data-inline="true"  data-transition="flow" data-theme="b" data-rel="back">Delete</a>
+                  </div>
+              </div> <!-- end popup --> 
+          </div><!-- /content -->    
+
+        </div>
+
+        <div data-role="page" id="fillnote">
+          <div data-role="header">         
+            <h1 id="infonote">
+                Fill Your Note
+            </h1>     
+            <a href="#notes" data-icon="back" data-iconpos="notext">Back</a>
+          </div><!-- /header -->      
+          <div class="ui-content" role="main">      
+            <form id="formEditNote"  data-ajax="false" method="post">
+              <textarea name="note" id="textareaNote">
+
+
+              </textarea>
+            </form>
+          </div><!-- /content -->     
 
         </div>
 
