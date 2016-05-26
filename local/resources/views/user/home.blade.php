@@ -64,7 +64,6 @@
                 <a id="subMenuInvites" href="#invites" class="ui-btn ui-icon-plus ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">Invites</a>
                 <a href="#importantphonecountry" class="ui-btn ui-icon-phone ui-btn-icon-left" data-theme="b" data-rel="close" >Important Phone</a>
                 <a href="#settings" class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b" data-rel="close" >Settings</a>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fkontakku.com" class="ui-btn ui-icon-comment ui-btn-icon-left" data-theme="b" data-rel="close" target="_blank" >Share On Facebook</a>
                 <a href="{{ url("/auth/logout") }}" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="b" data-rel="close" data-ajax="false" >Sign Out</a>
              </div>
 
@@ -374,6 +373,7 @@
                 <ul data-role="listview" id="listsettings" data-inset="true">
                   <li id="#"><a href='#editmyprofile' onclick="beforePage = '#settings'" class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="b">Profile</a></li>
                   <li id="#"><a href='#settingsaccount' class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b">Accounts</a></li>
+                  <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fkontakku.com" class="ui-btn ui-icon-comment ui-btn-icon-left" data-theme="b" data-rel="close" target="_blank" >Share On Facebook</a></li>
                   <li><a href="#reports" class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b">Reports a Problem</a></li>
                   <li><a href="#help" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="b">Help</a></li>
                   <li><a href="#" class="ui-btn" data-theme="b">Version</a><div class="ui-li-aside ui-li-desc">1.0.1</div></li>
