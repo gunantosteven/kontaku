@@ -1,11 +1,16 @@
 var friendscount,
+    notescount,
     searchfriendscount,
+    searchnotescount,
     friend,
     friendonlineinvatitation,
     category,
     isLoadMore = true,
     isLoadMoreContact = true,
     isLoadMoreSearchContact = true,
+    isLoadMoreNoteFinished = true,
+    isLoadMoreNote = true,
+    isLoadMoreSearchNote = true,
     beforePage = "",
     pageAfterLoadSuccess = "",
     CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -1543,6 +1548,155 @@ $(document).on('pagebeforeshow', '#sentinvitation', function(){
 }); 
 /* ===================================end js page sentinvitation=================================== */
 
+/* ===================================js page notes=================================== */
+$(document).on("pagebeforecreate", "#notes", function (e, ui) {
+     reloadNote();
+});
+$(document).on('pageinit', '#notes', function(){  
+
+  /* add more contact */
+  function addMoreNote(page) {
+      if(isLoadMoreNote == true)
+      {
+          $.mobile.loading("show", {
+            text: "loading more..",
+            textVisible: true,
+            theme: "a"
+        });
+      }
+      setTimeout(function () {
+          var items = '';
+          var count = 0;
+          $.ajax({
+              url: index + "/user/getnote/" + notescount,
+              type: 'POST',
+              data: {_token: CSRF_TOKEN},
+              dataType: 'JSON',
+              success: function (data) {
+                $.each (data['notes'], function (index) {
+                  items += "<li id='" + data['notes'][index]['id'] + "'><a href='#'>" + data['notes'][index]['note'] + "<p>" + data['notes'][index]['updated_at'] + "</p></>"  + "</li>";  
+                });
+                if(notescount == data['notescount'])
+                {
+                  isLoadMoreNote = false;
+                }
+                else
+                {
+                  isLoadMoreNote = true;
+                }
+                notescount = data['notescount'];
+                $("#listNotes", page).append(items).listview("refresh");
+                $.mobile.loading("hide");
+                isLoadMoreNoteFinished = true;
+                if(pageAfterLoadSuccess == "")
+                {
+                  $.mobile.loading('show');
+                }
+              }
+          });
+      }, 500);
+  }
+
+  /* add more contact */
+  function addMoreSearchNote(page) {
+      if(isLoadMoreSearchNote == true)
+      {
+          $.mobile.loading("show", {
+            text: "loading more..",
+            textVisible: true,
+            theme: "a"
+        });
+      }
+      setTimeout(function () {
+          var items = '';
+          var count = 0;
+          $.ajax({
+              url: index + "/user/searchnote/" + searchnotescount,
+              type: 'POST',
+              data: {_token: CSRF_TOKEN, search: $("#searchbarnotes").val()},
+              dataType: 'JSON',
+              success: function (data) {
+                $.each (data['notes'], function (index) {
+                  items += "<li id='" + data['notes'][index]['id'] + "'><a href='#'>" + data['notes'][index]['note'] + "<p>" + data['notes'][index]['updated_at'] + "</p></>"  + "</li>";  
+                });
+                if(searchnotescount == data['searchnotescount'])
+                {
+                  isLoadMoreSearchNote = false;
+                }
+                else
+                {
+                  isLoadMoreSearchNote = true;
+                }
+                searchnotescount = data['searchnotescount'];
+                $("#listNotes", page).append(items).listview("refresh");
+                $.mobile.loading("hide");
+                isLoadMoreNoteFinished = true;
+                if(pageAfterLoadSuccess == "")
+                {
+                  $.mobile.loading('show');
+                }
+              }
+          });
+      }, 500);
+  }
+
+  /* scroll event */
+  $(document).on("scrollstop", function (e) {
+      var activePage = $.mobile.pageContainer.pagecontainer("getActivePage"),
+          screenHeight = $.mobile.getScreenHeight(),
+          contentHeight = $(".ui-content", activePage).outerHeight(),
+          scrolled = $(window).scrollTop(),
+          header = $(".ui-header", activePage).hasClass("ui-header-fixed") ? $(".ui-header", activePage).outerHeight() - 1 : $(".ui-header", activePage).outerHeight(),
+          footer = $(".ui-footer", activePage).hasClass("ui-footer-fixed") ? $(".ui-footer", activePage).outerHeight() - 1 : $(".ui-footer", activePage).outerHeight(),
+          scrollEnd = contentHeight - screenHeight + header + footer;
+      if (activePage[0].id == "notes" && scrolled >= scrollEnd && (notescount > 0) && $('#searchbarnotes').val().length == 0) {
+        if(isLoadMoreNoteFinished == true)
+        {
+          isLoadMoreNoteFinished = false;
+          addMoreNote(activePage);
+        }
+      }
+      else if (activePage[0].id == "notes" && scrolled >= scrollEnd && (searchnotescount > 0) && $('#searchbarnotes').val().length != 0) {
+          if(isLoadMoreNoteFinished == true)
+        {
+          isLoadMoreNoteFinished = false;
+          addMoreSearchNote(activePage);
+        }
+      }
+  });
+
+  $(document).on("input", "#searchbarnotes", function (e) { 
+    if($("#searchbarnotes").val() == "")
+    {
+       reloadNote();
+    }
+    else
+    {
+      $.ajax({
+          url: index + "/user/searchnote",
+          type: 'POST',
+          data: {_token: CSRF_TOKEN, search: $("#searchbarnotes").val()},
+          dataType: 'JSON',
+          success: function (data) {
+            $("#listNotes").empty();
+            $.each (data['notes'], function (index) {
+              $("#listNotes").append("<li id='" + data['notes'][index]['id'] + "'><a href='#'>" + data['notes'][index]['note'] + "<p>" + data['notes'][index]['updated_at'] + "</p></>"  + "</li>").listview("refresh");
+            });
+            searchnotescount = data['searchnotescount'];
+            $("#totalnotes").text('Total Found ' + data['totalfound']);
+        }
+      });
+    }
+  });
+
+  /*When click clear search input*/
+  $(document).on('click', '.ui-input-clear', function () {
+        reloadNote();
+  });
+
+});
+/* ===================================js page notes=================================== */
+
 /* ===================================js page changepassword=================================== */
 $(document).on('pageinit', '#changepassword', function(){  
   $(document).on('click', '#changepasswordsubmit', function() { 
@@ -1684,6 +1838,13 @@ function reloadContact() {
 	getContacts();
 }
 
+function reloadNote() {
+  isLoadMoreNote = true;
+  isLoadMoreSearchNote = true;
+  countNotes();
+  getNotes();
+}
+
 // function reloadCategories
 function reloadCategories() {
 	$("#listmygroups").empty();
@@ -1823,6 +1984,41 @@ function setBubbleCount() {
             $("#bubbleCountFavorites").text(data['favoritescount']);
   	        $("#bubbleCountOtherContacts").show();
   	        $("#bubbleCountOtherContacts").text(data['totalcontacts'] - data['favoritescount']);
+          }
+      }})             
+}
+
+function getNotes()
+{
+  // get contacts
+    $.ajax({
+        url: index + "/user/getnote",
+        type: 'POST',
+        data: {_token: CSRF_TOKEN},
+        dataType: 'JSON',
+        success: function (data) {
+          $("#listNotes").empty();
+          $.each (data['notes'], function (index) {
+            $("#listNotes").append("<li id='" + data['notes'][index]['id'] + "'><a href='#'>" + data['notes'][index]['note'] + "<p>" + data['notes'][index]['updated_at'] + "</p></>"  + "</li>").listview("refresh");
+          });
+          notescount = data['notescount'];
+      }})   
+}
+
+function countNotes() {
+    $.ajax({
+        url: index + "/user/countnote",
+        type: 'POST',
+        data: {_token: CSRF_TOKEN},
+        dataType: 'JSON',
+        success: function (data) {
+          if(data['totalnotes'] == 0)
+          {
+            $("#totalnotes").text('* No Notes *');
+          }
+          else
+          {
+            $("#totalnotes").text('Total Notes ' + data['totalnotes']);
           }
       }})             
 }

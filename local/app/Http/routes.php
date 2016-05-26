@@ -1257,6 +1257,132 @@ Route::group(['middleware' => 'user'], function()
 	    
 	    return response()->json(['status' => true]);
 	});
+
+	Route::post('/user/getnote', function()
+	{
+		$notes = DB::table('notes')
+		->where('user', Auth::user()->id)
+		->take(10)->orderBy('updated_at', 'desc')->orderBy('note', 'asc')->get();
+
+		$count = 0;
+		$array = array();
+
+		foreach ($notes as $note)
+		{
+			if(strlen(strtok($note->note, "\n")) > 24)
+			{
+				$note->note = substr(strtok($note->note, "\n"), 0, 24) . '...';
+			}
+			else
+			{
+				$note->note = substr(strtok($note->note, "\n"), 0, 24);
+			}
+			$note->updated_at = date("d F Y H:i:s e",strtotime($note->updated_at));
+			$array[$count++] = array( "id" => $note->id, "note" => $note->note, "updated_at" => $note->updated_at);
+		}
+
+	    //this route should returns json response
+	    return response()->json(['notescount' => $count,'notes' => $array]);
+	});
+    
+	Route::post('/user/getnote/{notescount}', function($notescount)
+	{
+        $notes = DB::table('notes')
+		->where('user', Auth::user()->id)
+		->skip($notescount)
+		->take(10)->orderBy('updated_at', 'desc')->orderBy('note', 'asc')->get();
+
+		$count = 0;
+		$array = array();
+
+		foreach ($notes as $note)
+		{
+			if(strlen(strtok($note->note, "\n")) > 24)
+			{
+				$note->note = substr(strtok($note->note, "\n"), 0, 24) . '...';
+			}
+			else
+			{
+				$note->note = substr(strtok($note->note, "\n"), 0, 24);
+			}
+			$note->updated_at = date("d F Y H:i:s e",strtotime($note->updated_at));
+			$array[$count++] = array( "id" => $note->id, "note" => $note->note, "updated_at" => $note->updated_at);
+			$notescount++;
+		}
+	    
+	    ///this route should returns json response
+	    return response()->json(['notescount' => $notescount, 'notes' => $array]);
+	});
+
+	Route::post('/user/countnote', function()
+	{
+		$totalnotes = 0;
+		$totalnotes = DB::table('notes')
+		->where('user', Auth::user()->id)->count();
+
+	    //this route should returns json response
+	    return response()->json(['totalnotes' => $totalnotes]);
+	});
+
+	Route::post('/user/searchnote', function()
+	{
+		$notes = DB::table('notes')
+		->where('user', Auth::user()->id)
+		->where('note', 'ilike', "%" . Request::input('search') . "%")
+		->take(10)->orderBy('updated_at', 'desc')->orderBy('note', 'asc')->get();
+
+		$totalfound = DB::table('notes')
+		->where('user', Auth::user()->id)
+		->where('note', 'ilike', "%" . Request::input('search') . "%")->count();
+
+		$count = 0;
+		$array = array();
+		foreach ($notes as $note)
+		{
+			if(strlen(strtok($note->note, "\n")) > 24)
+			{
+				$note->note = substr(strtok($note->note, "\n"), 0, 24) . '...';
+			}
+			else
+			{
+				$note->note = substr(strtok($note->note, "\n"), 0, 24);
+			}
+			$note->updated_at = date("d F Y H:i:s e",strtotime($note->updated_at));
+			$array[$count++] = array( "id" => $note->id, "note" => $note->note, "updated_at" => $note->updated_at);
+		}
+	    
+	    //this route should returns json response
+	    return response()->json(['searchnotescount' => $count, 'notes' => $array, 'totalfound' => $totalfound]);
+	});
+
+	Route::post('/user/searchnote/{searchnotescount}', function($searchnotescount)
+	{
+		$notes = DB::table('notes')
+		->where('user', Auth::user()->id)
+		->where('note', 'ilike', "%" . Request::input('search') . "%")
+		->skip($searchnotescount)
+		->take(10)->orderBy('updated_at', 'desc')->orderBy('note', 'asc')->get();
+
+		$count = 0;
+		$array = array();
+		foreach ($notes as $note)
+		{
+			if(strlen(strtok($note->note, "\n")) > 24)
+			{
+				$note->note = substr(strtok($note->note, "\n"), 0, 24) . '...';
+			}
+			else
+			{
+				$note->note = substr(strtok($note->note, "\n"), 0, 24);
+			}
+			$note->updated_at = date("d F Y H:i:s e",strtotime($note->updated_at));
+			$array[$count++] = array( "id" => $note->id, "note" => $note->note, "updated_at" => $note->updated_at);
+			$searchnotescount++;
+		}
+	    
+	    //this route should returns json response
+	    return response()->json(['searchnotescount' => $searchnotescount, 'notes' => $array]);
+	});
 });
 
 Route::get('createdb',function(){
@@ -1328,7 +1454,6 @@ Route::get('createdb',function(){
 		$table->boolean('isfavorite')->default(0);
 		$table->timestamps();
 	});
-
 	Schema::create('categories',function($table){
 		$table->string('id')->primary();
 		$table->string('user');
@@ -1336,13 +1461,19 @@ Route::get('createdb',function(){
 		$table->string('title',30)->unique();
 		$table->timestamps();
 	});
-
 	Schema::create('detailcategories',function($table){
 		$table->string('id')->primary();
 		$table->string('category');
 		$table->foreign('category')->references('id')->on('categories');
 		$table->string('friendid');
 		$table->string('onlineoffline')->default('');
+		$table->timestamps();
+	});
+	Schema::create('notes',function($table){
+		$table->string('id')->primary();
+		$table->string('user');
+		$table->foreign('user')->references('id')->on('users');
+		$table->string('note',2000)->default('');;
 		$table->timestamps();
 	});
 

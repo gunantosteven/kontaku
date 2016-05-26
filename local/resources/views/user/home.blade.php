@@ -62,6 +62,7 @@
                 <center><a id="btnRemoveCurrentPhoto" data-role="button" data-theme="a" data-mini="true">Remove Current Photo</a></center>     
                 <a class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-active" data-theme="b" data-rel="close" gid="0">Home</a>
                 <a id="subMenuInvites" href="#invites" class="ui-btn ui-icon-plus ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">Invites</a>
+                <a href="#notes" class="ui-btn ui-icon-bullets ui-btn-icon-left" data-theme="b" data-rel="close" gid="0">Notes</a>
                 <a href="#importantphonecountry" class="ui-btn ui-icon-phone ui-btn-icon-left" data-theme="b" data-rel="close" >Important Phone</a>
                 <a href="#settings" class="ui-btn ui-icon-gear ui-btn-icon-left" data-theme="b" data-rel="close" >Settings</a>
                 <a href="{{ url("/auth/logout") }}" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="b" data-rel="close" data-ajax="false" >Sign Out</a>
@@ -360,6 +361,23 @@
                 </div>
             </div><!-- /header -->    
         </div><!-- /end page invites -->  
+
+        <div data-role="page" id="notes">
+          <div data-role="header">         
+            <h1>
+                Notes
+            </h1>     
+            <a href="#home" data-icon="back" data-iconpos="notext">Back</a>
+            <a href="#addnote" data-icon="plus" data-iconpos="notext">Add Note</a>
+          </div><!-- /header -->      
+
+          <input type="search" placeholder="Search Notes" id="searchbarnotes" />
+          <center><font size="2" color="black" id="totalnotes"></font></center>
+            <div class="ui-content" role="main">      
+              <ul data-role="listview" id="listNotes" data-autodividers="false"></ul>
+            </div><!-- /content -->     
+
+        </div>
 
         <div data-role="page" id="settings"><!-- Page Settings -->     
             <div data-role="header">         
