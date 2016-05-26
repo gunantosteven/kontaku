@@ -47,6 +47,12 @@
                 <td>1000</td>
               </tr>
               <tr>
+                <td>Limit Notes</td>
+                <td>5</td>
+                <td>50</td>
+                <td>100</td>
+              </tr>
+              <tr>
                 <td>Cost</td>
                 <td>FREE</td>
                 <td>$5 / IDR 50.000, 00</td>

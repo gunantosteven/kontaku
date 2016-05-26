@@ -1625,7 +1625,13 @@ $(document).on('pageinit', '#notes', function(){
                   if(result.status) {
                        note = result.note;
                        $.mobile.changePage("#fillnote");
-                  } else {
+                  } 
+                  else if(result.status == false) {
+                    if(result.message) {
+                      alert(result.message); 
+                    }
+                  }
+                  else {
                       alert('Something error happened!'); 
                   }
               },

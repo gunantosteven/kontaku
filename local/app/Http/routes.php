@@ -1444,6 +1444,21 @@ Route::group(['middleware' => 'user'], function()
 
 	Route::post('/user/create/note', function()
 	{
+		$totalnotes = DB::table('notes')
+		->where('user', Auth::user()->id)->count();
+		if(Auth::user()->membertype == 'MEMBER' && $totalnotes >= 5)
+		{
+			return response()->json(['message' => 'Your limit note is 5, please update your member.', 'status' => false]);
+		}
+		if(Auth::user()->membertype == 'PREMIUM' && $totalnotes >= 50)
+		{
+			return response()->json(['message' => 'Your limit note is 50, please update your member.', 'status' => false]);
+		}
+		if(Auth::user()->membertype == 'BOSS' && $totalnotes >= 100)
+		{
+			return response()->json(['message' => 'You don\'t allow exceeding 100 notes.' , 'status' => false]);
+		}
+
 		$id = Uuid::generate();
 		\App\Models\Note::create(array(
 			'id' => $id,
