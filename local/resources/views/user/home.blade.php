@@ -317,7 +317,7 @@
             
             <div class="ui-content" role="main">
               <form id="formSearchAddFriendOnline"  data-ajax="false">  
-                <input type="text" placeholder="Search by URL" name="search" id="searchbaraddfriendsonline" data-clear-btn="true"/>
+                <input type="text" placeholder="Search by Username" name="search" id="searchbaraddfriendsonline" data-clear-btn="true"/>
                 <input type="submit" name="search" value="Search" id="submitsearchaddfriendsonline"/>  
               </form>       
               <div class="center-wrapper">     
@@ -493,6 +493,7 @@
             <div class="ui-content" role="main">                
                 <ul data-role="listview" id="listsettings" data-inset="true">
                   <li id=''><b>My Email </b><p><font id="settingsaccountmyemail" size="2px"></font></p></li>
+                  <li id=''><b>My Username </b><p><font id="settingsaccountmyusername" size="2px"></font></p></li>
                   <li id=''><b>My URL </b><p><font id="settingsaccountmyurl" size="2px"></font></p></li>
                   <li id=''><b>Member Type <a href="" target="_blank" id="membertypehref" style="font-size: 12px; text-decoration: none">What's this </a></b><p><font id="settingsaccountmembertype" size="2px"></font></p></li>
                   <li id=''><b>My Limit Contacts </b><p><font id="settingsaccountmylimitcontacts" size="2px"></font></p></li>
@@ -596,7 +597,7 @@
                     <p>1. Login to your account.</p>
                     <p>2. Click/Tap menu button on left top. It will show you some submenu, click/tap Invites.</p>
                     <p>3. Click/Tap plus button on right top. It will show you textbox and search button.</p>
-                    <p>4. Type your friend URL like <b>stevengunanto</b> if your friend URL is kontakku.com/<b>stevengunanto</b>.</p>
+                    <p>4. Type your friend username.</p>
                     <p>5. Click/Tap search button.</p>
                     <p>6. Click/Tap ADD button, you need to wait your friend accept your invitation.</p>
                     <p>Your friend contacts will be saved in server and It's secure to save here as long as you don't give your account</p>

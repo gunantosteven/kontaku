@@ -1920,6 +1920,7 @@ $(document).on('pagebeforecreate', '#settingsaccount', function(){
             dataType: 'JSON',
             success: function (data) {
               $('#settingsaccountmyemail').text(data.email);
+              $('#settingsaccountmyusername').text(data.url);
               $('#settingsaccountmyurl').text("kontakku.com/" + data.url);
               $('#settingsaccountmembertype').text(data.membertype);
               $('#settingsaccountmylimitcontacts').text(data.limitcontacts);
