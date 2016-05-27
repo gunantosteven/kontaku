@@ -425,7 +425,7 @@
                   <li><a href="http://twitter.com/share?text=Im Sharing Kontakku on Twitter&url=http://kontakku.com&hashtags=app,web,android,apple,kontakku," class="ui-btn ui-icon-comment ui-btn-icon-left" data-theme="b" data-rel="close" target="_blank" >Share On Twitter</a></li>
                   <li><a href="#reports" class="ui-btn ui-icon-alert ui-btn-icon-left" data-theme="b">Reports a Problem</a></li>
                   <li><a href="#help" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="b">Help</a></li>
-                  <li><a href="#" class="ui-btn" data-theme="b">Version</a><div class="ui-li-aside ui-li-desc">1.0.1</div></li>
+                  <li><a href="#" class="ui-btn" data-theme="b">Version</a><div class="ui-li-aside ui-li-desc">1.0.2</div></li>
                 </ul>
             </div><!-- /content -->      
         </div><!-- /end page Settings -->    
