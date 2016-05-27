@@ -1551,7 +1551,27 @@ $(document).on('pagebeforeshow', '#sentinvitation', function(){
 
 /* ===================================js page notes=================================== */
 $(document).on("pageshow", "#notes", function (e, ui) {
-     reloadNote();
+	if($("#searchbarnotes").val() == "")
+    {
+       reloadNote();
+    }
+    else
+    {
+      $.ajax({
+          url: index + "/user/searchnote",
+          type: 'POST',
+          data: {_token: CSRF_TOKEN, search: $("#searchbarnotes").val()},
+          dataType: 'JSON',
+          success: function (data) {
+            $("#listNotes").empty();
+            $.each (data['notes'], function (index) {
+              $("#listNotes").append("<li data-icon='delete'><a class='view' id='" + data['notes'][index]['id'] + "' href='#'>" + data['notes'][index]['note'] + "<p>" + data['notes'][index]['updated_at'] + "</p></>"  + "<a href='#popupDialogDeleteNote' id='" + data['notes'][index]['id'] + "' data-rel='popup' class='delbtn' data-position-to='window' data-transition='pop'>remove</a></li>").listview("refresh");
+            });
+            searchnotescount = data['searchnotescount'];
+            $("#totalnotes").text('Total Found ' + data['totalfound']);
+        }
+      });
+    }
 });
 $(document).on('pageinit', '#notes', function(){  
     var deletedIdNoteClicked;
