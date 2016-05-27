@@ -1436,7 +1436,7 @@ Route::group(['middleware' => 'user'], function()
 		DB::table('notes')
             ->where('id', $output['id'])
             ->update(['note' => $output['note'],
-            		  'updated_at' => DB::raw('NOW()')]);
+            		  'updated_at' => Carbon\Carbon::now()]);
 
 		return response()->json(['status' => true]);
 		
