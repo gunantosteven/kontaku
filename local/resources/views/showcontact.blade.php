@@ -54,7 +54,8 @@
           	</div>
           @if( $user->showemailinpublic == true )
             <div class="form-group">
-              <label class="col-md-4 control-label">Email</label>
+              <label class="col-md-4 control-label"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+
               <div class="col-md-6">
                 <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="phone" value="{{ $user->email }}" readonly="">
               </div>
@@ -62,7 +63,7 @@
           @endif
           @if($user->phone && !$user->privatephone1)
             <div class="form-group">
-              <label class="col-md-4 control-label">Phone 1</label>
+              <label class="col-md-4 control-label"><span class="glyphicon glyphicon-phone-alt"></span> Phone 1</label>
               <div class="col-md-6">
                 <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="phone" value="{{ $user->phone }}" readonly="">
               </div>
@@ -70,7 +71,7 @@
           @endif
           @if($user->phone2 && !$user->privatephone2)
             <div class="form-group">
-              <label class="col-md-4 control-label">Phone 2</label>
+              <label class="col-md-4 control-label"><span class="glyphicon glyphicon-phone-alt"></span> Phone 2</label>
               <div class="col-md-6">
                 <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="phone" value="{{ $user->phone2 }}" readonly="">
               </div>
@@ -78,7 +79,7 @@
           @endif
           @if($user->address)
             <div class="form-group">
-              <label class="col-md-4 control-label">Address</label>
+              <label class="col-md-4 control-label"><span class="glyphicon glyphicon-home"></span> Address</label>
               <div class="col-md-6">
                 <textarea onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="address" readonly="">{{ $user->address }}</textarea>
               </div>
@@ -86,7 +87,7 @@
           @endif
           @if($user->pinbb)
             <div class="form-group">
-              <label class="col-md-4 control-label">PIN BB</label>
+              <label class="col-md-4 control-label"><img src="img/blackberry.png"> PIN BB</label>
               <div class="col-md-6">
                 <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="pinbb" value="{{ $user->pinbb }}" readonly="">
               </div>
@@ -94,7 +95,7 @@
           @endif
           @if($user->facebook)
             <div class="form-group">
-              <label class="col-md-4 control-label">Facebook</label>
+              <label class="col-md-4 control-label"><img src="img/facebook2.png"> Facebook</label>
               <div class="col-md-6">
                 <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="facebook" value="{{ $user->facebook }}" readonly="">
               </div>
@@ -102,7 +103,7 @@
           @endif
           @if($user->twitter)
             <div class="form-group">
-              <label class="col-md-4 control-label">Twitter</label>
+              <label class="col-md-4 control-label"><img src="img/twitter.png"> Twitter</label>
               <div class="col-md-6">
                 <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="twitter" value="{{ $user->twitter }}" readonly="">
               </div>
@@ -110,7 +111,7 @@
           @endif
           @if($user->instagram)
             <div class="form-group">
-              <label class="col-md-4 control-label">Instagram</label>
+              <label class="col-md-4 control-label"><img src="img/instagram.png"> Instagram</label>
               <div class="col-md-6">
                 <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="instagram" value="{{ $user->instagram }}" readonly="">
               </div>
@@ -118,7 +119,7 @@
           @endif
           @if($user->line)
             <div class="form-group">
-              <label class="col-md-4 control-label">Line</label>
+              <label class="col-md-4 control-label"><img src="img/line.png"> Line</label>
               <div class="col-md-6">
                 <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" name="instagram" value="{{ $user->line }}" readonly="">
               </div>
